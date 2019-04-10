@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using TheWitcher3Thai;
+using TranslateUtility.Screens;
 
 namespace TranslateUtility
 {
@@ -15,7 +16,7 @@ namespace TranslateUtility
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmLauncher());
+            Application.Run(new frmSimple());
         }
     }
 }

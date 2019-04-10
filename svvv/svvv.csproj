@@ -62,6 +62,7 @@
     <Compile Include="Classes\TranslateResult.cs" />
     <Compile Include="Classes\Updater.cs" />
     <Compile Include="Classes\w3Strings.cs" />
+    <Compile Include="Helper\Configs.cs" />
     <Compile Include="Dialog\DownloadingDialog.cs">
       <SubType>Form</SubType>
     </Compile>

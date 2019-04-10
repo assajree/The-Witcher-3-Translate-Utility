@@ -155,14 +155,16 @@ namespace TheWitcher3Thai
 
         public string SaveXlsx(string initialPath, string defaultPath = null)
         {
+            var fi = new FileInfo(initialPath);
 
             SaveFileDialog dlg = new SaveFileDialog()
             {
                 //Title = "Save text Files",
-                //CheckFileExists = true,
-                //CheckPathExists = true,
+                //CheckFileExists = false,
+                //CheckPathExists = false,
                 FilterIndex = 2,
                 RestoreDirectory = true,
+                FileName = fi.Name,
 
                 DefaultExt = "xlsx",
                 Filter = "Exccel files (*.xlsx)|*.xlsx"
@@ -172,7 +174,7 @@ namespace TheWitcher3Thai
             if (String.IsNullOrWhiteSpace(initialPath))
                 dlg.InitialDirectory = defaultPath ?? Application.StartupPath;
             else
-                dlg.InitialDirectory = new FileInfo(initialPath).DirectoryName;
+                dlg.InitialDirectory = fi.DirectoryName;
 
 
 
@@ -270,7 +272,7 @@ namespace TheWitcher3Thai
             var path = SaveXlsx(initialPath);
             if (path != null)
             {
-                var downloadComplete=DownloadFile("https://docs.google.com/spreadsheets/d/1XLM0VzU0RFiTw8NIQSZ2NBPlL_i1yzBYarrMWGb5lDA/export?format=xlsx", path);
+                var downloadComplete = DownloadFile("https://docs.google.com/spreadsheets/d/1XLM0VzU0RFiTw8NIQSZ2NBPlL_i1yzBYarrMWGb5lDA/export?format=xlsx", path);
                 if (downloadComplete == false)
                     return null;
             }
@@ -278,18 +280,18 @@ namespace TheWitcher3Thai
             return path;
         }
 
-        public  string DownloadLegacyMod(string initialPath)
+        public string DownloadLegacyMod(string initialPath)
         {
             var path = SelectFolder(initialPath);
-            if(path!=null)
+            if (path != null)
             {
-                var downloadResult = DownloadMod(path,false, false);
+                var downloadResult = DownloadMod(path, false, false);
                 if (downloadResult == null)
                     return null;
             }
 
             return path;
-            
+
         }
 
         public void ShowErrorMessage(string message, string caption = "Error")
@@ -300,6 +302,12 @@ namespace TheWitcher3Thai
         public void ShowMessage(string message, string caption = "")
         {
             MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        public bool ShowConfirm(string message, string caption = "")
+        {
+            var result=MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            return result == DialogResult.Yes;
         }
 
         #endregion
@@ -381,7 +389,7 @@ namespace TheWitcher3Thai
         /// <param name="tempPath"></param>
         /// <param name="targetPath"></param>
         /// <param name="modList"></param>
-        private void CopyOutput(string tempPath, string targetPath, Dictionary<string, string> modList)
+        private void FinishMod(string tempPath, string targetPath, Dictionary<string, string> modList)
         {
             foreach (var file in modList)
             {
@@ -393,6 +401,8 @@ namespace TheWitcher3Thai
 
                 source.CopyTo(desc.FullName, true);
             }
+
+            WriteVersionUnofficial(targetPath);
         }
 
         public List<w3Strings> ReadExcelSheet(string path, string sheetName)
@@ -471,6 +481,7 @@ namespace TheWitcher3Thai
                 }
             }
         }
+        
 
         public void WriteTranslateResult(List<TranslateResult> results, string path)
         {
@@ -529,10 +540,10 @@ namespace TheWitcher3Thai
                     var targetPath = Path.Combine(tempPath, s.Key + ".csv");
 
                     var sourceContent = ReadOriginalCsv(sourcePath, true);
-                    var translateContent = ReadExcelLegacy(sht);
+                    var translateContent = ReadExcelLegacySheet(sht);
 
                     Debug.WriteLine($@"start merge {s.Key} {sourceContent.Count} rows at {DateTime.Now:HH:mm:ss}");
-                    var mergeContent = MergeContentLegacy(sourceContent, translateContent, true, out skipSource, out skipTranslate);
+                    var mergeContent = MergeLegacySheet(sourceContent, translateContent, true, out skipSource, out skipTranslate);
 
                     content.Add(s.Key, mergeContent);
 
@@ -565,7 +576,7 @@ namespace TheWitcher3Thai
 
         }
 
-        public List<w3Strings> MergeContentLegacy(List<w3Strings> source, List<w3Strings> translate, bool forExcel, out List<w3Strings> skipSource, out List<w3Strings> skipTranslate)
+        public List<w3Strings> MergeLegacySheet(List<w3Strings> source, List<w3Strings> translate, bool forExcel, out List<w3Strings> skipSource, out List<w3Strings> skipTranslate)
         {
             var result = new List<w3Strings>();
             //var min = Math.Min(source.Count, translate.Count);
@@ -703,7 +714,28 @@ namespace TheWitcher3Thai
             return -1;
         }
 
-        public List<w3Strings> ReadExcelLegacy(ExcelWorksheet sht)
+        public Dictionary<string, List<w3Strings>> ReadExcelLegacy(string excelPath, Dictionary<string, string> sheetConfig)
+        {
+            var result = new Dictionary<string, List<w3Strings>>();
+
+            var fi = new FileInfo(excelPath);
+            using (var p = new ExcelPackage(fi))
+            {
+                foreach (var sht in p.Workbook.Worksheets)
+                {
+                    if (!sheetConfig.ContainsKey(sht.Name))
+                        continue;
+
+                    result.Add(sht.Name, ReadExcelLegacySheet(sht));
+
+                }
+
+            }
+
+            return result;
+        }
+
+        public List<w3Strings> ReadExcelLegacySheet(ExcelWorksheet sht)
         {
             const int COL_TEXT = 1;
             const int COL_TRANS = 3;
@@ -759,7 +791,7 @@ namespace TheWitcher3Thai
             }
         }
 
-        public void TranslateGame(string excelPath, string originalPath, string outputPath, bool combine, bool originalFirst)
+        public void GenerateModFromGameFile(string excelPath, string originalPath, string outputPath, bool combine, bool originalFirst)
         {
             string sheetName = null;
             try
@@ -802,7 +834,7 @@ namespace TheWitcher3Thai
                 }
 
                 EncodeDirectory(tempPath);
-                CopyOutput(tempPath, outputPath, files);
+                FinishMod(tempPath, outputPath, files);                
 
                 WriteTranslateResult(results, Path.Combine(outputPath, "result.txt"));
             }
@@ -913,7 +945,7 @@ namespace TheWitcher3Thai
 
         #region Not Use
 
-        public List<w3Strings> MergeContent(List<w3Strings> source, List<w3Strings> translate, bool forExcel, bool combine, bool originalFirst, List<string> knowIssueList, out List<w3Strings> skipSource, out List<w3Strings> skipTranslate)
+        public List<w3Strings> MergeSheet(List<w3Strings> source, List<w3Strings> translate, bool forExcel, bool combine, bool originalFirst, List<string> knowIssueList, out List<w3Strings> skipSource, out List<w3Strings> skipTranslate)
         {
             var result = new List<w3Strings>();
             //var min = Math.Min(source.Count, translate.Count);
@@ -1101,7 +1133,7 @@ namespace TheWitcher3Thai
         {
             string url = "http://dl.dropbox.com/s/kj962og72ffu3yv/version.ini?dl=0";
             var client = new WebClient();
-            var data=client.DownloadData(url);
+            var data = client.DownloadData(url);
             var stream = new StreamReader(new MemoryStream(data));
 
             //var request = WebRequest.Create(url);
@@ -1117,7 +1149,7 @@ namespace TheWitcher3Thai
             return lastVersion;
         }
 
-        public string GetCurrentVersion(string modPath)
+        public string ReadVersion(string modPath)
         {
             string versionPath = Path.Combine(modPath, "version.ini");
 
@@ -1153,7 +1185,7 @@ namespace TheWitcher3Thai
             }
         }
 
-        private void ProcessDownloadMod(string targetPath, string downloadFilePath,bool writeVersion, bool updateFont)
+        private void ProcessDownloadMod(string targetPath, string downloadFilePath, bool writeVersion, bool updateFont)
         {
             string backupPath = Path.Combine(Application.StartupPath, "temp", "mod_backup");
             try
@@ -1189,11 +1221,11 @@ namespace TheWitcher3Thai
 
                 CopyDirectory(extractPath, targetPath);
 
-                if(writeVersion)
-                WriteVersion(targetPath);
+                if (writeVersion)
+                    WriteVersion(targetPath);
 
                 // update font mod
-                if(updateFont)
+                if (updateFont)
                     UpdateFont(targetPath);
 
                 //if (Directory.Exists(backupPath))
@@ -1209,7 +1241,7 @@ namespace TheWitcher3Thai
             }
         }
 
-        public string DownloadMod(string targetPath,bool writeVersion, bool updateFont)
+        public string DownloadMod(string targetPath, bool writeVersion, bool updateFont)
         {
             //string downloadFilePath = Path.Combine(targetPath, "thaimod.zip");
             //new WebClient().DownloadFile(new Uri("https://dl.dropbox.com/s/iyn4vn4eiq4oegc/Thaimods.zip?dl=0"), downloadFilePath);
@@ -1241,6 +1273,16 @@ namespace TheWitcher3Thai
             using (TextWriter tw = new StreamWriter(filePath))
             {
                 tw.Write(version);
+            }
+        }
+
+        public void WriteVersionUnofficial(string modPath)
+        {
+            string path = Path.Combine(modPath, "version.ini");
+
+            using (TextWriter tw = new StreamWriter(path))
+            {
+                tw.WriteLine($@"{DateTime.Now:yyyy.MM.dd.HHmmss} (unofficial)");
             }
         }
 
@@ -1378,6 +1420,9 @@ namespace TheWitcher3Thai
             if (fi.Exists)
                 fi.Delete();
 
+            if (!fi.Directory.Exists)
+                fi.Directory.Create();
+
             using (var p = new ExcelPackage(fi))
             {
                 var wb = p.Workbook;
@@ -1444,7 +1489,7 @@ namespace TheWitcher3Thai
                 if (item.Value.Count > 0)
                     sht.Cells[currRow, 4].Value = (translate / item.Value.Count * 100f).ToString("#,0.00") + "%";
                 else
-                    sht.Cells[currRow, 4].Value ="N/A";
+                    sht.Cells[currRow, 4].Value = "N/A";
 
                 currRow++;
             }
@@ -1676,26 +1721,30 @@ namespace TheWitcher3Thai
             return -1;
         }
 
-        public void GenerateModFromExcel(string excelPath, string outputPath, bool combine, bool originalFirst)
+        public void GenerateMod(Dictionary<string,List<w3Strings>> contents, string outputPath, bool combine, bool originalFirst, Dictionary<string,string> sheetConfig)
         {
             var tempPath = Path.Combine(Application.StartupPath, "temp");
-            var sheets = setting.GetSheetConfig();
 
-            var raw = ReadExcel(excelPath, sheets);
-            foreach (var sheet in raw)
+            foreach (var sheet in contents)
             {
-                bool forceNotCombine = false;
-                if (sheet.Key == "content0")
-                    forceNotCombine = true;
-
-                var content = TranslateExcel(sheet.Value, combine && !forceNotCombine, originalFirst);
+                var content = TranslateExcel(sheet.Value, combine , originalFirst);
 
                 var path = Path.Combine(tempPath, sheet.Key + ".csv");
                 WriteCsv(content, path);
                 EncodeW3String(path);
             }
 
-            CopyOutput(tempPath, outputPath, sheets);
+            FinishMod(tempPath, outputPath, sheetConfig);
+        }
+
+        public void GenerateModFromExcel(string excelPath, string outputPath, bool combine, bool originalFirst)
+        {
+            var tempPath = Path.Combine(Application.StartupPath, "temp");
+            var sheetConfig = setting.GetSheetConfig();
+
+            var raw = ReadExcel(excelPath, sheetConfig);
+
+            GenerateMod(raw, outputPath, combine, originalFirst, sheetConfig);            
         }
 
         public List<w3Strings> TranslateExcel(List<w3Strings> content, bool combine, bool originalFirst)
@@ -1727,17 +1776,17 @@ namespace TheWitcher3Thai
         //    }
         //}
 
-        public Dictionary<string, List<w3Strings>> ReadExcel(string excelPath, Dictionary<string, string> sheets = null)
+        public Dictionary<string, List<w3Strings>> ReadExcel(string excelPath, Dictionary<string, string> sheetConfig = null)
         {
             var result = new Dictionary<string, List<w3Strings>>();
 
-            if (sheets == null)
-                sheets = setting.GetSheetConfig();
+            if (sheetConfig == null)
+                sheetConfig = setting.GetSheetConfig();
 
             var fi = new FileInfo(excelPath);
             using (var p = new ExcelPackage(fi))
             {
-                foreach (var s in sheets)
+                foreach (var s in sheetConfig)
                 {
                     var sht = p.Workbook.Worksheets[s.Key];
                     if (sht != null)
@@ -1898,7 +1947,7 @@ namespace TheWitcher3Thai
                 source = ReplaceText(source, translate);
 
             if (replaceTranslate)
-                source = ReplaceTranslate(source, translate);            
+                source = ReplaceTranslate(source, translate);
 
             if (addNewMessage)
                 source = AddNewMessage(source, translate);
@@ -2081,6 +2130,72 @@ namespace TheWitcher3Thai
                 File.Copy(path, path.Replace(modPath, gamePath), true);
             }
         }
+
+        public void GenerateLegacyMod(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst)
+        {
+            string templatePath = Path.Combine(Application.StartupPath, "Translate", "template.xlsx");
+            if (!File.Exists(templatePath))
+                throw new Exception("ไม่พบไฟล์ template.xlsx กรุณาติดตั้งโปรแกมใหม่");
+
+            var sheetConfig = setting.GetSheetConfig();
+            var template = ReadExcel(templatePath, sheetConfig);
+            var translate = ReadExcelLegacy(excelPath, sheetConfig);
+
+            var content = MergeLegacy(template, translate);
+
+            // write excel file for check result
+            string legacyExcel= Path.Combine(Application.StartupPath, "temp", "legacy.xlsx");
+            WriteExcel(legacyExcel, content,false);
+
+            GenerateMod(content, outputPath, doubleLanguage, originalFirst, sheetConfig);
+
+        }
+
+        public Dictionary<string, List<w3Strings>> MergeLegacy(Dictionary<string, List<w3Strings>> template, Dictionary<string, List<w3Strings>> translate)
+        {
+            List<TranslateResult> results = new List<TranslateResult>();
+            List<w3Strings> skipSource;
+            List<w3Strings> skipTranslate;
+            var content = new Dictionary<string, List<w3Strings>>();
+
+            //float totalTotalMatch = 0, totalNotTranslate = 0, totalContent = 0;
+            //var sb = new StringBuilder();
+            //sb.AppendLine("Generate Result");
+            //sb.AppendLine(new string('=', 20));
+
+
+            foreach (var sheet in template)
+            {
+                if (!translate.ContainsKey(sheet.Key))
+                    continue;
+
+                var mergeContent = MergeLegacySheet(sheet.Value, translate[sheet.Key], true, out skipSource, out skipTranslate);
+
+                content.Add(sheet.Key, mergeContent);
+
+                // result
+                //float matchCount = sourceContent.Count - skipSource.Count;
+                //float skipTranslateCount = skipTranslate.Count;
+                //totalTotalMatch += matchCount;
+                //totalNotTranslate += skipTranslate.Count;
+                //totalContent += sourceContent.Count;
+                //sb.AppendLine($@"{sht.Name}");
+                //sb.AppendLine($@"    match            : {matchCount:#,0}/{sourceContent.Count:#,0} ({matchCount / sourceContent.Count * 100f:#,0}%)");
+                //sb.AppendLine($@"    not translate: {skipTranslateCount:#,0} ({skipTranslateCount / sourceContent.Count * 100f:#,0}%)");
+
+            }
+
+            // total result
+            //sb.AppendLine(new string('-', 20));
+            //sb.AppendLine($@"Total");
+            //sb.AppendLine($@"    match            : {totalTotalMatch:#,0}/{totalContent:#,0} ({totalTotalMatch / totalContent * 100f:#,0}%)");
+            //sb.AppendLine($@"    not translate: {totalNotTranslate:#,0} ({totalNotTranslate / totalContent * 100f:#,0}%)");
+
+
+            return content;
+
+        }
+
 
 
 

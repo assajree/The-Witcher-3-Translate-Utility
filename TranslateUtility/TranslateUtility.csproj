@@ -43,52 +43,61 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form\frmDonate.cs">
+    <Compile Include="Screens\frmSimple.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmDonate.Designer.cs">
+    <Compile Include="Screens\frmSimple.Designer.cs">
+      <DependentUpon>frmSimple.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\frmDonate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\frmDonate.Designer.cs">
       <DependentUpon>frmDonate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmExcelTools.cs">
+    <Compile Include="Screens\frmExcelTools.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmExcelTools.Designer.cs">
+    <Compile Include="Screens\frmExcelTools.Designer.cs">
       <DependentUpon>frmExcelTools.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmGameTools.cs">
+    <Compile Include="Screens\frmGameTools.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmGameTools.Designer.cs">
+    <Compile Include="Screens\frmGameTools.Designer.cs">
       <DependentUpon>frmGameTools.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmLauncher.cs">
+    <Compile Include="Screens\frmLauncher.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmLauncher.Designer.cs">
+    <Compile Include="Screens\frmLauncher.Designer.cs">
       <DependentUpon>frmLauncher.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmModTools.cs">
+    <Compile Include="Screens\frmModTools.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmModTools.Designer.cs">
+    <Compile Include="Screens\frmModTools.Designer.cs">
       <DependentUpon>frmModTools.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
-    <EmbeddedResource Include="Form\frmDonate.resx">
+    <EmbeddedResource Include="Screens\frmSimple.resx">
+      <DependentUpon>frmSimple.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\frmDonate.resx">
       <DependentUpon>frmDonate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmExcelTools.resx">
+    <EmbeddedResource Include="Screens\frmExcelTools.resx">
       <DependentUpon>frmExcelTools.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmGameTools.resx">
+    <EmbeddedResource Include="Screens\frmGameTools.resx">
       <DependentUpon>frmGameTools.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmLauncher.resx">
+    <EmbeddedResource Include="Screens\frmLauncher.resx">
       <DependentUpon>frmLauncher.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmModTools.resx">
+    <EmbeddedResource Include="Screens\frmModTools.resx">
       <DependentUpon>frmModTools.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -114,6 +123,9 @@
     <None Include="Tools\font.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Translate\template.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Tools\w3strings.exe">
@@ -126,5 +138,6 @@
       <Name>svvv</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

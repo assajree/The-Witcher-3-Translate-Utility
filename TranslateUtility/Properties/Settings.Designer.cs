@@ -538,5 +538,17 @@ namespace TranslateUtility.Properties {
                 this["_GameModGamePath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string _SimpleModOutput {
+            get {
+                return ((string)(this["_SimpleModOutput"]));
+            }
+            set {
+                this["_SimpleModOutput"] = value;
+            }
+        }
     }
 }
