@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{62AA79B6-CD04-4622-AE05-4D415615B4EE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>TranslateUtility</RootNamespace>
+    <AssemblyName>TranslateUtility</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form\frmDonate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmDonate.Designer.cs">
+      <DependentUpon>frmDonate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\frmExcelTools.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmExcelTools.Designer.cs">
+      <DependentUpon>frmExcelTools.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\frmGameTools.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmGameTools.Designer.cs">
+      <DependentUpon>frmGameTools.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\frmLauncher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmLauncher.Designer.cs">
+      <DependentUpon>frmLauncher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\frmModTools.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmModTools.Designer.cs">
+      <DependentUpon>frmModTools.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="Form\frmDonate.resx">
+      <DependentUpon>frmDonate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\frmExcelTools.resx">
+      <DependentUpon>frmExcelTools.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\frmGameTools.resx">
+      <DependentUpon>frmGameTools.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\frmLauncher.resx">
+      <DependentUpon>frmLauncher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\frmModTools.resx">
+      <DependentUpon>frmModTools.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Tools\font.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Tools\w3strings.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\svvv\svvv.csproj">
+      <Project>{d9ecdead-56fe-476b-b7aa-6895272ba35b}</Project>
+      <Name>svvv</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
