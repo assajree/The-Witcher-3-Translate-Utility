@@ -14,10 +14,11 @@ using TheWitcher3Thai.Helper;
 
 namespace TranslateUtility.Screens
 {
+    
     public partial class frmSimple : Form
     {
         Common c = new Common();
-        string modPath = Path.Combine(Configs.DownloadPath, "mod");
+        string modDownloadPath = Path.Combine(Configs.DownloadPath, "mod");
 
         public frmSimple()
         {
@@ -25,7 +26,10 @@ namespace TranslateUtility.Screens
         }
 
         private void frmSimple_Load(object sender, EventArgs e)
-        {            
+        {
+            var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+            
+            lblVersion.Text = $@"Version : {c.GetBuildDate(version):yyyy.MM.dd.HHmmss}";
             InitialScreen();
         }
 
@@ -34,6 +38,7 @@ namespace TranslateUtility.Screens
             string tempPath = Configs.TempPath;
             
             string downloadPath = Configs.DownloadPath;
+            string modPath = Path.Combine(Configs.StartupPath, "mod");
 
             if (!Directory.Exists(downloadPath))
                 Directory.CreateDirectory(downloadPath);
@@ -41,7 +46,9 @@ namespace TranslateUtility.Screens
             if (!Directory.Exists(modPath))
                 Directory.CreateDirectory(modPath);
 
+            ReadLocalVersion();
             EnableExtraOption();
+            EnableRestoreButton();
 
             // generate
             txtLegacyOutput.SetDefault(modPath);
@@ -97,7 +104,7 @@ namespace TranslateUtility.Screens
             if(c.ShowConfirm("ต้องการเปลี่ยนโฟลเดอร์ mod เป็นโฟลเดอร์ปลายทางหรือไม่?"))
             {
                 txtModPath.Text = txtLegacyOutput.Text;
-                CheckLocalVersion();
+                //ReadLocalVersion();
             }
         }       
 
@@ -123,44 +130,132 @@ namespace TranslateUtility.Screens
 
         #region install
 
-        private void CheckLocalVersion()
+        private void ReadLocalVersion()
         {
-            lblLocalVersion.Text=c.ReadVersion(txtModPath.Text);
-        }
-
-        private void btnLangSource_Click(object sender, EventArgs e)
-        {
-
+            lblLocalVersion.Text=c.ReadLocalVersion(txtModPath.Text);
         }
 
         private void btnLangDesc_Click(object sender, EventArgs e)
         {
-
+            c.SelectFolderTextBox(txtGamePath);
         }
 
         private void btnCheckVersion_Click(object sender, EventArgs e)
         {
-
+            var version = c.ProcessingString(c.GetLastVersion, "Getting Version...", false);
+            if (version != null)
+            {
+                lblLastedVersion.Text = version;
+                lblLastCheck.Text = DateTime.Now.ToString("d MMMM yyyy HH:mm:ss");
+                SaveSetting();
+            }
         }
 
         private void btnInstallLang_Click(object sender, EventArgs e)
         {
+            c.Processing(InstallMod,"กำลังติดตั้ง","ติดตั้งสำเร็จ");
+            if (!c.CheckFontMod(txtGamePath.Text))
+            {
+                if (c.ShowConfirm("ไม่พบการติดตั้ง font mod ต้องการติดตั้งหรือไม่ฮึ?"))
+                {
+                    c.InstallFont(txtGamePath.Text);
+                    c.ShowMessage("ติดตั้งเสร็จแล้วฮึ");
+                }
+            }
+        } 
 
+        private void InstallMod()
+        {
+            // silence backup
+            if (!c.BackupExists(Configs.BackupPath))
+                Backup(false);
+
+            c.InstallMod(
+                txtModPath.Text,
+                txtGamePath.Text
+            );
         }
 
         private void btnModPath_Click(object sender, EventArgs e)
         {
-
+            c.SelectFolderTextBox(txtModPath);
+            //ReadLocalVersion();
         }
 
         private void btnGamePath_Click(object sender, EventArgs e)
         {
-
+            c.SelectFolderTextBox(txtGamePath);
         }
 
         private void btnModDownload_Click(object sender, EventArgs e)
         {
+            string path = c.DownloadLegacyMod(txtModPath.Text,modDownloadPath);
+            if (path != null)
+            {
+                txtModPath.Text = path;
+                //ReadLocalVersion();
+            }
+        }
 
+        private void txtModPath_TextChanged(object sender, EventArgs e)
+        {
+            ReadLocalVersion();
+        }
+
+        private void btnBackup_Click(object sender, EventArgs e)
+        {
+            if (ValidateBeforeBackup())
+                c.Processing(Backup, "กำลังสำรองข้อมูล", "สำรองของมูลสำเร็จ");
+
+        }
+
+        private void Backup()
+        {
+            Backup(true);            
+        }
+
+        private void Backup(bool overwrite)
+        {
+            c.Backup(txtGamePath.Text, Configs.BackupPath, overwrite, true);
+            EnableRestoreButton();
+        }
+
+        private bool ValidateBeforeBackup()
+        {
+            return c.ValidateBeforeBackup(
+                Configs.BackupPath,
+                "มีแบ็คอัพเดิมอยู่แล้ว ต้องการเขียนทับหรือไม่?"
+            );
+        }
+
+        private void btnRestore_Click(object sender, EventArgs e)
+        {
+            if(!c.BackupExists(Configs.BackupPath))
+            {
+                c.ShowErrorMessage("ไม่พบแบ็คอัพ");
+                return;
+            }
+
+            if (c.ShowConfirmWarning("ต้องการคืนค่าจากแบ็คอัพ?"))
+                c.Processing(Restore, "กำลังคืนค่า", "คืนค่าสำเร็จ");
+
+            // remove font mod
+            if (c.CheckFontMod(txtGamePath.Text))
+            {
+                if (c.ShowConfirm("ต้องการลบ font mod ด้วยหรือไม่?"))
+                    c.RemoveFont(txtGamePath.Text);
+
+            }
+        }
+
+        private void Restore()
+        {
+            c.Backup(Configs.BackupPath, txtGamePath.Text, true, false);
+        }
+
+        private void EnableRestoreButton()
+        {
+            btnRestore.Enabled = c.BackupExists(Configs.BackupPath);
         }
 
 

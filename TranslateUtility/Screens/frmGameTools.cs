@@ -59,7 +59,7 @@ namespace TranslateUtility
         private void GetLocalVersion()
         {
             if (Directory.Exists(txtLangSource.Text))
-                lblLocalVersion.Text = c.ReadVersion(txtLangSource.Text);
+                lblLocalVersion.Text = c.ReadLocalVersion(txtLangSource.Text);
         }
 
         private void btnLangSource_Click(object sender, EventArgs e)
@@ -162,7 +162,8 @@ namespace TranslateUtility
             c.Backup(
                 txtBackupGamePath.Text,
                 txtBackupPath.Text,
-                chkBackupOverwrite.Checked
+                chkBackupOverwrite.Checked,
+                true
             );
         }
 
@@ -171,7 +172,8 @@ namespace TranslateUtility
             c.Backup(
                 txtBackupPath.Text,
                 txtBackupGamePath.Text,
-                true
+                true,
+                false
             );
         }
 

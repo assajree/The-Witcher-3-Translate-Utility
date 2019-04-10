@@ -59,5 +59,15 @@ namespace TranslateUtility.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon b0ff6bdb2da01a5924a7f67359af45b8c69ff5b9 {
+            get {
+                object obj = ResourceManager.GetObject("b0ff6bdb2da01a5924a7f67359af45b8c69ff5b9", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
     }
 }

@@ -280,12 +280,12 @@ namespace TheWitcher3Thai
             return path;
         }
 
-        public string DownloadLegacyMod(string initialPath)
+        public string DownloadLegacyMod(string initialPath,string defaultPath=null)
         {
-            var path = SelectFolder(initialPath);
+            var path = SelectFolder(initialPath, defaultPath);
             if (path != null)
             {
-                var downloadResult = DownloadMod(path, false, false);
+                var downloadResult = DownloadMod(path, true, true);
                 if (downloadResult == null)
                     return null;
             }
@@ -307,6 +307,12 @@ namespace TheWitcher3Thai
         public bool ShowConfirm(string message, string caption = "")
         {
             var result=MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            return result == DialogResult.Yes;
+        }
+
+        public bool ShowConfirmWarning(string message, string caption = "")
+        {
+            var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             return result == DialogResult.Yes;
         }
 
@@ -402,7 +408,7 @@ namespace TheWitcher3Thai
                 source.CopyTo(desc.FullName, true);
             }
 
-            WriteVersionUnofficial(targetPath);
+            WriteVersionUnofficial(targetPath,"unofficial");
         }
 
         public List<w3Strings> ReadExcelSheet(string path, string sheetName)
@@ -1131,25 +1137,40 @@ namespace TheWitcher3Thai
 
         public string GetLastVersion()
         {
-            string url = "http://dl.dropbox.com/s/kj962og72ffu3yv/version.ini?dl=0";
-            var client = new WebClient();
-            var data = client.DownloadData(url);
-            var stream = new StreamReader(new MemoryStream(data));
-
-            //var request = WebRequest.Create(url);
-            //var stream = new StreamReader(request.GetResponse().GetResponseStream());
-            var lastVersion = stream.ReadToEnd().ToString();
-
-            if (String.IsNullOrWhiteSpace(lastVersion))
-            {
-                throw new Exception("Get version fail. Try again later.");
-                //lastVersion = "N/A";
-            }
-
-            return lastVersion;
+            return GetLastVersion(0);
         }
 
-        public string ReadVersion(string modPath)
+        public string GetLastVersion(int tryCount)
+        {
+            try
+            {
+                string url = "http://dl.dropbox.com/s/kj962og72ffu3yv/version.ini?dl=0";
+                var client = new WebClient();
+                var data = client.DownloadData(url);
+                var stream = new StreamReader(new MemoryStream(data));
+
+                //var request = WebRequest.Create(url);
+                //var stream = new StreamReader(request.GetResponse().GetResponseStream());
+                var lastVersion = stream.ReadToEnd().ToString();
+
+                if (String.IsNullOrWhiteSpace(lastVersion))
+                {
+                    throw new Exception("Get version fail. Try again later.");
+                    //lastVersion = "N/A";
+                }
+
+                return lastVersion;
+            }
+            catch(Exception ex)
+            {
+                if (tryCount > 2)
+                    throw ex;
+                else
+                    return GetLastVersion(tryCount);
+            }
+        }
+
+        public string ReadLocalVersion(string modPath)
         {
             string versionPath = Path.Combine(modPath, "version.ini");
 
@@ -1264,9 +1285,10 @@ namespace TheWitcher3Thai
         private void WriteVersion(string modPath)
         {
             var version = GetLastVersion();
-            var filePath = Path.Combine(modPath, "version.ini");
 
+            var filePath = Path.Combine(modPath, "version.ini");
             var fi = new FileInfo(filePath);
+
             if (!fi.Directory.Exists)
                 fi.Directory.Create();
 
@@ -1276,14 +1298,29 @@ namespace TheWitcher3Thai
             }
         }
 
-        public void WriteVersionUnofficial(string modPath)
+        public void WriteVersionUnofficial(string modPath,string source)
         {
             string path = Path.Combine(modPath, "version.ini");
 
             using (TextWriter tw = new StreamWriter(path))
             {
-                tw.WriteLine($@"{DateTime.Now:yyyy.MM.dd.HHmmss} (unofficial)");
+                tw.WriteLine($@"{DateTime.Now:yyyy.MM.dd.HHmmss} ({source})");
             }
+        }
+
+        public bool ValidateBeforeBackup(string DestinationPath,string confirmMessage,string title="")
+        {
+            //string version = ReadLocalVersion(DestinationPath);
+            if (BackupExists(DestinationPath))
+                return ShowConfirmWarning(confirmMessage, title);
+            else
+                return true;
+        }
+
+        public bool BackupExists(string path)
+        {
+            string versionPath = Path.Combine(path, "version.ini");
+            return File.Exists(versionPath);
         }
 
         public void CopyDirectory(string SourcePath, string DestinationPath)
@@ -1305,7 +1342,7 @@ namespace TheWitcher3Thai
         /// <param name="sourcePath"></param>
         /// <param name="targrtPath"></param>
         /// <param name="overwrite"></param>
-        public void Backup(string sourcePath, string targrtPath, bool overwrite)
+        public void Backup(string sourcePath, string targrtPath, bool overwrite, bool writeVersion)
         {
             var TranslatePath = setting.GetSheetConfig();
             foreach (var p in TranslatePath)
@@ -1321,6 +1358,9 @@ namespace TheWitcher3Thai
 
                 s.CopyTo(t.FullName, overwrite);
             }
+
+            if(writeVersion)
+                WriteVersionUnofficial(targrtPath, "backup");
         }
 
         public string GetSteamDirectory()
@@ -2108,6 +2148,12 @@ namespace TheWitcher3Thai
 
         }
 
+        public bool CheckFontMod(string gamePath)
+        {
+            string modPath = Path.Combine(gamePath, "mods", "modKuntoonW3thai_mod");
+            return Directory.Exists(modPath);
+        }
+
         public void RemoveFont(string gamePath)
         {
             string modPath = Path.Combine(gamePath, "mods", "modKuntoonW3thai_mod");
@@ -2194,6 +2240,15 @@ namespace TheWitcher3Thai
 
             return content;
 
+        }
+
+        public DateTime GetBuildDate(Version version)
+        {
+            var date = new DateTime(2000, 1, 1)                 // baseline is 01/01/2000
+                            .AddDays(version.Build)             // build is number of days after baseline
+                            .AddSeconds(version.Revision * 2);  // revision is half the number of seconds into the day
+
+            return date;
         }
 
 

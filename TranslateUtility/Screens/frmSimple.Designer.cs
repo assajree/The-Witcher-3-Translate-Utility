@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSimple));
             this.pnTranslate = new System.Windows.Forms.GroupBox();
             this.btnModDownload = new System.Windows.Forms.Button();
             this.btnRestore = new System.Windows.Forms.Button();
@@ -60,6 +61,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtLegacyOutput = new System.Windows.Forms.TextBox();
             this.btnLegacyGenerate = new System.Windows.Forms.Button();
+            this.lblVersion = new System.Windows.Forms.Label();
             this.pnTranslate.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -101,12 +103,14 @@
             // 
             // btnRestore
             // 
+            this.btnRestore.Enabled = false;
             this.btnRestore.Location = new System.Drawing.Point(326, 71);
             this.btnRestore.Name = "btnRestore";
             this.btnRestore.Size = new System.Drawing.Size(75, 23);
             this.btnRestore.TabIndex = 31;
             this.btnRestore.Text = "คืนค่า";
             this.btnRestore.UseVisualStyleBackColor = true;
+            this.btnRestore.Click += new System.EventHandler(this.btnRestore_Click);
             // 
             // panel1
             // 
@@ -146,7 +150,7 @@
             // 
             this.lblLastedVersion.AutoSize = true;
             this.lblLastedVersion.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::TranslateUtility.Properties.Settings.Default, "LastestVersion", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.lblLastedVersion.Location = new System.Drawing.Point(153, 42);
+            this.lblLastedVersion.Location = new System.Drawing.Point(153, 21);
             this.lblLastedVersion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLastedVersion.Name = "lblLastedVersion";
             this.lblLastedVersion.Size = new System.Drawing.Size(27, 13);
@@ -177,7 +181,7 @@
             // 
             this.lblLastCheck.AutoSize = true;
             this.lblLastCheck.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::TranslateUtility.Properties.Settings.Default, "LastCheckUpdate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.lblLastCheck.Location = new System.Drawing.Point(153, 21);
+            this.lblLastCheck.Location = new System.Drawing.Point(153, 42);
             this.lblLastCheck.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLastCheck.Name = "lblLastCheck";
             this.lblLastCheck.Size = new System.Drawing.Size(27, 13);
@@ -192,6 +196,7 @@
             this.btnBackup.TabIndex = 29;
             this.btnBackup.Text = "สำรองข้อมูล";
             this.btnBackup.UseVisualStyleBackColor = true;
+            this.btnBackup.Click += new System.EventHandler(this.btnBackup_Click);
             // 
             // btnGamePath
             // 
@@ -264,6 +269,7 @@
             this.txtModPath.Size = new System.Drawing.Size(440, 20);
             this.txtModPath.TabIndex = 0;
             this.txtModPath.Text = global::TranslateUtility.Properties.Settings.Default._GameModDownloadPath;
+            this.txtModPath.TextChanged += new System.EventHandler(this.txtModPath_TextChanged);
             // 
             // btnInstallLang
             // 
@@ -431,13 +437,26 @@
             this.btnLegacyGenerate.UseVisualStyleBackColor = true;
             this.btnLegacyGenerate.Click += new System.EventHandler(this.btnLegacyGenerate_Click);
             // 
+            // lblVersion
+            // 
+            this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblVersion.Location = new System.Drawing.Point(12, 357);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(678, 23);
+            this.lblVersion.TabIndex = 13;
+            this.lblVersion.Text = "Version : 1.0.0.0";
+            this.lblVersion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // frmSimple
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(702, 365);
+            this.ClientSize = new System.Drawing.Size(702, 382);
+            this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.pnTranslate);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(534, 377);
             this.Name = "frmSimple";
             this.Text = "The Witcher 3 Translate Utility";
@@ -487,5 +506,6 @@
         private System.Windows.Forms.RadioButton rdoModOriginFirst;
         private System.Windows.Forms.CheckBox chkModDoubleLanguage;
         private System.Windows.Forms.Button btnModDownload;
+        private System.Windows.Forms.Label lblVersion;
     }
 }

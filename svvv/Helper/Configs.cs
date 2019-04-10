@@ -10,8 +10,10 @@ namespace svvv
 {
     public static class Configs
     {
-        public static string TempPath = Path.Combine(Application.StartupPath, "temp");
-        public static string ModPath = Path.Combine(Application.StartupPath, "mod");
-        public static string DownloadPath = Path.Combine(Application.StartupPath, "download");
+        public static string StartupPath = Application.StartupPath;
+        public static string TempPath = Path.Combine(StartupPath, "temp");
+        public static string ModPath = Path.Combine(StartupPath, "mod");
+        public static string DownloadPath = Path.Combine(StartupPath, "download");
+        public static string BackupPath = Path.Combine(StartupPath, "backup");
     }
 }
