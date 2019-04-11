@@ -28,7 +28,7 @@ namespace TranslateUtility
             string gamePath = c.GetGameDirectory();
             string backupPath = Path.Combine(Application.StartupPath, "backup");
             string outputPath = Path.Combine(Application.StartupPath, "output");
-            string translatePath = c.GetTranslateFile();
+            string translatePath = c.GetTranslateFilePath();
 
             // generate from mod
             txtModSource.SetDefault(gamePath);

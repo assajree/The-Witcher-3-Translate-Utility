@@ -43,7 +43,7 @@ namespace TranslateUtility
             //string backupPath = Path.Combine(Application.StartupPath, "backup");
             string outputPath = Path.Combine(Application.StartupPath, "output");
             string excelOutput = Path.Combine(Application.StartupPath, "output", "translate.xlsx");
-            string translatePath= c.GetTranslateFile();
+            string translatePath= c.GetTranslateFilePath();
 
             // Mod from Mod
             //txtModSource.SetDefault(backupPath);

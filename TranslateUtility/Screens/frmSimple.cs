@@ -121,7 +121,8 @@ namespace TranslateUtility.Screens
                 txtLegacyExcel.Text,
                 txtLegacyOutput.Text,
                 chkModDoubleLanguage.Checked,
-                rdoModOriginFirst.Checked
+                rdoModOriginFirst.Checked,
+                chkIncludeMessageId.Checked
             );
         }
 

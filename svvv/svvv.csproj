@@ -76,6 +76,7 @@
       <DependentUpon>ProcessingDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\Common.cs" />
+    <Compile Include="Helper\Deprecate.cs" />
     <Compile Include="Helper\Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Dialog\DownloadingDialog.resx">

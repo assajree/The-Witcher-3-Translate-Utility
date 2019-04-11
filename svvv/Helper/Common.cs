@@ -280,7 +280,7 @@ namespace TheWitcher3Thai
             return path;
         }
 
-        public string DownloadLegacyMod(string initialPath,string defaultPath=null)
+        public string DownloadLegacyMod(string initialPath, string defaultPath = null)
         {
             var path = SelectFolder(initialPath, defaultPath);
             if (path != null)
@@ -306,7 +306,7 @@ namespace TheWitcher3Thai
 
         public bool ShowConfirm(string message, string caption = "")
         {
-            var result=MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             return result == DialogResult.Yes;
         }
 
@@ -408,7 +408,7 @@ namespace TheWitcher3Thai
                 source.CopyTo(desc.FullName, true);
             }
 
-            WriteVersionUnofficial(targetPath,"unofficial");
+            WriteVersionUnofficial(targetPath, "unofficial");
         }
 
         public List<w3Strings> ReadExcelSheet(string path, string sheetName)
@@ -487,7 +487,7 @@ namespace TheWitcher3Thai
                 }
             }
         }
-        
+
 
         public void WriteTranslateResult(List<TranslateResult> results, string path)
         {
@@ -585,7 +585,7 @@ namespace TheWitcher3Thai
         public List<w3Strings> MergeLegacySheet(List<w3Strings> source, List<w3Strings> translate, bool forExcel, out List<w3Strings> skipSource, out List<w3Strings> skipTranslate)
         {
             var result = new List<w3Strings>();
-            //var min = Math.Min(source.Count, translate.Count);
+
             var min = source.Count;
             int extraTranslate = 0;
             int extraSource = 0;
@@ -634,10 +634,10 @@ namespace TheWitcher3Thai
                     if (nextMatch > 0)
                     {
                         // skip translate
-                        //for (int sk = 0; sk < nextMatch; sk++)
-                        //{
-                        //    skipTranslate.Add(translate[i + extraTranslate + sk]);
-                        //}
+                        for (int sk = 0; sk < nextMatch; sk++)
+                        {
+                            skipTranslate.Add(translate[i + extraTranslate + sk]);
+                        }
                         extraTranslate += nextMatch;
                     }
                     else
@@ -655,42 +655,7 @@ namespace TheWitcher3Thai
                         continue;
                     }
 
-                    //else
-                    //{
-                    //    nextMatch = FindNextMatch(translate[i].Text, source, i + extraSource);
-
-                    //    if (nextMatch > 0)
-                    //    {
-                    //        // skip source
-                    //        for (int sk = 0; sk < nextMatch; sk++)
-                    //        {
-                    //            result.Add(new w3Strings(
-                    //                source[i].Key,
-                    //                Translate(source[i + extraSource + sk].Text, null, combine),
-                    //                null
-                    //            ));
-
-                    //            skipSource.Add(source[i + extraSource + sk]);
-                    //        }
-                    //        extraSource += nextMatch;
-                    //    }
-                    //    else
-                    //    {
-                    //        //throw new MergeException(source[i+extraSource], translate[i + extraTranslate]);
-                    //        result.Add(new w3Strings(
-                    //                source[i].Key,
-                    //                Translate(source[i + extraSource].Text, null, combine),
-                    //                null
-                    //            ));
-
-                    //        skipSource.Add(source[i + extraSource]);
-                    //    }
-                    //}
-
                 }
-
-                //var item = GetTranslate(source[i + extraSource], translate[i + extraTranslate], forExcel);
-                //result.Add(item);
 
                 result.Add(new w3Strings(
                     source[i + extraSource].ID,
@@ -771,7 +736,7 @@ namespace TheWitcher3Thai
 
         #region Merge Language
 
-        public w3Strings GetTranslate(w3Strings source, w3Strings translate, bool forExcel, bool combine = false, bool originalFirst = true)
+        public w3Strings GetTranslate(w3Strings source, w3Strings translate, bool forExcel, bool combine = false, bool originalFirst = true, bool includeMessageId = false)
         {
             if (forExcel)
             {
@@ -782,7 +747,7 @@ namespace TheWitcher3Thai
                     source.KeyHex,
                     source.KeyString,
                     source.Text,
-                    Translate(source.Text, translate.Translate, false, false)
+                    Translate(source, translate.Translate, false, false)
                 );
             }
             else
@@ -791,7 +756,7 @@ namespace TheWitcher3Thai
                     source.ID,
                     source.KeyHex,
                     source.KeyString,
-                    Translate(source.Text, translate.Translate, combine, originalFirst, source.KeyHex != "00000000"),
+                    Translate(source, translate.Translate, combine, originalFirst, includeMessageId),
                     null
                 );
             }
@@ -840,7 +805,7 @@ namespace TheWitcher3Thai
                 }
 
                 EncodeDirectory(tempPath);
-                FinishMod(tempPath, outputPath, files);                
+                FinishMod(tempPath, outputPath, files);
 
                 WriteTranslateResult(results, Path.Combine(outputPath, "result.txt"));
             }
@@ -852,7 +817,6 @@ namespace TheWitcher3Thai
                 error += $@"key            : {ex.Key.Trim()}{Environment.NewLine}";
                 error += $@"Source Text    : {ex.SourceText}{Environment.NewLine}";
                 error += $@"Translate Text : {ex.TranslateText}";
-                //error+= $@"xxxxxx";
 
                 throw new Exception(error);
             }
@@ -918,218 +882,95 @@ namespace TheWitcher3Thai
             return -1;
         }
 
-        public string Translate(string text, string translate, bool combine = false, bool originalFirst = true, bool forceSingle = false)
+        //public string Translate(string original, string translate, bool combine = false, bool originalFirst = true, bool forceSingle = false)
+        //{
+        //    if (original.GetCompareString() == translate.GetCompareString() || String.IsNullOrWhiteSpace(translate))
+        //        return original;
+
+        //    if (combine && !forceSingle)
+        //    {
+        //        return CombineText(original, translate, originalFirst);
+        //    }
+        //    else
+        //    {
+        //        //return String.IsNullOrWhiteSpace(translate) ? text : translate;
+        //        return translate;
+        //    }
+
+        //}
+
+        public List<w3Strings> Translate(List<w3Strings> content, bool combine, bool originalFirst, bool includeMessageId = false)
         {
-            // same word or no translate
-            if (text.GetCompareString() == translate.GetCompareString() || String.IsNullOrWhiteSpace(translate))
-                return text;
-
-            //if (combine && text.Contains(":"))
-            //{
-            //    if (originalFirst)
-            //        return text;
-            //    else
-            //        return translate;
-            //}
-
-            if (combine && !forceSingle)
+            var result = new List<w3Strings>();
+            foreach (var c in content)
             {
-                if (originalFirst)
-                    return text + "<br>" + translate;
-                else
-                    return translate + "<br>" + text;
+                var item = new w3Strings(
+                    c.ID,
+                    c.KeyHex,
+                    c.KeyString,
+                    Translate(c, c.Translate, combine, originalFirst, includeMessageId),
+                    null
+                );
+
+                result.Add(item);
+            }
+
+            return result;
+        }
+
+        public string Translate(w3Strings w3s, bool combine = false, bool originalFirst = true, bool includeMessageId = false)
+        {
+            return Translate(w3s, w3s.Translate, combine, originalFirst);
+        }
+
+        public string Translate(w3Strings original, string translate, bool combine = false, bool originalFirst = true, bool includeMessageId = false)
+        {
+            string result;
+
+            // same word or no translate
+            if (original.Text.GetCompareString() == translate.GetCompareString() || String.IsNullOrWhiteSpace(translate))
+            {
+                result = original.Text;
             }
             else
             {
-                //return String.IsNullOrWhiteSpace(translate) ? text : translate;
-                return translate;
-            }
 
-        }
-
-        #endregion
-
-        #region Not Use
-
-        public List<w3Strings> MergeSheet(List<w3Strings> source, List<w3Strings> translate, bool forExcel, bool combine, bool originalFirst, List<string> knowIssueList, out List<w3Strings> skipSource, out List<w3Strings> skipTranslate)
-        {
-            var result = new List<w3Strings>();
-            //var min = Math.Min(source.Count, translate.Count);
-            var min = source.Count;
-            int extraTranslate = 0;
-            int extraSource = 0;
-            int nextMatch;
-
-            skipSource = new List<w3Strings>();
-            skipTranslate = new List<w3Strings>();
-
-            for (var i = 0; i < min; i++)
-            {
-                // end of source
-                if (i + extraSource >= source.Count)
-                    return result;
-
-                // end of translate
-                if (i + extraTranslate >= translate.Count)
+                if (combine)
                 {
-                    // not translate
-                    result.Add(new w3Strings(
-                        source[i + extraSource].ID,
-                        source[i + extraSource].KeyHex,
-                        source[i + extraSource].KeyString,
-                        source[i + extraSource].Text,
-                        null
-                    ));
-
-                    skipSource.Add(source[i + extraSource]);
-                    continue;
-                }
-
-                // id not match
-                if (source[i + extraSource].ID.Trim() != translate[i + extraTranslate].ID.Trim())
-                {
-                    // find match id in other row
-                    nextMatch = FindNextMatch(source[i].ID, translate, i + extraTranslate);
-                    if (nextMatch > 0)
+                    if (!original.IsConversation)
                     {
-                        // skip translate
-                        //for (int sk = 0; sk < nextMatch; sk++)
-                        //{
-                        //    skipTranslate.Add(translate[i + extraTranslate + sk]);
-                        //}
-                        extraTranslate += nextMatch;
+                        result = translate;
                     }
                     else
                     {
-                        // not id match
-                        skipSource.Add(source[i + extraSource]);
-                        result.Add(new w3Strings(
-                            source[i + extraSource].ID,
-                            source[i + extraSource].KeyHex,
-                            source[i + extraSource].KeyString,
-                            source[i + extraSource].Text,
-                            null
-                        ));
-
-                        continue;
+                        // return because combine text already include message id
+                        return CombineText(original, translate, originalFirst, includeMessageId);
                     }
                 }
-
-                var item = GetTranslate(source[i + extraSource], translate[i + extraTranslate], forExcel, combine, originalFirst);
-                result.Add(item);
-
-                if (String.IsNullOrWhiteSpace(translate[i + extraTranslate].Translate))
-                    skipSource.Add(source[i + extraSource]);
-            }
-
-            return result;
-        }
-
-        public string[] SplitTranslateLine(string line)
-        {
-            return line.Split(new string[] { ",," }, StringSplitOptions.None);
-        }
-
-        public bool CompareContent(List<w3Strings> c1, List<w3Strings> c2)
-        {
-            var min = Math.Min(c1.Count, c2.Count);
-            for (var i = 0; i < min; i++)
-            {
-                if (c1[i].Text.GetCompareString() != c2[i].Text.GetCompareString())
+                else
                 {
-                    Debug.WriteLine($@"original:  {c1[i].Text}");
-                    Debug.WriteLine($@"translate: {c2[i].Text}");
-                    return false;
+                    result = translate;
                 }
             }
 
-            return true;
-        }
-
-        public string[] GetSheetName(string path)
-        {
-            var fi = new FileInfo(path);
-            using (var p = new ExcelPackage(fi))
-            {
-                return p.Workbook.Worksheets.Select(ws => ws.Name).ToArray();
-
-            }
-        }
-
-        public List<w3Strings> ReadTranslateCsv(string path)
-        {
-            int skip = 4;
-            int i = 0;
-            string line = null;
-            try
-            {
-                var content = File.ReadAllText(path).Split(new string[] { Environment.NewLine }, StringSplitOptions.None)
-                                .Skip(skip)
-                                //.Where(c=>c.Contains(",,"))
-                                //.Select(c => c = c.Replace("\"\"", "{}").Replace("\"", "").Replace("{}", "\""))
-                                .ToArray();
-
-                //var w3s = content.Select(c => new w3Strings(SplitTranslateLine(c), false)).ToList();
-                var w3s = new List<w3Strings>();
-
-                for (i = 0; i < content.Length; i++)
-                {
-                    line = content[i];
-                    w3s.Add(new w3Strings(SplitTranslateLine(line), false));
-                }
-
-                return w3s;
-            }
-            catch (Exception)
-            {
-                throw new Exception($@"Error at line {i + skip + 2} (index {i}) : ""{line}""");
-            }
-
-        }
-
-        public void CompareCsv(string path1, string path2, bool w3s1, bool w3s2, bool sort)
-        {
-
-            var c1 = ReadCsv(path1, w3s1, sort);
-            var c2 = ReadCsv(path2, w3s2, sort);
-
-            var equal = CompareContent(c1, c2);
-        }
-
-        public void CompareExcel(string csvPath, bool sort, string excelPath, string sheetName)
-        {
-            var c1 = ReadOriginalCsv(csvPath, sort);
-            var c2 = ReadExcelSheet(excelPath, sheetName);
-
-            var equal = CompareContent(c1, c2);
-        }
-
-
-        public List<w3Strings> ReadCsv(string path, bool w3s, bool sort)
-        {
-            List<w3Strings> result;
-
-            if (w3s)
-            {
-                result = ReadOriginalCsv(path, sort);
-            }
+            if (includeMessageId)
+                return $@"{result} ({original.ID}|{original.KeyHex})";
             else
-            {
-                result = ReadTranslateCsv(path);
-            }
-
-            return result;
+                return result;
 
         }
 
-        public void SortCsv(string path)
+        private string CombineText(w3Strings original, string translate, bool originalFirst, bool includeMessageId = false)
         {
-            var content = ReadOriginalCsv(path, true);
-            WriteCsv(content, path + "_sort_.csv");
-            MessageBox.Show("Complete");
+            string spliter = "<br>";
+            if (includeMessageId)
+                spliter = $@"<br>{original.ID}|{original.KeyHex}<br>";
+
+            if (originalFirst)
+                return $@"{original}{spliter}{translate}";
+            else
+                return  $@"{translate}{spliter}{original}";
         }
-
-
 
         #endregion
 
@@ -1161,7 +1002,7 @@ namespace TheWitcher3Thai
 
                 return lastVersion;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 if (tryCount > 2)
                     throw ex;
@@ -1298,7 +1139,7 @@ namespace TheWitcher3Thai
             }
         }
 
-        public void WriteVersionUnofficial(string modPath,string source)
+        public void WriteVersionUnofficial(string modPath, string source)
         {
             string path = Path.Combine(modPath, "version.ini");
 
@@ -1308,7 +1149,7 @@ namespace TheWitcher3Thai
             }
         }
 
-        public bool ValidateBeforeBackup(string DestinationPath,string confirmMessage,string title="")
+        public bool ValidateBeforeBackup(string DestinationPath, string confirmMessage, string title = "")
         {
             //string version = ReadLocalVersion(DestinationPath);
             if (BackupExists(DestinationPath))
@@ -1359,7 +1200,7 @@ namespace TheWitcher3Thai
                 s.CopyTo(t.FullName, overwrite);
             }
 
-            if(writeVersion)
+            if (writeVersion)
                 WriteVersionUnofficial(targrtPath, "backup");
         }
 
@@ -1399,7 +1240,7 @@ namespace TheWitcher3Thai
             }
         }
 
-        public string GetTranslateFile()
+        public string GetTranslateFilePath()
         {
             var path = Path.Combine(Application.StartupPath, "Translate");
             var dir = new DirectoryInfo(path);
@@ -1657,7 +1498,6 @@ namespace TheWitcher3Thai
             return result;
         }
 
-
         public string FillExcelFromMod(string modPath, string excelPath, bool fillTranslate)
         {
             string result = "Fill Result" + Environment.NewLine;
@@ -1761,13 +1601,13 @@ namespace TheWitcher3Thai
             return -1;
         }
 
-        public void GenerateMod(Dictionary<string,List<w3Strings>> contents, string outputPath, bool combine, bool originalFirst, Dictionary<string,string> sheetConfig)
+        public void GenerateMod(Dictionary<string, List<w3Strings>> contents, string outputPath, bool combine, bool originalFirst, Dictionary<string, string> sheetConfig, bool includeMessageId = false)
         {
             var tempPath = Path.Combine(Application.StartupPath, "temp");
 
             foreach (var sheet in contents)
             {
-                var content = TranslateExcel(sheet.Value, combine , originalFirst);
+                var content = Translate(sheet.Value, combine, originalFirst, includeMessageId);
 
                 var path = Path.Combine(tempPath, sheet.Key + ".csv");
                 WriteCsv(content, path);
@@ -1777,44 +1617,15 @@ namespace TheWitcher3Thai
             FinishMod(tempPath, outputPath, sheetConfig);
         }
 
-        public void GenerateModFromExcel(string excelPath, string outputPath, bool combine, bool originalFirst)
+        public void GenerateModFromExcel(string excelPath, string outputPath, bool combine, bool originalFirst, bool includeMessageId = false)
         {
             var tempPath = Path.Combine(Application.StartupPath, "temp");
             var sheetConfig = setting.GetSheetConfig();
 
             var raw = ReadExcel(excelPath, sheetConfig);
 
-            GenerateMod(raw, outputPath, combine, originalFirst, sheetConfig);            
+            GenerateMod(raw, outputPath, combine, originalFirst, sheetConfig);
         }
-
-        public List<w3Strings> TranslateExcel(List<w3Strings> content, bool combine, bool originalFirst)
-        {
-            var result = new List<w3Strings>();
-            foreach (var c in content)
-            {
-                var item = new w3Strings(
-                    c.ID,
-                    c.KeyHex,
-                    c.KeyString,
-                    Translate(c.Text, c.Translate, combine, originalFirst, c.KeyHex != "00000000"),
-                    null
-                );
-
-                result.Add(item);
-            }
-
-            return result;
-        }
-
-        //public Dictionary<string, List<w3Strings>> ReadExcelDictionary(string excelPath, Dictionary<string, string> sheets = null)
-        //{
-        //    var result
-        //    var raw = ReadExcel(excelPath, sheets);
-        //    foreach (var data in raw)
-        //    {
-
-        //    }
-        //}
 
         public Dictionary<string, List<w3Strings>> ReadExcel(string excelPath, Dictionary<string, string> sheetConfig = null)
         {
@@ -2177,7 +1988,7 @@ namespace TheWitcher3Thai
             }
         }
 
-        public void GenerateLegacyMod(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst)
+        public void GenerateLegacyMod(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeMessageId)
         {
             string templatePath = Path.Combine(Application.StartupPath, "Translate", "template.xlsx");
             if (!File.Exists(templatePath))
@@ -2190,10 +2001,10 @@ namespace TheWitcher3Thai
             var content = MergeLegacy(template, translate);
 
             // write excel file for check result
-            string legacyExcel= Path.Combine(Application.StartupPath, "temp", "legacy.xlsx");
-            WriteExcel(legacyExcel, content,false);
+            string legacyExcel = Path.Combine(Application.StartupPath, "temp", "legacy.xlsx");
+            WriteExcel(legacyExcel, content, false);
 
-            GenerateMod(content, outputPath, doubleLanguage, originalFirst, sheetConfig);
+            GenerateMod(content, outputPath, doubleLanguage, originalFirst, sheetConfig, includeMessageId);
 
         }
 

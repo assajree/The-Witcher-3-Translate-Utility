@@ -62,6 +62,7 @@
             this.txtLegacyOutput = new System.Windows.Forms.TextBox();
             this.btnLegacyGenerate = new System.Windows.Forms.Button();
             this.lblVersion = new System.Windows.Forms.Label();
+            this.chkIncludeMessageId = new System.Windows.Forms.CheckBox();
             this.pnTranslate.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -296,6 +297,7 @@
             // 
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.chkIncludeMessageId);
             this.groupBox4.Controls.Add(this.rdoModTranslateFirst);
             this.groupBox4.Controls.Add(this.rdoModOriginFirst);
             this.groupBox4.Controls.Add(this.chkModDoubleLanguage);
@@ -448,6 +450,16 @@
             this.lblVersion.Text = "Version : 1.0.0.0";
             this.lblVersion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // chkIncludeMessageId
+            // 
+            this.chkIncludeMessageId.AutoSize = true;
+            this.chkIncludeMessageId.Location = new System.Drawing.Point(201, 97);
+            this.chkIncludeMessageId.Name = "chkIncludeMessageId";
+            this.chkIncludeMessageId.Size = new System.Drawing.Size(108, 17);
+            this.chkIncludeMessageId.TabIndex = 30;
+            this.chkIncludeMessageId.Text = "แสดงรหัสข้อความ";
+            this.chkIncludeMessageId.UseVisualStyleBackColor = true;
+            // 
             // frmSimple
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -507,5 +519,6 @@
         private System.Windows.Forms.CheckBox chkModDoubleLanguage;
         private System.Windows.Forms.Button btnModDownload;
         private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.CheckBox chkIncludeMessageId;
     }
 }

@@ -54,6 +54,14 @@ namespace TheWitcher3Thai
             }
         }
 
+        public bool IsConversation
+        {
+            get
+            {
+                return this.KeyHex == "00000000";
+            }
+        }
+
         public string ToCsvLine()
         {
             return $@"{this.ID}|{this.KeyHex}|{this.KeyString}|{this.Text.Replace("|", "[[CSV_EXPORT_PIPE]]")}" + "\n";
