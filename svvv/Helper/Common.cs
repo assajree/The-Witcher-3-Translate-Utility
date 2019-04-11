@@ -899,7 +899,7 @@ namespace TheWitcher3Thai
 
         //}
 
-        public List<w3Strings> Translate(List<w3Strings> content, bool combine, bool originalFirst, bool includeMessageId = false)
+        public List<w3Strings> Translate(List<w3Strings> content, bool combine, bool originalFirst, bool includeMessageId = false,bool includeTranslateMessageId=false)
         {
             var result = new List<w3Strings>();
             foreach (var c in content)
@@ -908,7 +908,7 @@ namespace TheWitcher3Thai
                     c.ID,
                     c.KeyHex,
                     c.KeyString,
-                    Translate(c, c.Translate, combine, originalFirst, includeMessageId),
+                    Translate(c, c.Translate, combine, originalFirst, includeMessageId,includeTranslateMessageId),
                     null
                 );
 
@@ -1620,7 +1620,7 @@ namespace TheWitcher3Thai
             return -1;
         }
 
-        public void GenerateMod(Dictionary<string, List<w3Strings>> contents, string outputPath, bool combine, bool originalFirst, Dictionary<string, string> sheetConfig, bool includeMessageId = false)
+        public void GenerateMod(Dictionary<string, List<w3Strings>> contents, string outputPath, bool combine, bool originalFirst, Dictionary<string, string> sheetConfig, bool includeMessageId = false, bool includeTranslateMessageId = false)
         {
             var tempPath = Path.Combine(Application.StartupPath, "temp");
 
@@ -2007,7 +2007,7 @@ namespace TheWitcher3Thai
             }
         }
 
-        public void GenerateLegacyMod(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeMessageId)
+        public void GenerateLegacyMod(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeMessageId,bool includeTranslateMessageId)
         {
             string templatePath = Path.Combine(Application.StartupPath, "Translate", "template.xlsx");
             if (!File.Exists(templatePath))
@@ -2023,7 +2023,7 @@ namespace TheWitcher3Thai
             string legacyExcel = Path.Combine(Application.StartupPath, "temp", "legacy.xlsx");
             WriteExcel(legacyExcel, content, false);
 
-            GenerateMod(content, outputPath, doubleLanguage, originalFirst, sheetConfig, includeMessageId);
+            GenerateMod(content, outputPath, doubleLanguage, originalFirst, sheetConfig, includeMessageId, includeTranslateMessageId);
 
         }
 
