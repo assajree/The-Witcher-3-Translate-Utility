@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using TheWitcher3Thai;
-using TranslateUtility.Screens;
 
 namespace TranslateUtility
 {

@@ -12,7 +12,7 @@ using System.Windows.Forms;
 using TheWitcher3Thai;
 using TheWitcher3Thai.Helper;
 
-namespace TranslateUtility.Screens
+namespace TranslateUtility
 {
     
     public partial class frmSimple : Form
@@ -122,8 +122,8 @@ namespace TranslateUtility.Screens
                 txtLegacyOutput.Text,
                 chkModDoubleLanguage.Checked,
                 rdoModOriginFirst.Checked,
-                chkIncludeMessageId.Checked,
-                true
+                chkUntranslateInfo.Checked,
+                chkTranslateInfo.Checked
             );
         }
 

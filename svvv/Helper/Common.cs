@@ -614,7 +614,10 @@ namespace TheWitcher3Thai
                         source[i + extraSource].KeyHex,
                         source[i + extraSource].KeyString,
                         source[i + extraSource].Text,
-                        null
+                        null,
+
+                        translate[i + extraSource].SheetName,
+                        translate[i + extraSource].RowNumber
                     ));
 
                     skipSource.Add(source[i + extraSource]);
@@ -649,7 +652,10 @@ namespace TheWitcher3Thai
                             source[i + extraSource].KeyHex,
                             source[i + extraSource].KeyString,
                             source[i + extraSource].Text,
-                            null
+                            null,
+
+                            translate[i + extraSource].SheetName,
+                            translate[i + extraSource].RowNumber
                         ));
 
                         continue;
@@ -662,7 +668,10 @@ namespace TheWitcher3Thai
                     source[i + extraSource].KeyHex,
                     source[i + extraSource].KeyString,
                     translate[i + extraTranslate].Text,
-                    translate[i + extraTranslate].Translate
+                    translate[i + extraTranslate].Translate,
+
+                    translate[i + extraSource].SheetName,
+                    translate[i + extraSource].RowNumber
                 ));
 
                 if (String.IsNullOrWhiteSpace(translate[i + extraTranslate].Translate))
@@ -721,7 +730,7 @@ namespace TheWitcher3Thai
             {
 
                 translate = sht.Cells[row, COL_TRANS].Text.Replace("\r", "").Replace("\n", "");
-                result.Add(new w3Strings(text, translate));
+                result.Add(new w3Strings(null,null,null,text, translate,sht.Name,row));
 
                 row++;
                 text = sht.Cells[row, COL_TEXT].Text;
@@ -736,7 +745,7 @@ namespace TheWitcher3Thai
 
         #region Merge Language
 
-        public w3Strings GetTranslate(w3Strings source, w3Strings translate, bool forExcel, bool combine = false, bool originalFirst = true, bool includeMessageId = false)
+        public w3Strings GetTranslate(w3Strings source, w3Strings translate, bool forExcel, bool combine = false, bool originalFirst = true, bool includeMessageId = false, bool includeTranslateMessageId = false)
         {
             if (forExcel)
             {
@@ -756,7 +765,7 @@ namespace TheWitcher3Thai
                     source.ID,
                     source.KeyHex,
                     source.KeyString,
-                    Translate(source, translate.Translate, combine, originalFirst, includeMessageId),
+                    Translate(source, translate.Translate, combine, originalFirst, includeMessageId,includeTranslateMessageId),
                     null
                 );
             }
@@ -930,7 +939,7 @@ namespace TheWitcher3Thai
             // same word
             if (original.Text.GetCompareString() == translate.GetCompareString())
             {
-                if (!includeTranslateMessageId)
+                if (includeTranslateMessageId)
                     result = original.Text;
                 else
                     return original.Text;
@@ -947,7 +956,7 @@ namespace TheWitcher3Thai
                 {
                     if (!original.IsConversation)
                     {
-                        if (!includeTranslateMessageId)
+                        if (includeTranslateMessageId)
                             result = translate;
                         else
                             return translate;
@@ -960,7 +969,7 @@ namespace TheWitcher3Thai
                 }
                 else
                 {
-                    if (!includeTranslateMessageId)
+                    if (includeTranslateMessageId)
                         result = translate;
                     else
                         return translate;
@@ -976,19 +985,19 @@ namespace TheWitcher3Thai
 
         private string GetMessageId(w3Strings w3s)
         {
-            return $@"{w3s.ID.Replace(' ','0')}|{w3s.KeyHex}";
+            return $@"{w3s.SheetName}:{w3s.RowNumber:#,0}";
         }
 
         private string CombineText(w3Strings original, string translate, bool originalFirst, bool includeMessageId = false)
         {
             string spliter = "<br>";
             if (includeMessageId)
-                spliter = $@"<br>{GetMessageId(original)}<br>";
+                spliter = $@"<br>- {GetMessageId(original)} -<br>";
 
             if (originalFirst)
-                return $@"{original}{spliter}{translate}";
+                return $@"{original.Text}{spliter}{translate}";
             else
-                return  $@"{translate}{spliter}{original}";
+                return  $@"{translate}{spliter}{original.Text}";
         }
 
         #endregion
@@ -1296,6 +1305,9 @@ namespace TheWitcher3Thai
             PrepareFile(modPath, tempPath, files);
 
             var fi = new FileInfo(excelPath);
+            if (!fi.Directory.Exists)
+                fi.Directory.Create();
+
             using (var p = new ExcelPackage(fi))
             {
                 var wb = p.Workbook;
@@ -1420,6 +1432,9 @@ namespace TheWitcher3Thai
                         sht.Cells[row, Excel.COL_KEY_STRING].Text,
                         sht.Cells[row, Excel.COL_TEXT].Text,
                         sht.Cells[row, Excel.COL_TRANSLATE].Text.Replace("\r", "").Replace("\n", "")
+
+                        //,sht.Name
+                        //,row
                 ));
 
                 row++;
@@ -1626,7 +1641,7 @@ namespace TheWitcher3Thai
 
             foreach (var sheet in contents)
             {
-                var content = Translate(sheet.Value, combine, originalFirst, includeMessageId);
+                var content = Translate(sheet.Value, combine, originalFirst, includeMessageId, includeTranslateMessageId);
 
                 var path = Path.Combine(tempPath, sheet.Key + ".csv");
                 WriteCsv(content, path);
@@ -2043,7 +2058,10 @@ namespace TheWitcher3Thai
             foreach (var sheet in template)
             {
                 if (!translate.ContainsKey(sheet.Key))
+                {
+                    content.Add(sheet.Key, sheet.Value);
                     continue;
+                }
 
                 var mergeContent = MergeLegacySheet(sheet.Value, translate[sheet.Key], true, out skipSource, out skipTranslate);
 

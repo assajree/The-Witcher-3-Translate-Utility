@@ -550,5 +550,29 @@ namespace TranslateUtility.Properties {
                 this["_SimpleModOutput"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool _SimpleUntranslateInfo {
+            get {
+                return ((bool)(this["_SimpleUntranslateInfo"]));
+            }
+            set {
+                this["_SimpleUntranslateInfo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool _SimpleTranslateInfo {
+            get {
+                return ((bool)(this["_SimpleTranslateInfo"]));
+            }
+            set {
+                this["_SimpleTranslateInfo"] = value;
+            }
+        }
     }
 }
