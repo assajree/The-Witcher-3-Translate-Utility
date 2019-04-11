@@ -923,12 +923,20 @@ namespace TheWitcher3Thai
             return Translate(w3s, w3s.Translate, combine, originalFirst);
         }
 
-        public string Translate(w3Strings original, string translate, bool combine = false, bool originalFirst = true, bool includeMessageId = false)
+        public string Translate(w3Strings original, string translate, bool combine = false, bool originalFirst = true, bool includeMessageId = false, bool includeTranslateMessageId = false)
         {
             string result;
 
-            // same word or no translate
-            if (original.Text.GetCompareString() == translate.GetCompareString() || String.IsNullOrWhiteSpace(translate))
+            // same word
+            if (original.Text.GetCompareString() == translate.GetCompareString())
+            {
+                if (!includeTranslateMessageId)
+                    result = original.Text;
+                else
+                    return original.Text;
+            }
+            //not translate
+            else if (String.IsNullOrWhiteSpace(translate))
             {
                 result = original.Text;
             }
@@ -939,32 +947,43 @@ namespace TheWitcher3Thai
                 {
                     if (!original.IsConversation)
                     {
-                        result = translate;
+                        if (!includeTranslateMessageId)
+                            result = translate;
+                        else
+                            return translate;
                     }
                     else
                     {
                         // return because combine text already include message id
-                        return CombineText(original, translate, originalFirst, includeMessageId);
+                        return CombineText(original, translate, originalFirst, includeTranslateMessageId);
                     }
                 }
                 else
                 {
-                    result = translate;
+                    if (!includeTranslateMessageId)
+                        result = translate;
+                    else
+                        return translate;
                 }
             }
 
             if (includeMessageId)
-                return $@"{result} ({original.ID}|{original.KeyHex})";
+                return $@"{result} ({GetMessageId(original)})";
             else
                 return result;
 
+        }
+
+        private string GetMessageId(w3Strings w3s)
+        {
+            return $@"{w3s.ID.Replace(' ','0')}|{w3s.KeyHex}";
         }
 
         private string CombineText(w3Strings original, string translate, bool originalFirst, bool includeMessageId = false)
         {
             string spliter = "<br>";
             if (includeMessageId)
-                spliter = $@"<br>{original.ID}|{original.KeyHex}<br>";
+                spliter = $@"<br>{GetMessageId(original)}<br>";
 
             if (originalFirst)
                 return $@"{original}{spliter}{translate}";
