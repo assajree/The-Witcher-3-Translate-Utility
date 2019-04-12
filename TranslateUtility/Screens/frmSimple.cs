@@ -100,11 +100,15 @@ namespace TranslateUtility
 
         private void btnLegacyGenerate_Click(object sender, EventArgs e)
         {
-            c.Processing(GenerateMod, "กำลังสร้าง...", "สร้าง mod สำเร็จ");
-            if(c.ShowConfirm("ต้องการเปลี่ยนโฟลเดอร์ mod เป็นโฟลเดอร์ปลายทางหรือไม่?"))
+            var result=c.Processing(GenerateMod, "กำลังสร้าง...", "สร้าง mod สำเร็จ");
+
+            if (result == DialogResult.OK)
             {
-                txtModPath.Text = txtLegacyOutput.Text;
-                //ReadLocalVersion();
+                if (c.ShowConfirm("ต้องการเปลี่ยนโฟลเดอร์ mod เป็นโฟลเดอร์ปลายทางหรือไม่?"))
+                {
+                    txtModPath.Text = txtLegacyOutput.Text;
+                    //ReadLocalVersion();
+                }
             }
         }       
 
