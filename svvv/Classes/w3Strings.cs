@@ -70,5 +70,13 @@ namespace TheWitcher3Thai
         {
             return $@"{this.ID}|{this.KeyHex}|{this.KeyString}|{this.Text.Replace("|", "[[CSV_EXPORT_PIPE]]")}" + "\n";
         }
+
+        public bool EmptyTranslate
+        {
+            get
+            {
+                return String.IsNullOrWhiteSpace(this.Translate);
+            }
+        }
     }
 }

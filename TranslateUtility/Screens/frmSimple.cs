@@ -27,15 +27,12 @@ namespace TranslateUtility
 
         private void frmSimple_Load(object sender, EventArgs e)
         {
-            var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-            
             InitialScreen();
         }
 
         private void InitialScreen()
         {
             string tempPath = Configs.TempPath;
-
             string downloadPath = Configs.DownloadPath;
             string modPath = Path.Combine(Configs.StartupPath, "mod");
 
@@ -44,6 +41,9 @@ namespace TranslateUtility
 
             if (!Directory.Exists(modPath))
                 Directory.CreateDirectory(modPath);
+
+            var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+            lblVersion.Text = $@"Version : {c.GetBuildDate(version):yyyy.MM.dd.HHmmss}";
 
             ReadLocalVersion();
             EnableExtraOption();

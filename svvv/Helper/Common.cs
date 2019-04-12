@@ -1456,6 +1456,8 @@ namespace TheWitcher3Thai
             sht.Cells[Excel.ROW_START - 1, Excel.COL_TRANSLATE].Value = "TRANSLATE";
 
             sht.Cells[Excel.ROW_START - 1, Excel.COL_ROW].Value = "ROW";
+            sht.Cells[Excel.ROW_START - 1, Excel.COL_EMPTY].Value = "EMPTY";
+
 
             for (int i = 0; i < content.Count; i++)
             {
@@ -1470,6 +1472,7 @@ namespace TheWitcher3Thai
                     sht.Cells[Excel.ROW_START + i, Excel.COL_TRANSLATE].Value = content[i].Translate;
 
                 sht.Cells[Excel.ROW_START + i, Excel.COL_ROW].Value = content[i].RowNumber;
+                sht.Cells[Excel.ROW_START + i, Excel.COL_EMPTY].Value = content[i].EmptyTranslate;
 
             }
         }
@@ -2012,6 +2015,10 @@ namespace TheWitcher3Thai
 
         public void InstallMod(string modPath, string gamePath)
         {
+            var skips = new List<string>();
+            skips.Add(Path.Combine(modPath, "version.ini"));
+            skips.Add(Path.Combine(modPath, "result.xlsx"));
+
             // create all directories
             foreach (string dirPath in Directory.GetDirectories(modPath, "*", SearchOption.AllDirectories))
                 Directory.CreateDirectory(dirPath.Replace(modPath, gamePath));
@@ -2019,7 +2026,7 @@ namespace TheWitcher3Thai
             // copy file and replace
             foreach (string path in Directory.GetFiles(modPath, "*.*", SearchOption.AllDirectories))
             {
-                if (path == Path.Combine(modPath, "version.ini"))
+                if (skips.Contains(path))
                     continue;
 
                 File.Copy(path, path.Replace(modPath, gamePath), true);
@@ -2038,11 +2045,11 @@ namespace TheWitcher3Thai
 
             var content = MergeLegacy(template, translate);
 
-            // write excel file for check result
-            string legacyExcel = Path.Combine(Application.StartupPath, "temp", "legacy.xlsx");
-            WriteExcel(legacyExcel, content, false);
-
             GenerateMod(content, outputPath, doubleLanguage, originalFirst, sheetConfig, includeMessageId, includeTranslateMessageId);
+
+            // write result
+            string legacyExcel = Path.Combine(outputPath, "result.xlsx");
+            WriteExcel(legacyExcel, content, false);
 
         }
 
