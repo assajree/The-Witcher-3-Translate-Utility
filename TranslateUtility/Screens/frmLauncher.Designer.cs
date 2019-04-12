@@ -34,6 +34,7 @@
             this.btnModTools = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnDonate = new System.Windows.Forms.LinkLabel();
+            this.btnSimple = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnGameTools
@@ -101,6 +102,19 @@
             this.btnDonate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnDonate.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.btnDonate_LinkClicked);
             // 
+            // btnSimple
+            // 
+            this.btnSimple.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSimple.Location = new System.Drawing.Point(58, 133);
+            this.btnSimple.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSimple.Name = "btnSimple";
+            this.btnSimple.Size = new System.Drawing.Size(126, 29);
+            this.btnSimple.TabIndex = 5;
+            this.btnSimple.Text = "Simple Tools";
+            this.btnSimple.UseVisualStyleBackColor = true;
+            this.btnSimple.Click += new System.EventHandler(this.btnSimple_Click);
+            // 
             // frmLauncher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -108,6 +122,7 @@
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(243, 240);
             this.ControlBox = false;
+            this.Controls.Add(this.btnSimple);
             this.Controls.Add(this.btnDonate);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnModTools);
@@ -131,5 +146,6 @@
         private System.Windows.Forms.Button btnModTools;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.LinkLabel btnDonate;
+        private System.Windows.Forms.Button btnSimple;
     }
 }

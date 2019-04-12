@@ -40,6 +40,12 @@ namespace TranslateUtility
             OpenForm(new frmExcelTools());
         }
 
+
+        private void btnSimple_Click(object sender, EventArgs e)
+        {
+            OpenForm(new frmSimple());
+        }
+
         private void btnDonate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             OpenForm(new frmDonate());
@@ -56,5 +62,7 @@ namespace TranslateUtility
             frm.Closed += OnChildClosed;
             frm.ShowDialog();
         }
+
+        
     }
 }

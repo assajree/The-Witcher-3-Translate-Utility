@@ -1433,8 +1433,8 @@ namespace TheWitcher3Thai
                         sht.Cells[row, Excel.COL_TEXT].Text,
                         sht.Cells[row, Excel.COL_TRANSLATE].Text.Replace("\r", "").Replace("\n", "")
 
-                        //,sht.Name
-                        //,row
+                        , sht.Name
+                        , sht.Cells[row, Excel.COL_ROW].Text.ToIntOrNull()
                 ));
 
                 row++;
@@ -1455,6 +1455,8 @@ namespace TheWitcher3Thai
             sht.Cells[Excel.ROW_START - 1, Excel.COL_TEXT].Value = "MESSAGE";
             sht.Cells[Excel.ROW_START - 1, Excel.COL_TRANSLATE].Value = "TRANSLATE";
 
+            sht.Cells[Excel.ROW_START - 1, Excel.COL_ROW].Value = "ROW";
+
             for (int i = 0; i < content.Count; i++)
             {
                 sht.Cells[Excel.ROW_START + i, Excel.COL_ID].Value = content[i].ID;
@@ -1466,6 +1468,8 @@ namespace TheWitcher3Thai
                     sht.Cells[Excel.ROW_START + i, Excel.COL_TRANSLATE].Value = content[i].Text;
                 else
                     sht.Cells[Excel.ROW_START + i, Excel.COL_TRANSLATE].Value = content[i].Translate;
+
+                sht.Cells[Excel.ROW_START + i, Excel.COL_ROW].Value = content[i].RowNumber;
 
             }
         }

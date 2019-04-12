@@ -13,7 +13,7 @@ namespace TheWitcher3Thai
         public string KeyString { get; set; }
         public string Text { get; set; }
         public string Translate { get; set; }
-        public int RowNumber { get; set; }
+        public int? RowNumber { get; set; }
         public string SheetName { get; set; }
 
         public w3Strings()
@@ -21,7 +21,7 @@ namespace TheWitcher3Thai
 
         }
 
-        public w3Strings(string id,string keyHex,string keyString, string text, string translate,string sheetName=null, int rowNumber=-1)
+        public w3Strings(string id,string keyHex,string keyString, string text, string translate,string sheetName=null, int? rowNumber=null)
         {
             this.ID = id;
             this.KeyHex = keyHex;

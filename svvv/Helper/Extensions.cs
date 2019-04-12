@@ -22,5 +22,14 @@ namespace TheWitcher3Thai.Helper
             if (String.IsNullOrWhiteSpace(txt.Text))
                 txt.Text = defaultText;
         }
+
+        public static int? ToIntOrNull(this string txt)
+        {
+            int result;
+            if (Int32.TryParse(txt, out result))
+                return result;
+            else
+                return null;
+        }
     }
 }

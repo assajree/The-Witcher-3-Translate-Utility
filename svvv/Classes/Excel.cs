@@ -9,5 +9,7 @@
         public const int COL_TEXT = 4;
         public const int COL_TRANSLATE = 5;
 
+        public const int COL_ROW = 6;
+
     }
 }
