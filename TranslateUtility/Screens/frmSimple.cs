@@ -29,14 +29,13 @@ namespace TranslateUtility
         {
             var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             
-            lblVersion.Text = $@"Version : {c.GetBuildDate(version):yyyy.MM.dd.HHmmss}";
             InitialScreen();
         }
 
         private void InitialScreen()
         {
             string tempPath = Configs.TempPath;
-            
+
             string downloadPath = Configs.DownloadPath;
             string modPath = Path.Combine(Configs.StartupPath, "mod");
 
@@ -54,7 +53,8 @@ namespace TranslateUtility
             txtLegacyOutput.SetDefault(modPath);
 
             // install
-            //txtLangSource.SetDefault(modPath);
+            txtGamePath.SetDefault(c.GetGameDirectory());
+
         }
 
         private void SaveSetting()

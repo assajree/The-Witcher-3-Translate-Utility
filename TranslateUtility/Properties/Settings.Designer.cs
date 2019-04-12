@@ -574,5 +574,65 @@ namespace TranslateUtility.Properties {
                 this["_SimpleTranslateInfo"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string _SimpleGamePath {
+            get {
+                return ((string)(this["_SimpleGamePath"]));
+            }
+            set {
+                this["_SimpleGamePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string _SimpleModPath {
+            get {
+                return ((string)(this["_SimpleModPath"]));
+            }
+            set {
+                this["_SimpleModPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool _Simple2Language {
+            get {
+                return ((bool)(this["_Simple2Language"]));
+            }
+            set {
+                this["_Simple2Language"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool _SimpleOriginalFirst {
+            get {
+                return ((bool)(this["_SimpleOriginalFirst"]));
+            }
+            set {
+                this["_SimpleOriginalFirst"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string _SimpleModInput {
+            get {
+                return ((string)(this["_SimpleModInput"]));
+            }
+            set {
+                this["_SimpleModInput"] = value;
+            }
+        }
     }
 }
