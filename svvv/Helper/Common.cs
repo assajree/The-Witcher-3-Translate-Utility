@@ -1326,6 +1326,37 @@ namespace TheWitcher3Thai
             }
         }
 
+        private void WriteNotTranslateExcel(string excelPath, Dictionary<string, List<w3Strings>> content, bool reOrder)
+        {
+            var fi = new FileInfo(excelPath);
+            if (fi.Exists)
+                fi.Delete();
+
+            if (!fi.Directory.Exists)
+                fi.Directory.Create();
+
+            using (var p = new ExcelPackage(fi))
+            {
+                var wb = p.Workbook;
+                WriteResultSheet(wb, content);
+
+                foreach (var c in content)
+                {
+                    var empty = c.Value.Where(v => v.EmptyTranslate).ToList();
+                    if (empty.Count == 0)
+                        continue;
+
+                    var sht = wb.Worksheets.Add(c.Key);
+                    if (reOrder)
+                        WriteSheetContent(sht, empty.OrderBy(v => v.ID).ToList(), false);
+                    else
+                        WriteSheetContent(sht, empty, false);
+                }
+
+                p.Save();
+            }
+        }
+
         private void WriteExcel(string excelPath, Dictionary<string, List<w3Strings>> content, bool sort)
         {
             var fi = new FileInfo(excelPath);
@@ -1456,7 +1487,7 @@ namespace TheWitcher3Thai
             sht.Cells[Excel.ROW_START - 1, Excel.COL_TRANSLATE].Value = "TRANSLATE";
 
             sht.Cells[Excel.ROW_START - 1, Excel.COL_ROW].Value = "ROW";
-            sht.Cells[Excel.ROW_START - 1, Excel.COL_EMPTY].Value = "EMPTY";
+            //sht.Cells[Excel.ROW_START - 1, Excel.COL_EMPTY].Value = "EMPTY";
 
 
             for (int i = 0; i < content.Count; i++)
@@ -1472,7 +1503,7 @@ namespace TheWitcher3Thai
                     sht.Cells[Excel.ROW_START + i, Excel.COL_TRANSLATE].Value = content[i].Translate;
 
                 sht.Cells[Excel.ROW_START + i, Excel.COL_ROW].Value = content[i].RowNumber;
-                sht.Cells[Excel.ROW_START + i, Excel.COL_EMPTY].Value = content[i].EmptyTranslate;
+                //sht.Cells[Excel.ROW_START + i, Excel.COL_EMPTY].Value = content[i].EmptyTranslate;
 
             }
         }
@@ -2049,7 +2080,7 @@ namespace TheWitcher3Thai
 
             // write result
             string legacyExcel = Path.Combine(outputPath, "result.xlsx");
-            WriteExcel(legacyExcel, content, false);
+            WriteNotTranslateExcel(legacyExcel, content, false);
 
         }
 

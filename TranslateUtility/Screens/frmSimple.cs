@@ -104,7 +104,7 @@ namespace TranslateUtility
 
             if (result == DialogResult.OK)
             {
-                if (c.ShowConfirm("ต้องการเปลี่ยนโฟลเดอร์ mod เป็นโฟลเดอร์ปลายทางหรือไม่?"))
+                if (txtModPath.Text != txtLegacyOutput.Text && c.ShowConfirm("ต้องการเปลี่ยนโฟลเดอร์ mod เป็นโฟลเดอร์ปลายทางหรือไม่?"))
                 {
                     txtModPath.Text = txtLegacyOutput.Text;
                     //ReadLocalVersion();
