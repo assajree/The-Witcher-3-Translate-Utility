@@ -232,7 +232,7 @@ namespace TranslateUtility
 
         private void btnLegacyExcelDownload_Click(object sender, EventArgs e)
         {
-            var path = c.DownloadLegacyExcel(txtLegacyExcel.Text);
+            var path = c.DownloadLegacyExcel(txtLegacyExcel.Text,true);
             if (path != null)
                 txtLegacyExcel.Text = path;
         }

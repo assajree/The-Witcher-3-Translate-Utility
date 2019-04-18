@@ -267,9 +267,13 @@ namespace TheWitcher3Thai
             MessageBox.Show(ex.GetBaseException().Message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        public string DownloadLegacyExcel(string initialPath)
+        public string DownloadLegacyExcel(string initialPath, bool showSaveDialog)
         {
-            var path = SaveXlsx(initialPath);
+            var path = initialPath;
+
+            if(showSaveDialog)
+                path = SaveXlsx(initialPath);
+
             if (path != null)
             {
                 var downloadComplete = DownloadFile("https://docs.google.com/spreadsheets/d/1XLM0VzU0RFiTw8NIQSZ2NBPlL_i1yzBYarrMWGb5lDA/export?format=xlsx", path);
@@ -1173,7 +1177,7 @@ namespace TheWitcher3Thai
 
             using (TextWriter tw = new StreamWriter(path))
             {
-                tw.WriteLine($@"{DateTime.Now:yyyy.MM.dd.HHmmss} ({source})");
+                tw.WriteLine($@"{DateTime.Now:yyyy.MM.dd HH:mm:ss}");
             }
         }
 
@@ -1251,7 +1255,10 @@ namespace TheWitcher3Thai
             else
             {
                 string path = Path.Combine(installPath, @"steamapps\common\The Witcher 3");
-                return path;
+                if (!Directory.Exists(Path.Combine(path, "content")))
+                    return null;
+                else
+                    return path;
             }
 
         }

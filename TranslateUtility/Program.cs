@@ -14,7 +14,7 @@ namespace TranslateUtility
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmSimple());
+            Application.Run(new frmLauncher());
         }
     }
 }

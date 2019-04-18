@@ -84,6 +84,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Screens\frmVerySimple.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\frmVerySimple.Designer.cs">
+      <DependentUpon>frmVerySimple.cs</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
     <EmbeddedResource Include="Screens\frmSimple.resx">
       <DependentUpon>frmSimple.cs</DependentUpon>
@@ -113,6 +119,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Screens\frmVerySimple.resx">
+      <DependentUpon>frmVerySimple.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -132,6 +141,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\b0ff6bdb2da01a5924a7f67359af45b8c69ff5b9.ico" />
+    <Content Include="changelog.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Tools\w3strings.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

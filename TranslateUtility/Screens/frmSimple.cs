@@ -81,7 +81,7 @@ namespace TranslateUtility
 
         private void btnLegacyExcelDownload_Click(object sender, EventArgs e)
         {
-            string path=c.DownloadLegacyExcel(Path.Combine(Configs.DownloadPath,"legacy.xlsx"));
+            string path=c.DownloadLegacyExcel(Path.Combine(Configs.DownloadPath,"legacy.xlsx"),true);
             if(path!=null)
             {
                 txtLegacyExcel.Text = path;

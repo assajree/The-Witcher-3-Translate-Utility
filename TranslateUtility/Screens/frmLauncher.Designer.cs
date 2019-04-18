@@ -35,6 +35,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnDonate = new System.Windows.Forms.LinkLabel();
             this.btnSimple = new System.Windows.Forms.Button();
+            this.btnVerySimple = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnGameTools
@@ -80,7 +81,7 @@
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.Location = new System.Drawing.Point(58, 186);
+            this.btnClose.Location = new System.Drawing.Point(58, 248);
             this.btnClose.Margin = new System.Windows.Forms.Padding(2);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(126, 29);
@@ -93,7 +94,7 @@
             // 
             this.btnDonate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDonate.Location = new System.Drawing.Point(0, 215);
+            this.btnDonate.Location = new System.Drawing.Point(0, 277);
             this.btnDonate.Name = "btnDonate";
             this.btnDonate.Size = new System.Drawing.Size(243, 24);
             this.btnDonate.TabIndex = 4;
@@ -115,13 +116,27 @@
             this.btnSimple.UseVisualStyleBackColor = true;
             this.btnSimple.Click += new System.EventHandler(this.btnSimple_Click);
             // 
+            // btnVerySimple
+            // 
+            this.btnVerySimple.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnVerySimple.Location = new System.Drawing.Point(58, 166);
+            this.btnVerySimple.Margin = new System.Windows.Forms.Padding(2);
+            this.btnVerySimple.Name = "btnVerySimple";
+            this.btnVerySimple.Size = new System.Drawing.Size(126, 29);
+            this.btnVerySimple.TabIndex = 5;
+            this.btnVerySimple.Text = "Very Simple Tools";
+            this.btnVerySimple.UseVisualStyleBackColor = true;
+            this.btnVerySimple.Click += new System.EventHandler(this.btnVerySimple_Click);
+            // 
             // frmLauncher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(243, 240);
+            this.ClientSize = new System.Drawing.Size(243, 302);
             this.ControlBox = false;
+            this.Controls.Add(this.btnVerySimple);
             this.Controls.Add(this.btnSimple);
             this.Controls.Add(this.btnDonate);
             this.Controls.Add(this.btnClose);
@@ -147,5 +162,6 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.LinkLabel btnDonate;
         private System.Windows.Forms.Button btnSimple;
+        private System.Windows.Forms.Button btnVerySimple;
     }
 }

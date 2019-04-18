@@ -63,6 +63,9 @@ namespace TranslateUtility
             frm.ShowDialog();
         }
 
-        
+        private void btnVerySimple_Click(object sender, EventArgs e)
+        {
+            OpenForm(new frmVerySimple());
+        }
     }
 }
