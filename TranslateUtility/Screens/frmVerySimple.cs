@@ -65,7 +65,7 @@ namespace TranslateUtility
         {
             // download translate excel file
             translatePath = Path.Combine(Configs.DownloadPath, "translate.xlsx");
-            //translatePath = c.DownloadLegacyExcel(translatePath, false);
+            translatePath = c.DownloadLegacyExcel(translatePath, false);
 
             // generate mod
             var result = c.Processing(GenerateMod, false, "กำลังสร้าง...");
@@ -77,7 +77,6 @@ namespace TranslateUtility
                 if (c.ShowConfirm("ไม่พบการติดตั้ง font mod ต้องการติดตั้งหรือไม่ฮึ?"))
                 {
                     c.InstallFont(txtGamePath.Text);
-                    c.ShowMessage("ติดตั้งเสร็จแล้ว");
                 }
             }
 
