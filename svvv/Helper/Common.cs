@@ -994,9 +994,9 @@ namespace TheWitcher3Thai
 
         private string CombineText(w3Strings original, string translate, bool originalFirst, bool includeMessageId = false)
         {
-            string spliter = "<br>";
+            string spliter = " <br>";
             if (includeMessageId)
-                spliter = $@"<br>- {GetMessageId(original)} -<br>";
+                spliter = $@" <br>- {GetMessageId(original)} -<br>";
 
             if (originalFirst)
                 return $@"{original.Text}{spliter}{translate}";
