@@ -271,7 +271,7 @@ namespace TheWitcher3Thai
         {
             var path = initialPath;
 
-            if(showSaveDialog)
+            if (showSaveDialog)
                 path = SaveXlsx(initialPath);
 
             if (path != null)
@@ -734,7 +734,7 @@ namespace TheWitcher3Thai
             {
 
                 translate = sht.Cells[row, COL_TRANS].Text.Replace("\r", "").Replace("\n", "");
-                result.Add(new w3Strings(null,null,null,text, translate,sht.Name,row));
+                result.Add(new w3Strings(null, null, null, text, translate, sht.Name, row));
 
                 row++;
                 text = sht.Cells[row, COL_TEXT].Text;
@@ -769,7 +769,7 @@ namespace TheWitcher3Thai
                     source.ID,
                     source.KeyHex,
                     source.KeyString,
-                    Translate(source, translate.Translate, combine, originalFirst, includeMessageId,includeTranslateMessageId),
+                    Translate(source, translate.Translate, combine, originalFirst, includeMessageId, includeTranslateMessageId),
                     null
                 );
             }
@@ -912,7 +912,7 @@ namespace TheWitcher3Thai
 
         //}
 
-        public List<w3Strings> Translate(List<w3Strings> content, bool combine, bool originalFirst, bool includeMessageId = false,bool includeTranslateMessageId=false)
+        public List<w3Strings> Translate(List<w3Strings> content, bool combine, bool originalFirst, bool includeMessageId = false, bool includeTranslateMessageId = false)
         {
             var result = new List<w3Strings>();
             foreach (var c in content)
@@ -921,7 +921,7 @@ namespace TheWitcher3Thai
                     c.ID,
                     c.KeyHex,
                     c.KeyString,
-                    Translate(c, c.Translate, combine, originalFirst, includeMessageId,includeTranslateMessageId),
+                    Translate(c, c.Translate, combine, originalFirst, includeMessageId, includeTranslateMessageId),
                     null
                 );
 
@@ -1001,7 +1001,7 @@ namespace TheWitcher3Thai
             if (originalFirst)
                 return $@"{original.Text}{spliter}{translate}";
             else
-                return  $@"{translate}{spliter}{original.Text}";
+                return $@"{translate}{spliter}{original.Text}";
         }
 
         #endregion
@@ -1686,7 +1686,11 @@ namespace TheWitcher3Thai
 
             foreach (var sheet in contents)
             {
-                var content = Translate(sheet.Value, combine, originalFirst, includeMessageId, includeTranslateMessageId);
+                var content0 = false;
+                if (sheet.Key == "content0")
+                    content0 = true;
+
+                var content = Translate(sheet.Value, combine && !content0, originalFirst, includeMessageId && !content0, includeTranslateMessageId && !content0);
 
                 var path = Path.Combine(tempPath, sheet.Key + ".csv");
                 WriteCsv(content, path);
@@ -2071,7 +2075,7 @@ namespace TheWitcher3Thai
             }
         }
 
-        public void GenerateLegacyMod(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeMessageId,bool includeTranslateMessageId)
+        public void GenerateLegacyMod(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeMessageId, bool includeTranslateMessageId)
         {
             string templatePath = Path.Combine(Application.StartupPath, "Translate", "template.xlsx");
             if (!File.Exists(templatePath))
