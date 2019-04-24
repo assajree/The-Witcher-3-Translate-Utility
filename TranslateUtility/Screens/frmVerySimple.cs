@@ -73,14 +73,7 @@ namespace TranslateUtility
             var result = c.Processing(GenerateMod, false, "กำลังสร้าง...");
 
             // install mod
-            c.Processing(InstallMod, false, "กำลังติดตั้ง");
-            if (!c.CheckFontMod(txtGamePath.Text))
-            {
-                if (c.ShowConfirm("ไม่พบการติดตั้ง font mod ต้องการติดตั้งหรือไม่ฮึ?"))
-                {
-                    c.InstallFont(txtGamePath.Text);
-                }
-            }
+            c.Processing(InstallMod, false, "กำลังติดตั้ง");            
 
             c.ShowMessage("ติดตั้งสำเร็จ");
             //EnableRestoreButton();

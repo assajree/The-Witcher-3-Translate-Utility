@@ -2047,7 +2047,15 @@ namespace TheWitcher3Thai
 
         }
 
-        public void InstallFont(string gamePath)
+        public void InstallBigFontMod(string gamePath)
+        {
+            string modPath = Path.Combine(Application.StartupPath, "Tools", Configs.modThaiBigFont, "content");
+            var targetPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage, "content");
+
+            CopyDirectory(modPath, targetPath);
+        }
+
+        public void InstallFontMod(string gamePath)
         {
             string modPath = Path.Combine(Application.StartupPath, "Tools", "font.zip");
             ZipFile.ExtractToDirectory(modPath, gamePath);
@@ -2055,11 +2063,11 @@ namespace TheWitcher3Thai
 
         public bool CheckFontMod(string gamePath)
         {
-            string modPath = Path.Combine(gamePath, "mods", "modKuntoonW3thai_mod");
+            string modPath = Path.Combine(gamePath, "mods", Configs.modKuntoonFont);
             if (Directory.Exists(modPath))
                 return true;
 
-            modPath = Path.Combine(gamePath, "mods", "modThaiBigFont");
+            modPath = Path.Combine(gamePath, "mods", Configs.modThaiBigFont);
             if (Directory.Exists(modPath))
                 return true;
 
@@ -2068,7 +2076,7 @@ namespace TheWitcher3Thai
 
         public bool CheckSubtitleMod(string gamePath)
         {
-            string modPath = Path.Combine(gamePath, "mods", "modDoubleSubtitle");
+            string modPath = Path.Combine(gamePath, "mods", Configs.modDoubleSubtitle);
             if (Directory.Exists(modPath))
                 return true;
 
@@ -2077,7 +2085,7 @@ namespace TheWitcher3Thai
 
         public void RemoveFont(string gamePath)
         {
-            string modPath = Path.Combine(gamePath, "mods", "modKuntoonW3thai_mod");
+            string modPath = Path.Combine(gamePath, "mods", Configs.modKuntoonFont);
             if (Directory.Exists(modPath))
                 DeleteDirectory(modPath);
         }
@@ -2088,19 +2096,30 @@ namespace TheWitcher3Thai
             skips.Add(Path.Combine(modPath, "version.ini"));
             skips.Add(Path.Combine(modPath, "result.xlsx"));
 
-            var targetPath = Path.Combine(gamePath, "mods", "modThaiLanguage", "content");
+            var targetPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage , "content");
 
             CopyDirectory(modPath, targetPath, skips);
+
+            if (!CheckFontMod(gamePath))
+            {
+                InstallFont(gamePath);
+            }
 
             InstallSubtitleMod(gamePath);
         }
 
         public void InstallSubtitleMod(string gamePath)
         {
-            string modPath = Path.Combine(Application.StartupPath, "Tools", "modDoubleSubtitle", "content");
-            var targetPath = Path.Combine(gamePath, "mods", "modThaiLanguage", "content");
+            string modPath = Path.Combine(Application.StartupPath, "Tools", Configs.modDoubleSubtitle, "content");
+            var targetPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage, "content");
 
             CopyDirectory(modPath, targetPath);
+        }
+
+        public void InstallBigFontMod(string gamePath)
+        {
+            string modPath = Path.Combine(Application.StartupPath, "Tools", Configs.modThaiBigFont, "content");
+            var targetPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage, "content");
         }
 
         public void GenerateLegacyMod(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeMessageId, bool includeTranslateMessageId)

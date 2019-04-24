@@ -15,5 +15,10 @@ namespace svvv
         public static string ModPath = Path.Combine(StartupPath, "mod");
         public static string DownloadPath = Path.Combine(StartupPath, "download");
         public static string BackupPath = Path.Combine(StartupPath, "backup");
+
+        public static string modThaiBigFont = "modThaiBigFont";
+        public static string modDoubleSubtitle = "modDoubleSubtitle";
+        public static string modThaiLanguage = "modThaiLanguage"; // translate
+        public static string modKuntoonFont = "modKuntoonW3thai_mod";
     }
 }
