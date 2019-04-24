@@ -46,7 +46,7 @@ namespace TranslateUtility
 
             ReadLocalVersion();
             EnableExtraOption();
-            EnableRestoreButton();
+            //EnableRestoreButton();
             EnableInstallButton();
 
             // install
@@ -66,6 +66,8 @@ namespace TranslateUtility
             // download translate excel file
             translatePath = Path.Combine(Configs.DownloadPath, "translate.xlsx");
             translatePath = c.DownloadLegacyExcel(translatePath, false);
+            if (translatePath == null)
+                return;
 
             // generate mod
             var result = c.Processing(GenerateMod, false, "กำลังสร้าง...");
@@ -81,7 +83,7 @@ namespace TranslateUtility
             }
 
             c.ShowMessage("ติดตั้งสำเร็จ");
-            EnableRestoreButton();
+            //EnableRestoreButton();
         }
 
         private void GenerateMod()
@@ -99,8 +101,8 @@ namespace TranslateUtility
         private void InstallMod()
         {
             // silence backup
-            if (!c.BackupExists(Configs.BackupPath))
-                Backup(false);
+            //if (!c.BackupExists(Configs.BackupPath))
+            //    Backup(false);
 
             c.InstallMod(
                 modPath,
@@ -113,10 +115,10 @@ namespace TranslateUtility
             c.Backup(txtGamePath.Text, Configs.BackupPath, overwrite, true);            
         }
 
-        private void EnableRestoreButton()
-        {
-            btnRestore.Enabled = c.BackupExists(Configs.BackupPath);
-        }
+        //private void EnableRestoreButton()
+        //{
+        //    btnRestore.Enabled = c.BackupExists(Configs.BackupPath);
+        //}
 
         private void EnableExtraOption()
         {
@@ -150,7 +152,7 @@ namespace TranslateUtility
                 return;
             }
 
-            if (c.ShowConfirmWarning("ต้องการคืนค่าจากแบ็คอัพ?"))
+            if (c.ShowConfirmWarning("ต้องการคืนค่าเกมกลับไปก่อนติดตั้ง mod?"))
                 c.Processing(Restore, "กำลังคืนค่า", "คืนค่าสำเร็จ");
 
             // remove font mod

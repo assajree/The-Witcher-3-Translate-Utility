@@ -1,5 +1,7 @@
 ﻿using Microsoft.Win32;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using OfficeOpenXml;
+using svvv;
 using Svvv.Common;
 using System;
 using System.Collections.Generic;
@@ -155,6 +157,9 @@ namespace TheWitcher3Thai
 
         public string SaveXlsx(string initialPath, string defaultPath = null)
         {
+            if (String.IsNullOrWhiteSpace(initialPath))
+                initialPath = Configs.StartupPath;
+
             var fi = new FileInfo(initialPath);
 
             SaveFileDialog dlg = new SaveFileDialog()
@@ -239,22 +244,18 @@ namespace TheWitcher3Thai
 
         public string SelectFolder(string initialPath, string defaultPath = null)
         {
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-
-            if (!String.IsNullOrWhiteSpace(defaultPath))
-            {
-                if (!Directory.Exists(defaultPath))
-                    Directory.CreateDirectory(defaultPath);
-            }
+            CommonOpenFileDialog dlg = new CommonOpenFileDialog();
+            dlg.IsFolderPicker = true;
 
             if (String.IsNullOrWhiteSpace(initialPath))
-                fbd.SelectedPath = defaultPath ?? Application.StartupPath;
+                dlg.InitialDirectory = defaultPath ?? Application.StartupPath;
             else
-                fbd.SelectedPath = initialPath;
+                dlg.InitialDirectory = initialPath;
 
-            if (fbd.ShowDialog() == DialogResult.OK)
+
+            if (dlg.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                return fbd.SelectedPath;
+                return dlg.FileName;
             }
             else
             {
@@ -994,14 +995,17 @@ namespace TheWitcher3Thai
 
         private string CombineText(w3Strings original, string translate, bool originalFirst, bool includeMessageId = false)
         {
-            string spliter = " <br>";
-            if (includeMessageId)
-                spliter = $@" <br>- {GetMessageId(original)} -<br>";
+            string message;
 
             if (originalFirst)
-                return $@"{original.Text}{spliter}{translate}";
+                message = $@"{original.Text}<br>[{translate}]";
             else
-                return $@"{translate}{spliter}{original.Text}";
+                message = $@"{translate}<br>[{original.Text}]";
+
+            if (includeMessageId)
+                message += $@"<br>({GetMessageId(original)})";
+
+            return message;
         }
 
         #endregion
@@ -1196,15 +1200,23 @@ namespace TheWitcher3Thai
             return File.Exists(versionPath);
         }
 
-        public void CopyDirectory(string SourcePath, string DestinationPath)
+        public void CopyDirectory(string SourcePath, string DestinationPath, List<string> skips = null)
         {
+            if (skips == null)
+                skips = new List<string>();
+
             // create all directories
             foreach (string dirPath in Directory.GetDirectories(SourcePath, "*", SearchOption.AllDirectories))
                 Directory.CreateDirectory(dirPath.Replace(SourcePath, DestinationPath));
 
             // copy file and replace
-            foreach (string newPath in Directory.GetFiles(SourcePath, "*.*", SearchOption.AllDirectories))
-                File.Copy(newPath, newPath.Replace(SourcePath, DestinationPath), true);
+            foreach (string path in Directory.GetFiles(SourcePath, "*.*", SearchOption.AllDirectories))
+            {
+                if (skips.Contains(path))
+                    continue;
+
+                File.Copy(path, path.Replace(SourcePath, DestinationPath), true);
+            }
         }
 
         #endregion
@@ -1326,7 +1338,7 @@ namespace TheWitcher3Thai
                     var sht = wb.Worksheets.Add(f.Key);
                     var sourcePath = Path.Combine(tempOriginalPath, sht.Name + ".w3strings.csv");
                     var content = ReadOriginalCsv(sourcePath, true);
-                    WriteSheetContent(sht, content, true);
+                    WriteSheetContent(sht, content, false);
                 }
 
                 p.Save();
@@ -1687,8 +1699,8 @@ namespace TheWitcher3Thai
             foreach (var sheet in contents)
             {
                 var content0 = false;
-                if (sheet.Key == "content0")
-                    content0 = true;
+                //if (sheet.Key == "content0")
+                //    content0 = true;
 
                 var content = Translate(sheet.Value, combine && !content0, originalFirst, includeMessageId && !content0, includeTranslateMessageId && !content0);
 
@@ -2039,13 +2051,28 @@ namespace TheWitcher3Thai
         {
             string modPath = Path.Combine(Application.StartupPath, "Tools", "font.zip");
             ZipFile.ExtractToDirectory(modPath, gamePath);
-
         }
 
         public bool CheckFontMod(string gamePath)
         {
             string modPath = Path.Combine(gamePath, "mods", "modKuntoonW3thai_mod");
-            return Directory.Exists(modPath);
+            if (Directory.Exists(modPath))
+                return true;
+
+            modPath = Path.Combine(gamePath, "mods", "modThaiBigFont");
+            if (Directory.Exists(modPath))
+                return true;
+
+            return false;
+        }
+
+        public bool CheckSubtitleMod(string gamePath)
+        {
+            string modPath = Path.Combine(gamePath, "mods", "modDoubleSubtitle");
+            if (Directory.Exists(modPath))
+                return true;
+
+            return false;
         }
 
         public void RemoveFont(string gamePath)
@@ -2061,18 +2088,19 @@ namespace TheWitcher3Thai
             skips.Add(Path.Combine(modPath, "version.ini"));
             skips.Add(Path.Combine(modPath, "result.xlsx"));
 
-            // create all directories
-            foreach (string dirPath in Directory.GetDirectories(modPath, "*", SearchOption.AllDirectories))
-                Directory.CreateDirectory(dirPath.Replace(modPath, gamePath));
+            var targetPath = Path.Combine(gamePath, "mods", "modThaiLanguage", "content");
 
-            // copy file and replace
-            foreach (string path in Directory.GetFiles(modPath, "*.*", SearchOption.AllDirectories))
-            {
-                if (skips.Contains(path))
-                    continue;
+            CopyDirectory(modPath, targetPath, skips);
 
-                File.Copy(path, path.Replace(modPath, gamePath), true);
-            }
+            InstallSubtitleMod(gamePath);
+        }
+
+        public void InstallSubtitleMod(string gamePath)
+        {
+            string modPath = Path.Combine(Application.StartupPath, "Tools", "modDoubleSubtitle", "content");
+            var targetPath = Path.Combine(gamePath, "mods", "modThaiLanguage", "content");
+
+            CopyDirectory(modPath, targetPath);
         }
 
         public void GenerateLegacyMod(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeMessageId, bool includeTranslateMessageId)
@@ -2088,6 +2116,10 @@ namespace TheWitcher3Thai
             var content = MergeLegacy(template, translate);
 
             GenerateMod(content, outputPath, doubleLanguage, originalFirst, sheetConfig, includeMessageId, includeTranslateMessageId);
+
+            // write all text excel file for later use
+            string tempPath = Path.Combine(Configs.TempPath, "translate.xlsx");
+            WriteExcel(tempPath, content, false);
 
             // write result
             string legacyExcel = Path.Combine(outputPath, "result.xlsx");

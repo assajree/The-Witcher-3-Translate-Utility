@@ -38,7 +38,6 @@
             this.rdoModOriginFirst = new System.Windows.Forms.RadioButton();
             this.chkModDoubleLanguage = new System.Windows.Forms.CheckBox();
             this.btnLegacyGenerate = new System.Windows.Forms.Button();
-            this.btnRestore = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lblModVersion = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -50,7 +49,7 @@
             // 
             // btnGamePath
             // 
-            this.btnGamePath.Location = new System.Drawing.Point(461, 23);
+            this.btnGamePath.Location = new System.Drawing.Point(542, 23);
             this.btnGamePath.Name = "btnGamePath";
             this.btnGamePath.Size = new System.Drawing.Size(26, 23);
             this.btnGamePath.TabIndex = 7;
@@ -63,7 +62,7 @@
             this.txtGamePath.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::TranslateUtility.Properties.Settings.Default, "_SimpleModPath", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtGamePath.Location = new System.Drawing.Point(15, 25);
             this.txtGamePath.Name = "txtGamePath";
-            this.txtGamePath.Size = new System.Drawing.Size(440, 20);
+            this.txtGamePath.Size = new System.Drawing.Size(521, 20);
             this.txtGamePath.TabIndex = 6;
             this.txtGamePath.Text = global::TranslateUtility.Properties.Settings.Default._SimpleModPath;
             this.txtGamePath.TextChanged += new System.EventHandler(this.txtGamePath_TextChanged);
@@ -151,17 +150,6 @@
             this.btnLegacyGenerate.UseVisualStyleBackColor = true;
             this.btnLegacyGenerate.Click += new System.EventHandler(this.btnLegacyGenerate_Click);
             // 
-            // btnRestore
-            // 
-            this.btnRestore.Enabled = false;
-            this.btnRestore.Location = new System.Drawing.Point(493, 23);
-            this.btnRestore.Name = "btnRestore";
-            this.btnRestore.Size = new System.Drawing.Size(75, 23);
-            this.btnRestore.TabIndex = 44;
-            this.btnRestore.Text = "คืนค่า";
-            this.btnRestore.UseVisualStyleBackColor = true;
-            this.btnRestore.Click += new System.EventHandler(this.btnRestore_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -225,7 +213,6 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblModVersion);
-            this.Controls.Add(this.btnRestore);
             this.Controls.Add(this.btnLegacyGenerate);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnGamePath);
@@ -258,7 +245,6 @@
         private System.Windows.Forms.RadioButton rdoModOriginFirst;
         private System.Windows.Forms.CheckBox chkModDoubleLanguage;
         private System.Windows.Forms.Button btnLegacyGenerate;
-        private System.Windows.Forms.Button btnRestore;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblModVersion;
         private System.Windows.Forms.GroupBox groupBox1;
