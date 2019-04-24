@@ -1456,7 +1456,14 @@ namespace TheWitcher3Thai
                 sht.Cells[currRow, 3].Value = notTranslate.ToString("#,0");
 
                 if (item.Value.Count > 0)
-                    sht.Cells[currRow, 4].Value = (translate / item.Value.Count * 100f).ToString("#,0.00") + "%";
+                {
+                    var complete=translate / item.Value.Count * 100f;
+                    var round = Math.Round(complete, 2, MidpointRounding.AwayFromZero);
+                    if ( round == 100 && translate != item.Value.Count)
+                        complete = 99.99f;
+
+                    sht.Cells[currRow, 4].Value = complete.ToString("#,0.00") + "%";
+                }
                 else
                     sht.Cells[currRow, 4].Value = "N/A";
 
