@@ -11,6 +11,9 @@ namespace TheWitcher3Thai
         public Dictionary<string, string> GetSheetConfig()
         {
             Dictionary<string, string> d = new Dictionary<string, string>();
+
+            d.Add("content", @"content");
+
             d.Add("content0", @"content\content0");
             d.Add("content1", @"content\content1");
             d.Add("content2", @"content\content2");

@@ -160,14 +160,6 @@ namespace TranslateUtility
         private void btnInstallLang_Click(object sender, EventArgs e)
         {
             c.Processing(InstallMod,"กำลังติดตั้ง","ติดตั้งสำเร็จ");
-            if (!c.CheckFontMod(txtGamePath.Text))
-            {
-                if (c.ShowConfirm("ไม่พบการติดตั้ง font mod ต้องการติดตั้งหรือไม่ฮึ?"))
-                {
-                    c.InstallFont(txtGamePath.Text);
-                    c.ShowMessage("ติดตั้งเสร็จแล้วฮึ");
-                }
-            }
         } 
 
         private void InstallMod()

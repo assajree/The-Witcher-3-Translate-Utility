@@ -199,7 +199,7 @@ namespace TranslateUtility
 
         private void InstallFont()
         {
-            c.InstallFont(txtFontModDesc.Text);
+            c.InstallFontMod(txtFontModDesc.Text);
         }
 
         private void RemoveFont()

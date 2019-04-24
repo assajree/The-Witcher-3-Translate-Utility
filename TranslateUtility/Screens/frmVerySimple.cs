@@ -73,7 +73,8 @@ namespace TranslateUtility
             var result = c.Processing(GenerateMod, false, "กำลังสร้าง...");
 
             // install mod
-            c.Processing(InstallMod, false, "กำลังติดตั้ง");            
+            c.Processing(InstallMod, false, "กำลังติดตั้ง");
+            
 
             c.ShowMessage("ติดตั้งสำเร็จ");
             //EnableRestoreButton();

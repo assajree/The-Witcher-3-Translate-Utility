@@ -277,6 +277,9 @@ namespace TheWitcher3Thai
 
             if (path != null)
             {
+                if (File.Exists(path))
+                    File.Delete(path);
+
                 var downloadComplete = DownloadFile("https://docs.google.com/spreadsheets/d/1XLM0VzU0RFiTw8NIQSZ2NBPlL_i1yzBYarrMWGb5lDA/export?format=xlsx", path);
                 if (downloadComplete == false)
                     return null;
@@ -404,8 +407,12 @@ namespace TheWitcher3Thai
         {
             foreach (var file in modList)
             {
+
                 var source = new FileInfo(Path.Combine(tempPath, file.Key + ".csv.w3strings"));
                 var desc = new FileInfo(Path.Combine(targetPath, file.Value + @"\en.w3strings"));
+
+                if (!source.Exists)
+                    continue;
 
                 if (!desc.Directory.Exists)
                     desc.Directory.Create();
@@ -2096,13 +2103,13 @@ namespace TheWitcher3Thai
             skips.Add(Path.Combine(modPath, "version.ini"));
             skips.Add(Path.Combine(modPath, "result.xlsx"));
 
-            var targetPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage , "content");
+            var targetPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage, "content");
 
             CopyDirectory(modPath, targetPath, skips);
 
             if (!CheckFontMod(gamePath))
             {
-                InstallFont(gamePath);
+                InstallBigFontMod(gamePath);
             }
 
             InstallSubtitleMod(gamePath);
@@ -2112,14 +2119,7 @@ namespace TheWitcher3Thai
         {
             string modPath = Path.Combine(Application.StartupPath, "Tools", Configs.modDoubleSubtitle, "content");
             var targetPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage, "content");
-
             CopyDirectory(modPath, targetPath);
-        }
-
-        public void InstallBigFontMod(string gamePath)
-        {
-            string modPath = Path.Combine(Application.StartupPath, "Tools", Configs.modThaiBigFont, "content");
-            var targetPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage, "content");
         }
 
         public void GenerateLegacyMod(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeMessageId, bool includeTranslateMessageId)
