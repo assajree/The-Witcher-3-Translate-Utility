@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using Gameloop.Vdf;
+using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using OfficeOpenXml;
 using svvv;
@@ -1268,16 +1269,36 @@ namespace TheWitcher3Thai
 
         public string GetGameDirectory()
         {
-            var installPath = GetSteamDirectory();
-            if (installPath == null)
+            var steamPath = GetSteamDirectory();
+            if (steamPath == null)
                 return null;
             else
             {
-                string path = Path.Combine(installPath, @"steamapps\common\The Witcher 3");
-                if (!Directory.Exists(Path.Combine(path, "content")))
+                string gamePath = @"steamapps\common\The Witcher 3";
+                var path = Path.Combine(steamPath, gamePath, "content");
+                if (!Directory.Exists(path))
+                {
+                    string libraryFoldersFile = Path.Combine(steamPath, "steamapps", String.Format("libraryfolders.vdf"));
+                    if (File.Exists(libraryFoldersFile))
+                    {
+                        var vdf = VdfConvert.Deserialize(File.ReadAllText(libraryFoldersFile));
+                        try
+                        {
+                            var libraryPath = vdf.Value["1"].ToString();
+                            path = Path.Combine(libraryPath, gamePath, "content");
+                            if (Directory.Exists(path))
+                                return Directory.GetParent(path).FullName;
+
+                        }
+                        catch
+                        {
+                            return null;
+                        }
+                    }
                     return null;
+                }
                 else
-                    return path;
+                    return Directory.GetParent(path).FullName; 
             }
 
         }
