@@ -1222,8 +1222,11 @@ namespace TheWitcher3Thai
             {
                 if (skips.Contains(path))
                     continue;
+                var fi = new FileInfo(path.Replace(SourcePath, DestinationPath));
+                if (!fi.Directory.Exists)
+                    fi.Directory.Create();
 
-                File.Copy(path, path.Replace(SourcePath, DestinationPath), true);
+                File.Copy(path, fi.FullName, true);
             }
         }
 
@@ -2084,8 +2087,8 @@ namespace TheWitcher3Thai
 
         public void InstallBigFontMod(string gamePath)
         {
-            string modPath = Path.Combine(Application.StartupPath, "Tools", Configs.modThaiBigFont, "content");
-            var targetPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage, "content");
+            string modPath = Path.Combine(Application.StartupPath, "Tools", Configs.modThaiBigFont);
+            var targetPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage);
 
             CopyDirectory(modPath, targetPath);
         }
@@ -2131,7 +2134,7 @@ namespace TheWitcher3Thai
             skips.Add(Path.Combine(modPath, "version.ini"));
             skips.Add(Path.Combine(modPath, "result.xlsx"));
 
-            var targetPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage, "content");
+            var targetPath = Path.Combine(gamePath);
 
             CopyDirectory(modPath, targetPath, skips);
 
@@ -2145,8 +2148,8 @@ namespace TheWitcher3Thai
 
         public void InstallSubtitleMod(string gamePath)
         {
-            string modPath = Path.Combine(Application.StartupPath, "Tools", Configs.modDoubleSubtitle, "content");
-            var targetPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage, "content");
+            string modPath = Path.Combine(Application.StartupPath, "Tools", Configs.modDoubleSubtitle);
+            var targetPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage);
             CopyDirectory(modPath, targetPath);
         }
 
