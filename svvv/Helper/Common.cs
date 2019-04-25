@@ -305,7 +305,6 @@ namespace TheWitcher3Thai
                 }
                 else
                 {
-                    File.Delete(path);
                     File.Move(tempDownloadPath, path);
                 }
             }

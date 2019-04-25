@@ -316,7 +316,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(577, 282);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnLegacyGenerate);
             this.Controls.Add(this.pnAdvance);
             this.Controls.Add(this.lblAdvance);
@@ -326,6 +325,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnGamePath);
             this.Controls.Add(this.txtGamePath);
+            this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

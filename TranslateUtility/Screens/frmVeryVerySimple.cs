@@ -70,10 +70,13 @@ namespace TranslateUtility
 
             // generate mod
             var result = c.Processing(GenerateMod, false, "กำลังสร้าง...");
+            if (result != DialogResult.OK)
+                return;
 
             // install mod
-            c.Processing(InstallMod, false, "กำลังติดตั้ง");
-
+            result = c.Processing(InstallMod, false, "กำลังติดตั้ง");
+            if (result != DialogResult.OK)
+                return;
 
             c.ShowMessage("ติดตั้งสำเร็จ");
             EnableButton();
@@ -176,7 +179,7 @@ namespace TranslateUtility
 
             if (c.ShowConfirmWarning("ต้องการคืนค่าเกมกลับไปก่อนติดตั้ง mod?"))
                 c.Processing(Restore, "กำลังคืนค่า", "คืนค่าสำเร็จ");
-            
+
         }
 
         private void Restore()
@@ -208,7 +211,7 @@ namespace TranslateUtility
             EnableButton();
         }
 
-        
+
 
         private void btnInstallAlt_Click(object sender, EventArgs e)
         {
@@ -225,9 +228,13 @@ namespace TranslateUtility
 
             // generate mod
             var result = c.Processing(GenerateModAlt, false, "กำลังสร้าง...");
+            if (result != DialogResult.OK)
+                return;
 
             // install mod
-            c.Processing(InstallMod, false, "กำลังติดตั้ง");
+            result = c.Processing(InstallMod, false, "กำลังติดตั้ง");
+            if (result != DialogResult.OK)
+                return;
 
 
             c.ShowMessage("ติดตั้งสำเร็จ");
@@ -241,7 +248,7 @@ namespace TranslateUtility
 
         private void ToggleAdvance()
         {
-            if(pnAdvance.Visible)
+            if (pnAdvance.Visible)
             {
                 pnAdvance.Visible = false;
                 this.Height -= pnAdvance.Height;
@@ -260,7 +267,7 @@ namespace TranslateUtility
 
         private void txtGamePath_DoubleClick(object sender, EventArgs e)
         {
-            if(Directory.Exists(txtGamePath.Text))
+            if (Directory.Exists(txtGamePath.Text))
                 c.Open(txtGamePath.Text);
         }
     }
