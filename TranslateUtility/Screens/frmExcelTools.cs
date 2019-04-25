@@ -177,6 +177,7 @@ namespace TranslateUtility
                 chkFilterEmpty.Checked,
                 chkFilterSameWord.Checked,
                 chkFilterSingleWord.Checked,
+                chkFilterUi.Checked,
                 chkFilterContain.Checked ? txtFilterContain.Text : null,
                 rdoSortByLength.Checked
             );

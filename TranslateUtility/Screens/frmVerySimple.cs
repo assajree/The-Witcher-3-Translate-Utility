@@ -1,13 +1,6 @@
 ﻿using svvv;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TheWitcher3Thai;
 using TheWitcher3Thai.Helper;
@@ -51,13 +44,13 @@ namespace TranslateUtility
 
             // install
             txtGamePath.SetDefault(c.GetGameDirectory());
-            
+
 
         }
 
         private void lblModVersion_DoubleClick(object sender, EventArgs e)
         {
-            if(Directory.Exists(modPath))
+            if (Directory.Exists(modPath))
                 c.Open(modPath);
         }
 
@@ -74,7 +67,7 @@ namespace TranslateUtility
 
             // install mod
             c.Processing(InstallMod, false, "กำลังติดตั้ง");
-            
+
 
             c.ShowMessage("ติดตั้งสำเร็จ");
             //EnableRestoreButton();
@@ -88,6 +81,7 @@ namespace TranslateUtility
                 chkModDoubleLanguage.Checked,
                 rdoModOriginFirst.Checked,
                 chkUntranslateInfo.Checked,
+                chkUiInfo.Checked,
                 chkTranslateInfo.Checked
             );
         }
@@ -106,7 +100,7 @@ namespace TranslateUtility
 
         private void Backup(bool overwrite)
         {
-            c.Backup(txtGamePath.Text, Configs.BackupPath, overwrite, true);            
+            c.Backup(txtGamePath.Text, Configs.BackupPath, overwrite, true);
         }
 
         //private void EnableRestoreButton()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using svvv;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -98,12 +99,18 @@ namespace TranslateUtility
         {
             try
             {
-                var result = c.DownloadMod(txtLangSource.Text,true,true);
+                var downloadPath=c.SelectFolder(Configs.DownloadPath);
+                if (downloadPath == null)
+                    return;
+
+                var result = c.DownloadMod(downloadPath, true,true);
                 if (result != null)
                 {
                     GetLocalVersion();
                     GetLastestVersion();
                     c.ShowMessage(result);
+
+                    txtLangSource.Text = downloadPath;
                 }
             }
             catch(Exception ex)

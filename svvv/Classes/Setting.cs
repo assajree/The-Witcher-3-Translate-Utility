@@ -12,7 +12,7 @@ namespace TheWitcher3Thai
         {
             Dictionary<string, string> d = new Dictionary<string, string>();
 
-            d.Add("content", @"content");
+            //d.Add("content", @"content");
 
             d.Add("content0", @"content\content0");
             d.Add("content1", @"content\content1");

@@ -127,7 +127,8 @@ namespace TranslateUtility
                 chkModDoubleLanguage.Checked,
                 rdoModOriginFirst.Checked,
                 chkUntranslateInfo.Checked,
-                chkTranslateInfo.Checked
+                chkTranslateInfo.Checked,
+                chkUiInfo.Checked
             );
         }
 

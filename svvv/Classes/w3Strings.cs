@@ -62,7 +62,23 @@ namespace TheWitcher3Thai
         {
             get
             {
-                return this.KeyHex == "00000000";
+                // not have key hex
+                if(this.KeyHex == "00000000")
+                {
+                    return true;
+                }
+                // have key  hex
+                else
+                {
+                    if (this.Text.Contains(":"))
+                        return false;
+                    else if (this.Text.Length > 50)
+                        return true;
+                    else
+                        return false;
+                }
+
+                return false;
             }
         }
 

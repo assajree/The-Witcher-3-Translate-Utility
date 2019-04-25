@@ -634,5 +634,17 @@ namespace TranslateUtility.Properties {
                 this["_SimpleModInput"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool _ExcelTranslateUiText {
+            get {
+                return ((bool)(this["_ExcelTranslateUiText"]));
+            }
+            set {
+                this["_ExcelTranslateUiText"] = value;
+            }
+        }
     }
 }

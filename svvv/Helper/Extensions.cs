@@ -31,5 +31,15 @@ namespace TheWitcher3Thai.Helper
             else
                 return null;
         }
+
+        public static string NullIfEmpty(this string txt)
+        {
+            if(String.IsNullOrWhiteSpace(txt))
+            {
+                return null;
+            }
+
+            return txt;
+        }
     }
 }
