@@ -7,13 +7,13 @@ using TheWitcher3Thai.Helper;
 
 namespace TranslateUtility
 {
-    public partial class frmVerySimple : Form
+    public partial class frmVeryVerySimple : Form
     {
         Common c = new Common();
         string modPath = null;
         string translatePath = null;
 
-        public frmVerySimple()
+        public frmVeryVerySimple()
         {
             InitializeComponent();
         }
@@ -226,6 +226,25 @@ namespace TranslateUtility
 
             c.ShowMessage("ติดตั้งสำเร็จ");
             EnableRestoreButton();
+        }
+
+        private void lblAdvance_Click(object sender, EventArgs e)
+        {
+            ToggleAdvance();
+        }
+
+        private void ToggleAdvance()
+        {
+            if(pnAdvance.Visible)
+            {
+                pnAdvance.Visible = false;
+                this.Height -= pnAdvance.Height;
+            }
+            else
+            {
+                pnAdvance.Visible = true;
+                this.Height += pnAdvance.Height;
+            }
         }
     }
 }

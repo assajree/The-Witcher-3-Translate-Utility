@@ -646,5 +646,17 @@ namespace TranslateUtility.Properties {
                 this["_ExcelTranslateUiText"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool _SimpleUiInfo {
+            get {
+                return ((bool)(this["_SimpleUiInfo"]));
+            }
+            set {
+                this["_SimpleUiInfo"] = value;
+            }
+        }
     }
 }
