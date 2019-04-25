@@ -67,5 +67,10 @@ namespace TranslateUtility
         {
             OpenForm(new frmVerySimple());
         }
+
+        private void btnVvSimple_Click(object sender, EventArgs e)
+        {
+            OpenForm(new frmVeryVerySimple());
+        }
     }
 }

@@ -288,7 +288,7 @@ namespace TheWitcher3Thai
                 {
                     // check translate file up to date
                     var lastDownload = File.GetLastWriteTime(path);
-                    if ((DateTime.Now - lastDownload).Minutes < 60)
+                    if (lastDownload > DateTime.Now.AddMinutes(-60)) // download less than 60 minutes
                         return path;
                 }
 
