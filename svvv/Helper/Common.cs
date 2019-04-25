@@ -2223,6 +2223,10 @@ namespace TheWitcher3Thai
             skips.Add(Path.Combine(modPath, "result.xlsx"));
             skips.Add(Path.Combine(modPath, "translate.xlsx"));
 
+            string oldModPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage);
+            if (Directory.Exists(oldModPath))
+                DeleteDirectory(oldModPath);
+
             var targetPath = Path.Combine(gamePath);
 
             CopyDirectory(modPath, targetPath, skips);

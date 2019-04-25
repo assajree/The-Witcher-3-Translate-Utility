@@ -57,7 +57,7 @@ namespace TranslateUtility
 
         private void btnLegacyGenerate_Click(object sender, EventArgs e)
         {
-            Start();
+            StartAlt();
         }
 
         private void Start()
@@ -102,17 +102,17 @@ namespace TranslateUtility
                 modPath,
                 chkModDoubleLanguage.Checked,
                 rdoModOriginFirst.Checked,
-                chkUntranslateInfo.Checked,
-                chkUiInfo.Checked,
-                chkTranslateInfo.Checked
+                chkUntranslateInfo.Checked,                
+                chkTranslateInfo.Checked,
+                chkUiInfo.Checked
             );
         }
 
         private void InstallMod()
         {
             // silence backup
-            if (!c.BackupExists(Configs.BackupPath))
-                Backup(false);
+            //if (!c.BackupExists(Configs.BackupPath))
+            //    Backup(false);
 
             c.InstallMod(
                 modPath,
@@ -134,13 +134,13 @@ namespace TranslateUtility
             if (c.IsValidGamePath(txtGamePath.Text))
             {
                 btnLegacyGenerate.Enabled = true;
-                btnInstallAlt.Enabled = true;
+                //btnInstallAlt.Enabled = true;
                 btnRestore.Enabled = c.BackupExists(Configs.BackupPath);
             }
             else
             {
                 btnLegacyGenerate.Enabled = false;
-                btnInstallAlt.Enabled = false;
+                //btnInstallAlt.Enabled = false;
                 btnRestore.Enabled = false;
             }
         }
