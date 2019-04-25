@@ -12,7 +12,7 @@ namespace TheWitcher3Thai
         {
             Dictionary<string, string> d = new Dictionary<string, string>();
 
-            //d.Add("content", @"content");
+            
 
             d.Add("content0", @"content\content0");
             d.Add("content1", @"content\content1");
@@ -31,22 +31,23 @@ namespace TheWitcher3Thai
             d.Add("DLCbobcontent", @"dlc\bob\content");
             d.Add("DLCEP1content", @"dlc\ep1\content");
 
-            //d.Add("DLC1", @"dlc\dlc1\content");
-            //d.Add("DLC2", @"dlc\dlc2\content");
-            //d.Add("DLC3", @"dlc\dlc3\content");
-            //d.Add("DLC4", @"dlc\dlc4\content");
-            //d.Add("DLC5", @"dlc\dlc5\content");
-            //d.Add("DLC6", @"dlc\dlc6\content");
-            //d.Add("DLC7", @"dlc\dlc7\content");
-            //d.Add("DLC8", @"dlc\dlc8\content");
-            //d.Add("DLC9", @"dlc\dlc9\content");
-            //d.Add("DLC10", @"dlc\dlc10\content");
-            //d.Add("DLC11", @"dlc\dlc11\content");
-            //d.Add("DLC12", @"dlc\dlc12\content");
-            //d.Add("DLC13", @"dlc\dlc13\content");
-            //d.Add("DLC14", @"dlc\dlc14\content");
-            //d.Add("DLC15", @"dlc\dlc15\content");
-            //d.Add("DLC16", @"dlc\dlc16\content");
+            // extra
+            d.Add("DLC1", @"dlc\dlc1\content");
+            d.Add("DLC2", @"dlc\dlc2\content");
+            d.Add("DLC3", @"dlc\dlc3\content");
+            d.Add("DLC4", @"dlc\dlc4\content");
+            d.Add("DLC5", @"dlc\dlc5\content");
+            d.Add("DLC6", @"dlc\dlc6\content");
+            d.Add("DLC7", @"dlc\dlc7\content");
+            d.Add("DLC8", @"dlc\dlc8\content");
+            d.Add("DLC9", @"dlc\dlc9\content");
+            d.Add("DLC10", @"dlc\dlc10\content");
+            d.Add("DLC11", @"dlc\dlc11\content");
+            d.Add("DLC12", @"dlc\dlc12\content");
+            d.Add("DLC13", @"dlc\dlc13\content");
+            d.Add("DLC14", @"dlc\dlc14\content");
+            d.Add("DLC15", @"dlc\dlc15\content");
+            d.Add("DLC16", @"dlc\dlc16\content");
 
             return d;
         }
