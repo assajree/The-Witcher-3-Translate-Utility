@@ -196,6 +196,11 @@ namespace TheWitcher3Thai
 
         }
 
+        public bool IsValidGamePath(string gamePath)
+        {
+            return Directory.Exists(Path.Combine(gamePath, "content"));
+        }
+
         public void SelectXlsxTextBox(TextBox txt, string defaultPath = null)
         {
             var path = SelectXlsx(txt.Text, defaultPath);
@@ -2198,6 +2203,13 @@ namespace TheWitcher3Thai
         public void RemoveFont(string gamePath)
         {
             string modPath = Path.Combine(gamePath, "mods", Configs.modKuntoonFont);
+            if (Directory.Exists(modPath))
+                DeleteDirectory(modPath);
+        }
+
+        public void RemoveMod(string gamePath)
+        {
+            string modPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage);
             if (Directory.Exists(modPath))
                 DeleteDirectory(modPath);
         }

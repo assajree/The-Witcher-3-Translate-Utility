@@ -43,13 +43,14 @@
             this.chkUntranslateInfo = new System.Windows.Forms.CheckBox();
             this.chkTranslateInfo = new System.Windows.Forms.CheckBox();
             this.lblVersion = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnResult = new System.Windows.Forms.Button();
             this.btnRestore = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnInstallAlt = new System.Windows.Forms.Button();
             this.txtGamePath = new System.Windows.Forms.TextBox();
             this.lblAdvance = new System.Windows.Forms.LinkLabel();
             this.pnAdvance = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -58,7 +59,7 @@
             // 
             // btnGamePath
             // 
-            this.btnGamePath.Location = new System.Drawing.Point(542, 23);
+            this.btnGamePath.Location = new System.Drawing.Point(542, 27);
             this.btnGamePath.Name = "btnGamePath";
             this.btnGamePath.Size = new System.Drawing.Size(26, 23);
             this.btnGamePath.TabIndex = 7;
@@ -69,11 +70,12 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.label3.Location = new System.Drawing.Point(12, 9);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 13);
+            this.label3.Size = new System.Drawing.Size(84, 17);
             this.label3.TabIndex = 8;
-            this.label3.Text = "โฟลเดอร์เกม";
+            this.label3.Text = "โฟลเดอร์เกม :";
             // 
             // rdoModTranslateFirst
             // 
@@ -90,11 +92,13 @@
             // 
             // btnLegacyGenerate
             // 
-            this.btnLegacyGenerate.Location = new System.Drawing.Point(221, 51);
+            this.btnLegacyGenerate.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnLegacyGenerate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.btnLegacyGenerate.Location = new System.Drawing.Point(235, 55);
             this.btnLegacyGenerate.Name = "btnLegacyGenerate";
-            this.btnLegacyGenerate.Size = new System.Drawing.Size(121, 34);
+            this.btnLegacyGenerate.Size = new System.Drawing.Size(111, 34);
             this.btnLegacyGenerate.TabIndex = 33;
-            this.btnLegacyGenerate.Text = "สร้างและติดตั้ง";
+            this.btnLegacyGenerate.Text = "ติดตั้ง";
             this.btnLegacyGenerate.UseVisualStyleBackColor = true;
             this.btnLegacyGenerate.Click += new System.EventHandler(this.btnLegacyGenerate_Click);
             // 
@@ -102,7 +106,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(87, 256);
+            this.label1.Location = new System.Drawing.Point(87, 260);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(106, 13);
@@ -114,7 +118,7 @@
             // 
             this.lblModVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblModVersion.AutoSize = true;
-            this.lblModVersion.Location = new System.Drawing.Point(191, 256);
+            this.lblModVersion.Location = new System.Drawing.Point(191, 260);
             this.lblModVersion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblModVersion.Name = "lblModVersion";
             this.lblModVersion.Size = new System.Drawing.Size(27, 13);
@@ -213,21 +217,22 @@
             // lblVersion
             // 
             this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblVersion.Location = new System.Drawing.Point(256, 253);
+            this.lblVersion.Location = new System.Drawing.Point(256, 257);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(309, 23);
             this.lblVersion.TabIndex = 47;
             this.lblVersion.Text = "Version : 1.0.0.0";
             this.lblVersion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // button1
+            // btnResult
             // 
-            this.button1.Location = new System.Drawing.Point(6, 19);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(91, 23);
-            this.button1.TabIndex = 48;
-            this.button1.Text = "ข้อมูลการแปล";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnResult.Location = new System.Drawing.Point(6, 19);
+            this.btnResult.Name = "btnResult";
+            this.btnResult.Size = new System.Drawing.Size(91, 23);
+            this.btnResult.TabIndex = 48;
+            this.btnResult.Text = "ข้อมูลการแปล";
+            this.btnResult.UseVisualStyleBackColor = true;
+            this.btnResult.Click += new System.EventHandler(this.btnResult_Click);
             // 
             // btnRestore
             // 
@@ -237,11 +242,12 @@
             this.btnRestore.TabIndex = 49;
             this.btnRestore.Text = "ถอนการติดตั้ง";
             this.btnRestore.UseVisualStyleBackColor = true;
+            this.btnRestore.Click += new System.EventHandler(this.btnRestore_Click);
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.btnInstallAlt);
-            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.Controls.Add(this.btnResult);
             this.groupBox3.Controls.Add(this.btnRestore);
             this.groupBox3.Location = new System.Drawing.Point(3, 105);
             this.groupBox3.Name = "groupBox3";
@@ -264,17 +270,18 @@
             // txtGamePath
             // 
             this.txtGamePath.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::TranslateUtility.Properties.Settings.Default, "_SimpleModPath", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtGamePath.Location = new System.Drawing.Point(15, 25);
+            this.txtGamePath.Location = new System.Drawing.Point(15, 29);
             this.txtGamePath.Name = "txtGamePath";
             this.txtGamePath.Size = new System.Drawing.Size(521, 20);
             this.txtGamePath.TabIndex = 6;
             this.txtGamePath.Text = global::TranslateUtility.Properties.Settings.Default._SimpleModPath;
             this.txtGamePath.TextChanged += new System.EventHandler(this.txtGamePath_TextChanged);
+            this.txtGamePath.DoubleClick += new System.EventHandler(this.txtGamePath_DoubleClick);
             // 
             // lblAdvance
             // 
             this.lblAdvance.AutoSize = true;
-            this.lblAdvance.Location = new System.Drawing.Point(15, 88);
+            this.lblAdvance.Location = new System.Drawing.Point(15, 92);
             this.lblAdvance.Name = "lblAdvance";
             this.lblAdvance.Size = new System.Drawing.Size(32, 13);
             this.lblAdvance.TabIndex = 51;
@@ -287,22 +294,35 @@
             this.pnAdvance.Controls.Add(this.groupBox1);
             this.pnAdvance.Controls.Add(this.groupBox2);
             this.pnAdvance.Controls.Add(this.groupBox3);
-            this.pnAdvance.Location = new System.Drawing.Point(15, 104);
+            this.pnAdvance.Location = new System.Drawing.Point(15, 108);
             this.pnAdvance.Name = "pnAdvance";
             this.pnAdvance.Size = new System.Drawing.Size(550, 167);
             this.pnAdvance.TabIndex = 52;
+            // 
+            // button1
+            // 
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.button1.Location = new System.Drawing.Point(235, 60);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(111, 34);
+            this.button1.TabIndex = 53;
+            this.button1.Text = "ติดตั้ง";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             // 
             // frmVeryVerySimple
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(577, 278);
+            this.ClientSize = new System.Drawing.Size(577, 282);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnLegacyGenerate);
             this.Controls.Add(this.pnAdvance);
             this.Controls.Add(this.lblAdvance);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblModVersion);
             this.Controls.Add(this.lblVersion);
-            this.Controls.Add(this.btnLegacyGenerate);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnGamePath);
             this.Controls.Add(this.txtGamePath);
@@ -340,12 +360,13 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label lblVersion;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnResult;
         private System.Windows.Forms.Button btnRestore;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.CheckBox chkUiInfo;
         private System.Windows.Forms.Button btnInstallAlt;
         private System.Windows.Forms.LinkLabel lblAdvance;
         private System.Windows.Forms.Panel pnAdvance;
+        private System.Windows.Forms.Button button1;
     }
 }

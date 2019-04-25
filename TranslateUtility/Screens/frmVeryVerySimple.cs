@@ -11,6 +11,7 @@ namespace TranslateUtility
     {
         Common c = new Common();
         string modPath = null;
+        string resultPath = null;
         string translatePath = null;
 
         public frmVeryVerySimple()
@@ -21,12 +22,14 @@ namespace TranslateUtility
         private void frmVerySimple_Load(object sender, EventArgs e)
         {
             InitialScreen();
+            ToggleAdvance();
         }
 
         private void InitialScreen()
         {
             string downloadPath = Configs.DownloadPath;
             modPath = Path.Combine(Configs.StartupPath, "mod");
+            resultPath = Path.Combine(modPath, "result.xlsx");
 
             if (!Directory.Exists(downloadPath))
                 Directory.CreateDirectory(downloadPath);
@@ -39,12 +42,10 @@ namespace TranslateUtility
 
             ReadLocalVersion();
             EnableExtraOption();
-            EnableRestoreButton();
-            EnableInstallButton();
+            EnableButton();
 
             // install
             txtGamePath.SetDefault(c.GetGameDirectory());
-
 
         }
 
@@ -75,7 +76,7 @@ namespace TranslateUtility
 
 
             c.ShowMessage("ติดตั้งสำเร็จ");
-            EnableRestoreButton();
+            EnableButton();
         }
 
         private void GenerateMod()
@@ -121,9 +122,24 @@ namespace TranslateUtility
             c.Backup(txtGamePath.Text, Configs.BackupPath, overwrite, true);
         }
 
-        private void EnableRestoreButton()
+        private void EnableButton()
         {
-            btnRestore.Enabled = c.BackupExists(Configs.BackupPath);
+            // result button
+            btnResult.Enabled = File.Exists(resultPath);
+
+            // install button && restore button
+            if (c.IsValidGamePath(txtGamePath.Text))
+            {
+                btnLegacyGenerate.Enabled = true;
+                btnInstallAlt.Enabled = true;
+                btnRestore.Enabled = c.BackupExists(Configs.BackupPath);
+            }
+            else
+            {
+                btnLegacyGenerate.Enabled = false;
+                btnInstallAlt.Enabled = false;
+                btnRestore.Enabled = false;
+            }
         }
 
         private void EnableExtraOption()
@@ -160,19 +176,21 @@ namespace TranslateUtility
 
             if (c.ShowConfirmWarning("ต้องการคืนค่าเกมกลับไปก่อนติดตั้ง mod?"))
                 c.Processing(Restore, "กำลังคืนค่า", "คืนค่าสำเร็จ");
-
-            // remove font mod
-            if (c.CheckFontMod(txtGamePath.Text))
-            {
-                if (c.ShowConfirm("ต้องการลบ font mod ด้วยหรือไม่?"))
-                    c.RemoveFont(txtGamePath.Text);
-
-            }
+            
         }
 
         private void Restore()
         {
             c.Backup(Configs.BackupPath, txtGamePath.Text, true, false);
+            c.RemoveMod(txtGamePath.Text);
+
+            //// remove font mod
+            //if (c.CheckFontMod(txtGamePath.Text))
+            //{
+            //    if (c.ShowConfirm("ต้องการลบ font mod ด้วยหรือไม่?"))
+            //        c.RemoveFont(txtGamePath.Text);
+
+            //}
         }
 
         private void frmVerySimple_FormClosing(object sender, FormClosingEventArgs e)
@@ -187,22 +205,10 @@ namespace TranslateUtility
 
         private void txtGamePath_TextChanged(object sender, EventArgs e)
         {
-            EnableInstallButton();
+            EnableButton();
         }
 
-        private void EnableInstallButton()
-        {
-            if (Directory.Exists(Path.Combine(txtGamePath.Text, "content")))
-            {
-                btnLegacyGenerate.Enabled = true;
-                btnInstallAlt.Enabled = true;
-            }
-            else
-            {
-                btnLegacyGenerate.Enabled = false;
-                btnInstallAlt.Enabled = false;
-            }
-        }
+        
 
         private void btnInstallAlt_Click(object sender, EventArgs e)
         {
@@ -225,7 +231,7 @@ namespace TranslateUtility
 
 
             c.ShowMessage("ติดตั้งสำเร็จ");
-            EnableRestoreButton();
+            EnableButton();
         }
 
         private void lblAdvance_Click(object sender, EventArgs e)
@@ -245,6 +251,17 @@ namespace TranslateUtility
                 pnAdvance.Visible = true;
                 this.Height += pnAdvance.Height;
             }
+        }
+
+        private void btnResult_Click(object sender, EventArgs e)
+        {
+            c.Open(resultPath);
+        }
+
+        private void txtGamePath_DoubleClick(object sender, EventArgs e)
+        {
+            if(Directory.Exists(txtGamePath.Text))
+                c.Open(txtGamePath.Text);
         }
     }
 }
