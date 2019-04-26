@@ -114,12 +114,19 @@ namespace TheWitcher3Thai
 
         #region Dialog
 
-        public string SelectCsv(string initialPath)
+        public void SelectCsvTextBox(TextBox txt, string defaultPath = null)
+        {
+            var path = SelectCsv(txt.Text, defaultPath);
+            if (path != null)
+                txt.Text = path;
+        }
+
+        public string SelectCsv(string initialPath, string defaultPath = null)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog
             {
                 //InitialDirectory = @"D:\",
-                Title = "Browse csv Files",
+                Title = "Browse Csv Files",
 
                 CheckFileExists = true,
                 CheckPathExists = true,
@@ -134,7 +141,7 @@ namespace TheWitcher3Thai
             };
 
             if (String.IsNullOrWhiteSpace(initialPath))
-                openFileDialog1.InitialDirectory = Application.StartupPath;
+                openFileDialog1.InitialDirectory = defaultPath ?? Application.StartupPath;
             else
                 openFileDialog1.InitialDirectory = initialPath;
 
@@ -311,7 +318,7 @@ namespace TheWitcher3Thai
                     else if (!fi.Directory.Exists)
                         fi.Directory.Create();
 
-                        File.Move(tempDownloadPath, excelPath);
+                    File.Move(tempDownloadPath, excelPath);
                 }
             }
 
@@ -1121,7 +1128,7 @@ namespace TheWitcher3Thai
 
         public bool CheckForUpdate()
         {
-            var lastVersion = ProcessingString(GetLastVersion,"กำลังเช็คเวอร์ชั่นล่าสุด",false);
+            var lastVersion = ProcessingString(GetLastVersion, "กำลังเช็คเวอร์ชั่นล่าสุด", false);
             if (lastVersion == null)
                 return false;
 
@@ -1697,6 +1704,7 @@ namespace TheWitcher3Thai
 
             sht.Cells[Excel.ROW_START - 1, Excel.COL_ROW].Value = "ROW";
             //sht.Cells[Excel.ROW_START - 1, Excel.COL_EMPTY].Value = "EMPTY";
+            sht.Cells[Excel.ROW_START - 1, Excel.COL_SHEETNAME].Value = "SHEET";
 
 
             for (int i = 0; i < content.Count; i++)
@@ -1715,6 +1723,7 @@ namespace TheWitcher3Thai
 
                 sht.Cells[Excel.ROW_START + i, Excel.COL_ROW].Value = content[i].RowNumber;
                 //sht.Cells[Excel.ROW_START + i, Excel.COL_EMPTY].Value = content[i].EmptyTranslate;
+                sht.Cells[Excel.ROW_START + i, Excel.COL_SHEETNAME].Value = content[i].SheetName;
 
             }
         }
@@ -1906,15 +1915,23 @@ namespace TheWitcher3Thai
 
             var tempPath = Path.Combine(Application.StartupPath, "temp");
 
+            // merge all message
             var allMessage = new List<w3Strings>();
             foreach (var sheet in contents)
             {
-                var content = Translate(sheet.Value, combine, originalFirst, includeNotTranslateMessageId, includeTranslateMessageId, IncludeUiMessageId);
-                allMessage.AddRange(content);
+                allMessage.AddRange(sheet.Value);
             }
 
+            // remove dupplicate
+            var distinct = allMessage
+                        .GroupBy(x => x.ID)
+                        .Select(g => g.First())
+                        .ToList();
+            
+            var content = Translate(allMessage, combine, originalFirst, includeNotTranslateMessageId, includeTranslateMessageId, IncludeUiMessageId);
+
             var path = Path.Combine(tempPath, "message" + ".csv");
-            WriteCsv(allMessage, path);
+            WriteCsv(content, path);
             var w3sPath = EncodeW3String(path);
             var targetW3sPath = Path.Combine(outputPath, "mods", Configs.modThaiLanguage, "content", "en.w3strings");
 
@@ -1942,6 +1959,17 @@ namespace TheWitcher3Thai
             InstallSubtitleMod(outputPath);
 
             WriteVersionUnofficial(outputPath, "unofficial");
+
+            // write dupplicate
+            var dupp = allMessage
+                       .GroupBy(x => x.ID)
+                       .Where(g => g.Count() > 1)
+                       .SelectMany(g => g)
+                       .ToList();
+            var duppContent = new Dictionary<string, List<w3Strings>>();
+            duppContent.Add("dupplicate", dupp);
+            var duppPath = Path.Combine(outputPath, "dupp.xlsx");
+            WriteExcel(duppPath, duppContent, true);
         }
 
         public void GenerateModFromExcel(string excelPath, string outputPath, bool combine, bool originalFirst, bool includeMessageId = false)
@@ -1954,16 +1982,23 @@ namespace TheWitcher3Thai
             GenerateMod(raw, outputPath, combine, originalFirst, sheetConfig, false, false, false);
         }
 
-        public Dictionary<string, List<w3Strings>> ReadExcel(string excelPath, Dictionary<string, string> sheetConfig = null)
+        public Dictionary<string, List<w3Strings>> ReadExcel(string excelPath, Dictionary<string, string> sheetConfig)
         {
             var result = new Dictionary<string, List<w3Strings>>();
-
-            if (sheetConfig == null)
-                sheetConfig = setting.GetSheetConfig();
 
             var fi = new FileInfo(excelPath);
             using (var p = new ExcelPackage(fi))
             {
+                if (sheetConfig == null)
+                {
+                    sheetConfig = new Dictionary<string, string>();
+                    foreach (var sht in p.Workbook.Worksheets)
+                    {
+                        if(sht.Cells[2,1].Text== "ID")
+                            sheetConfig.Add(sht.Name, null);
+                    }
+                }
+
                 foreach (var s in sheetConfig)
                 {
                     var sht = p.Workbook.Worksheets[s.Key];
@@ -2038,8 +2073,7 @@ namespace TheWitcher3Thai
 
         public void FilterExcel(string excelPath, string outputPath, bool emptyTranslate, bool sameWord, bool singleWord, bool uiText, string containText, bool sortByTextLength)
         {
-            var sheets = setting.GetSheetConfig();
-            var contents = ReadExcel(excelPath, sheets);
+            var contents = ReadExcel(excelPath, null);
             var result = new Dictionary<string, List<w3Strings>>();
 
             foreach (var c in contents)
@@ -2115,8 +2149,9 @@ namespace TheWitcher3Thai
             if (File.Exists(resultPath))
                 File.Delete(resultPath);
 
-            var source = ReadExcel(sourcePath);
-            var translate = ReadExcel(translatePath);
+            var sheetConfig = setting.GetSheetConfig();
+            var source = ReadExcel(sourcePath, sheetConfig);
+            var translate = ReadExcel(translatePath, sheetConfig);
             var newTranslate = new Dictionary<string, List<w3Strings>>();
 
             // fill message
@@ -2483,6 +2518,28 @@ namespace TheWitcher3Thai
         public string GetVersionText(Version version)
         {
             return $@"{GetBuildDate(version):yyyy.MM.dd.HHmm}";
+        }
+
+        public void GenerateExcelFromCsv(string input, string output)
+        {
+            var data = ReadOriginalCsv(input, true);
+            var dupp = data
+                        .GroupBy(x => x.ID)
+                        .Where(g => g.Count() > 1)
+                        .SelectMany(g => g)
+                        .ToList();
+
+            var distinct = data
+                        .GroupBy(x => x.ID)
+                        .Select(g => g.First())
+                        .ToList();
+
+            var content = new Dictionary<string, List<w3Strings>>();
+            content.Add("content", data);
+            content.Add("dupplicate", dupp);
+            content.Add("distinct", distinct);
+
+            WriteExcel(output, content, true);
         }
 
 

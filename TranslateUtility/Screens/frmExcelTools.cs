@@ -11,6 +11,9 @@ namespace TranslateUtility
     /// </summary>
     public partial class frmExcelTools : Form
     {
+
+        #region Form Event
+
         Common c = new Common();
 
         public frmExcelTools()
@@ -50,7 +53,22 @@ namespace TranslateUtility
             //txtMergeSource.SetDefault(outputPath);
             //txtMergeTranslate.SetDefault(outputPath);
             //txtMergeOutput.SetDefault(outputPath);
+
+            // csv
+            txtCsvOutput.SetDefault(Path.Combine(Application.StartupPath, "output", "csv.xlsx"));
         }
+
+        private void frmExcelTools_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            SaveSetting();
+        }
+
+        private void SaveSetting()
+        {
+            Properties.Settings.Default.Save();
+        }
+
+        #endregion
 
         #region Generate from Mod
 
@@ -226,10 +244,7 @@ namespace TranslateUtility
 
         #endregion
 
-        private void frmExcelTools_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            SaveSetting();
-        }
+        #region Legacy
 
         private void btnLegacyExcelDownload_Click(object sender, EventArgs e)
         {
@@ -252,9 +267,38 @@ namespace TranslateUtility
             }
         }
 
-        private void SaveSetting()
+        #endregion
+
+        #region CSV
+
+        private void lblCsvOutput_DoubleClick(object sender, EventArgs e)
         {
-            Properties.Settings.Default.Save();
+            c.Open(txtCsvOutput.Text);
         }
+
+        private void btnCsvOutput_Click(object sender, EventArgs e)
+        {
+            c.SaveXlsxTextBox(txtCsvOutput);
+        }
+
+        private void btnCsvStart_Click(object sender, EventArgs e)
+        {
+            c.Processing(GenerateExcelFromCsv);
+        }
+
+        private void GenerateExcelFromCsv()
+        {
+            c.GenerateExcelFromCsv(
+                txtCsvInput.Text,
+                txtCsvOutput.Text
+            );
+        }
+
+        private void btnCsvInput_Click(object sender, EventArgs e)
+        {
+            c.SelectCsvTextBox(txtCsvInput);
+        }
+
+        #endregion
     }
 }
