@@ -37,11 +37,11 @@ namespace TranslateUtility
             modPath = Path.Combine(Configs.StartupPath, "mod");
             resultPath = Path.Combine(modPath, "result.xlsx");
 
-            if (!Directory.Exists(downloadPath))
-                Directory.CreateDirectory(downloadPath);
+            //if (!Directory.Exists(downloadPath))
+            //    Directory.CreateDirectory(downloadPath);
 
-            if (!Directory.Exists(modPath))
-                Directory.CreateDirectory(modPath);
+            //if (!Directory.Exists(modPath))
+            //    Directory.CreateDirectory(modPath);
 
             var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             miVersion.Text = $@"Version : {c.GetVersionText(version)}";

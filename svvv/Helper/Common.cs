@@ -277,19 +277,19 @@ namespace TheWitcher3Thai
 
         public string DownloadLegacyExcel(string initialPath, bool showSaveDialog, bool forceDownload = false)
         {
-            var path = initialPath;
+            var excelPath = initialPath;
 
             if (showSaveDialog)
-                path = SaveXlsx(initialPath);
+                excelPath = SaveXlsx(initialPath);
 
-            if (path != null)
+            if (excelPath != null)
             {
-                if (File.Exists(path) && !forceDownload)
+                if (File.Exists(excelPath) && !forceDownload)
                 {
                     // check translate file up to date
-                    var lastDownload = File.GetLastWriteTime(path);
+                    var lastDownload = File.GetLastWriteTime(excelPath);
                     if (lastDownload > DateTime.Now.AddMinutes(-60)) // download less than 60 minutes
-                        return path;
+                        return excelPath;
                 }
 
                 var tempDownloadPath = Path.Combine(Configs.TempPath, "legacy.xlsx");
@@ -305,14 +305,17 @@ namespace TheWitcher3Thai
                 }
                 else
                 {
-                    if (File.Exists(path))
-                        File.Delete(path);
+                    var fi = new FileInfo(excelPath);
+                    if (fi.Exists)
+                        fi.Delete();
+                    else if (!fi.Directory.Exists)
+                        fi.Directory.Create();
 
-                    File.Move(tempDownloadPath, path);
+                        File.Move(tempDownloadPath, excelPath);
                 }
             }
 
-            return path;
+            return excelPath;
         }
 
         public void UpDateW3tu()

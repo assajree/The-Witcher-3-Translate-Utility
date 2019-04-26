@@ -38,6 +38,9 @@
     <ApplicationIcon>Resources\b0ff6bdb2da01a5924a7f67359af45b8c69ff5b9.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.3.3, Culture=neutral, PublicKeyToken=8985beaab7ea3f04, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft-WindowsAPICodePack-Core.1.1.3.3\lib\net452\Microsoft.WindowsAPICodePack.dll</HintPath>
@@ -176,7 +179,9 @@
     <None Include="Tools\updater.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="version.ini" />
+    <None Include="version.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\b0ff6bdb2da01a5924a7f67359af45b8c69ff5b9.ico" />
@@ -202,9 +207,6 @@ DEL Gameloop.Vdf.xml
 DEL Microsoft.WindowsAPICodePack.Shell.xml
 DEL Microsoft.WindowsAPICodePack.xml
 DEL svvv.pdb
-DEL TranslateUtility.pdb
-
-RMDIR /S /Q download
-RMDIR /S /Q mod</PostBuildEvent>
+DEL TranslateUtility.pdb</PostBuildEvent>
   </PropertyGroup>
 </Project>
