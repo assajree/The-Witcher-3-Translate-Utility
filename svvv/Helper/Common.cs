@@ -2434,6 +2434,7 @@ namespace TheWitcher3Thai
             skips.Add(Path.Combine(modPath, "version.ini"));
             skips.Add(Path.Combine(modPath, "result.xlsx"));
             skips.Add(Path.Combine(modPath, "translate.xlsx"));
+            skips.Add(Path.Combine(modPath, "dupplicate.xlsx"));
 
 
             // delete old mod
