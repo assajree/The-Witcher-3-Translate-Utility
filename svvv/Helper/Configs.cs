@@ -15,6 +15,7 @@ namespace svvv
         public static string DownloadPath = Path.Combine(StartupPath, "download");
         public static string BackupPath = Path.Combine(StartupPath, "backup");
         public static string TemplatePath = Path.Combine(StartupPath, "Tools", "template.xlsx");
+        public static string LogPath = Path.Combine(StartupPath, "changelog.txt");
 
 
         public static string Separator = "  ";

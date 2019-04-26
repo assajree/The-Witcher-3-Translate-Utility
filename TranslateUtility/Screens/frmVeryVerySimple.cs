@@ -23,6 +23,12 @@ namespace TranslateUtility
         {
             InitialScreen();
             ToggleAdvance();
+            InitialTooTip();
+        }
+
+        private void InitialTooTip()
+        {
+            toolTip1.SetToolTip(rdoDownloadNormal, "ดาวน์โหลดเมื่อผ่านไป 1 ชั่วโมงจากการดาวน์โหลดครั้งที่แล้วเท่านั้น");
         }
 
         private void InitialScreen()
@@ -38,9 +44,9 @@ namespace TranslateUtility
                 Directory.CreateDirectory(modPath);
 
             var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-            lblVersion.Text = $@"Version : {c.GetBuildDate(version):yyyy.MM.dd.HHmmss}";
+            miVersion.Text = $@"Version : {c.GetVersionText(version)}";
 
-            ReadLocalVersion();
+            //ReadLocalVersion();
             EnableExtraOption();
             EnableButton();
 
@@ -64,7 +70,7 @@ namespace TranslateUtility
         {
             // download translate excel file
             translatePath = Path.Combine(Configs.DownloadPath, "translate.xlsx");
-            translatePath = c.DownloadLegacyExcel(translatePath, false);
+            translatePath = c.DownloadLegacyExcel(translatePath, false, rdoDownloadEveryTime.Checked);
             if (translatePath == null)
                 return;
 
@@ -104,7 +110,8 @@ namespace TranslateUtility
                 rdoModOriginFirst.Checked,
                 chkUntranslateInfo.Checked,                
                 chkTranslateInfo.Checked,
-                chkUiInfo.Checked
+                chkUiInfo.Checked,
+                rdoFontSizeLarge.Checked
             );
         }
 
@@ -154,10 +161,10 @@ namespace TranslateUtility
             rdoModTranslateFirst.Checked = !rdoModOriginFirst.Checked;
         }
 
-        private void ReadLocalVersion()
-        {
-            lblModVersion.Text = c.ReadLocalVersion(modPath);
-        }
+        //private void ReadLocalVersion()
+        //{
+        //    lblModVersion.Text = c.ReadLocalVersion(modPath);
+        //}
 
         private void chkModDoubleLanguage_CheckedChanged(object sender, EventArgs e)
         {
@@ -186,6 +193,7 @@ namespace TranslateUtility
         {
             c.Backup(Configs.BackupPath, txtGamePath.Text, true, false);
             c.RemoveMod(txtGamePath.Text);
+            c.InstallFontMod(txtGamePath.Text);
 
             //// remove font mod
             //if (c.CheckFontMod(txtGamePath.Text))
@@ -269,6 +277,11 @@ namespace TranslateUtility
         {
             if (Directory.Exists(txtGamePath.Text))
                 c.Open(txtGamePath.Text);
+        }
+
+        private void miChangeLog_Click(object sender, EventArgs e)
+        {
+            c.Open(Configs.LogPath);
         }
     }
 }

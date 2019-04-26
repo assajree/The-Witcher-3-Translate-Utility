@@ -100,7 +100,8 @@ namespace TranslateUtility
                 rdoModOriginFirst.Checked,
                 chkUntranslateInfo.Checked,
                 chkUiInfo.Checked,
-                chkTranslateInfo.Checked
+                chkTranslateInfo.Checked,
+                false
             );
         }
 

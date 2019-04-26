@@ -275,7 +275,7 @@ namespace TheWitcher3Thai
             MessageBox.Show(ex.GetBaseException().Message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        public string DownloadLegacyExcel(string initialPath, bool showSaveDialog)
+        public string DownloadLegacyExcel(string initialPath, bool showSaveDialog, bool forceDownload = false)
         {
             var path = initialPath;
 
@@ -284,7 +284,7 @@ namespace TheWitcher3Thai
 
             if (path != null)
             {
-                if (File.Exists(path))
+                if (File.Exists(path) && !forceDownload)
                 {
                     // check translate file up to date
                     var lastDownload = File.GetLastWriteTime(path);
@@ -1014,7 +1014,7 @@ namespace TheWitcher3Thai
                     return AppendMessageId(original, original.Text);
                 else
                     return original.Text;
-            }            
+            }
             // translated
             else
             {
@@ -1340,10 +1340,13 @@ namespace TheWitcher3Thai
                         var vdf = VdfConvert.Deserialize(File.ReadAllText(libraryFoldersFile));
                         try
                         {
-                            var libraryPath = vdf.Value["1"].ToString();
-                            path = Path.Combine(libraryPath, gamePath, "content");
-                            if (Directory.Exists(path))
-                                return Directory.GetParent(path).FullName;
+                            for (var i = 1; i <= vdf.Value.Count() - 2; i++)
+                            {
+                                var libraryPath = vdf.Value[i.ToString()].ToString();
+                                path = Path.Combine(libraryPath, gamePath, "content");
+                                if (Directory.Exists(path))
+                                    return Directory.GetParent(path).FullName;
+                            }
 
                         }
                         catch
@@ -1807,7 +1810,7 @@ namespace TheWitcher3Thai
             FinishMod(tempPath, outputPath, sheetConfig);
         }
 
-        public void GenerateModAlt(Dictionary<string, List<w3Strings>> contents, string outputPath, bool combine, bool originalFirst, Dictionary<string, string> sheetConfig, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool IncludeUiMessageId)
+        public void GenerateModAlt(Dictionary<string, List<w3Strings>> contents, string outputPath, bool combine, bool originalFirst, Dictionary<string, string> sheetConfig, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool IncludeUiMessageId, bool bigFont)
         {
             DeleteDirectory(outputPath);
 
@@ -1823,17 +1826,30 @@ namespace TheWitcher3Thai
             var path = Path.Combine(tempPath, "message" + ".csv");
             WriteCsv(allMessage, path);
             var w3sPath = EncodeW3String(path);
-            var targetPath = Path.Combine(outputPath, "mods", Configs.modThaiLanguage, "content", "en.w3strings");
+            var targetW3sPath = Path.Combine(outputPath, "mods", Configs.modThaiLanguage, "content", "en.w3strings");
 
-            var fi = new FileInfo(targetPath);
+            var fi = new FileInfo(targetW3sPath);
             if (!fi.Directory.Exists)
                 fi.Directory.Create();
 
             File.Copy(
                 w3sPath,
-                targetPath,
+                targetW3sPath,
                 true
             );
+
+            // font
+            if (bigFont)
+            {
+                InstallBigFontMod(outputPath);
+            }
+            else
+            {
+                InstallFontMod(outputPath);
+            }
+
+            // subtitle
+            InstallSubtitleMod(outputPath);
 
             WriteVersionUnofficial(outputPath, "unofficial");
         }
@@ -2251,6 +2267,8 @@ namespace TheWitcher3Thai
             skips.Add(Path.Combine(modPath, "result.xlsx"));
             skips.Add(Path.Combine(modPath, "translate.xlsx"));
 
+
+            // delete old mod
             string oldModPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage);
             if (Directory.Exists(oldModPath))
                 DeleteDirectory(oldModPath);
@@ -2258,13 +2276,6 @@ namespace TheWitcher3Thai
             var targetPath = Path.Combine(gamePath);
 
             CopyDirectory(modPath, targetPath, skips);
-
-            if (!CheckFontMod(gamePath))
-            {
-                InstallBigFontMod(gamePath);
-            }
-
-            InstallSubtitleMod(gamePath);
         }
 
         public void InstallSubtitleMod(string gamePath)
@@ -2298,7 +2309,7 @@ namespace TheWitcher3Thai
 
         }
 
-        public void GenerateLegacyModAlt(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool IncludeUiMessageId)
+        public void GenerateLegacyModAlt(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool includeUiMessageId, bool bigFont)
         {
             string templatePath = Configs.TemplatePath;
             if (!File.Exists(templatePath))
@@ -2310,7 +2321,7 @@ namespace TheWitcher3Thai
 
             var content = MergeLegacy(template, translate);
 
-            GenerateModAlt(content, outputPath, doubleLanguage, originalFirst, sheetConfig, includeNotTranslateMessageId, includeTranslateMessageId, IncludeUiMessageId);
+            GenerateModAlt(content, outputPath, doubleLanguage, originalFirst, sheetConfig, includeNotTranslateMessageId, includeTranslateMessageId, includeUiMessageId, bigFont);
 
             // write all text excel file for later use
             string tempPath = Path.Combine(outputPath, "translate.xlsx");
@@ -2377,6 +2388,11 @@ namespace TheWitcher3Thai
                             .AddSeconds(version.Revision * 2);  // revision is half the number of seconds into the day
 
             return date;
+        }
+
+        public string GetVersionText(Version version)
+        {
+            return $@"{GetBuildDate(version):yyyy.MM.dd.HHmm}";
         }
 
 
