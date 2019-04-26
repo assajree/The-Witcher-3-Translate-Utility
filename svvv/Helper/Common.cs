@@ -293,7 +293,7 @@ namespace TheWitcher3Thai
                 }
 
                 var tempDownloadPath = Path.Combine(Configs.TempPath, "legacy.xlsx");
-                if(File.Exists(tempDownloadPath))
+                if (File.Exists(tempDownloadPath))
                     File.Delete(tempDownloadPath);
 
                 // start download
@@ -1813,7 +1813,7 @@ namespace TheWitcher3Thai
 
             var path = Path.Combine(tempPath, "message" + ".csv");
             WriteCsv(allMessage, path);
-            var w3sPath=EncodeW3String(path);
+            var w3sPath = EncodeW3String(path);
             var targetPath = Path.Combine(outputPath, "mods", Configs.modThaiLanguage, "content", "en.w3strings");
 
             var fi = new FileInfo(targetPath);
@@ -2129,7 +2129,15 @@ namespace TheWitcher3Thai
             return result;
         }
 
-        public void UpdateFont(string downloadPath)
+        public void UpdateFont(string modThaiPath)
+        {
+            string sourcePath = Path.Combine(modThaiPath, "mods", Configs.modKuntoonFont, "content");
+            string targetPath = Path.Combine(Configs.StartupPath, "Tools", Configs.modThaiFont, "content");
+
+            CopyDirectory(sourcePath, targetPath);
+        }
+
+        public void UpdateFontOld(string downloadPath)
         {
             string sourcePath = Path.Combine(downloadPath, "mods");
             string targetPath = Path.Combine(Application.StartupPath, "Tools", "font.zip");
@@ -2169,6 +2177,8 @@ namespace TheWitcher3Thai
 
         public void InstallBigFontMod(string gamePath)
         {
+            RemoveOldFont(gamePath);
+
             string modPath = Path.Combine(Application.StartupPath, "Tools", Configs.modThaiBigFont);
             var targetPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage);
 
@@ -2176,6 +2186,14 @@ namespace TheWitcher3Thai
         }
 
         public void InstallFontMod(string gamePath)
+        {
+            string modPath = Path.Combine(Application.StartupPath, "Tools", Configs.modThaiFont);
+            var targetPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage);
+
+            CopyDirectory(modPath, targetPath);
+        }
+
+        public void InstallFontModOld(string gamePath)
         {
             string modPath = Path.Combine(Application.StartupPath, "Tools", "font.zip");
             ZipFile.ExtractToDirectory(modPath, gamePath);
@@ -2203,7 +2221,7 @@ namespace TheWitcher3Thai
             return false;
         }
 
-        public void RemoveFont(string gamePath)
+        public void RemoveOldFont(string gamePath)
         {
             string modPath = Path.Combine(gamePath, "mods", Configs.modKuntoonFont);
             if (Directory.Exists(modPath))

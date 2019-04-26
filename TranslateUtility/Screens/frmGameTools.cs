@@ -211,7 +211,7 @@ namespace TranslateUtility
 
         private void RemoveFont()
         {
-            c.RemoveFont(txtFontModDesc.Text);
+            c.RemoveOldFont(txtFontModDesc.Text);
         }
         #endregion
 

@@ -165,7 +165,7 @@ namespace TranslateUtility
             if (c.CheckFontMod(txtGamePath.Text))
             {
                 if (c.ShowConfirm("ต้องการลบ font mod ด้วยหรือไม่?"))
-                    c.RemoveFont(txtGamePath.Text);
+                    c.RemoveOldFont(txtGamePath.Text);
 
             }
         }
