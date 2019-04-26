@@ -318,16 +318,18 @@ namespace TheWitcher3Thai
             return excelPath;
         }
 
-        public void UpDateW3tu()
+        public bool UpDateW3tu()
         {
             if (CheckForUpdate())
             {
                 ExtractFile(Configs.UpdaterZipPath, Configs.TempPath);
                 Open(Configs.UpdaterPath);
+                return true;
             }
             else
             {
                 ShowMessage("ไม่พบอัพเดท");
+                return false;
             }
         }
 

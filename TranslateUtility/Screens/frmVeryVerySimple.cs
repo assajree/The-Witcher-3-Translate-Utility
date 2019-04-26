@@ -287,8 +287,8 @@ namespace TranslateUtility
 
         private void miUpdate_Click(object sender, EventArgs e)
         {
-            c.UpDateW3tu();
-            this.Close();
+            if(c.UpDateW3tu())
+                this.Close();
         }
 
         private void lblGameDir_DoubleClick(object sender, EventArgs e)
