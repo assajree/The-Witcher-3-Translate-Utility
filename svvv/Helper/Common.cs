@@ -1009,7 +1009,7 @@ namespace TheWitcher3Thai
             {
                 if (!original.IsConversation)
                 {
-                    if (includeUiMessageId)
+                    if (includeUiMessageId && original.Text.Length > 30)
                         return AppendMessageId(original, original.Text);
                     else
                         return original.Text;
@@ -1083,6 +1083,9 @@ namespace TheWitcher3Thai
 
             if (includeMessageId)
                 message += $@"{Configs.Separator}({GetMessageId(original)})";
+
+            if (!original.Text.Contains("[["))
+                message = message.Replace("[[", "[").Replace("]]", "]");
 
             return message;
         }
