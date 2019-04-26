@@ -1043,12 +1043,12 @@ namespace TheWitcher3Thai
             string message;
 
             if (originalFirst)
-                message = $@"{original.Text}<br>[{translate}]";
+                message = $@"{original.Text}{Configs.Separator}[{translate}]";
             else
-                message = $@"{translate}<br>[{original.Text}]";
+                message = $@"{translate}{Configs.Separator}[{original.Text}]";
 
             if (includeMessageId)
-                message += $@"<br>({GetMessageId(original)})";
+                message += $@"{Configs.Separator}({GetMessageId(original)})";
 
             return message;
         }
