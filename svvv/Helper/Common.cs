@@ -1364,15 +1364,16 @@ namespace TheWitcher3Thai
 
         public string GetTranslateFilePath()
         {
-            var path = Path.Combine(Application.StartupPath, "Translate");
-            var dir = new DirectoryInfo(path);
-            if (!dir.Exists)
-                return null;
+            return Configs.TemplatePath;
+            //var path = Path.Combine(Application.StartupPath, "Translate");
+            //var dir = new DirectoryInfo(path);
+            //if (!dir.Exists)
+            //    return null;
 
-            var files = dir.GetFiles("*.xlsx", SearchOption.TopDirectoryOnly);
+            //var files = dir.GetFiles("*.xlsx", SearchOption.TopDirectoryOnly);
 
-            var fi = files.FirstOrDefault();
-            return fi?.FullName;
+            //var fi = files.FirstOrDefault();
+            //return fi?.FullName;
         }
 
         public void PrepareFile(string modPath, string tempPath, Dictionary<string, string> fileList)
@@ -2248,7 +2249,7 @@ namespace TheWitcher3Thai
 
         public void GenerateLegacyMod(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool IncludeUiMessageId)
         {
-            string templatePath = Path.Combine(Application.StartupPath, "Translate", "template.xlsx");
+            string templatePath = Configs.TemplatePath;
             if (!File.Exists(templatePath))
                 throw new Exception("ไม่พบไฟล์ template.xlsx กรุณาติดตั้งโปรแกมใหม่");
 
@@ -2272,7 +2273,7 @@ namespace TheWitcher3Thai
 
         public void GenerateLegacyModAlt(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool IncludeUiMessageId)
         {
-            string templatePath = Path.Combine(Application.StartupPath, "Translate", "template.xlsx");
+            string templatePath = Configs.TemplatePath;
             if (!File.Exists(templatePath))
                 throw new Exception("ไม่พบไฟล์ template.xlsx กรุณาติดตั้งโปรแกมใหม่");
 

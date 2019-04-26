@@ -15,6 +15,10 @@ namespace svvv
         public static string ModPath = Path.Combine(StartupPath, "mod");
         public static string DownloadPath = Path.Combine(StartupPath, "download");
         public static string BackupPath = Path.Combine(StartupPath, "backup");
+        public static string TemplatePath = Path.Combine(StartupPath, "Translate", "template.xlsx");
+
+
+        public static string Separator = "  ";
 
         public static string modThaiBigFont = "modThaiBigFont";
         public static string modDoubleSubtitle = "modDoubleSubtitle";

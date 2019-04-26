@@ -68,15 +68,15 @@ namespace TheWitcher3Thai
                     return true;
                 }
                 // have key  hex
-                else
-                {
-                    if (this.Text.Contains(":"))
-                        return false;
-                    else if (this.Text.Length > 50)
-                        return true;
-                    else
-                        return false;
-                }
+                //else
+                //{
+                //    if (this.Text.Contains(":"))
+                //        return false;
+                //    else if (this.Text.Length > 50)
+                //        return true;
+                //    else
+                //        return false;
+                //}
 
                 return false;
             }
