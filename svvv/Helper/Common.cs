@@ -1609,10 +1609,16 @@ namespace TheWitcher3Thai
             sht.Cells[2, 3].Value = "Not Translate";
             sht.Cells[2, 4].Value = "Complete";
 
+            var extraSheet = setting.GetExtraSheetConfig();
+
             // detail
             int currRow = ROW_START;
             foreach (var item in contents)
             {
+                // skip extra sheet
+                if (extraSheet.ContainsKey(item.Key))
+                    continue;
+
                 float notTranslate = item.Value.Where(c => String.IsNullOrWhiteSpace(c.Translate)).ToList().Count;
                 float translate = item.Value.Count - notTranslate;
                 totalNotTranslate += notTranslate;
