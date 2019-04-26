@@ -315,6 +315,19 @@ namespace TheWitcher3Thai
             return path;
         }
 
+        public void UpDateW3tu()
+        {
+            if (CheckForUpdate())
+            {
+                ExtractFile(Configs.UpdaterZipPath, Configs.TempPath);
+                Open(Configs.UpdaterPath);
+            }
+            else
+            {
+                ShowMessage("ไม่พบอัพเดท");
+            }
+        }
+
         public string DownloadLegacyMod(string initialPath, string defaultPath = null)
         {
             var path = SelectFolder(initialPath, defaultPath);
@@ -1066,12 +1079,12 @@ namespace TheWitcher3Thai
 
         #region Kuntoon Function
 
-        public string GetLastVersion()
+        public string GetModLastVersion()
         {
-            return GetLastVersion(0);
+            return GetModLastVersion(0);
         }
 
-        public string GetLastVersion(int tryCount)
+        public string GetModLastVersion(int tryCount)
         {
             try
             {
@@ -1097,8 +1110,39 @@ namespace TheWitcher3Thai
                 if (tryCount > 2)
                     throw ex;
                 else
-                    return GetLastVersion(tryCount);
+                    return GetModLastVersion(tryCount);
             }
+        }
+
+        public bool CheckForUpdate()
+        {
+            var lastVersion = ProcessingString(GetLastVersion,"กำลังเช็คเวอร์ชั่นล่าสุด",false);
+            if (lastVersion == null)
+                return false;
+
+            var localVersion = ReadLocalVersion(Configs.StartupPath);
+
+            return localVersion != lastVersion;
+        }
+
+        public string GetLastVersion()
+        {
+            string url = GetGoogleDownloadUrl(Configs.VersionFileId);
+            var client = new WebClient();
+            var data = client.DownloadData(url);
+            var stream = new StreamReader(new MemoryStream(data));
+
+            //var request = WebRequest.Create(url);
+            //var stream = new StreamReader(request.GetResponse().GetResponseStream());
+            var lastVersion = stream.ReadToEnd().ToString();
+
+            //if (String.IsNullOrWhiteSpace(lastVersion))
+            //{
+            //    throw new Exception("Get version fail. Try again later.");
+            //    //lastVersion = "N/A";
+            //}
+
+            return lastVersion;
         }
 
         public string ReadLocalVersion(string modPath)
@@ -1124,6 +1168,25 @@ namespace TheWitcher3Thai
         //    Directory.CreateDirectory(targetPath);
         //}
 
+        public string GetGoogleDownloadUrl(string id)
+        {
+            return $@"https://drive.google.com/uc?id={id}&export=download";
+        }
+
+        public bool DownloadGoogleFile(string id, string saveToPath)
+        {
+            string url = GetGoogleDownloadUrl(id);
+            using (var dlg = new DownloadDialog(url, saveToPath))
+            {
+                var result = dlg.ShowDialog();
+
+                if (result == DialogResult.OK)
+                    return true;
+                else
+                    return false;
+            }
+        }
+
         public bool DownloadFile(string url, string saveToPath)
         {
             using (var dlg = new DownloadDialog(url, saveToPath))
@@ -1137,6 +1200,16 @@ namespace TheWitcher3Thai
             }
         }
 
+        public void ExtractFile(string zipPath, string outputPath)
+        {
+            if (Directory.Exists(outputPath))
+                DeleteDirectory(outputPath);
+            else
+                Directory.CreateDirectory(outputPath);
+
+            ZipFile.ExtractToDirectory(zipPath, outputPath);
+        }
+
         private void ProcessDownloadMod(string targetPath, string downloadFilePath, bool writeVersion, bool updateFont)
         {
             string backupPath = Path.Combine(Application.StartupPath, "temp", "mod_backup");
@@ -1148,11 +1221,8 @@ namespace TheWitcher3Thai
 
                 string extractPath = Path.Combine(Application.StartupPath, "temp", "thaimod");
 
-                if (Directory.Exists(extractPath))
-                    DeleteDirectory(extractPath);
-
                 // extract file
-                ZipFile.ExtractToDirectory(downloadFilePath, extractPath);
+                ExtractFile(downloadFilePath, extractPath);
                 //File.Delete(downloadFilePath);
 
                 // rename folder
@@ -1215,7 +1285,7 @@ namespace TheWitcher3Thai
 
         private void WriteVersion(string modPath)
         {
-            var version = GetLastVersion();
+            var version = GetModLastVersion();
 
             var filePath = Path.Combine(modPath, "version.ini");
             var fi = new FileInfo(filePath);
@@ -1261,6 +1331,12 @@ namespace TheWitcher3Thai
             return File.Exists(versionPath);
         }
 
+        public bool ModExists(string gamePath)
+        {
+            var modPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage);
+            return Directory.Exists(modPath);
+        }
+
         public void CopyDirectory(string SourcePath, string DestinationPath, List<string> skips = null)
         {
             if (skips == null)
@@ -1276,7 +1352,10 @@ namespace TheWitcher3Thai
                 if (skips.Contains(path))
                     continue;
                 var fi = new FileInfo(path.Replace(SourcePath, DestinationPath));
-                if (!fi.Directory.Exists)
+
+                if (fi.Exists)
+                    fi.Delete();
+                else if (!fi.Directory.Exists)
                     fi.Directory.Create();
 
                 File.Copy(path, fi.FullName, true);

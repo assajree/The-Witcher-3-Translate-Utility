@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "svvv", "svvv\svvv.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TranslateUtility", "TranslateUtility\TranslateUtility.csproj", "{62AA79B6-CD04-4622-AE05-4D415615B4EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Updater", "Updater\Updater.csproj", "{6E3184E0-B0E9-4579-8477-3D25CBD38193}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{62AA79B6-CD04-4622-AE05-4D415615B4EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62AA79B6-CD04-4622-AE05-4D415615B4EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62AA79B6-CD04-4622-AE05-4D415615B4EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E3184E0-B0E9-4579-8477-3D25CBD38193}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E3184E0-B0E9-4579-8477-3D25CBD38193}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E3184E0-B0E9-4579-8477-3D25CBD38193}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E3184E0-B0E9-4579-8477-3D25CBD38193}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

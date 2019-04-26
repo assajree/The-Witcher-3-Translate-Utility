@@ -142,7 +142,7 @@ namespace TranslateUtility
             {
                 btnLegacyGenerate.Enabled = true;
                 //btnInstallAlt.Enabled = true;
-                btnRestore.Enabled = c.BackupExists(Configs.BackupPath);
+                btnRestore.Enabled = true;
             }
             else
             {
@@ -178,18 +178,20 @@ namespace TranslateUtility
 
         private void btnRestore_Click(object sender, EventArgs e)
         {
-            if (!c.BackupExists(Configs.BackupPath))
-            {
-                c.ShowErrorMessage("ไม่พบแบ็คอัพ");
-                return;
-            }
+            //if (!c.BackupExists(Configs.BackupPath))
+            //{
+            //    c.ShowErrorMessage("ไม่พบแบ็คอัพ");
+            //    return;
+            //}
 
-            if (c.ShowConfirmWarning("ต้องการคืนค่าเกมกลับไปก่อนติดตั้ง mod?"))
-                c.Processing(Restore, "กำลังคืนค่า", "คืนค่าสำเร็จ");
+            if (c.ShowConfirmWarning("ต้องการลบ mod แปลภาษา?"))
+                c.Processing(RemoveMod, "กำลังลบ", "ลบสำเร็จ");
+
+            //EnableButton();
 
         }
 
-        private void Restore()
+        private void RemoveMod()
         {
             c.Backup(Configs.BackupPath, txtGamePath.Text, true, false);
             c.RemoveMod(txtGamePath.Text);
@@ -275,13 +277,26 @@ namespace TranslateUtility
 
         private void txtGamePath_DoubleClick(object sender, EventArgs e)
         {
-            if (Directory.Exists(txtGamePath.Text))
-                c.Open(txtGamePath.Text);
+            c.SelectFolderTextBox(txtGamePath);
         }
 
         private void miChangeLog_Click(object sender, EventArgs e)
         {
             c.Open(Configs.LogPath);
+        }
+
+        private void miUpdate_Click(object sender, EventArgs e)
+        {
+            c.UpDateW3tu();
+            this.Close();
+        }
+
+        private void lblGameDir_DoubleClick(object sender, EventArgs e)
+        {
+            if (Directory.Exists(txtGamePath.Text))
+                c.Open(txtGamePath.Text);
+            else
+                c.Open(Configs.StartupPath);
         }
     }
 }

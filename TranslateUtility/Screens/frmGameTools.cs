@@ -86,7 +86,7 @@ namespace TranslateUtility
 
         private void GetLastestVersion()
         {
-            var version = c.ProcessingString(c.GetLastVersion, "Getting Version...", false);
+            var version = c.ProcessingString(c.GetModLastVersion, "Getting Version...", false);
             if (version != null)
             {
                 lblLastedVersion.Text = version;

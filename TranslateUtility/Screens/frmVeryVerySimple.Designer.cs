@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVeryVerySimple));
             this.btnGamePath = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblGameDir = new System.Windows.Forms.Label();
             this.rdoModTranslateFirst = new System.Windows.Forms.RadioButton();
             this.btnLegacyGenerate = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -57,6 +57,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.miVersion = new System.Windows.Forms.ToolStripMenuItem();
             this.miChangeLog = new System.Windows.Forms.ToolStripMenuItem();
+            this.miUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.txtGamePath = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
@@ -78,15 +79,16 @@
             this.btnGamePath.UseVisualStyleBackColor = true;
             this.btnGamePath.Click += new System.EventHandler(this.btnGamePath_Click);
             // 
-            // label3
+            // lblGameDir
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label3.Location = new System.Drawing.Point(12, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 17);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "โฟลเดอร์เกม :";
+            this.lblGameDir.AutoSize = true;
+            this.lblGameDir.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.lblGameDir.Location = new System.Drawing.Point(12, 9);
+            this.lblGameDir.Name = "lblGameDir";
+            this.lblGameDir.Size = new System.Drawing.Size(84, 17);
+            this.lblGameDir.TabIndex = 8;
+            this.lblGameDir.Text = "โฟลเดอร์เกม :";
+            this.lblGameDir.DoubleClick += new System.EventHandler(this.lblGameDir_DoubleClick);
             // 
             // rdoModTranslateFirst
             // 
@@ -342,7 +344,6 @@
             this.toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(420, 79);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.menuStrip1.Size = new System.Drawing.Size(154, 24);
             this.menuStrip1.TabIndex = 54;
             this.menuStrip1.Text = "menuStrip1";
@@ -350,7 +351,8 @@
             // miVersion
             // 
             this.miVersion.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.miChangeLog});
+            this.miChangeLog,
+            this.miUpdate});
             this.miVersion.Name = "miVersion";
             this.miVersion.Size = new System.Drawing.Size(147, 20);
             this.miVersion.Text = "Version : 9999.99.99.9999";
@@ -362,6 +364,13 @@
             this.miChangeLog.Size = new System.Drawing.Size(144, 22);
             this.miChangeLog.Text = "การเปลี่ยนแปลง";
             this.miChangeLog.Click += new System.EventHandler(this.miChangeLog_Click);
+            // 
+            // miUpdate
+            // 
+            this.miUpdate.Name = "miUpdate";
+            this.miUpdate.Size = new System.Drawing.Size(144, 22);
+            this.miUpdate.Text = "อัพเดท";
+            this.miUpdate.Click += new System.EventHandler(this.miUpdate_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -388,7 +397,7 @@
             this.Controls.Add(this.btnLegacyGenerate);
             this.Controls.Add(this.pnAdvance);
             this.Controls.Add(this.lblAdvance);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblGameDir);
             this.Controls.Add(this.btnGamePath);
             this.Controls.Add(this.txtGamePath);
             this.Controls.Add(this.button1);
@@ -419,7 +428,7 @@
 
         private System.Windows.Forms.Button btnGamePath;
         private System.Windows.Forms.TextBox txtGamePath;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblGameDir;
         private System.Windows.Forms.CheckBox chkTranslateInfo;
         private System.Windows.Forms.CheckBox chkUntranslateInfo;
         private System.Windows.Forms.RadioButton rdoModTranslateFirst;
@@ -446,5 +455,6 @@
         private System.Windows.Forms.ToolStripMenuItem miVersion;
         private System.Windows.Forms.ToolStripMenuItem miChangeLog;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem miUpdate;
     }
 }

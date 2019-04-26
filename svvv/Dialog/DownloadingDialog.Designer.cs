@@ -40,10 +40,10 @@
             this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBar1.Location = new System.Drawing.Point(0, 21);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(2);
             this.progressBar1.MarqueeAnimationSpeed = 10;
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(418, 19);
+            this.progressBar1.Size = new System.Drawing.Size(428, 25);
             this.progressBar1.TabIndex = 0;
             // 
             // lblProgress
@@ -53,29 +53,27 @@
             this.lblProgress.Location = new System.Drawing.Point(0, 0);
             this.lblProgress.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblProgress.Name = "lblProgress";
-            this.lblProgress.Size = new System.Drawing.Size(418, 19);
+            this.lblProgress.Size = new System.Drawing.Size(428, 19);
             this.lblProgress.TabIndex = 1;
             this.lblProgress.Text = "Connecting...";
             this.lblProgress.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.AutoSize = true;
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.lblProgress);
             this.panel1.Controls.Add(this.progressBar1);
             this.panel1.Location = new System.Drawing.Point(9, 10);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(418, 77);
+            this.panel1.Size = new System.Drawing.Size(428, 77);
             this.panel1.TabIndex = 3;
             // 
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(181, 50);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(56, 24);
             this.btnCancel.TabIndex = 4;
@@ -85,14 +83,12 @@
             // 
             // DownloadDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(446, 98);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(448, 89);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.MinimumSize = new System.Drawing.Size(454, 137);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "DownloadDialog";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
@@ -101,6 +97,7 @@
             this.Load += new System.EventHandler(this.DownloadDialog_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

@@ -40,7 +40,7 @@
             this.progressBar1.Location = new System.Drawing.Point(10, 11);
             this.progressBar1.MarqueeAnimationSpeed = 10;
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(417, 27);
+            this.progressBar1.Size = new System.Drawing.Size(426, 27);
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBar1.TabIndex = 0;
             this.progressBar1.UseWaitCursor = true;
@@ -54,13 +54,11 @@
             // 
             // ProcessingDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(446, 50);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(448, 50);
             this.ControlBox = false;
             this.Controls.Add(this.progressBar1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MinimumSize = new System.Drawing.Size(454, 89);
             this.Name = "ProcessingDialog";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

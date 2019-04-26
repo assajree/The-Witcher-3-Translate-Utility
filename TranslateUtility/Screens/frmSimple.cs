@@ -150,7 +150,7 @@ namespace TranslateUtility
 
         private void btnCheckVersion_Click(object sender, EventArgs e)
         {
-            var version = c.ProcessingString(c.GetLastVersion, "Getting Version...", false);
+            var version = c.ProcessingString(c.GetModLastVersion, "Getting Version...", false);
             if (version != null)
             {
                 lblLastedVersion.Text = version;
