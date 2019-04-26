@@ -8,6 +8,13 @@ namespace TheWitcher3Thai
 {
     public class w3Strings
     {
+        public enum eTranslateStatus
+        {
+            NotTranslate,
+            SameWord,
+            Translated
+        }
+
         public string ID { get; set; }
         public string KeyHex { get; set; }
         public string KeyString { get; set; }
@@ -58,6 +65,19 @@ namespace TheWitcher3Thai
             }
         }
 
+        public eTranslateStatus TranslateStatus
+        {
+            get
+            {
+                if (String.IsNullOrWhiteSpace(this.Translate))
+                    return eTranslateStatus.NotTranslate;
+                else if (this.Text == this.Translate)
+                    return eTranslateStatus.SameWord;
+                else
+                    return eTranslateStatus.Translated;
+            }
+        }
+
         public bool IsConversation
         {
             get
@@ -79,6 +99,22 @@ namespace TheWitcher3Thai
                 //}
 
                 return false;
+            }
+        }
+
+        public string IdKey
+        {
+            get
+            {
+                return ID.Trim();
+            }
+        }
+
+        public bool IsUiText
+        {
+            get
+            {
+                return !IsConversation;
             }
         }
 

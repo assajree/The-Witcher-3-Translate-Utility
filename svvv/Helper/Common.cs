@@ -1922,6 +1922,8 @@ namespace TheWitcher3Thai
                 allMessage.AddRange(sheet.Value);
             }
 
+            WriteDupplicate(allMessage, outputPath);
+
             // remove dupplicate
             var distinct = allMessage
                         .GroupBy(x => x.ID)
@@ -1959,17 +1961,58 @@ namespace TheWitcher3Thai
             InstallSubtitleMod(outputPath);
 
             WriteVersionUnofficial(outputPath, "unofficial");
+            
+        }
 
-            // write dupplicate
+        private void WriteDupplicate(List<w3Strings> allMessage, string outputPath)
+        {
+            // get all dupplicate message
             var dupp = allMessage
                        .GroupBy(x => x.ID)
                        .Where(g => g.Count() > 1)
                        .SelectMany(g => g)
+                       .OrderBy(d=>d.ID)
                        .ToList();
-            var duppContent = new Dictionary<string, List<w3Strings>>();
-            duppContent.Add("dupplicate", dupp);
-            var duppPath = Path.Combine(outputPath, "dupp.xlsx");
-            WriteExcel(duppPath, duppContent, true);
+
+            // get all translate message
+            var translated = dupp.Where(d => d.TranslateStatus > w3Strings.eTranslateStatus.NotTranslate).ToList();
+
+            // get all not reanslate message
+            var notTranslate = dupp.Where(d => d.TranslateStatus == w3Strings.eTranslateStatus.NotTranslate).ToList();
+
+            // build message list
+            var messageDict = new Dictionary<string, w3Strings>();
+            foreach (var item in translated)
+            {
+                if (!messageDict.ContainsKey(item.IdKey))
+                {
+                    messageDict.Add(item.IdKey, item);
+                }
+                else
+                {
+                    if (item.TranslateStatus > messageDict[item.IdKey].TranslateStatus)
+                        messageDict[item.IdKey] = item;
+                }
+            }
+
+            // create sheet content
+            var contents = new Dictionary<string, List<w3Strings>>();
+            contents.Add("DUPPLICATE", dupp);
+            foreach (var item in notTranslate)
+            {
+                if (!contents.ContainsKey(item.SheetName))
+                    contents.Add(item.SheetName, new List<w3Strings>());
+
+                if(messageDict.ContainsKey(item.IdKey))
+                {
+                    item.Translate = messageDict[item.IdKey].Translate;
+                    contents[item.SheetName].Add(item);
+                }
+            }
+
+            // write excel
+            var duppPath = Path.Combine(outputPath, "dupplicate.xlsx");
+            WriteExcel(duppPath, contents, true);
         }
 
         public void GenerateModFromExcel(string excelPath, string outputPath, bool combine, bool originalFirst, bool includeMessageId = false)
