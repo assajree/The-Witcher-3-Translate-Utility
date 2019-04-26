@@ -121,7 +121,7 @@ namespace TranslateUtility
 
         private void GenerateMod()
         {
-            c.GenerateLegacyMod(
+            c.GenerateLegacyModAlt(
                 txtLegacyExcel.Text,
                 txtLegacyOutput.Text,
                 chkModDoubleLanguage.Checked,

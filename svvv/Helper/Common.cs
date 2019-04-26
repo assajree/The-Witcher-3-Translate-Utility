@@ -979,40 +979,39 @@ namespace TheWitcher3Thai
 
         public string Translate(w3Strings original, string translate, bool combine, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool includeUiMessageId)
         {
-            // same word
-            if (original.Text.GetCompareString() == translate.GetCompareString())
-            {
-                if (includeTranslateMessageId)
-                    return AppendMessageId(original, original.Text);
-                else
-                    return original.Text;
-            }
             //not translate
-            else if (String.IsNullOrWhiteSpace(translate))
+            if (String.IsNullOrWhiteSpace(translate))
             {
                 if (includeNotTranslateMessageId)
                     return AppendMessageId(original, original.Text);
                 else
                     return original.Text;
             }
-            // full translate
+            // ui text
+            else if (!original.IsConversation)
+            {
+                if(original.Text.Length>30)
+                    return AppendMessageId(original, translate);
+                else if (includeUiMessageId)
+                    return AppendMessageId(original, translate);
+                else
+                    return translate;
+            }
+            // same word
+            else if (original.Text.GetCompareString() == translate.GetCompareString())
+            {
+                if (includeTranslateMessageId)
+                    return AppendMessageId(original, original.Text);
+                else
+                    return original.Text;
+            }            
+            // translated
             else
             {
                 if (combine)
                 {
-                    // ui text
-                    if (!original.IsConversation)
-                    {
-                        if (includeUiMessageId)
-                            return AppendMessageId(original, translate);
-                        else
-                            return translate;
-                    }
-                    else
-                    {
-                        // return because combine text already include message id
-                        return CombineText(original, translate, originalFirst, includeTranslateMessageId);
-                    }
+                    // return because combine text already include message id
+                    return CombineText(original, translate, originalFirst, includeTranslateMessageId);
                 }
                 else
                 {
