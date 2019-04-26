@@ -982,17 +982,27 @@ namespace TheWitcher3Thai
             //not translate
             if (String.IsNullOrWhiteSpace(translate))
             {
-                if (includeNotTranslateMessageId)
-                    return AppendMessageId(original, original.Text);
+                if (!original.IsConversation)
+                {
+                    if (includeUiMessageId)
+                        return AppendMessageId(original, original.Text);
+                    else
+                        return original.Text;
+                }
                 else
-                    return original.Text;
+                {
+                    if (includeNotTranslateMessageId)
+                        return AppendMessageId(original, original.Text);
+                    else
+                        return original.Text;
+                }
             }
             // ui text
             else if (!original.IsConversation)
             {
-                if(original.Text.Length>30)
-                    return AppendMessageId(original, translate);
-                else if (includeUiMessageId)
+                //if (original.Text.Length > 30)
+                //    return AppendMessageId(original, translate);
+                if (includeUiMessageId && original.Text.Length > 30)
                     return AppendMessageId(original, translate);
                 else
                     return translate;
@@ -1027,7 +1037,7 @@ namespace TheWitcher3Thai
         private string AppendMessageId(w3Strings w3s, string message)
         {
             if (w3s.KeyHex != "00000000")
-                return $@"{message} ({w3s.KeyHex})";
+                return $@"{message} ({w3s.ID.Trim()})";
             else
                 return $@"{message} ({GetMessageId(w3s)})";
         }
