@@ -56,12 +56,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Screens\frmSimple.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Screens\frmSimple.Designer.cs">
-      <DependentUpon>frmSimple.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screens\frmDonate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,13 +88,11 @@
     <Compile Include="Screens\frmModTools.Designer.cs">
       <DependentUpon>frmModTools.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Screens\frmVeryVerySimple.cs">
+    <Compile Include="Screens\frmSimple.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Screens\frmVeryVerySimple.Designer.cs">
-      <DependentUpon>frmVeryVerySimple.cs</DependentUpon>
+    <Compile Include="Screens\frmSimple.Designer.cs">
+      <DependentUpon>frmSimple.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\frmVerySimple.cs">
       <SubType>Form</SubType>
@@ -106,10 +100,23 @@
     <Compile Include="Screens\frmVerySimple.Designer.cs">
       <DependentUpon>frmVerySimple.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\frmVeryVerySimple.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\frmVeryVerySimple.Designer.cs">
+      <DependentUpon>frmVeryVerySimple.cs</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
-    <EmbeddedResource Include="Screens\frmSimple.resx">
-      <DependentUpon>frmSimple.cs</DependentUpon>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <EmbeddedResource Include="Screens\frmDonate.resx">
       <DependentUpon>frmDonate.cs</DependentUpon>
     </EmbeddedResource>
@@ -125,21 +132,14 @@
     <EmbeddedResource Include="Screens\frmModTools.resx">
       <DependentUpon>frmModTools.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <EmbeddedResource Include="Screens\frmVeryVerySimple.resx">
-      <DependentUpon>frmVeryVerySimple.cs</DependentUpon>
+    <EmbeddedResource Include="Screens\frmSimple.resx">
+      <DependentUpon>frmSimple.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\frmVerySimple.resx">
       <DependentUpon>frmVerySimple.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\frmVeryVerySimple.resx">
+      <DependentUpon>frmVeryVerySimple.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />

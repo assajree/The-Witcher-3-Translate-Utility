@@ -293,9 +293,9 @@ namespace TranslateUtility
 
         private void lblGameDir_DoubleClick(object sender, EventArgs e)
         {
-            if (Directory.Exists(txtGamePath.Text))
-                c.Open(txtGamePath.Text);
-            else
+            //if (Directory.Exists(txtGamePath.Text))
+            //    c.Open(txtGamePath.Text);
+            //else
                 c.Open(Configs.StartupPath);
         }
     }
