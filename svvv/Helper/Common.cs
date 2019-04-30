@@ -1009,7 +1009,8 @@ namespace TheWitcher3Thai
             {
                 if (!original.IsConversation)
                 {
-                    if (includeUiMessageId && original.Text.Length > 30)
+                    //if (includeUiMessageId && original.Text.Length > 30)
+                    if (includeUiMessageId)
                         return AppendMessageId(original, original.Text);
                     else
                         return original.Text;
@@ -1025,9 +1026,7 @@ namespace TheWitcher3Thai
             // ui text
             else if (!original.IsConversation)
             {
-                //if (original.Text.Length > 30)
-                //    return AppendMessageId(original, translate);
-                if (includeUiMessageId && original.Text.Length > 30)
+                if (includeUiMessageId)
                     return AppendMessageId(original, translate);
                 else
                     return translate;
@@ -1925,7 +1924,8 @@ namespace TheWitcher3Thai
                 allMessage.AddRange(sheet.Value);
             }
 
-            WriteDupplicate(allMessage, outputPath);
+            
+            // WriteDupplicate(allMessage, outputPath);
 
             // remove dupplicate
             var distinct = allMessage
@@ -2360,7 +2360,7 @@ namespace TheWitcher3Thai
 
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // restore backup
                 //if (File.Exists(targetPath))

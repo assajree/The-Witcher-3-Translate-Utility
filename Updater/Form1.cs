@@ -19,7 +19,7 @@ namespace Updater
             zipPath = Path.Combine(Application.StartupPath, "w3tu.zip");
             extractPath = Path.Combine(Application.StartupPath, "w3u");
             program1Path = Path.Combine(parentPath, "w3tu.exe");
-            program1Path = Path.Combine(parentPath, "w3tu.exe");
+            program2Path = Path.Combine(parentPath, "TranslateUtility.exe");
         }
 
         private void Form1_Load(object sender, EventArgs e)
