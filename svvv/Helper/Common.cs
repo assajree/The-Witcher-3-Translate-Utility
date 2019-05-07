@@ -2152,14 +2152,14 @@ namespace TheWitcher3Thai
             return result;
         }
 
-        public void FilterExcel(string excelPath, string outputPath, bool emptyTranslate, bool sameWord, bool singleWord, bool uiText, string containText, bool sortByTextLength)
+        public void FilterExcel(string excelPath, string outputPath, bool emptyTranslate, bool translated, bool sameWord, bool singleWord, bool uiText, string containText, bool sortByTextLength)
         {
             var contents = ReadExcel(excelPath, null);
             var result = new Dictionary<string, List<w3Strings>>();
 
             foreach (var c in contents)
             {
-                var filtered = SortContent(FillterContent(c.Value, emptyTranslate, sameWord, singleWord, uiText, containText), sortByTextLength);
+                var filtered = SortContent(FillterContent(c.Value, emptyTranslate, translated, sameWord, singleWord, uiText, containText), sortByTextLength);
                 result.Add(
                     c.Key,
                     filtered
@@ -2169,11 +2169,11 @@ namespace TheWitcher3Thai
             WriteExcel(outputPath, result, false);
         }
 
-        private List<w3Strings> FillterContent(List<w3Strings> content, bool emptyTranslate, bool sameWord, bool singleWord, bool uiText, string containText)
+        private List<w3Strings> FillterContent(List<w3Strings> content, bool emptyTranslate,bool translated, bool sameWord, bool singleWord, bool uiText, string containText)
         {
             List<w3Strings> result = new List<w3Strings>();
 
-            if (!emptyTranslate && !sameWord && !singleWord && !uiText && String.IsNullOrWhiteSpace(containText))
+            if (!emptyTranslate && !translated && !sameWord && !singleWord && !uiText && String.IsNullOrWhiteSpace(containText))
                 return content;
 
             if (emptyTranslate)
@@ -2189,7 +2189,13 @@ namespace TheWitcher3Thai
                 result.AddRange(content.Where(c => c.IsConversation == false).ToList());
 
             if (!String.IsNullOrEmpty(containText))
+            {
+                //result.AddRange(content.Where(c => !c.Text.Contains(containText) && (c.Translate?.Contains(containText)??false) ).ToList());
                 result.AddRange(content.Where(c => c.Text.Contains(containText)).ToList());
+            }
+
+            if (translated)
+                result = result.Where(c => !String.IsNullOrWhiteSpace(c.Translate)).ToList();
 
             return result.Distinct().ToList();
 

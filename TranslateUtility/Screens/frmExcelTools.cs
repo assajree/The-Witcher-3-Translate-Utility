@@ -193,6 +193,7 @@ namespace TranslateUtility
                 txtFilterSource.Text,
                 txtFilterOutput.Text,
                 chkFilterEmpty.Checked,
+                chkFilterTranslated.Checked,
                 chkFilterSameWord.Checked,
                 chkFilterSingleWord.Checked,
                 chkFilterUi.Checked,
@@ -300,5 +301,17 @@ namespace TranslateUtility
         }
 
         #endregion
+
+        private void chkFilterEmpty_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkFilterEmpty.Checked)
+                chkFilterTranslated.Checked = false;
+        }
+
+        private void chkFilterTranslated_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkFilterTranslated.Checked)
+                chkFilterEmpty.Checked = false;
+        }
     }
 }
