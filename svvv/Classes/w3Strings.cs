@@ -34,7 +34,7 @@ namespace TheWitcher3Thai
             this.KeyHex = keyHex;
             this.KeyString = keyString;
             this.Text = text;
-            this.Translate = translate;
+            this.Translate = translate?.Trim();
             this.RowNumber = rowNumber;
             this.SheetName = sheetName;
         }
