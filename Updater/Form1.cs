@@ -9,17 +9,18 @@ namespace Updater
 {
     public partial class Form1 : Form
     {
-        string parentPath, zipPath, extractPath, program1Path, program2Path;
+        string w3tuPath, zipPath, extractPath, program1Path, program2Path;
         Common c = new Common();
 
         public Form1()
         {
             InitializeComponent();
-            parentPath = Directory.GetParent(Application.StartupPath).FullName;
+            w3tuPath = Directory.GetParent(Directory.GetParent(Application.StartupPath).FullName).FullName;
+            //MessageBox.Show(w3tuPath);
             zipPath = Path.Combine(Application.StartupPath, "w3tu.zip");
             extractPath = Path.Combine(Application.StartupPath, "w3u");
-            program1Path = Path.Combine(parentPath, "w3tu.exe");
-            program2Path = Path.Combine(parentPath, "TranslateUtility.exe");
+            program1Path = Path.Combine(w3tuPath, "w3tu.exe");
+            program2Path = Path.Combine(w3tuPath, "TranslateUtility.exe");
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -87,7 +88,7 @@ namespace Updater
         private void ExtractUpdate()
         {
             c.ExtractFile(zipPath, extractPath);
-            c.CopyDirectory(extractPath, parentPath);
+            c.CopyDirectory(extractPath, w3tuPath);
         }
 
         private bool NeedUpdate()
@@ -96,7 +97,7 @@ namespace Updater
             if (lastVersion == null)
                 return false;
 
-            var localVersion = c.ReadLocalVersion(parentPath);
+            var localVersion = c.ReadLocalVersion(w3tuPath);
 
             return localVersion != lastVersion;
         }

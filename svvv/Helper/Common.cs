@@ -19,6 +19,14 @@ namespace TheWitcher3Thai
 {
     public class Common
     {
+        public enum eDownloadFrequency
+        {
+            Hour,
+            Day,
+            Always,
+            Once
+        }
+
         private Setting setting = new Setting();
 
         #region Decode
@@ -282,7 +290,7 @@ namespace TheWitcher3Thai
             MessageBox.Show(ex.GetBaseException().Message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        public string DownloadLegacyExcel(string initialPath, bool showSaveDialog, bool forceDownload = false)
+        public string DownloadLegacyExcel(string initialPath, bool showSaveDialog, eDownloadFrequency frequency=eDownloadFrequency.Hour)
         {
             var excelPath = initialPath;
 
@@ -291,12 +299,30 @@ namespace TheWitcher3Thai
 
             if (excelPath != null)
             {
-                if (File.Exists(excelPath) && !forceDownload)
+                if (File.Exists(excelPath))
                 {
-                    // check translate file up to date
-                    var lastDownload = File.GetLastWriteTime(excelPath);
-                    if (lastDownload > DateTime.Now.AddMinutes(-60)) // download less than 60 minutes
+                    if (frequency == eDownloadFrequency.Once)
+                    {
                         return excelPath;
+                    }
+                    else
+                    {
+                        // check translate file up to date
+                        var lastDownload = File.GetLastWriteTime(excelPath);
+                        switch (frequency)
+                        {
+                            case eDownloadFrequency.Day:
+                                if (lastDownload > DateTime.Now.AddDays(-1)) // download less than 1 day
+                                    return excelPath;
+                                break;
+                            case eDownloadFrequency.Hour:
+                                if (lastDownload > DateTime.Now.AddMinutes(60)) // download less than 1 hour
+                                    return excelPath;
+                                break;
+                            default: // Always
+                                break;
+                        }
+                    }
                 }
 
                 var tempDownloadPath = Path.Combine(Configs.TempPath, "legacy.xlsx");
@@ -329,7 +355,7 @@ namespace TheWitcher3Thai
         {
             if (CheckForUpdate())
             {
-                ExtractFile(Configs.UpdaterZipPath, Configs.TempPath);
+                ExtractFile(Configs.UpdaterZipPath, Configs.UpdaterDir);
                 Open(Configs.UpdaterPath);
                 return true;
             }
@@ -1924,7 +1950,8 @@ namespace TheWitcher3Thai
                 allMessage.AddRange(sheet.Value);
             }
 
-            
+
+            // write duplicate sheet
             // WriteDupplicate(allMessage, outputPath);
 
             // remove dupplicate
@@ -1932,7 +1959,7 @@ namespace TheWitcher3Thai
                         .GroupBy(x => x.ID)
                         .Select(g => g.First())
                         .ToList();
-            
+
             var content = Translate(allMessage, combine, originalFirst, includeNotTranslateMessageId, includeTranslateMessageId, IncludeUiMessageId);
 
             var path = Path.Combine(tempPath, "message" + ".csv");
@@ -1964,17 +1991,25 @@ namespace TheWitcher3Thai
             InstallSubtitleMod(outputPath);
 
             WriteVersionUnofficial(outputPath, "unofficial");
-            
+
         }
 
         private void WriteDupplicate(List<w3Strings> allMessage, string outputPath)
         {
-            // get all dupplicate message
+            // get all dupplicate message by id
+            //var dupp = allMessage
+            //           .GroupBy(x => x.ID)
+            //           .Where(g => g.Count() > 1)
+            //           .SelectMany(g => g)
+            //           .OrderBy(d=>d.ID)
+            //           .ToList();
+
+            // get all dupplicate message by text
             var dupp = allMessage
-                       .GroupBy(x => x.ID)
+                       .GroupBy(x => x.Text)
                        .Where(g => g.Count() > 1)
                        .SelectMany(g => g)
-                       .OrderBy(d=>d.ID)
+                       .OrderBy(d => d.ID)
                        .ToList();
 
             // get all translate message
@@ -2006,7 +2041,7 @@ namespace TheWitcher3Thai
                 if (!contents.ContainsKey(item.SheetName))
                     contents.Add(item.SheetName, new List<w3Strings>());
 
-                if(messageDict.ContainsKey(item.IdKey))
+                if (messageDict.ContainsKey(item.IdKey))
                 {
                     item.Translate = messageDict[item.IdKey].Translate;
                     contents[item.SheetName].Add(item);
@@ -2040,7 +2075,7 @@ namespace TheWitcher3Thai
                     sheetConfig = new Dictionary<string, string>();
                     foreach (var sht in p.Workbook.Worksheets)
                     {
-                        if(sht.Cells[2,1].Text== "ID")
+                        if (sht.Cells[2, 1].Text == "ID")
                             sheetConfig.Add(sht.Name, null);
                     }
                 }

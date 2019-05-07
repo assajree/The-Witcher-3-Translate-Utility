@@ -682,5 +682,29 @@ namespace TranslateUtility.Properties {
                 this["_SimpleBigFont"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string _SimpleDownloadFrequency {
+            get {
+                return ((string)(this["_SimpleDownloadFrequency"]));
+            }
+            set {
+                this["_SimpleDownloadFrequency"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool _SimpleShowAdvance {
+            get {
+                return ((bool)(this["_SimpleShowAdvance"]));
+            }
+            set {
+                this["_SimpleShowAdvance"] = value;
+            }
+        }
     }
 }

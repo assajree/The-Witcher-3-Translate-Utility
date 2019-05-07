@@ -14,6 +14,19 @@ namespace TranslateUtility
         string resultPath = null;
         string translatePath = null;
 
+        bool ShowAdvance
+        {
+            get
+            {
+                return Properties.Settings.Default._SimpleShowAdvance;
+            }
+            set
+            {
+                Properties.Settings.Default._SimpleShowAdvance = value;
+            }
+
+        }
+
         public frmVeryVerySimple()
         {
             InitializeComponent();
@@ -22,13 +35,18 @@ namespace TranslateUtility
         private void frmVerySimple_Load(object sender, EventArgs e)
         {
             InitialScreen();
-            ToggleAdvance();
             InitialTooTip();
+
+            if (!ShowAdvance)
+                ToggleAdvance();
         }
 
         private void InitialTooTip()
         {
-            toolTip1.SetToolTip(rdoDownloadNormal, "ดาวน์โหลดเมื่อผ่านไป 1 ชั่วโมงจากการดาวน์โหลดครั้งที่แล้วเท่านั้น");
+            toolTip1.SetToolTip(rdoDownloadAlways, "ดาวน์โหลดทุกครั้ง");
+            toolTip1.SetToolTip(rdoDownloadDialy, "ดาวน์โหลดเมื่อผ่านไป 1 วัน จากการดาวน์โหลดครั้งที่แล้วเท่านั้น");
+            toolTip1.SetToolTip(rdoDownloadHourly, "ดาวน์โหลดเมื่อผ่านไป 1 ชั่วโมง จากการดาวน์โหลดครั้งที่แล้วเท่านั้น");
+            toolTip1.SetToolTip(rdoDownloadOnce, "ดาวน์โหลดเมื่อไม่มีไฟล์แปลภาษาเท่านั้น");
         }
 
         private void InitialScreen()
@@ -53,6 +71,8 @@ namespace TranslateUtility
             // install
             txtGamePath.SetDefault(c.GetGameDirectory());
 
+            SetDownloadFrequencyRadio();
+
         }
 
         private void lblModVersion_DoubleClick(object sender, EventArgs e)
@@ -70,7 +90,7 @@ namespace TranslateUtility
         {
             // download translate excel file
             translatePath = Path.Combine(Configs.DownloadPath, "translate.xlsx");
-            translatePath = c.DownloadLegacyExcel(translatePath, false, rdoDownloadEveryTime.Checked);
+            translatePath = c.DownloadLegacyExcel(translatePath, false, GetDownloadFrequency());
             if (translatePath == null)
                 return;
 
@@ -108,7 +128,7 @@ namespace TranslateUtility
                 modPath,
                 chkModDoubleLanguage.Checked,
                 rdoModOriginFirst.Checked,
-                chkUntranslateInfo.Checked,                
+                chkUntranslateInfo.Checked,
                 chkTranslateInfo.Checked,
                 chkUiInfo.Checked,
                 rdoFontSizeLarge.Checked
@@ -213,6 +233,7 @@ namespace TranslateUtility
 
         private void SaveSetting()
         {
+            Properties.Settings.Default._SimpleDownloadFrequency = GetDownloadFrequency().ToString();
             Properties.Settings.Default.Save();
         }
 
@@ -232,7 +253,7 @@ namespace TranslateUtility
         {
             // download translate excel file
             translatePath = Path.Combine(Configs.DownloadPath, "translate.xlsx");
-            translatePath = c.DownloadLegacyExcel(translatePath, false);
+            translatePath = c.DownloadLegacyExcel(translatePath, false, GetDownloadFrequency());
             if (translatePath == null)
                 return;
 
@@ -268,6 +289,8 @@ namespace TranslateUtility
                 pnAdvance.Visible = true;
                 this.Height += pnAdvance.Height;
             }
+
+            ShowAdvance = pnAdvance.Visible;
         }
 
         private void btnResult_Click(object sender, EventArgs e)
@@ -287,7 +310,7 @@ namespace TranslateUtility
 
         private void miUpdate_Click(object sender, EventArgs e)
         {
-            if(c.UpDateW3tu())
+            if (c.UpDateW3tu())
                 this.Close();
         }
 
@@ -296,7 +319,43 @@ namespace TranslateUtility
             //if (Directory.Exists(txtGamePath.Text))
             //    c.Open(txtGamePath.Text);
             //else
-                c.Open(Configs.StartupPath);
+            c.Open(Configs.StartupPath);
+        }
+
+        private Common.eDownloadFrequency GetDownloadFrequency()
+        {
+            if (rdoDownloadAlways.Checked)
+                return Common.eDownloadFrequency.Always;
+            else if (rdoDownloadHourly.Checked)
+                return Common.eDownloadFrequency.Hour;
+            else if (rdoDownloadDialy.Checked)
+                return Common.eDownloadFrequency.Day;
+            else
+                return Common.eDownloadFrequency.Once;
+        }
+
+        private void SetDownloadFrequencyRadio()
+        {
+            Common.eDownloadFrequency frequency;
+            var setting = Properties.Settings.Default._SimpleDownloadFrequency;
+            if (!Enum.TryParse(setting, true, out frequency))
+                frequency = Common.eDownloadFrequency.Hour;
+
+            switch (frequency)
+            {
+                case Common.eDownloadFrequency.Always:
+                    rdoDownloadAlways.Checked = true;
+                    break;
+                case Common.eDownloadFrequency.Day:
+                    rdoDownloadDialy.Checked = true;
+                    break;
+                case Common.eDownloadFrequency.Hour:
+                    rdoDownloadHourly.Checked = true;
+                    break;
+                case Common.eDownloadFrequency.Once:
+                    rdoDownloadOnce.Checked = true;
+                    break;
+            }
         }
     }
 }

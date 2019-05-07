@@ -11,14 +11,15 @@ namespace svvv
     public static class Configs
     {
         public static string StartupPath = Application.StartupPath;
-        public static string TempPath = Path.Combine(StartupPath, "temp");
+        public static string TempPath = Path.Combine(StartupPath, "temp");        
         public static string DownloadPath = Path.Combine(StartupPath, "download");
         public static string BackupPath = Path.Combine(StartupPath, "backup");
         public static string TemplatePath = Path.Combine(StartupPath, "Tools", "template.xlsx");        
         public static string LogPath = Path.Combine(StartupPath, "changelog.txt");
 
         public static string UpdaterZipPath = Path.Combine(StartupPath, "Tools", "updater.zip");
-        public static string UpdaterPath = Path.Combine(StartupPath, "temp", "Updater.exe");
+        public static string UpdaterDir = Path.Combine(StartupPath, "temp", "updater");
+        public static string UpdaterPath = Path.Combine(UpdaterDir, "Updater.exe");
 
 
         public static string Separator = "  ";
