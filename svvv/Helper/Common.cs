@@ -1709,7 +1709,7 @@ namespace TheWitcher3Thai
                         sht.Cells[row, Excel.COL_TRANSLATE].Text.Replace("\r", "").Replace("\n", "")
 
                         , sht.Name
-                        , sht.Cells[row, Excel.COL_ROW].Text.ToIntOrNull()
+                        , row
                 ));
 
                 row++;
