@@ -290,7 +290,7 @@ namespace TheWitcher3Thai
             MessageBox.Show(ex.GetBaseException().Message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        public string DownloadLegacyExcel(string initialPath, bool showSaveDialog, eDownloadFrequency frequency=eDownloadFrequency.Hour)
+        public string DownloadLegacyExcel(string initialPath, bool showSaveDialog, eDownloadFrequency frequency = eDownloadFrequency.Hour)
         {
             var excelPath = initialPath;
 
@@ -1709,7 +1709,7 @@ namespace TheWitcher3Thai
                         sht.Cells[row, Excel.COL_TRANSLATE].Text.Replace("\r", "").Replace("\n", "")
 
                         , sht.Name
-                        , row
+                        , sht.Cells[row, Excel.COL_ROW].Text.ToIntOrNull()
                 ));
 
                 row++;
@@ -2169,12 +2169,12 @@ namespace TheWitcher3Thai
             WriteExcel(outputPath, result, false);
         }
 
-        private List<w3Strings> FillterContent(List<w3Strings> content, bool emptyTranslate,bool translated, bool sameWord, bool singleWord, bool uiText, string containText)
+        private List<w3Strings> FillterContent(List<w3Strings> content, bool emptyTranslate, bool translated, bool sameWord, bool singleWord, bool uiText, string containText)
         {
             List<w3Strings> result = new List<w3Strings>();
 
-            if (!emptyTranslate && !translated && !sameWord && !singleWord && !uiText && String.IsNullOrWhiteSpace(containText))
-                return content;
+            if (!emptyTranslate && !sameWord && !singleWord && !uiText && String.IsNullOrWhiteSpace(containText))
+                result = content;
 
             if (emptyTranslate)
                 result.AddRange(content.Where(c => String.IsNullOrWhiteSpace(c.Translate)).ToList());
@@ -2196,6 +2196,16 @@ namespace TheWitcher3Thai
 
             if (translated)
                 result = result.Where(c => !String.IsNullOrWhiteSpace(c.Translate)).ToList();
+
+            // ใส่ <br> เกิน
+            //result = result.Where(r =>
+            //    (r.Translate?.Contains("<br>") ?? false) &&
+            //    r.Translate.Split(new string[] { "<br>" }, StringSplitOptions.None).Length >
+            //    r.Text.Split(new string[] { "<br>" }, StringSplitOptions.None).Length
+            //).ToList();
+
+            // <br> มากเกินไป
+            //result = result.Where(r => r.Translate.Split(new string[] { "<br>"},StringSplitOptions.None).Length>3).ToList();
 
             return result.Distinct().ToList();
 
