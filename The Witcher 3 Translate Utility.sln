@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TranslateUtility", "Transla
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Updater", "Updater\Updater.csproj", "{6E3184E0-B0E9-4579-8477-3D25CBD38193}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvanceTools", "AdvanceTools\AdvanceTools.csproj", "{B7E2BA37-B616-4675-AD86-1B7BB90761D3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{6E3184E0-B0E9-4579-8477-3D25CBD38193}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E3184E0-B0E9-4579-8477-3D25CBD38193}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E3184E0-B0E9-4579-8477-3D25CBD38193}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7E2BA37-B616-4675-AD86-1B7BB90761D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7E2BA37-B616-4675-AD86-1B7BB90761D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7E2BA37-B616-4675-AD86-1B7BB90761D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7E2BA37-B616-4675-AD86-1B7BB90761D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

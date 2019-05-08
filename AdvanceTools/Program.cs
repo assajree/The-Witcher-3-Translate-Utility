@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using TranslateUtility;
 
-namespace TranslateUtility
+namespace AdvanceTools
 {
     static class Program
     {
@@ -14,7 +17,7 @@ namespace TranslateUtility
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmVeryVerySimple());
+            Application.Run(new frmLauncher());
         }
     }
 }
