@@ -351,7 +351,7 @@ namespace TheWitcher3Thai
             return excelPath;
         }
 
-        public bool UpDateW3tu()
+        public bool UpdateW3tu()
         {
             if (CheckForUpdate())
             {
@@ -2191,7 +2191,7 @@ namespace TheWitcher3Thai
             if (!String.IsNullOrEmpty(containText))
             {
                 //result.AddRange(content.Where(c => !c.Text.Contains(containText) && (c.Translate?.Contains(containText)??false) ).ToList());
-                result.AddRange(content.Where(c => c.Text.Contains(containText)).ToList());
+                result.AddRange(content.Where(c => c.Text.ToLower().Contains(containText.ToLower())).ToList());
             }
 
             if (translated)

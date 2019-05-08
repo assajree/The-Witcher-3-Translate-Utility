@@ -1,7 +1,6 @@
 ﻿using svvv;
 using System;
 using System.IO;
-using System.Threading;
 using System.Windows.Forms;
 using TheWitcher3Thai;
 
@@ -39,13 +38,14 @@ namespace Updater
 
         private bool CheckProgramExist()
         {
-            return File.Exists(program1Path) || File.Exists(program2Path);
+            var result = File.Exists(program1Path) || File.Exists(program2Path);
+            return result;
         }
 
         private void Form1_Shown(object sender, EventArgs e)
         {
-            
-        }        
+
+        }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -78,10 +78,9 @@ namespace Updater
 
         private void RunW3tu()
         {
-            
             if (File.Exists(program1Path))
                 c.Open(program1Path);
-            else if(File.Exists(program2Path))
+            else if (File.Exists(program2Path))
                 c.Open(program2Path);
         }
 
