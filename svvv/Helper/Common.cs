@@ -764,7 +764,7 @@ namespace TheWitcher3Thai
                     source[i + extraSource].KeyHex,
                     source[i + extraSource].KeyString,
                     translate[i + extraTranslate].Text,
-                    translate[i + extraTranslate].Translate,
+                    source[i + extraTranslate].Translate.NullIfEmpty()??translate[i + extraTranslate].Translate,
 
                     translate[i + extraSource].SheetName,
                     translate[i + extraSource].RowNumber
