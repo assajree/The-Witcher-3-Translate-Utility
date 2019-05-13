@@ -2427,7 +2427,7 @@ namespace TheWitcher3Thai
 
         public void InstallBigFontMod(string gamePath)
         {
-            RemoveOldFont(gamePath);
+            //RemoveOldFont(gamePath);
 
             string modPath = Path.Combine(Application.StartupPath, "Tools", Configs.modThaiBigFont);
             var targetPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage);
@@ -2500,9 +2500,7 @@ namespace TheWitcher3Thai
                 DeleteDirectory(oldModPath);
 
             // delete kuntoon mod
-            string kuntooPath = Path.Combine(gamePath, "mods", Configs.modKuntoonFont);
-            if (Directory.Exists(kuntooPath))
-                DeleteDirectory(kuntooPath);
+            RemoveOldFont(gamePath);
 
             var targetPath = Path.Combine(gamePath);
 
