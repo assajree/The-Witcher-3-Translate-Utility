@@ -2191,7 +2191,10 @@ namespace TheWitcher3Thai
             if (!String.IsNullOrEmpty(containText))
             {
                 //result.AddRange(content.Where(c => !c.Text.Contains(containText) && (c.Translate?.Contains(containText)??false) ).ToList());
-                result.AddRange(content.Where(c => c.Text.ToLower().Contains(containText.ToLower())).ToList());
+                result.AddRange(content.Where(c => 
+                    c.Text.ToLower().Contains(containText.ToLower()) || 
+                    (c.Translate?.ToLower().Contains(containText.ToLower())??false)
+                ).ToList());
             }
 
             if (translated)
@@ -2495,6 +2498,11 @@ namespace TheWitcher3Thai
             string oldModPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage);
             if (Directory.Exists(oldModPath))
                 DeleteDirectory(oldModPath);
+
+            // delete kuntoon mod
+            string kuntooPath = Path.Combine(gamePath, "mods", Configs.modKuntoonFont);
+            if (Directory.Exists(kuntooPath))
+                DeleteDirectory(kuntooPath);
 
             var targetPath = Path.Combine(gamePath);
 

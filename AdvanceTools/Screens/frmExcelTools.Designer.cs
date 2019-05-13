@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            TranslateUtility.Properties.Settings settings1 = new TranslateUtility.Properties.Settings();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmExcelTools));
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.rdoModFillTranslate = new System.Windows.Forms.RadioButton();
@@ -75,6 +76,7 @@
             this.txtMergeSource = new System.Windows.Forms.TextBox();
             this.btnMergeExcel = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkFilterTranslated = new System.Windows.Forms.CheckBox();
             this.btnFilterStart = new System.Windows.Forms.Button();
             this.rdoSortByLength = new System.Windows.Forms.RadioButton();
             this.rdoSortById = new System.Windows.Forms.RadioButton();
@@ -108,7 +110,6 @@
             this.label15 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.chkFilterTranslated = new System.Windows.Forms.CheckBox();
             this.groupBox5.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -133,7 +134,7 @@
             this.groupBox5.Controls.Add(this.btnModFill);
             this.groupBox5.Location = new System.Drawing.Point(12, 452);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(643, 119);
+            this.groupBox5.Size = new System.Drawing.Size(626, 119);
             this.groupBox5.TabIndex = 10;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Fill Excel from Mod";
@@ -154,8 +155,66 @@
             // rdoModFillText
             // 
             this.rdoModFillText.AutoSize = true;
-            this.rdoModFillText.Checked = global::TranslateUtility.Properties.Settings.Default._ExcelFillText;
-            this.rdoModFillText.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::TranslateUtility.Properties.Settings.Default, "_ExcelFillText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            settings1._ExcelFillDesc = "";
+            settings1._ExcelFillSource = "";
+            settings1._ExcelFillText = false;
+            settings1._ExcelFillTranslate = true;
+            settings1._ExcelLegacyMod = "";
+            settings1._ExcelLegacyOutput = "";
+            settings1._ExcelLegacyTranslate = "";
+            settings1._ExcelMergeAdd = false;
+            settings1._ExcelMergeOutput = "";
+            settings1._ExcelMergeReplaceText = false;
+            settings1._ExcelMergeReplaceTranslate = false;
+            settings1._ExcelMergeSource = "";
+            settings1._ExcelMergeTranslate = "";
+            settings1._ExcelModOutput = "";
+            settings1._ExcelModSource = "";
+            settings1._ExcelTranslateContain = false;
+            settings1._ExcelTranslateContainText = "";
+            settings1._ExcelTranslateEmpty = true;
+            settings1._ExcelTranslateInput = "";
+            settings1._ExcelTranslateOutput = "";
+            settings1._ExcelTranslateSame = false;
+            settings1._ExcelTranslateSingle = false;
+            settings1._ExcelTranslateSortById = true;
+            settings1._ExcelTranslateSortByLength = false;
+            settings1._ExcelTranslateUiText = false;
+            settings1._GameBackupDesc = "";
+            settings1._GameBackupOverwrite = false;
+            settings1._GameBackupSource = "";
+            settings1._GameFontGamePath = "";
+            settings1._GameModDownloadPath = "";
+            settings1._GameModGamePath = "";
+            settings1._ModExcelDouble = false;
+            settings1._ModExcelOriginalFirst = false;
+            settings1._ModExcelOutput = "";
+            settings1._ModExcelSource = "";
+            settings1._ModExcelTranslateFirst = true;
+            settings1._ModTranslateDouble = false;
+            settings1._ModTranslateExcel = "";
+            settings1._ModTranslateOriginalFirst = false;
+            settings1._ModTranslateOutput = "";
+            settings1._ModTranslateSource = "";
+            settings1._ModTranslateTranslateFirst = true;
+            settings1._Simple2Language = true;
+            settings1._SimpleBigFont = false;
+            settings1._SimpleDownloadFrequency = "";
+            settings1._SimpleForceDownload = false;
+            settings1._SimpleGamePath = "";
+            settings1._SimpleModInput = "";
+            settings1._SimpleModOutput = "";
+            settings1._SimpleModPath = "";
+            settings1._SimpleOriginalFirst = false;
+            settings1._SimpleShowAdvance = false;
+            settings1._SimpleTranslateInfo = false;
+            settings1._SimpleUiInfo = false;
+            settings1._SimpleUntranslateInfo = false;
+            settings1.LastCheckUpdate = "N/A";
+            settings1.LastestVersion = "N/A";
+            settings1.SettingsKey = "";
+            this.rdoModFillText.Checked = settings1._ExcelFillText;
+            this.rdoModFillText.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_ExcelFillText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.rdoModFillText.Location = new System.Drawing.Point(125, 68);
             this.rdoModFillText.Margin = new System.Windows.Forms.Padding(2);
             this.rdoModFillText.Name = "rdoModFillText";
@@ -167,7 +226,7 @@
             // btnModFillOutput
             // 
             this.btnModFillOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnModFillOutput.Location = new System.Drawing.Point(608, 41);
+            this.btnModFillOutput.Location = new System.Drawing.Point(591, 41);
             this.btnModFillOutput.Name = "btnModFillOutput";
             this.btnModFillOutput.Size = new System.Drawing.Size(26, 23);
             this.btnModFillOutput.TabIndex = 5;
@@ -188,18 +247,18 @@
             // 
             this.txtModFillOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtModFillOutput.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::TranslateUtility.Properties.Settings.Default, "_ExcelFillDesc", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtModFillOutput.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "_ExcelFillDesc", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtModFillOutput.Location = new System.Drawing.Point(124, 43);
             this.txtModFillOutput.Name = "txtModFillOutput";
             this.txtModFillOutput.ReadOnly = true;
-            this.txtModFillOutput.Size = new System.Drawing.Size(480, 20);
+            this.txtModFillOutput.Size = new System.Drawing.Size(463, 20);
             this.txtModFillOutput.TabIndex = 3;
-            this.txtModFillOutput.Text = global::TranslateUtility.Properties.Settings.Default._ExcelFillDesc;
+            this.txtModFillOutput.Text = settings1._ExcelFillDesc;
             // 
             // btnModFillSource
             // 
             this.btnModFillSource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnModFillSource.Location = new System.Drawing.Point(608, 17);
+            this.btnModFillSource.Location = new System.Drawing.Point(591, 17);
             this.btnModFillSource.Name = "btnModFillSource";
             this.btnModFillSource.Size = new System.Drawing.Size(26, 23);
             this.btnModFillSource.TabIndex = 2;
@@ -220,12 +279,12 @@
             // 
             this.txtModFillSource.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtModFillSource.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::TranslateUtility.Properties.Settings.Default, "_ExcelFillSource", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtModFillSource.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "_ExcelFillSource", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtModFillSource.Location = new System.Drawing.Point(124, 19);
             this.txtModFillSource.Name = "txtModFillSource";
-            this.txtModFillSource.Size = new System.Drawing.Size(480, 20);
+            this.txtModFillSource.Size = new System.Drawing.Size(463, 20);
             this.txtModFillSource.TabIndex = 0;
-            this.txtModFillSource.Text = global::TranslateUtility.Properties.Settings.Default._ExcelFillSource;
+            this.txtModFillSource.Text = settings1._ExcelFillSource;
             // 
             // btnModFill
             // 
@@ -250,7 +309,7 @@
             this.groupBox3.Controls.Add(this.btnGenerateExcel);
             this.groupBox3.Location = new System.Drawing.Point(12, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(643, 100);
+            this.groupBox3.Size = new System.Drawing.Size(626, 100);
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Generate Excel from Mod";
@@ -258,7 +317,7 @@
             // brnExcelOutput
             // 
             this.brnExcelOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.brnExcelOutput.Location = new System.Drawing.Point(608, 41);
+            this.brnExcelOutput.Location = new System.Drawing.Point(591, 41);
             this.brnExcelOutput.Name = "brnExcelOutput";
             this.brnExcelOutput.Size = new System.Drawing.Size(26, 23);
             this.brnExcelOutput.TabIndex = 5;
@@ -279,18 +338,18 @@
             // 
             this.txtModOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtModOutput.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::TranslateUtility.Properties.Settings.Default, "_ExcelModOutput", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtModOutput.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "_ExcelModOutput", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtModOutput.Location = new System.Drawing.Point(124, 43);
             this.txtModOutput.Name = "txtModOutput";
             this.txtModOutput.ReadOnly = true;
-            this.txtModOutput.Size = new System.Drawing.Size(479, 20);
+            this.txtModOutput.Size = new System.Drawing.Size(462, 20);
             this.txtModOutput.TabIndex = 3;
-            this.txtModOutput.Text = global::TranslateUtility.Properties.Settings.Default._ExcelModOutput;
+            this.txtModOutput.Text = settings1._ExcelModOutput;
             // 
             // btnExcelSource
             // 
             this.btnExcelSource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExcelSource.Location = new System.Drawing.Point(608, 17);
+            this.btnExcelSource.Location = new System.Drawing.Point(591, 17);
             this.btnExcelSource.Name = "btnExcelSource";
             this.btnExcelSource.Size = new System.Drawing.Size(26, 23);
             this.btnExcelSource.TabIndex = 2;
@@ -311,12 +370,12 @@
             // 
             this.txtModSource.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtModSource.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::TranslateUtility.Properties.Settings.Default, "_ExcelModSource", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtModSource.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "_ExcelModSource", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtModSource.Location = new System.Drawing.Point(124, 19);
             this.txtModSource.Name = "txtModSource";
-            this.txtModSource.Size = new System.Drawing.Size(479, 20);
+            this.txtModSource.Size = new System.Drawing.Size(462, 20);
             this.txtModSource.TabIndex = 0;
-            this.txtModSource.Text = global::TranslateUtility.Properties.Settings.Default._ExcelModSource;
+            this.txtModSource.Text = settings1._ExcelModSource;
             // 
             // btnGenerateExcel
             // 
@@ -346,7 +405,7 @@
             this.groupBox4.Controls.Add(this.btnLegacyGenerate);
             this.groupBox4.Location = new System.Drawing.Point(12, 577);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(643, 122);
+            this.groupBox4.Size = new System.Drawing.Size(626, 122);
             this.groupBox4.TabIndex = 10;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Generate Excel from Legacy";
@@ -354,7 +413,7 @@
             // btnLegacyModDownload
             // 
             this.btnLegacyModDownload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLegacyModDownload.Location = new System.Drawing.Point(558, 17);
+            this.btnLegacyModDownload.Location = new System.Drawing.Point(541, 17);
             this.btnLegacyModDownload.Name = "btnLegacyModDownload";
             this.btnLegacyModDownload.Size = new System.Drawing.Size(76, 23);
             this.btnLegacyModDownload.TabIndex = 11;
@@ -365,7 +424,7 @@
             // btnLegacyExcelDownload
             // 
             this.btnLegacyExcelDownload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLegacyExcelDownload.Location = new System.Drawing.Point(558, 42);
+            this.btnLegacyExcelDownload.Location = new System.Drawing.Point(541, 42);
             this.btnLegacyExcelDownload.Name = "btnLegacyExcelDownload";
             this.btnLegacyExcelDownload.Size = new System.Drawing.Size(76, 23);
             this.btnLegacyExcelDownload.TabIndex = 10;
@@ -377,18 +436,18 @@
             // 
             this.txtLegacyExcel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLegacyExcel.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::TranslateUtility.Properties.Settings.Default, "_ExcelLegacyTranslate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtLegacyExcel.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "_ExcelLegacyTranslate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtLegacyExcel.Location = new System.Drawing.Point(124, 44);
             this.txtLegacyExcel.Name = "txtLegacyExcel";
             this.txtLegacyExcel.ReadOnly = true;
-            this.txtLegacyExcel.Size = new System.Drawing.Size(396, 20);
+            this.txtLegacyExcel.Size = new System.Drawing.Size(379, 20);
             this.txtLegacyExcel.TabIndex = 9;
-            this.txtLegacyExcel.Text = global::TranslateUtility.Properties.Settings.Default._ExcelLegacyTranslate;
+            this.txtLegacyExcel.Text = settings1._ExcelLegacyTranslate;
             // 
             // btnLegacyExcel
             // 
             this.btnLegacyExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLegacyExcel.Location = new System.Drawing.Point(526, 42);
+            this.btnLegacyExcel.Location = new System.Drawing.Point(509, 42);
             this.btnLegacyExcel.Name = "btnLegacyExcel";
             this.btnLegacyExcel.Size = new System.Drawing.Size(26, 23);
             this.btnLegacyExcel.TabIndex = 8;
@@ -408,7 +467,7 @@
             // btnLegacyOutput
             // 
             this.btnLegacyOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLegacyOutput.Location = new System.Drawing.Point(608, 67);
+            this.btnLegacyOutput.Location = new System.Drawing.Point(591, 67);
             this.btnLegacyOutput.Name = "btnLegacyOutput";
             this.btnLegacyOutput.Size = new System.Drawing.Size(26, 23);
             this.btnLegacyOutput.TabIndex = 5;
@@ -429,18 +488,18 @@
             // 
             this.txtLegacyOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLegacyOutput.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::TranslateUtility.Properties.Settings.Default, "_ExcelLegacyOutput", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtLegacyOutput.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "_ExcelLegacyOutput", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtLegacyOutput.Location = new System.Drawing.Point(124, 68);
             this.txtLegacyOutput.Name = "txtLegacyOutput";
             this.txtLegacyOutput.ReadOnly = true;
-            this.txtLegacyOutput.Size = new System.Drawing.Size(479, 20);
+            this.txtLegacyOutput.Size = new System.Drawing.Size(462, 20);
             this.txtLegacyOutput.TabIndex = 3;
-            this.txtLegacyOutput.Text = global::TranslateUtility.Properties.Settings.Default._ExcelLegacyOutput;
+            this.txtLegacyOutput.Text = settings1._ExcelLegacyOutput;
             // 
             // btnLegacyMod
             // 
             this.btnLegacyMod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLegacyMod.Location = new System.Drawing.Point(526, 17);
+            this.btnLegacyMod.Location = new System.Drawing.Point(509, 17);
             this.btnLegacyMod.Name = "btnLegacyMod";
             this.btnLegacyMod.Size = new System.Drawing.Size(26, 23);
             this.btnLegacyMod.TabIndex = 2;
@@ -461,12 +520,12 @@
             // 
             this.txtLegacyMod.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLegacyMod.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::TranslateUtility.Properties.Settings.Default, "_ExcelLegacyMod", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtLegacyMod.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "_ExcelLegacyMod", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtLegacyMod.Location = new System.Drawing.Point(124, 19);
             this.txtLegacyMod.Name = "txtLegacyMod";
-            this.txtLegacyMod.Size = new System.Drawing.Size(396, 20);
+            this.txtLegacyMod.Size = new System.Drawing.Size(379, 20);
             this.txtLegacyMod.TabIndex = 0;
-            this.txtLegacyMod.Text = global::TranslateUtility.Properties.Settings.Default._ExcelLegacyMod;
+            this.txtLegacyMod.Text = settings1._ExcelLegacyMod;
             // 
             // btnLegacyGenerate
             // 
@@ -497,7 +556,7 @@
             this.groupBox2.Controls.Add(this.btnMergeExcel);
             this.groupBox2.Location = new System.Drawing.Point(12, 298);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(643, 148);
+            this.groupBox2.Size = new System.Drawing.Size(626, 148);
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Merge Excel";
@@ -505,7 +564,7 @@
             // btnMergeTranslate
             // 
             this.btnMergeTranslate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMergeTranslate.Location = new System.Drawing.Point(608, 41);
+            this.btnMergeTranslate.Location = new System.Drawing.Point(591, 41);
             this.btnMergeTranslate.Name = "btnMergeTranslate";
             this.btnMergeTranslate.Size = new System.Drawing.Size(26, 23);
             this.btnMergeTranslate.TabIndex = 16;
@@ -526,18 +585,18 @@
             // 
             this.txtMergeTranslate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMergeTranslate.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::TranslateUtility.Properties.Settings.Default, "_ExcelMergeTranslate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtMergeTranslate.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "_ExcelMergeTranslate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtMergeTranslate.Location = new System.Drawing.Point(124, 43);
             this.txtMergeTranslate.Name = "txtMergeTranslate";
-            this.txtMergeTranslate.Size = new System.Drawing.Size(480, 20);
+            this.txtMergeTranslate.Size = new System.Drawing.Size(463, 20);
             this.txtMergeTranslate.TabIndex = 14;
-            this.txtMergeTranslate.Text = global::TranslateUtility.Properties.Settings.Default._ExcelMergeTranslate;
+            this.txtMergeTranslate.Text = settings1._ExcelMergeTranslate;
             // 
             // chkMergeNewMessage
             // 
             this.chkMergeNewMessage.AutoSize = true;
-            this.chkMergeNewMessage.Checked = global::TranslateUtility.Properties.Settings.Default._ExcelMergeAdd;
-            this.chkMergeNewMessage.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::TranslateUtility.Properties.Settings.Default, "_ExcelMergeAdd", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkMergeNewMessage.Checked = settings1._ExcelMergeAdd;
+            this.chkMergeNewMessage.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_ExcelMergeAdd", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.chkMergeNewMessage.Location = new System.Drawing.Point(124, 91);
             this.chkMergeNewMessage.Margin = new System.Windows.Forms.Padding(2);
             this.chkMergeNewMessage.Name = "chkMergeNewMessage";
@@ -549,8 +608,8 @@
             // chkMergeReplaceTranslate
             // 
             this.chkMergeReplaceTranslate.AutoSize = true;
-            this.chkMergeReplaceTranslate.Checked = global::TranslateUtility.Properties.Settings.Default._ExcelMergeReplaceTranslate;
-            this.chkMergeReplaceTranslate.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::TranslateUtility.Properties.Settings.Default, "_ExcelMergeReplaceTranslate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkMergeReplaceTranslate.Checked = settings1._ExcelMergeReplaceTranslate;
+            this.chkMergeReplaceTranslate.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_ExcelMergeReplaceTranslate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.chkMergeReplaceTranslate.Location = new System.Drawing.Point(248, 91);
             this.chkMergeReplaceTranslate.Margin = new System.Windows.Forms.Padding(2);
             this.chkMergeReplaceTranslate.Name = "chkMergeReplaceTranslate";
@@ -562,8 +621,8 @@
             // chkMergeReplaceText
             // 
             this.chkMergeReplaceText.AutoSize = true;
-            this.chkMergeReplaceText.Checked = global::TranslateUtility.Properties.Settings.Default._ExcelMergeReplaceText;
-            this.chkMergeReplaceText.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::TranslateUtility.Properties.Settings.Default, "_ExcelMergeReplaceText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkMergeReplaceText.Checked = settings1._ExcelMergeReplaceText;
+            this.chkMergeReplaceText.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_ExcelMergeReplaceText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.chkMergeReplaceText.Location = new System.Drawing.Point(374, 91);
             this.chkMergeReplaceText.Margin = new System.Windows.Forms.Padding(2);
             this.chkMergeReplaceText.Name = "chkMergeReplaceText";
@@ -575,7 +634,7 @@
             // btnMergeOutput
             // 
             this.btnMergeOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMergeOutput.Location = new System.Drawing.Point(608, 66);
+            this.btnMergeOutput.Location = new System.Drawing.Point(591, 66);
             this.btnMergeOutput.Name = "btnMergeOutput";
             this.btnMergeOutput.Size = new System.Drawing.Size(26, 23);
             this.btnMergeOutput.TabIndex = 11;
@@ -596,17 +655,17 @@
             // 
             this.txtMergeOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMergeOutput.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::TranslateUtility.Properties.Settings.Default, "_ExcelMergeOutput", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtMergeOutput.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "_ExcelMergeOutput", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtMergeOutput.Location = new System.Drawing.Point(124, 67);
             this.txtMergeOutput.Name = "txtMergeOutput";
-            this.txtMergeOutput.Size = new System.Drawing.Size(480, 20);
+            this.txtMergeOutput.Size = new System.Drawing.Size(463, 20);
             this.txtMergeOutput.TabIndex = 9;
-            this.txtMergeOutput.Text = global::TranslateUtility.Properties.Settings.Default._ExcelMergeOutput;
+            this.txtMergeOutput.Text = settings1._ExcelMergeOutput;
             // 
             // btnMergeSource
             // 
             this.btnMergeSource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMergeSource.Location = new System.Drawing.Point(608, 17);
+            this.btnMergeSource.Location = new System.Drawing.Point(591, 17);
             this.btnMergeSource.Name = "btnMergeSource";
             this.btnMergeSource.Size = new System.Drawing.Size(26, 23);
             this.btnMergeSource.TabIndex = 2;
@@ -627,12 +686,12 @@
             // 
             this.txtMergeSource.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMergeSource.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::TranslateUtility.Properties.Settings.Default, "_ExcelMergeSource", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtMergeSource.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "_ExcelMergeSource", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtMergeSource.Location = new System.Drawing.Point(124, 19);
             this.txtMergeSource.Name = "txtMergeSource";
-            this.txtMergeSource.Size = new System.Drawing.Size(480, 20);
+            this.txtMergeSource.Size = new System.Drawing.Size(463, 20);
             this.txtMergeSource.TabIndex = 0;
-            this.txtMergeSource.Text = global::TranslateUtility.Properties.Settings.Default._ExcelMergeSource;
+            this.txtMergeSource.Text = settings1._ExcelMergeSource;
             // 
             // btnMergeExcel
             // 
@@ -668,10 +727,21 @@
             this.groupBox1.Controls.Add(this.btnFilterOutputOpen);
             this.groupBox1.Location = new System.Drawing.Point(12, 118);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(643, 174);
+            this.groupBox1.Size = new System.Drawing.Size(626, 174);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Generate Excel for Translate";
+            // 
+            // chkFilterTranslated
+            // 
+            this.chkFilterTranslated.AutoSize = true;
+            this.chkFilterTranslated.Location = new System.Drawing.Point(248, 97);
+            this.chkFilterTranslated.Name = "chkFilterTranslated";
+            this.chkFilterTranslated.Size = new System.Drawing.Size(76, 17);
+            this.chkFilterTranslated.TabIndex = 17;
+            this.chkFilterTranslated.Text = "Translated";
+            this.chkFilterTranslated.UseVisualStyleBackColor = true;
+            this.chkFilterTranslated.CheckedChanged += new System.EventHandler(this.chkFilterTranslated_CheckedChanged);
             // 
             // btnFilterStart
             // 
@@ -699,8 +769,8 @@
             // rdoSortById
             // 
             this.rdoSortById.AutoSize = true;
-            this.rdoSortById.Checked = global::TranslateUtility.Properties.Settings.Default._ExcelTranslateSortById;
-            this.rdoSortById.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::TranslateUtility.Properties.Settings.Default, "_ExcelTranslateSortById", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.rdoSortById.Checked = settings1._ExcelTranslateSortById;
+            this.rdoSortById.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_ExcelTranslateSortById", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.rdoSortById.Location = new System.Drawing.Point(169, 72);
             this.rdoSortById.Margin = new System.Windows.Forms.Padding(2);
             this.rdoSortById.Name = "rdoSortById";
@@ -722,18 +792,18 @@
             // 
             // txtFilterContain
             // 
-            this.txtFilterContain.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::TranslateUtility.Properties.Settings.Default, "_ExcelTranslateContainText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtFilterContain.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "_ExcelTranslateContainText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtFilterContain.Location = new System.Drawing.Point(191, 120);
             this.txtFilterContain.Name = "txtFilterContain";
             this.txtFilterContain.Size = new System.Drawing.Size(167, 20);
             this.txtFilterContain.TabIndex = 12;
-            this.txtFilterContain.Text = global::TranslateUtility.Properties.Settings.Default._ExcelTranslateContainText;
+            this.txtFilterContain.Text = settings1._ExcelTranslateContainText;
             // 
             // chkFilterContain
             // 
             this.chkFilterContain.AutoSize = true;
-            this.chkFilterContain.Checked = global::TranslateUtility.Properties.Settings.Default._ExcelTranslateContain;
-            this.chkFilterContain.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::TranslateUtility.Properties.Settings.Default, "_ExcelTranslateContain", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkFilterContain.Checked = settings1._ExcelTranslateContain;
+            this.chkFilterContain.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_ExcelTranslateContain", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.chkFilterContain.Location = new System.Drawing.Point(127, 122);
             this.chkFilterContain.Margin = new System.Windows.Forms.Padding(2);
             this.chkFilterContain.Name = "chkFilterContain";
@@ -746,8 +816,8 @@
             // chkFilterUi
             // 
             this.chkFilterUi.AutoSize = true;
-            this.chkFilterUi.Checked = global::TranslateUtility.Properties.Settings.Default._ExcelTranslateUiText;
-            this.chkFilterUi.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::TranslateUtility.Properties.Settings.Default, "_ExcelTranslateUiText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkFilterUi.Checked = settings1._ExcelTranslateUiText;
+            this.chkFilterUi.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_ExcelTranslateUiText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.chkFilterUi.Location = new System.Drawing.Point(545, 97);
             this.chkFilterUi.Margin = new System.Windows.Forms.Padding(2);
             this.chkFilterUi.Name = "chkFilterUi";
@@ -759,8 +829,8 @@
             // chkFilterSingleWord
             // 
             this.chkFilterSingleWord.AutoSize = true;
-            this.chkFilterSingleWord.Checked = global::TranslateUtility.Properties.Settings.Default._ExcelTranslateSingle;
-            this.chkFilterSingleWord.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::TranslateUtility.Properties.Settings.Default, "_ExcelTranslateSingle", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkFilterSingleWord.Checked = settings1._ExcelTranslateSingle;
+            this.chkFilterSingleWord.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_ExcelTranslateSingle", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.chkFilterSingleWord.Location = new System.Drawing.Point(445, 97);
             this.chkFilterSingleWord.Margin = new System.Windows.Forms.Padding(2);
             this.chkFilterSingleWord.Name = "chkFilterSingleWord";
@@ -772,8 +842,8 @@
             // chkFilterSameWord
             // 
             this.chkFilterSameWord.AutoSize = true;
-            this.chkFilterSameWord.Checked = global::TranslateUtility.Properties.Settings.Default._ExcelTranslateSame;
-            this.chkFilterSameWord.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::TranslateUtility.Properties.Settings.Default, "_ExcelTranslateSame", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkFilterSameWord.Checked = settings1._ExcelTranslateSame;
+            this.chkFilterSameWord.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_ExcelTranslateSame", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.chkFilterSameWord.Location = new System.Drawing.Point(340, 97);
             this.chkFilterSameWord.Margin = new System.Windows.Forms.Padding(2);
             this.chkFilterSameWord.Name = "chkFilterSameWord";
@@ -785,9 +855,9 @@
             // chkFilterEmpty
             // 
             this.chkFilterEmpty.AutoSize = true;
-            this.chkFilterEmpty.Checked = global::TranslateUtility.Properties.Settings.Default._ExcelTranslateEmpty;
+            this.chkFilterEmpty.Checked = settings1._ExcelTranslateEmpty;
             this.chkFilterEmpty.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkFilterEmpty.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::TranslateUtility.Properties.Settings.Default, "_ExcelTranslateEmpty", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkFilterEmpty.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_ExcelTranslateEmpty", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.chkFilterEmpty.Location = new System.Drawing.Point(127, 97);
             this.chkFilterEmpty.Margin = new System.Windows.Forms.Padding(2);
             this.chkFilterEmpty.Name = "chkFilterEmpty";
@@ -800,7 +870,7 @@
             // btnFilterOutput
             // 
             this.btnFilterOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFilterOutput.Location = new System.Drawing.Point(526, 41);
+            this.btnFilterOutput.Location = new System.Drawing.Point(509, 41);
             this.btnFilterOutput.Name = "btnFilterOutput";
             this.btnFilterOutput.Size = new System.Drawing.Size(26, 23);
             this.btnFilterOutput.TabIndex = 5;
@@ -821,18 +891,18 @@
             // 
             this.txtFilterOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFilterOutput.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::TranslateUtility.Properties.Settings.Default, "_ExcelTranslateOutput", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtFilterOutput.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "_ExcelTranslateOutput", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtFilterOutput.Location = new System.Drawing.Point(124, 43);
             this.txtFilterOutput.Name = "txtFilterOutput";
             this.txtFilterOutput.ReadOnly = true;
-            this.txtFilterOutput.Size = new System.Drawing.Size(398, 20);
+            this.txtFilterOutput.Size = new System.Drawing.Size(381, 20);
             this.txtFilterOutput.TabIndex = 3;
-            this.txtFilterOutput.Text = global::TranslateUtility.Properties.Settings.Default._ExcelTranslateOutput;
+            this.txtFilterOutput.Text = settings1._ExcelTranslateOutput;
             // 
             // btnFilterSource
             // 
             this.btnFilterSource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFilterSource.Location = new System.Drawing.Point(610, 17);
+            this.btnFilterSource.Location = new System.Drawing.Point(593, 17);
             this.btnFilterSource.Name = "btnFilterSource";
             this.btnFilterSource.Size = new System.Drawing.Size(26, 23);
             this.btnFilterSource.TabIndex = 2;
@@ -853,17 +923,17 @@
             // 
             this.txtFilterSource.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFilterSource.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::TranslateUtility.Properties.Settings.Default, "_ExcelTranslateInput", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtFilterSource.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "_ExcelTranslateInput", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtFilterSource.Location = new System.Drawing.Point(124, 19);
             this.txtFilterSource.Name = "txtFilterSource";
-            this.txtFilterSource.Size = new System.Drawing.Size(480, 20);
+            this.txtFilterSource.Size = new System.Drawing.Size(463, 20);
             this.txtFilterSource.TabIndex = 0;
-            this.txtFilterSource.Text = global::TranslateUtility.Properties.Settings.Default._ExcelTranslateInput;
+            this.txtFilterSource.Text = settings1._ExcelTranslateInput;
             // 
             // btnFilterOutputOpen
             // 
             this.btnFilterOutputOpen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFilterOutputOpen.Location = new System.Drawing.Point(559, 41);
+            this.btnFilterOutputOpen.Location = new System.Drawing.Point(542, 41);
             this.btnFilterOutputOpen.Name = "btnFilterOutputOpen";
             this.btnFilterOutputOpen.Size = new System.Drawing.Size(76, 23);
             this.btnFilterOutputOpen.TabIndex = 0;
@@ -1028,17 +1098,6 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(527, 20);
             this.textBox2.TabIndex = 0;
-            // 
-            // chkFilterTranslated
-            // 
-            this.chkFilterTranslated.AutoSize = true;
-            this.chkFilterTranslated.Location = new System.Drawing.Point(248, 97);
-            this.chkFilterTranslated.Name = "chkFilterTranslated";
-            this.chkFilterTranslated.Size = new System.Drawing.Size(76, 17);
-            this.chkFilterTranslated.TabIndex = 17;
-            this.chkFilterTranslated.Text = "Translated";
-            this.chkFilterTranslated.UseVisualStyleBackColor = true;
-            this.chkFilterTranslated.CheckedChanged += new System.EventHandler(this.chkFilterTranslated_CheckedChanged);
             // 
             // frmExcelTools
             // 
