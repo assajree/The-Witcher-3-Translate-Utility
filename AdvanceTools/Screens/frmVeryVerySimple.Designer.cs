@@ -224,7 +224,7 @@
             this.groupBox2.Size = new System.Drawing.Size(544, 43);
             this.groupBox2.TabIndex = 46;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "แสดงรายละเอียดข้อความ";
+            this.groupBox2.Text = "แสดงรายละเอียดข้อความ (ข้อความในวงเล็บ)";
             // 
             // chkUiInfo
             // 
