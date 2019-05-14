@@ -72,6 +72,7 @@ namespace TranslateUtility
             txtGamePath.SetDefault(c.GetGameDirectory());
 
             SetDownloadFrequencyRadio();
+            SetFontRadio();
 
         }
 
@@ -131,7 +132,7 @@ namespace TranslateUtility
                 chkUntranslateInfo.Checked,
                 chkTranslateInfo.Checked,
                 chkUiInfo.Checked,
-                rdoFontSizeLarge.Checked
+                GetFontSetting()
             );
         }
 
@@ -143,7 +144,8 @@ namespace TranslateUtility
 
             c.InstallMod(
                 modPath,
-                txtGamePath.Text
+                txtGamePath.Text,
+                !rdoFontNone.Checked
             );
         }
 
@@ -234,6 +236,7 @@ namespace TranslateUtility
         private void SaveSetting()
         {
             Properties.Settings.Default._SimpleDownloadFrequency = GetDownloadFrequency().ToString();
+            Properties.Settings.Default._SimpleFontSetting = GetFontSetting().ToString();
             Properties.Settings.Default.Save();
         }
 
@@ -310,8 +313,8 @@ namespace TranslateUtility
 
         private void miUpdate_Click(object sender, EventArgs e)
         {
-            if (c.UpdateW3tu())
-                this.Close();
+            c.UpdateW3tu();
+            this.Close();
         }
 
         private void lblGameDir_DoubleClick(object sender, EventArgs e)
@@ -321,6 +324,17 @@ namespace TranslateUtility
             //else
             c.Open(Configs.StartupPath);
         }
+
+        private Common.eFontSetting GetFontSetting()
+        {
+            if (rdoFontNone.Checked)
+                return Common.eFontSetting.None;
+            else if (rdoFontSizeLarge.Checked)
+                return Common.eFontSetting.Large;
+            else
+                return Common.eFontSetting.Normal;
+        }
+        
 
         private Common.eDownloadFrequency GetDownloadFrequency()
         {
@@ -354,6 +368,27 @@ namespace TranslateUtility
                     break;
                 case Common.eDownloadFrequency.Once:
                     rdoDownloadOnce.Checked = true;
+                    break;
+            }
+        }
+
+        private void SetFontRadio()
+        {
+            Common.eFontSetting font;
+            var setting = Properties.Settings.Default._SimpleFontSetting;
+            if (!Enum.TryParse(setting, true, out font))
+                font = Common.eFontSetting.Normal;
+
+            switch (font)
+            {
+                case Common.eFontSetting.None:
+                    rdoFontNone.Checked = true;
+                    break;
+                case Common.eFontSetting.Large:
+                    rdoFontSizeLarge.Checked = true;
+                    break;
+                default:
+                    rdoFontSizeNormal.Checked = true;
                     break;
             }
         }

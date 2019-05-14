@@ -27,6 +27,13 @@ namespace TheWitcher3Thai
             Once
         }
 
+        public enum eFontSetting
+        {
+            Normal,
+            Large,
+            None
+        }
+
         private Setting setting = new Setting();
 
         #region Decode
@@ -316,7 +323,7 @@ namespace TheWitcher3Thai
                                     return excelPath;
                                 break;
                             case eDownloadFrequency.Hour:
-                                if (lastDownload > DateTime.Now.AddMinutes(60)) // download less than 1 hour
+                                if (lastDownload > DateTime.Now.AddMinutes(-60)) // download less than 1 hour
                                     return excelPath;
                                 break;
                             default: // Always
@@ -1937,7 +1944,7 @@ namespace TheWitcher3Thai
             FinishMod(tempPath, outputPath, sheetConfig);
         }
 
-        public void GenerateModAlt(Dictionary<string, List<w3Strings>> contents, string outputPath, bool combine, bool originalFirst, Dictionary<string, string> sheetConfig, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool IncludeUiMessageId, bool bigFont)
+        public void GenerateModAlt(Dictionary<string, List<w3Strings>> contents, string outputPath, bool combine, bool originalFirst, Dictionary<string, string> sheetConfig, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool IncludeUiMessageId, eFontSetting font)
         {
             DeleteDirectory(outputPath);
 
@@ -1978,13 +1985,14 @@ namespace TheWitcher3Thai
             );
 
             // font
-            if (bigFont)
+            switch(font)
             {
-                InstallBigFontMod(outputPath);
-            }
-            else
-            {
-                InstallFontMod(outputPath);
+                case eFontSetting.Large:
+                    InstallBigFontMod(outputPath);
+                    break;
+                case eFontSetting.Normal:
+                    InstallFontMod(outputPath);
+                    break;
             }
 
             // subtitle
@@ -2485,7 +2493,7 @@ namespace TheWitcher3Thai
                 DeleteDirectory(modPath);
         }
 
-        public void InstallMod(string modPath, string gamePath)
+        public void InstallMod(string modPath, string gamePath, bool removeOldFont = false)
         {
             var skips = new List<string>();
             skips.Add(Path.Combine(modPath, "version.ini"));
@@ -2500,7 +2508,8 @@ namespace TheWitcher3Thai
                 DeleteDirectory(oldModPath);
 
             // delete kuntoon mod
-            RemoveOldFont(gamePath);
+            if(removeOldFont)
+                RemoveOldFont(gamePath);
 
             var targetPath = Path.Combine(gamePath);
 
@@ -2538,7 +2547,7 @@ namespace TheWitcher3Thai
 
         }
 
-        public void GenerateLegacyModAlt(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool includeUiMessageId, bool bigFont)
+        public void GenerateLegacyModAlt(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool includeUiMessageId, eFontSetting font)
         {
             string templatePath = Configs.TemplatePath;
             if (!File.Exists(templatePath))
@@ -2550,7 +2559,7 @@ namespace TheWitcher3Thai
 
             var content = MergeLegacy(template, translate);
 
-            GenerateModAlt(content, outputPath, doubleLanguage, originalFirst, sheetConfig, includeNotTranslateMessageId, includeTranslateMessageId, includeUiMessageId, bigFont);
+            GenerateModAlt(content, outputPath, doubleLanguage, originalFirst, sheetConfig, includeNotTranslateMessageId, includeTranslateMessageId, includeUiMessageId, font);
 
             // write all text excel file for later use
             string tempPath = Path.Combine(outputPath, "translate.xlsx");

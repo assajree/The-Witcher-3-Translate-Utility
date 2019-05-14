@@ -129,7 +129,7 @@ namespace TranslateUtility
                 chkUntranslateInfo.Checked,
                 chkTranslateInfo.Checked,
                 chkUiInfo.Checked,
-                false
+                Common.eFontSetting.Normal
             );
         }
 

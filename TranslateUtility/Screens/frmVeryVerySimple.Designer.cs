@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            TranslateUtility.Properties.Settings settings1 = new TranslateUtility.Properties.Settings();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVeryVerySimple));
             this.btnGamePath = new System.Windows.Forms.Button();
             this.lblGameDir = new System.Windows.Forms.Label();
@@ -42,20 +43,20 @@
             this.lblAdvance = new System.Windows.Forms.LinkLabel();
             this.pnAdvance = new System.Windows.Forms.Panel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.rdoDownloadAlways = new System.Windows.Forms.RadioButton();
+            this.rdoDownloadDialy = new System.Windows.Forms.RadioButton();
+            this.rdoDownloadOnce = new System.Windows.Forms.RadioButton();
             this.rdoDownloadHourly = new System.Windows.Forms.RadioButton();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.rdoFontSizeLarge = new System.Windows.Forms.RadioButton();
+            this.rdoFontNone = new System.Windows.Forms.RadioButton();
             this.rdoFontSizeNormal = new System.Windows.Forms.RadioButton();
-            this.button1 = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.miVersion = new System.Windows.Forms.ToolStripMenuItem();
             this.miChangeLog = new System.Windows.Forms.ToolStripMenuItem();
             this.miUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.rdoDownloadOnce = new System.Windows.Forms.RadioButton();
-            this.rdoDownloadDialy = new System.Windows.Forms.RadioButton();
-            this.rdoDownloadAlways = new System.Windows.Forms.RadioButton();
-            this.rdoFontSizeLarge = new System.Windows.Forms.RadioButton();
             this.chkModDoubleLanguage = new System.Windows.Forms.CheckBox();
             this.rdoModOriginFirst = new System.Windows.Forms.RadioButton();
             this.chkUiInfo = new System.Windows.Forms.CheckBox();
@@ -139,7 +140,7 @@
             this.groupBox2.Size = new System.Drawing.Size(544, 43);
             this.groupBox2.TabIndex = 46;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "แสดงรายละเอียดข้อความ";
+            this.groupBox2.Text = "แสดงรายละเอียดข้อความ (ข้อความในวงเล็บ)";
             // 
             // btnResult
             // 
@@ -208,6 +209,33 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "ดาวน์โหลดไฟล์แปลภาษา";
             // 
+            // rdoDownloadAlways
+            // 
+            this.rdoDownloadAlways.Location = new System.Drawing.Point(25, 19);
+            this.rdoDownloadAlways.Name = "rdoDownloadAlways";
+            this.rdoDownloadAlways.Size = new System.Drawing.Size(85, 17);
+            this.rdoDownloadAlways.TabIndex = 0;
+            this.rdoDownloadAlways.Text = "ทุกครั้ง";
+            this.rdoDownloadAlways.UseVisualStyleBackColor = true;
+            // 
+            // rdoDownloadDialy
+            // 
+            this.rdoDownloadDialy.Location = new System.Drawing.Point(220, 19);
+            this.rdoDownloadDialy.Name = "rdoDownloadDialy";
+            this.rdoDownloadDialy.Size = new System.Drawing.Size(85, 17);
+            this.rdoDownloadDialy.TabIndex = 0;
+            this.rdoDownloadDialy.Text = "วันละครั้ง";
+            this.rdoDownloadDialy.UseVisualStyleBackColor = true;
+            // 
+            // rdoDownloadOnce
+            // 
+            this.rdoDownloadOnce.Location = new System.Drawing.Point(327, 19);
+            this.rdoDownloadOnce.Name = "rdoDownloadOnce";
+            this.rdoDownloadOnce.Size = new System.Drawing.Size(85, 17);
+            this.rdoDownloadOnce.TabIndex = 0;
+            this.rdoDownloadOnce.Text = "ครั้งเดียว";
+            this.rdoDownloadOnce.UseVisualStyleBackColor = true;
+            // 
             // rdoDownloadHourly
             // 
             this.rdoDownloadHourly.Checked = true;
@@ -222,13 +250,32 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.rdoFontSizeLarge);
+            this.groupBox4.Controls.Add(this.rdoFontNone);
             this.groupBox4.Controls.Add(this.rdoFontSizeNormal);
             this.groupBox4.Location = new System.Drawing.Point(3, 105);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(544, 47);
             this.groupBox4.TabIndex = 51;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "ขนาดฟอนต์";
+            this.groupBox4.Text = "ฟอนต์";
+            // 
+            // rdoFontSizeLarge
+            // 
+            this.rdoFontSizeLarge.Location = new System.Drawing.Point(123, 19);
+            this.rdoFontSizeLarge.Name = "rdoFontSizeLarge";
+            this.rdoFontSizeLarge.Size = new System.Drawing.Size(85, 17);
+            this.rdoFontSizeLarge.TabIndex = 2;
+            this.rdoFontSizeLarge.Text = "ใหญ่";
+            this.rdoFontSizeLarge.UseVisualStyleBackColor = true;
+            // 
+            // rdoFontNone
+            // 
+            this.rdoFontNone.Location = new System.Drawing.Point(220, 19);
+            this.rdoFontNone.Name = "rdoFontNone";
+            this.rdoFontNone.Size = new System.Drawing.Size(85, 17);
+            this.rdoFontNone.TabIndex = 1;
+            this.rdoFontNone.Text = "ไม่เอาฟอนต์";
+            this.rdoFontNone.UseVisualStyleBackColor = true;
             // 
             // rdoFontSizeNormal
             // 
@@ -240,18 +287,6 @@
             this.rdoFontSizeNormal.TabStop = true;
             this.rdoFontSizeNormal.Text = "ปกติ";
             this.rdoFontSizeNormal.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.button1.Location = new System.Drawing.Point(235, 60);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(111, 34);
-            this.button1.TabIndex = 53;
-            this.button1.Text = "ติดตั้ง";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
             // 
             // menuStrip1
             // 
@@ -296,50 +331,72 @@
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(12, 20);
             // 
-            // rdoDownloadOnce
-            // 
-            this.rdoDownloadOnce.Location = new System.Drawing.Point(327, 19);
-            this.rdoDownloadOnce.Name = "rdoDownloadOnce";
-            this.rdoDownloadOnce.Size = new System.Drawing.Size(85, 17);
-            this.rdoDownloadOnce.TabIndex = 0;
-            this.rdoDownloadOnce.Text = "ครั้งเดียว";
-            this.rdoDownloadOnce.UseVisualStyleBackColor = true;
-            // 
-            // rdoDownloadDialy
-            // 
-            this.rdoDownloadDialy.Location = new System.Drawing.Point(220, 19);
-            this.rdoDownloadDialy.Name = "rdoDownloadDialy";
-            this.rdoDownloadDialy.Size = new System.Drawing.Size(85, 17);
-            this.rdoDownloadDialy.TabIndex = 0;
-            this.rdoDownloadDialy.Text = "วันละครั้ง";
-            this.rdoDownloadDialy.UseVisualStyleBackColor = true;
-            // 
-            // rdoDownloadAlways
-            // 
-            this.rdoDownloadAlways.Location = new System.Drawing.Point(25, 19);
-            this.rdoDownloadAlways.Name = "rdoDownloadAlways";
-            this.rdoDownloadAlways.Size = new System.Drawing.Size(85, 17);
-            this.rdoDownloadAlways.TabIndex = 0;
-            this.rdoDownloadAlways.Text = "ทุกครั้ง";
-            this.rdoDownloadAlways.UseVisualStyleBackColor = true;
-            // 
-            // rdoFontSizeLarge
-            // 
-            this.rdoFontSizeLarge.Checked = global::TranslateUtility.Properties.Settings.Default._SimpleBigFont;
-            this.rdoFontSizeLarge.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::TranslateUtility.Properties.Settings.Default, "_SimpleBigFont", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.rdoFontSizeLarge.Location = new System.Drawing.Point(123, 19);
-            this.rdoFontSizeLarge.Name = "rdoFontSizeLarge";
-            this.rdoFontSizeLarge.Size = new System.Drawing.Size(85, 17);
-            this.rdoFontSizeLarge.TabIndex = 0;
-            this.rdoFontSizeLarge.Text = "ใหญ่";
-            this.rdoFontSizeLarge.UseVisualStyleBackColor = true;
-            // 
             // chkModDoubleLanguage
             // 
             this.chkModDoubleLanguage.AutoSize = true;
-            this.chkModDoubleLanguage.Checked = global::TranslateUtility.Properties.Settings.Default._Simple2Language;
+            settings1._ExcelFillDesc = "";
+            settings1._ExcelFillSource = "";
+            settings1._ExcelFillText = false;
+            settings1._ExcelFillTranslate = true;
+            settings1._ExcelLegacyMod = "";
+            settings1._ExcelLegacyOutput = "";
+            settings1._ExcelLegacyTranslate = "";
+            settings1._ExcelMergeAdd = false;
+            settings1._ExcelMergeOutput = "";
+            settings1._ExcelMergeReplaceText = false;
+            settings1._ExcelMergeReplaceTranslate = false;
+            settings1._ExcelMergeSource = "";
+            settings1._ExcelMergeTranslate = "";
+            settings1._ExcelModOutput = "";
+            settings1._ExcelModSource = "";
+            settings1._ExcelTranslateContain = false;
+            settings1._ExcelTranslateContainText = "";
+            settings1._ExcelTranslateEmpty = true;
+            settings1._ExcelTranslateInput = "";
+            settings1._ExcelTranslateOutput = "";
+            settings1._ExcelTranslateSame = false;
+            settings1._ExcelTranslateSingle = false;
+            settings1._ExcelTranslateSortById = true;
+            settings1._ExcelTranslateSortByLength = false;
+            settings1._ExcelTranslateUiText = false;
+            settings1._GameBackupDesc = "";
+            settings1._GameBackupOverwrite = false;
+            settings1._GameBackupSource = "";
+            settings1._GameFontGamePath = "";
+            settings1._GameModDownloadPath = "";
+            settings1._GameModGamePath = "";
+            settings1._ModExcelDouble = false;
+            settings1._ModExcelOriginalFirst = false;
+            settings1._ModExcelOutput = "";
+            settings1._ModExcelSource = "";
+            settings1._ModExcelTranslateFirst = true;
+            settings1._ModTranslateDouble = false;
+            settings1._ModTranslateExcel = "";
+            settings1._ModTranslateOriginalFirst = false;
+            settings1._ModTranslateOutput = "";
+            settings1._ModTranslateSource = "";
+            settings1._ModTranslateTranslateFirst = true;
+            settings1._Simple2Language = true;
+            settings1._SimpleBigFont = false;
+            settings1._SimpleDownloadFrequency = "";
+            settings1._SimpleFontSetting = "";
+            settings1._SimpleForceDownload = false;
+            settings1._SimpleGamePath = "";
+            settings1._SimpleModInput = "";
+            settings1._SimpleModOutput = "";
+            settings1._SimpleModPath = "";
+            settings1._SimpleOriginalFirst = false;
+            settings1._SimpleShowAdvance = false;
+            settings1._SimpleTranslateInfo = false;
+            settings1._SimpleUiInfo = false;
+            settings1._SimpleUntranslateInfo = false;
+            settings1._VerySimpleGamePath = "";
+            settings1.LastCheckUpdate = "N/A";
+            settings1.LastestVersion = "N/A";
+            settings1.SettingsKey = "";
+            this.chkModDoubleLanguage.Checked = settings1._Simple2Language;
             this.chkModDoubleLanguage.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkModDoubleLanguage.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::TranslateUtility.Properties.Settings.Default, "_Simple2Language", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkModDoubleLanguage.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_Simple2Language", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.chkModDoubleLanguage.Location = new System.Drawing.Point(9, 0);
             this.chkModDoubleLanguage.Name = "chkModDoubleLanguage";
             this.chkModDoubleLanguage.Size = new System.Drawing.Size(68, 17);
@@ -351,8 +408,8 @@
             // rdoModOriginFirst
             // 
             this.rdoModOriginFirst.AutoSize = true;
-            this.rdoModOriginFirst.Checked = global::TranslateUtility.Properties.Settings.Default._SimpleOriginalFirst;
-            this.rdoModOriginFirst.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::TranslateUtility.Properties.Settings.Default, "_SimpleOriginalFirst", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.rdoModOriginFirst.Checked = settings1._SimpleOriginalFirst;
+            this.rdoModOriginFirst.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_SimpleOriginalFirst", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.rdoModOriginFirst.Location = new System.Drawing.Point(123, 22);
             this.rdoModOriginFirst.Margin = new System.Windows.Forms.Padding(2);
             this.rdoModOriginFirst.Name = "rdoModOriginFirst";
@@ -364,8 +421,8 @@
             // chkUiInfo
             // 
             this.chkUiInfo.AutoSize = true;
-            this.chkUiInfo.Checked = global::TranslateUtility.Properties.Settings.Default._SimpleUiInfo;
-            this.chkUiInfo.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::TranslateUtility.Properties.Settings.Default, "_SimpleUiInfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkUiInfo.Checked = settings1._SimpleUiInfo;
+            this.chkUiInfo.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_SimpleUiInfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.chkUiInfo.Location = new System.Drawing.Point(220, 19);
             this.chkUiInfo.Name = "chkUiInfo";
             this.chkUiInfo.Size = new System.Drawing.Size(37, 17);
@@ -376,8 +433,8 @@
             // chkUntranslateInfo
             // 
             this.chkUntranslateInfo.AutoSize = true;
-            this.chkUntranslateInfo.Checked = global::TranslateUtility.Properties.Settings.Default._SimpleUntranslateInfo;
-            this.chkUntranslateInfo.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::TranslateUtility.Properties.Settings.Default, "_SimpleUntranslateInfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkUntranslateInfo.Checked = settings1._SimpleUntranslateInfo;
+            this.chkUntranslateInfo.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_SimpleUntranslateInfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.chkUntranslateInfo.Location = new System.Drawing.Point(25, 19);
             this.chkUntranslateInfo.Name = "chkUntranslateInfo";
             this.chkUntranslateInfo.Size = new System.Drawing.Size(92, 17);
@@ -388,8 +445,8 @@
             // chkTranslateInfo
             // 
             this.chkTranslateInfo.AutoSize = true;
-            this.chkTranslateInfo.Checked = global::TranslateUtility.Properties.Settings.Default._SimpleTranslateInfo;
-            this.chkTranslateInfo.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::TranslateUtility.Properties.Settings.Default, "_SimpleTranslateInfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkTranslateInfo.Checked = settings1._SimpleTranslateInfo;
+            this.chkTranslateInfo.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_SimpleTranslateInfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.chkTranslateInfo.Location = new System.Drawing.Point(123, 19);
             this.chkTranslateInfo.Name = "chkTranslateInfo";
             this.chkTranslateInfo.Size = new System.Drawing.Size(74, 17);
@@ -399,12 +456,12 @@
             // 
             // txtGamePath
             // 
-            this.txtGamePath.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::TranslateUtility.Properties.Settings.Default, "_SimpleModPath", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtGamePath.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::TranslateUtility.Properties.Settings.Default, "_VerySimpleGamePath", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtGamePath.Location = new System.Drawing.Point(15, 29);
             this.txtGamePath.Name = "txtGamePath";
             this.txtGamePath.Size = new System.Drawing.Size(521, 20);
             this.txtGamePath.TabIndex = 6;
-            this.txtGamePath.Text = global::TranslateUtility.Properties.Settings.Default._SimpleModPath;
+            this.txtGamePath.Text = global::TranslateUtility.Properties.Settings.Default._VerySimpleGamePath;
             this.txtGamePath.TextChanged += new System.EventHandler(this.txtGamePath_TextChanged);
             this.txtGamePath.DoubleClick += new System.EventHandler(this.txtGamePath_DoubleClick);
             // 
@@ -420,7 +477,6 @@
             this.Controls.Add(this.lblGameDir);
             this.Controls.Add(this.btnGamePath);
             this.Controls.Add(this.txtGamePath);
-            this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
@@ -463,12 +519,10 @@
         private System.Windows.Forms.CheckBox chkUiInfo;
         private System.Windows.Forms.LinkLabel lblAdvance;
         private System.Windows.Forms.Panel pnAdvance;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.RadioButton rdoDownloadAlways;
         private System.Windows.Forms.RadioButton rdoDownloadHourly;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.RadioButton rdoFontSizeLarge;
         private System.Windows.Forms.RadioButton rdoFontSizeNormal;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.MenuStrip menuStrip1;
@@ -478,5 +532,7 @@
         private System.Windows.Forms.ToolStripMenuItem miUpdate;
         private System.Windows.Forms.RadioButton rdoDownloadDialy;
         private System.Windows.Forms.RadioButton rdoDownloadOnce;
+        private System.Windows.Forms.RadioButton rdoFontNone;
+        private System.Windows.Forms.RadioButton rdoFontSizeLarge;
     }
 }

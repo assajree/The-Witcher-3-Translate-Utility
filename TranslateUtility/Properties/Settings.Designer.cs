@@ -706,5 +706,29 @@ namespace TranslateUtility.Properties {
                 this["_SimpleShowAdvance"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string _SimpleFontSetting {
+            get {
+                return ((string)(this["_SimpleFontSetting"]));
+            }
+            set {
+                this["_SimpleFontSetting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string _VerySimpleGamePath {
+            get {
+                return ((string)(this["_VerySimpleGamePath"]));
+            }
+            set {
+                this["_VerySimpleGamePath"] = value;
+            }
+        }
     }
 }
