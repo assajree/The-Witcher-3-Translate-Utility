@@ -36,7 +36,12 @@
             this.rdoModTranslateFirst = new System.Windows.Forms.RadioButton();
             this.btnLegacyGenerate = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkModDoubleLanguage = new System.Windows.Forms.CheckBox();
+            this.rdoModOriginFirst = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.chkUiInfo = new System.Windows.Forms.CheckBox();
+            this.chkUntranslateInfo = new System.Windows.Forms.CheckBox();
+            this.chkTranslateInfo = new System.Windows.Forms.CheckBox();
             this.btnResult = new System.Windows.Forms.Button();
             this.btnRestore = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -57,11 +62,6 @@
             this.miChangeLog = new System.Windows.Forms.ToolStripMenuItem();
             this.miUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.chkModDoubleLanguage = new System.Windows.Forms.CheckBox();
-            this.rdoModOriginFirst = new System.Windows.Forms.RadioButton();
-            this.chkUiInfo = new System.Windows.Forms.CheckBox();
-            this.chkUntranslateInfo = new System.Windows.Forms.CheckBox();
-            this.chkTranslateInfo = new System.Windows.Forms.CheckBox();
             this.txtGamePath = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -130,6 +130,93 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "สองภาษา";
             // 
+            // chkModDoubleLanguage
+            // 
+            this.chkModDoubleLanguage.AutoSize = true;
+            settings1._ExcelFillDesc = "";
+            settings1._ExcelFillSource = "";
+            settings1._ExcelFillText = false;
+            settings1._ExcelFillTranslate = true;
+            settings1._ExcelLegacyMod = "";
+            settings1._ExcelLegacyOutput = "";
+            settings1._ExcelLegacyTranslate = "";
+            settings1._ExcelMergeAdd = false;
+            settings1._ExcelMergeOutput = "";
+            settings1._ExcelMergeReplaceText = false;
+            settings1._ExcelMergeReplaceTranslate = false;
+            settings1._ExcelMergeSource = "";
+            settings1._ExcelMergeTranslate = "";
+            settings1._ExcelModOutput = "";
+            settings1._ExcelModSource = "";
+            settings1._ExcelTranslateContain = false;
+            settings1._ExcelTranslateContainText = "";
+            settings1._ExcelTranslateEmpty = true;
+            settings1._ExcelTranslateInput = "";
+            settings1._ExcelTranslateOutput = "";
+            settings1._ExcelTranslateSame = false;
+            settings1._ExcelTranslateSingle = false;
+            settings1._ExcelTranslateSortById = true;
+            settings1._ExcelTranslateSortByLength = false;
+            settings1._ExcelTranslateUiText = false;
+            settings1._GameBackupDesc = "";
+            settings1._GameBackupOverwrite = false;
+            settings1._GameBackupSource = "";
+            settings1._GameFontGamePath = "";
+            settings1._GameModDownloadPath = "";
+            settings1._GameModGamePath = "";
+            settings1._ModExcelDouble = false;
+            settings1._ModExcelOriginalFirst = false;
+            settings1._ModExcelOutput = "";
+            settings1._ModExcelSource = "";
+            settings1._ModExcelTranslateFirst = true;
+            settings1._ModTranslateDouble = false;
+            settings1._ModTranslateExcel = "";
+            settings1._ModTranslateOriginalFirst = false;
+            settings1._ModTranslateOutput = "";
+            settings1._ModTranslateSource = "";
+            settings1._ModTranslateTranslateFirst = true;
+            settings1._Simple2Language = true;
+            settings1._SimpleBigFont = false;
+            settings1._SimpleDownloadFrequency = "";
+            settings1._SimpleFontSetting = "";
+            settings1._SimpleForceDownload = false;
+            settings1._SimpleGamePath = "";
+            settings1._SimpleModInput = "";
+            settings1._SimpleModOutput = "";
+            settings1._SimpleModPath = "";
+            settings1._SimpleOriginalFirst = false;
+            settings1._SimpleShowAdvance = false;
+            settings1._SimpleTranslateInfo = false;
+            settings1._SimpleUiInfo = false;
+            settings1._SimpleUntranslateInfo = false;
+            settings1._VerySimpleGamePath = "";
+            settings1.LastCheckUpdate = "N/A";
+            settings1.LastestVersion = "N/A";
+            settings1.SettingsKey = "";
+            this.chkModDoubleLanguage.Checked = settings1._Simple2Language;
+            this.chkModDoubleLanguage.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkModDoubleLanguage.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_Simple2Language", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkModDoubleLanguage.Location = new System.Drawing.Point(9, 0);
+            this.chkModDoubleLanguage.Name = "chkModDoubleLanguage";
+            this.chkModDoubleLanguage.Size = new System.Drawing.Size(68, 17);
+            this.chkModDoubleLanguage.TabIndex = 36;
+            this.chkModDoubleLanguage.Text = "สองภาษา";
+            this.chkModDoubleLanguage.UseVisualStyleBackColor = true;
+            this.chkModDoubleLanguage.CheckedChanged += new System.EventHandler(this.chkModDoubleLanguage_CheckedChanged);
+            // 
+            // rdoModOriginFirst
+            // 
+            this.rdoModOriginFirst.AutoSize = true;
+            this.rdoModOriginFirst.Checked = settings1._SimpleOriginalFirst;
+            this.rdoModOriginFirst.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_SimpleOriginalFirst", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.rdoModOriginFirst.Location = new System.Drawing.Point(123, 22);
+            this.rdoModOriginFirst.Margin = new System.Windows.Forms.Padding(2);
+            this.rdoModOriginFirst.Name = "rdoModOriginFirst";
+            this.rdoModOriginFirst.Size = new System.Drawing.Size(104, 17);
+            this.rdoModOriginFirst.TabIndex = 34;
+            this.rdoModOriginFirst.Text = "ภาษาอังกฤษก่อน";
+            this.rdoModOriginFirst.UseVisualStyleBackColor = true;
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.chkUiInfo);
@@ -141,6 +228,42 @@
             this.groupBox2.TabIndex = 46;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "แสดงรายละเอียดข้อความ (ข้อความในวงเล็บ)";
+            // 
+            // chkUiInfo
+            // 
+            this.chkUiInfo.AutoSize = true;
+            this.chkUiInfo.Checked = settings1._SimpleUiInfo;
+            this.chkUiInfo.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_SimpleUiInfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkUiInfo.Location = new System.Drawing.Point(220, 19);
+            this.chkUiInfo.Name = "chkUiInfo";
+            this.chkUiInfo.Size = new System.Drawing.Size(37, 17);
+            this.chkUiInfo.TabIndex = 40;
+            this.chkUiInfo.Text = "UI";
+            this.chkUiInfo.UseVisualStyleBackColor = true;
+            // 
+            // chkUntranslateInfo
+            // 
+            this.chkUntranslateInfo.AutoSize = true;
+            this.chkUntranslateInfo.Checked = settings1._SimpleUntranslateInfo;
+            this.chkUntranslateInfo.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_SimpleUntranslateInfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkUntranslateInfo.Location = new System.Drawing.Point(25, 19);
+            this.chkUntranslateInfo.Name = "chkUntranslateInfo";
+            this.chkUntranslateInfo.Size = new System.Drawing.Size(92, 17);
+            this.chkUntranslateInfo.TabIndex = 37;
+            this.chkUntranslateInfo.Text = "ที่ยังไม่ได้แปล";
+            this.chkUntranslateInfo.UseVisualStyleBackColor = true;
+            // 
+            // chkTranslateInfo
+            // 
+            this.chkTranslateInfo.AutoSize = true;
+            this.chkTranslateInfo.Checked = settings1._SimpleTranslateInfo;
+            this.chkTranslateInfo.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_SimpleTranslateInfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkTranslateInfo.Location = new System.Drawing.Point(123, 19);
+            this.chkTranslateInfo.Name = "chkTranslateInfo";
+            this.chkTranslateInfo.Size = new System.Drawing.Size(74, 17);
+            this.chkTranslateInfo.TabIndex = 39;
+            this.chkTranslateInfo.Text = "ที่แปลแล้ว";
+            this.chkTranslateInfo.UseVisualStyleBackColor = true;
             // 
             // btnResult
             // 
@@ -315,144 +438,21 @@
             // 
             this.miChangeLog.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.miChangeLog.Name = "miChangeLog";
-            this.miChangeLog.Size = new System.Drawing.Size(144, 22);
+            this.miChangeLog.Size = new System.Drawing.Size(180, 22);
             this.miChangeLog.Text = "การเปลี่ยนแปลง";
             this.miChangeLog.Click += new System.EventHandler(this.miChangeLog_Click);
             // 
             // miUpdate
             // 
             this.miUpdate.Name = "miUpdate";
-            this.miUpdate.Size = new System.Drawing.Size(144, 22);
-            this.miUpdate.Text = "อัพเดท";
+            this.miUpdate.Size = new System.Drawing.Size(180, 22);
+            this.miUpdate.Text = "อัพเดทโปรแกรม";
             this.miUpdate.Click += new System.EventHandler(this.miUpdate_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(12, 20);
-            // 
-            // chkModDoubleLanguage
-            // 
-            this.chkModDoubleLanguage.AutoSize = true;
-            settings1._ExcelFillDesc = "";
-            settings1._ExcelFillSource = "";
-            settings1._ExcelFillText = false;
-            settings1._ExcelFillTranslate = true;
-            settings1._ExcelLegacyMod = "";
-            settings1._ExcelLegacyOutput = "";
-            settings1._ExcelLegacyTranslate = "";
-            settings1._ExcelMergeAdd = false;
-            settings1._ExcelMergeOutput = "";
-            settings1._ExcelMergeReplaceText = false;
-            settings1._ExcelMergeReplaceTranslate = false;
-            settings1._ExcelMergeSource = "";
-            settings1._ExcelMergeTranslate = "";
-            settings1._ExcelModOutput = "";
-            settings1._ExcelModSource = "";
-            settings1._ExcelTranslateContain = false;
-            settings1._ExcelTranslateContainText = "";
-            settings1._ExcelTranslateEmpty = true;
-            settings1._ExcelTranslateInput = "";
-            settings1._ExcelTranslateOutput = "";
-            settings1._ExcelTranslateSame = false;
-            settings1._ExcelTranslateSingle = false;
-            settings1._ExcelTranslateSortById = true;
-            settings1._ExcelTranslateSortByLength = false;
-            settings1._ExcelTranslateUiText = false;
-            settings1._GameBackupDesc = "";
-            settings1._GameBackupOverwrite = false;
-            settings1._GameBackupSource = "";
-            settings1._GameFontGamePath = "";
-            settings1._GameModDownloadPath = "";
-            settings1._GameModGamePath = "";
-            settings1._ModExcelDouble = false;
-            settings1._ModExcelOriginalFirst = false;
-            settings1._ModExcelOutput = "";
-            settings1._ModExcelSource = "";
-            settings1._ModExcelTranslateFirst = true;
-            settings1._ModTranslateDouble = false;
-            settings1._ModTranslateExcel = "";
-            settings1._ModTranslateOriginalFirst = false;
-            settings1._ModTranslateOutput = "";
-            settings1._ModTranslateSource = "";
-            settings1._ModTranslateTranslateFirst = true;
-            settings1._Simple2Language = true;
-            settings1._SimpleBigFont = false;
-            settings1._SimpleDownloadFrequency = "";
-            settings1._SimpleFontSetting = "";
-            settings1._SimpleForceDownload = false;
-            settings1._SimpleGamePath = "";
-            settings1._SimpleModInput = "";
-            settings1._SimpleModOutput = "";
-            settings1._SimpleModPath = "";
-            settings1._SimpleOriginalFirst = false;
-            settings1._SimpleShowAdvance = false;
-            settings1._SimpleTranslateInfo = false;
-            settings1._SimpleUiInfo = false;
-            settings1._SimpleUntranslateInfo = false;
-            settings1._VerySimpleGamePath = "";
-            settings1.LastCheckUpdate = "N/A";
-            settings1.LastestVersion = "N/A";
-            settings1.SettingsKey = "";
-            this.chkModDoubleLanguage.Checked = settings1._Simple2Language;
-            this.chkModDoubleLanguage.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkModDoubleLanguage.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_Simple2Language", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkModDoubleLanguage.Location = new System.Drawing.Point(9, 0);
-            this.chkModDoubleLanguage.Name = "chkModDoubleLanguage";
-            this.chkModDoubleLanguage.Size = new System.Drawing.Size(68, 17);
-            this.chkModDoubleLanguage.TabIndex = 36;
-            this.chkModDoubleLanguage.Text = "สองภาษา";
-            this.chkModDoubleLanguage.UseVisualStyleBackColor = true;
-            this.chkModDoubleLanguage.CheckedChanged += new System.EventHandler(this.chkModDoubleLanguage_CheckedChanged);
-            // 
-            // rdoModOriginFirst
-            // 
-            this.rdoModOriginFirst.AutoSize = true;
-            this.rdoModOriginFirst.Checked = settings1._SimpleOriginalFirst;
-            this.rdoModOriginFirst.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_SimpleOriginalFirst", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.rdoModOriginFirst.Location = new System.Drawing.Point(123, 22);
-            this.rdoModOriginFirst.Margin = new System.Windows.Forms.Padding(2);
-            this.rdoModOriginFirst.Name = "rdoModOriginFirst";
-            this.rdoModOriginFirst.Size = new System.Drawing.Size(104, 17);
-            this.rdoModOriginFirst.TabIndex = 34;
-            this.rdoModOriginFirst.Text = "ภาษาอังกฤษก่อน";
-            this.rdoModOriginFirst.UseVisualStyleBackColor = true;
-            // 
-            // chkUiInfo
-            // 
-            this.chkUiInfo.AutoSize = true;
-            this.chkUiInfo.Checked = settings1._SimpleUiInfo;
-            this.chkUiInfo.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_SimpleUiInfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkUiInfo.Location = new System.Drawing.Point(220, 19);
-            this.chkUiInfo.Name = "chkUiInfo";
-            this.chkUiInfo.Size = new System.Drawing.Size(37, 17);
-            this.chkUiInfo.TabIndex = 40;
-            this.chkUiInfo.Text = "UI";
-            this.chkUiInfo.UseVisualStyleBackColor = true;
-            // 
-            // chkUntranslateInfo
-            // 
-            this.chkUntranslateInfo.AutoSize = true;
-            this.chkUntranslateInfo.Checked = settings1._SimpleUntranslateInfo;
-            this.chkUntranslateInfo.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_SimpleUntranslateInfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkUntranslateInfo.Location = new System.Drawing.Point(25, 19);
-            this.chkUntranslateInfo.Name = "chkUntranslateInfo";
-            this.chkUntranslateInfo.Size = new System.Drawing.Size(92, 17);
-            this.chkUntranslateInfo.TabIndex = 37;
-            this.chkUntranslateInfo.Text = "ที่ยังไม่ได้แปล";
-            this.chkUntranslateInfo.UseVisualStyleBackColor = true;
-            // 
-            // chkTranslateInfo
-            // 
-            this.chkTranslateInfo.AutoSize = true;
-            this.chkTranslateInfo.Checked = settings1._SimpleTranslateInfo;
-            this.chkTranslateInfo.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_SimpleTranslateInfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkTranslateInfo.Location = new System.Drawing.Point(123, 19);
-            this.chkTranslateInfo.Name = "chkTranslateInfo";
-            this.chkTranslateInfo.Size = new System.Drawing.Size(74, 17);
-            this.chkTranslateInfo.TabIndex = 39;
-            this.chkTranslateInfo.Text = "ที่แปลแล้ว";
-            this.chkTranslateInfo.UseVisualStyleBackColor = true;
             // 
             // txtGamePath
             // 
