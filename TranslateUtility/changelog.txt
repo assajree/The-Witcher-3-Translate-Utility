@@ -3,6 +3,7 @@ Change Log
 
 2019.05.22.XXXX
 - แก้ไขการแปลเควส Where the Cat and Wolf Play (DLC15)
+- แปลเควส Missing Miners (DLC3)
 
 2019.05.21.XXXX
 - แก้บั๊กโปรแกรมปิดตัวเองเมื่อไม่พบอัพเดท
