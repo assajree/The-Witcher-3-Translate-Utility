@@ -358,19 +358,10 @@ namespace TheWitcher3Thai
             return excelPath;
         }
 
-        public bool UpdateW3tu()
+        public void UpdateW3tu()
         {
-            if (CheckForUpdate())
-            {
-                ExtractFile(Configs.UpdaterZipPath, Configs.UpdaterDir);
-                Open(Configs.UpdaterPath);
-                return true;
-            }
-            else
-            {
-                ShowMessage("ไม่พบอัพเดท");
-                return false;
-            }
+            ExtractFile(Configs.UpdaterZipPath, Configs.UpdaterDir);
+            Open(Configs.UpdaterPath);
         }
 
         public string DownloadLegacyMod(string initialPath, string defaultPath = null)

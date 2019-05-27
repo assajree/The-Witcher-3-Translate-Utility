@@ -313,8 +313,17 @@ namespace TranslateUtility
 
         private void miUpdate_Click(object sender, EventArgs e)
         {
-            c.UpdateW3tu();
-            this.Close();
+            var hasUpdate = c.CheckForUpdate();
+            if (hasUpdate)
+            {
+                this.Close();
+                c.UpdateW3tu();                
+            }
+            else
+            {
+                c.ShowMessage("ไม่พบอัพเดท");
+            }
+            
         }
 
         private void lblGameDir_DoubleClick(object sender, EventArgs e)
@@ -334,7 +343,7 @@ namespace TranslateUtility
             else
                 return Common.eFontSetting.Normal;
         }
-        
+
 
         private Common.eDownloadFrequency GetDownloadFrequency()
         {
