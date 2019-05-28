@@ -1,9 +1,11 @@
 Change Log
 ==========
+2019.05.27.XXXX
+- แก้ให้โปรแกรมแสดงเลขที่บรรทัดของข้อความ UI
 
 2019.05.22.XXXX
 - แก้ไขการแปลเควส Where the Cat and Wolf Play (DLC15)
-- แปลเควส Missing Miners (DLC3)
+- แปลเควส Missing Miners (DLC3) (WIP)
 
 2019.05.21.XXXX
 - แก้บั๊กโปรแกรมปิดตัวเองเมื่อไม่พบอัพเดท

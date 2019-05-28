@@ -1084,9 +1084,9 @@ namespace TheWitcher3Thai
 
         private string AppendMessageId(w3Strings w3s, string message)
         {
-            if (w3s.KeyHex != "00000000")
-                return $@"{message} ({w3s.ID.Trim()})";
-            else
+            //if (w3s.KeyHex != "00000000")
+            //    return $@"{message} ({w3s.ID.Trim()})";
+            //else
                 return $@"{message} ({GetMessageId(w3s)})";
         }
 
