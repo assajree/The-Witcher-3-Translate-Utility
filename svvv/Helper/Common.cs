@@ -1031,10 +1031,11 @@ namespace TheWitcher3Thai
             //not translate
             if (String.IsNullOrWhiteSpace(translate))
             {
+                // ui text
                 if (!original.IsConversation)
                 {
                     //if (includeUiMessageId && original.Text.Length > 30)
-                    if (includeUiMessageId)
+                    if (includeUiMessageId && includeNotTranslateMessageId)
                         return AppendMessageId(original, original.Text);
                     else
                         return original.Text;
@@ -1047,10 +1048,10 @@ namespace TheWitcher3Thai
                         return original.Text;
                 }
             }
-            // ui text
+            // tranlated ui text
             else if (!original.IsConversation)
             {
-                if (includeUiMessageId)
+                if (includeUiMessageId && includeTranslateMessageId)
                     return AppendMessageId(original, translate);
                 else
                     return translate;
