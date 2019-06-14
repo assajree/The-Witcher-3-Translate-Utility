@@ -742,5 +742,17 @@ namespace TranslateUtility.Properties {
                 this["_VerySimpleTranslateUI"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("28")]
+        public decimal _VerySimpleFontSize {
+            get {
+                return ((decimal)(this["_VerySimpleFontSize"]));
+            }
+            set {
+                this["_VerySimpleFontSize"] = value;
+            }
+        }
     }
 }

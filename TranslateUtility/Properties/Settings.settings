@@ -182,5 +182,8 @@
     <Setting Name="_VerySimpleTranslateUI" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="_VerySimpleFontSize" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">28</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

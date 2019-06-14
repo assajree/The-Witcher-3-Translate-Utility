@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows.Forms;
 using TheWitcher3Thai;
 using TheWitcher3Thai.Helper;
+using TranslateUtility.Screens;
 
 namespace TranslateUtility
 {
@@ -134,7 +135,8 @@ namespace TranslateUtility
                 chkTranslateInfo.Checked,
                 chkUiInfo.Checked,
                 GetFontSetting(),
-                !chkExcludeUiText.Checked
+                !chkExcludeUiText.Checked,
+                (int)txtFontSize.Value
             );
         }
 
@@ -341,7 +343,7 @@ namespace TranslateUtility
             if (rdoFontNone.Checked)
                 return Common.eFontSetting.None;
             else if (rdoFontSizeLarge.Checked)
-                return Common.eFontSetting.Large;
+                return Common.eFontSetting.Sarabun;
             else
                 return Common.eFontSetting.Normal;
         }
@@ -395,13 +397,19 @@ namespace TranslateUtility
                 case Common.eFontSetting.None:
                     rdoFontNone.Checked = true;
                     break;
-                case Common.eFontSetting.Large:
+                case Common.eFontSetting.Sarabun:
                     rdoFontSizeLarge.Checked = true;
                     break;
                 default:
                     rdoFontSizeNormal.Checked = true;
                     break;
             }
+        }
+
+        private void miCredit_Click(object sender, EventArgs e)
+        {
+            var credit = new frmCredit();
+            credit.ShowDialog();
         }
     }
 }

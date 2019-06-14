@@ -26,7 +26,7 @@ namespace svvv
         public static string UpdateFileId = "1HOmaK3jaI2oW194CvyDXlzZBUEoWzGbU";
         public static string VersionFileId = "1dChsKp641mD3EPREqSZTN_yxlu9KFXJP";
 
-        public static string modThaiBigFont = "modThaiBigFont";
+        public static string modFontSarabun = "modFontSarabun";
         public static string modThaiFont = "modThaiFont";
         public static string modDoubleSubtitle = "modDoubleSubtitle";
         public static string modThaiLanguage = "modThaiLanguage"; // translate

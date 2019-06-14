@@ -58,6 +58,12 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Screens\frmCredit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\frmCredit.Designer.cs">
+      <DependentUpon>frmCredit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\frmVeryVerySimple.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +80,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Screens\frmCredit.resx">
+      <DependentUpon>frmCredit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Screens\frmVeryVerySimple.resx">
       <DependentUpon>frmVeryVerySimple.cs</DependentUpon>
     </EmbeddedResource>
@@ -100,10 +109,10 @@
     <None Include="Tools\modDoubleSubtitle\content\scripts\game\gui\hud\modules\hudModuleSubtitles.ws">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Tools\modThaiBigFont\content\blob0.bundle">
+    <None Include="Tools\modFontSarabun\content\blob0.bundle">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Tools\modThaiBigFont\content\metadata.store">
+    <None Include="Tools\modFontSarabun\content\metadata.store">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Tools\modThaiFont\content\blob0.bundle">
