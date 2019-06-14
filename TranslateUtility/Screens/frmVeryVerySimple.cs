@@ -118,7 +118,8 @@ namespace TranslateUtility
                 rdoModOriginFirst.Checked,
                 chkUntranslateInfo.Checked,
                 chkUiInfo.Checked,
-                chkTranslateInfo.Checked
+                chkTranslateInfo.Checked,
+                !chkExcludeUiText.Checked
             );
         }
 
@@ -132,7 +133,8 @@ namespace TranslateUtility
                 chkUntranslateInfo.Checked,
                 chkTranslateInfo.Checked,
                 chkUiInfo.Checked,
-                GetFontSetting()
+                GetFontSetting(),
+                !chkExcludeUiText.Checked
             );
         }
 

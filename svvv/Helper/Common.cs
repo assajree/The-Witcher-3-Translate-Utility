@@ -839,7 +839,12 @@ namespace TheWitcher3Thai
 
         #region Merge Language
 
-        public w3Strings GetTranslate(w3Strings source, w3Strings translate, bool forExcel, bool combine = false, bool originalFirst = false, bool includeNotTranslateMessageId = false, bool includeTranslateMessageId = false, bool includeUiMessageId = false)
+        public w3Strings GetTranslate(w3Strings source, w3Strings translate, bool forExcel, bool combine, bool originalFirst)
+        {
+            return GetTranslate(source, translate, forExcel, combine, originalFirst);
+        }
+
+        public w3Strings GetTranslate(w3Strings source, w3Strings translate, bool forExcel, bool combine, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool includeUiMessageId, bool translateUI)
         {
             if (forExcel)
             {
@@ -850,7 +855,7 @@ namespace TheWitcher3Thai
                     source.KeyHex,
                     source.KeyString,
                     source.Text,
-                    Translate(source, translate.Translate, false, false, false, false, false)
+                    Translate(source, translate.Translate, false, false, false, false, false, true)
                 );
             }
             else
@@ -859,7 +864,7 @@ namespace TheWitcher3Thai
                     source.ID,
                     source.KeyHex,
                     source.KeyString,
-                    Translate(source, translate.Translate, combine, originalFirst, includeNotTranslateMessageId, includeTranslateMessageId, includeUiMessageId),
+                    Translate(source, translate.Translate, combine, originalFirst, includeNotTranslateMessageId, includeTranslateMessageId, includeUiMessageId, translateUI),
                     null
                 );
             }
@@ -1002,7 +1007,7 @@ namespace TheWitcher3Thai
 
         //}
 
-        public List<w3Strings> Translate(List<w3Strings> content, bool combine, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool includeUiMessageId)
+        public List<w3Strings> Translate(List<w3Strings> content, bool combine, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool includeUiMessageId, bool translateUI)
         {
             var result = new List<w3Strings>();
             foreach (var c in content)
@@ -1011,7 +1016,7 @@ namespace TheWitcher3Thai
                     c.ID,
                     c.KeyHex,
                     c.KeyString,
-                    Translate(c, c.Translate, combine, originalFirst, includeNotTranslateMessageId, includeTranslateMessageId, includeUiMessageId),
+                    Translate(c, c.Translate, combine, originalFirst, includeNotTranslateMessageId, includeTranslateMessageId, includeUiMessageId, translateUI),
                     null
                 );
 
@@ -1023,18 +1028,19 @@ namespace TheWitcher3Thai
 
         public string Translate(w3Strings w3s, bool combine = false, bool originalFirst = true, bool includeMessageId = false)
         {
-            return Translate(w3s, w3s.Translate, combine, originalFirst, false, false, false);
+            return Translate(w3s, w3s.Translate, combine, originalFirst, false, false, false, true);
         }
 
-        public string Translate(w3Strings original, string translate, bool combine, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool includeUiMessageId)
+        public string Translate(w3Strings original, string translate, bool combine, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool includeUiMessageId, bool translateUI)
         {
             //not translate
             if (String.IsNullOrWhiteSpace(translate))
             {
+                // ui text
                 if (!original.IsConversation)
                 {
                     //if (includeUiMessageId && original.Text.Length > 30)
-                    if (includeUiMessageId)
+                    if (includeUiMessageId && includeNotTranslateMessageId)
                         return AppendMessageId(original, original.Text);
                     else
                         return original.Text;
@@ -1047,10 +1053,12 @@ namespace TheWitcher3Thai
                         return original.Text;
                 }
             }
-            // ui text
+            // tranlated ui text
             else if (!original.IsConversation)
             {
-                if (includeUiMessageId)
+                if (translateUI == false)
+                    return original.Text;
+                if (includeUiMessageId && includeTranslateMessageId)
                     return AppendMessageId(original, translate);
                 else
                     return translate;
@@ -1919,13 +1927,13 @@ namespace TheWitcher3Thai
             return -1;
         }
 
-        public void GenerateMod(Dictionary<string, List<w3Strings>> contents, string outputPath, bool combine, bool originalFirst, Dictionary<string, string> sheetConfig, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool IncludeUiMessageId)
+        public void GenerateMod(Dictionary<string, List<w3Strings>> contents, string outputPath, bool combine, bool originalFirst, Dictionary<string, string> sheetConfig, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool IncludeUiMessageId, bool translateUI)
         {
             var tempPath = Path.Combine(Application.StartupPath, "temp");
 
             foreach (var sheet in contents)
             {
-                var content = Translate(sheet.Value, combine, originalFirst, includeNotTranslateMessageId, includeTranslateMessageId, IncludeUiMessageId);
+                var content = Translate(sheet.Value, combine, originalFirst, includeNotTranslateMessageId, includeTranslateMessageId, IncludeUiMessageId, translateUI);
 
                 var path = Path.Combine(tempPath, sheet.Key + ".csv");
                 WriteCsv(content, path);
@@ -1935,7 +1943,7 @@ namespace TheWitcher3Thai
             FinishMod(tempPath, outputPath, sheetConfig);
         }
 
-        public void GenerateModAlt(Dictionary<string, List<w3Strings>> contents, string outputPath, bool combine, bool originalFirst, Dictionary<string, string> sheetConfig, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool IncludeUiMessageId, eFontSetting font)
+        public void GenerateModAlt(Dictionary<string, List<w3Strings>> contents, string outputPath, bool combine, bool originalFirst, Dictionary<string, string> sheetConfig, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool IncludeUiMessageId, eFontSetting font, bool translateUI)
         {
             DeleteDirectory(outputPath);
 
@@ -1958,7 +1966,7 @@ namespace TheWitcher3Thai
                         .Select(g => g.First())
                         .ToList();
 
-            var content = Translate(allMessage, combine, originalFirst, includeNotTranslateMessageId, includeTranslateMessageId, IncludeUiMessageId);
+            var content = Translate(allMessage, combine, originalFirst, includeNotTranslateMessageId, includeTranslateMessageId, IncludeUiMessageId, translateUI);
 
             var path = Path.Combine(tempPath, "message" + ".csv");
             WriteCsv(content, path);
@@ -2059,7 +2067,7 @@ namespace TheWitcher3Thai
 
             var raw = ReadExcel(excelPath, sheetConfig);
 
-            GenerateMod(raw, outputPath, combine, originalFirst, sheetConfig, false, false, false);
+            GenerateMod(raw, outputPath, combine, originalFirst, sheetConfig, false, false, false, true);
         }
 
         public Dictionary<string, List<w3Strings>> ReadExcel(string excelPath, Dictionary<string, string> sheetConfig)
@@ -2514,7 +2522,7 @@ namespace TheWitcher3Thai
             CopyDirectory(modPath, targetPath);
         }
 
-        public void GenerateLegacyMod(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool IncludeUiMessageId)
+        public void GenerateLegacyMod(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool IncludeUiMessageId, bool translateUI)
         {
             string templatePath = Configs.TemplatePath;
             if (!File.Exists(templatePath))
@@ -2526,7 +2534,7 @@ namespace TheWitcher3Thai
 
             var content = MergeLegacy(template, translate);
 
-            GenerateMod(content, outputPath, doubleLanguage, originalFirst, sheetConfig, includeNotTranslateMessageId, includeTranslateMessageId, IncludeUiMessageId);
+            GenerateMod(content, outputPath, doubleLanguage, originalFirst, sheetConfig, includeNotTranslateMessageId, includeTranslateMessageId, IncludeUiMessageId, translateUI);
 
             // write all text excel file for later use
             string tempPath = Path.Combine(outputPath, "translate.xlsx");
@@ -2538,7 +2546,7 @@ namespace TheWitcher3Thai
 
         }
 
-        public void GenerateLegacyModAlt(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool includeUiMessageId, eFontSetting font)
+        public void GenerateLegacyModAlt(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool includeUiMessageId, eFontSetting font, bool translateUI)
         {
             string templatePath = Configs.TemplatePath;
             if (!File.Exists(templatePath))
@@ -2550,7 +2558,7 @@ namespace TheWitcher3Thai
 
             var content = MergeLegacy(template, translate);
 
-            GenerateModAlt(content, outputPath, doubleLanguage, originalFirst, sheetConfig, includeNotTranslateMessageId, includeTranslateMessageId, includeUiMessageId, font);
+            GenerateModAlt(content, outputPath, doubleLanguage, originalFirst, sheetConfig, includeNotTranslateMessageId, includeTranslateMessageId, includeUiMessageId, font, translateUI);
 
             // write all text excel file for later use
             string tempPath = Path.Combine(outputPath, "translate.xlsx");

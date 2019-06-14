@@ -14,7 +14,10 @@ namespace TheWitcher3Thai.Helper
             if (txt == null)
                 return null;
 
-            return txt.Replace("\"", "").Trim();
+            txt = txt.Replace("\"", "").Trim();
+            txt = txt.Replace(".", "").Trim();
+
+            return txt;
         }
 
         public static void SetDefault(this TextBox txt, string defaultText)
