@@ -141,7 +141,7 @@
             this.chkExcludeUiText.AutoSize = true;
             this.chkExcludeUiText.Checked = global::TranslateUtility.Properties.Settings.Default._VerySimpleTranslateUI;
             this.chkExcludeUiText.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::TranslateUtility.Properties.Settings.Default, "_VerySimpleTranslateUI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkExcludeUiText.Location = new System.Drawing.Point(83, 0);
+            this.chkExcludeUiText.Location = new System.Drawing.Point(232, 22);
             this.chkExcludeUiText.Name = "chkExcludeUiText";
             this.chkExcludeUiText.Size = new System.Drawing.Size(104, 17);
             this.chkExcludeUiText.TabIndex = 37;
@@ -258,7 +258,7 @@
             this.chkUiInfo.AutoSize = true;
             this.chkUiInfo.Checked = settings1._SimpleUiInfo;
             this.chkUiInfo.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_SimpleUiInfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkUiInfo.Location = new System.Drawing.Point(220, 19);
+            this.chkUiInfo.Location = new System.Drawing.Point(232, 19);
             this.chkUiInfo.Name = "chkUiInfo";
             this.chkUiInfo.Size = new System.Drawing.Size(37, 17);
             this.chkUiInfo.TabIndex = 40;
@@ -291,7 +291,7 @@
             // 
             // btnResult
             // 
-            this.btnResult.Location = new System.Drawing.Point(6, 19);
+            this.btnResult.Location = new System.Drawing.Point(178, 19);
             this.btnResult.Name = "btnResult";
             this.btnResult.Size = new System.Drawing.Size(91, 23);
             this.btnResult.TabIndex = 48;
@@ -301,7 +301,7 @@
             // 
             // btnRestore
             // 
-            this.btnRestore.Location = new System.Drawing.Point(103, 19);
+            this.btnRestore.Location = new System.Drawing.Point(275, 19);
             this.btnRestore.Name = "btnRestore";
             this.btnRestore.Size = new System.Drawing.Size(91, 23);
             this.btnRestore.TabIndex = 49;
@@ -367,7 +367,7 @@
             // 
             // rdoDownloadDialy
             // 
-            this.rdoDownloadDialy.Location = new System.Drawing.Point(220, 19);
+            this.rdoDownloadDialy.Location = new System.Drawing.Point(232, 19);
             this.rdoDownloadDialy.Name = "rdoDownloadDialy";
             this.rdoDownloadDialy.Size = new System.Drawing.Size(85, 17);
             this.rdoDownloadDialy.TabIndex = 0;
@@ -376,7 +376,7 @@
             // 
             // rdoDownloadOnce
             // 
-            this.rdoDownloadOnce.Location = new System.Drawing.Point(327, 19);
+            this.rdoDownloadOnce.Location = new System.Drawing.Point(350, 19);
             this.rdoDownloadOnce.Name = "rdoDownloadOnce";
             this.rdoDownloadOnce.Size = new System.Drawing.Size(85, 17);
             this.rdoDownloadOnce.TabIndex = 0;
@@ -416,7 +416,7 @@
             0,
             0,
             0});
-            this.txtFontSize.Location = new System.Drawing.Point(462, 19);
+            this.txtFontSize.Location = new System.Drawing.Point(484, 18);
             this.txtFontSize.Minimum = new decimal(new int[] {
             10,
             0,
@@ -431,7 +431,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(324, 21);
+            this.label1.Location = new System.Drawing.Point(347, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(131, 13);
             this.label1.TabIndex = 3;
@@ -448,7 +448,7 @@
             // 
             // rdoFontNone
             // 
-            this.rdoFontNone.Location = new System.Drawing.Point(220, 19);
+            this.rdoFontNone.Location = new System.Drawing.Point(232, 19);
             this.rdoFontNone.Name = "rdoFontNone";
             this.rdoFontNone.Size = new System.Drawing.Size(85, 17);
             this.rdoFontNone.TabIndex = 1;
@@ -494,21 +494,21 @@
             // 
             this.miChangeLog.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.miChangeLog.Name = "miChangeLog";
-            this.miChangeLog.Size = new System.Drawing.Size(180, 22);
+            this.miChangeLog.Size = new System.Drawing.Size(145, 22);
             this.miChangeLog.Text = "การเปลี่ยนแปลง";
             this.miChangeLog.Click += new System.EventHandler(this.miChangeLog_Click);
             // 
             // miUpdate
             // 
             this.miUpdate.Name = "miUpdate";
-            this.miUpdate.Size = new System.Drawing.Size(180, 22);
+            this.miUpdate.Size = new System.Drawing.Size(145, 22);
             this.miUpdate.Text = "อัพเดทโปรแกรม";
             this.miUpdate.Click += new System.EventHandler(this.miUpdate_Click);
             // 
             // miCredit
             // 
             this.miCredit.Name = "miCredit";
-            this.miCredit.Size = new System.Drawing.Size(180, 22);
+            this.miCredit.Size = new System.Drawing.Size(145, 22);
             this.miCredit.Text = "เครดิต";
             this.miCredit.Click += new System.EventHandler(this.miCredit_Click);
             // 
