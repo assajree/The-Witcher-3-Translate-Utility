@@ -48,6 +48,7 @@ namespace TheWitcher3Thai
             d.Add("DLC14", @"dlc\dlc14\content");
             d.Add("DLC15", @"dlc\dlc15\content");
             d.Add("DLC16", @"dlc\dlc16\content");
+            d.Add("other", @"content\other");
 
             return d;
         }
@@ -73,6 +74,7 @@ namespace TheWitcher3Thai
             d.Add("DLC14", @"dlc\dlc14\content");
             d.Add("DLC15", @"dlc\dlc15\content");
             d.Add("DLC16", @"dlc\dlc16\content");
+            d.Add("other", @"content\other");
 
             return d;
         }
