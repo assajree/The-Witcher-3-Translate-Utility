@@ -358,6 +358,88 @@ namespace TheWitcher3Thai
             return excelPath;
         }
 
+        public Dictionary<string, List<w3Strings>> ReadTemplate()
+        {
+            string templatePath = Configs.TemplatePath;
+            if (!File.Exists(templatePath))
+                throw new Exception("ไม่พบไฟล์ template.xlsx กรุณาติดตั้งโปรแกมใหม่");
+
+            var sheetConfig = setting.GetSheetConfig();
+            var template = ReadExcel(templatePath, sheetConfig);
+
+            return template;
+        }
+
+        public Dictionary<string, List<w3Strings>> ReadGame(String gamePath)
+        {
+            var files = setting.GetSheetConfig();
+            var tempPath = Path.Combine(Application.StartupPath, "temp");
+            string tempOriginalPath = Path.Combine(tempPath, "original");
+
+            PrepareFile(gamePath, tempPath, files);
+
+            var result = new Dictionary<string, List<w3Strings>>();
+            foreach (var sht in files)
+            {
+                var csvPath = Path.Combine(tempOriginalPath, sht.Key + ".w3strings.csv");
+                var csvContent = ReadOriginalCsv(csvPath, true);
+
+                result.Add(sht.Key, csvContent);
+            }
+
+            return result;
+
+        }
+
+        public void GenerateMissing(string inputPath, string outputPath)
+        {
+            //var files = setting.GetSheetConfig();
+            //var tempPath = Path.Combine(Application.StartupPath, "temp");
+            //string tempOriginalPath = Path.Combine(tempPath, "original");
+
+            //if (String.IsNullOrWhiteSpace(outputPath))
+            //    outputPath = Path.Combine(Application.StartupPath, "output", "mising.xlsx");
+
+            //read
+
+            var templateContent = ReadTemplate();
+            var gameContent = ReadGame(inputPath);
+
+            var fi = new FileInfo(outputPath);
+            if (!fi.Directory.Exists)
+                fi.Directory.Create();
+
+            using (var p = new ExcelPackage(fi))
+            {
+                var wb = p.Workbook;
+                foreach (var t in templateContent)
+                {
+                    if (wb.Worksheets[t.Key] != null)
+                        wb.Worksheets.Delete(t.Key);
+
+                    if (!gameContent.ContainsKey(t.Key))
+                        continue;
+
+                    var content = GetMissing(gameContent[t.Key], t.Value);
+                    if (content.Count == 0)
+                        continue;
+
+                    var sht = wb.Worksheets.Add(t.Key);
+                    WriteSheetContent(sht, content, false);
+                }
+
+                p.Save();
+            }
+        }
+
+        private List<w3Strings> GetMissing(List<w3Strings> gameContent, List<w3Strings> templateContent)
+        {
+
+            var dictTemplate = ConvertToDictionary(templateContent);
+            var result = gameContent.Where(gc => !dictTemplate.ContainsKey(gc.IdKey)).ToList();
+            return result;
+        }
+
         public void UpdateW3tu()
         {
             ExtractFile(Configs.UpdaterZipPath, Configs.UpdaterDir);
@@ -762,7 +844,7 @@ namespace TheWitcher3Thai
                     source[i + extraSource].KeyHex,
                     source[i + extraSource].KeyString,
                     translate[i + extraTranslate].Text,
-                    source[i + extraTranslate].Translate.NullIfEmpty()??translate[i + extraTranslate].Translate,
+                    source[i + extraTranslate].Translate.NullIfEmpty() ?? translate[i + extraTranslate].Translate,
 
                     translate[i + extraSource].SheetName,
                     translate[i + extraSource].RowNumber
@@ -1095,7 +1177,7 @@ namespace TheWitcher3Thai
             //if (w3s.KeyHex != "00000000")
             //    return $@"{message} ({w3s.ID.Trim()})";
             //else
-                return $@"{message} ({GetMessageId(w3s)})";
+            return $@"{message} ({GetMessageId(w3s)})";
         }
 
         private string GetMessageId(w3Strings w3s)
@@ -1984,7 +2066,7 @@ namespace TheWitcher3Thai
             );
 
             // font
-            switch(font)
+            switch (font)
             {
                 case eFontSetting.Sarabun:
                     InstallFontSarabun(outputPath);
@@ -2198,9 +2280,9 @@ namespace TheWitcher3Thai
             if (!String.IsNullOrEmpty(containText))
             {
                 //result.AddRange(content.Where(c => !c.Text.Contains(containText) && (c.Translate?.Contains(containText)??false) ).ToList());
-                result.AddRange(content.Where(c => 
-                    c.Text.ToLower().Contains(containText.ToLower()) || 
-                    (c.Translate?.ToLower().Contains(containText.ToLower())??false)
+                result.AddRange(content.Where(c =>
+                    c.Text.ToLower().Contains(containText.ToLower()) ||
+                    (c.Translate?.ToLower().Contains(containText.ToLower()) ?? false)
                 ).ToList());
             }
 
@@ -2507,7 +2589,7 @@ namespace TheWitcher3Thai
                 DeleteDirectory(oldModPath);
 
             // delete kuntoon mod
-            if(removeOldFont)
+            if (removeOldFont)
                 RemoveOldFont(gamePath);
 
             var targetPath = Path.Combine(gamePath);
@@ -2521,7 +2603,7 @@ namespace TheWitcher3Thai
             var targetPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage);
             CopyDirectory(modPath, targetPath);
 
-            if(fontSize!=28)
+            if (fontSize != 28)
                 ChangeFontSize(targetPath, fontSize);
         }
 
@@ -2533,7 +2615,7 @@ namespace TheWitcher3Thai
 
             ReplaceAll(pathDialog, @"<FONT SIZE='28'>", $@"<FONT SIZE='{size}'>");
             ReplaceAll(pathSubtitle, @"<FONT SIZE='28'>", $@"<FONT SIZE='{size}'>");
-            
+
         }
 
         private void ReplaceAll(string path, string textToReplace, string replaceWith)
@@ -2570,7 +2652,7 @@ namespace TheWitcher3Thai
 
         }
 
-        public void GenerateLegacyModAlt(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool includeUiMessageId, eFontSetting font, bool translateUI,int fontSize)
+        public void GenerateLegacyModAlt(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool includeUiMessageId, eFontSetting font, bool translateUI, int fontSize)
         {
             string templatePath = Configs.TemplatePath;
             if (!File.Exists(templatePath))

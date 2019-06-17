@@ -56,6 +56,11 @@ namespace TranslateUtility
 
             // csv
             txtCsvOutput.SetDefault(Path.Combine(Application.StartupPath, "output", "csv.xlsx"));
+
+            // missing
+            txtMissingSource.SetDefault(gamePath);
+            txtMissingOutput.SetDefault(Path.Combine(Application.StartupPath, "output", "missing.xlsx"));
+
         }
 
         private void frmExcelTools_FormClosed(object sender, FormClosedEventArgs e)
@@ -312,6 +317,26 @@ namespace TranslateUtility
         {
             if (chkFilterTranslated.Checked)
                 chkFilterEmpty.Checked = false;
+        }
+
+        private void btnMissingSource_Click(object sender, EventArgs e)
+        {
+            c.SelectFolderTextBox(txtMissingSource);
+        }
+
+        private void btnMissingOutput_Click(object sender, EventArgs e)
+        {
+            c.SelectXlsxTextBox(txtMissingOutput);
+        }
+
+        private void btnGenerateMissing_Click(object sender, EventArgs e)
+        {
+            c.Processing(GenerateMissing);
+        }
+
+        private void GenerateMissing()
+        {
+            c.GenerateMissing(txtMissingSource.Text, txtMissingOutput.Text);
         }
     }
 }

@@ -130,7 +130,8 @@ namespace TranslateUtility
                 chkTranslateInfo.Checked,
                 chkUiInfo.Checked,
                 Common.eFontSetting.Normal,
-                true
+                true,
+                28
             );
         }
 
