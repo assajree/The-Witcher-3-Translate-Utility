@@ -13,6 +13,8 @@ namespace Svvv.Common
 {
     public partial class ProcessingDialog : Form
     {
+        public bool ShowError=true;
+
         private Action Worker { get; set; }
         private Func<string> WorkerString { get; set; }
 
@@ -76,7 +78,8 @@ namespace Svvv.Common
                 }
                 catch (Exception ex)
                 {
-                    Message = ex.GetBaseException().Message;
+                    if(ShowError)
+                        Message = ex.GetBaseException().Message;
                 }
             }
         }

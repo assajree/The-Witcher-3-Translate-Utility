@@ -339,13 +339,27 @@ namespace TheWitcher3Thai
                 // start download
                 var downloadComplete = DownloadFile("https://docs.google.com/spreadsheets/d/1XLM0VzU0RFiTw8NIQSZ2NBPlL_i1yzBYarrMWGb5lDA/export?format=xlsx", tempDownloadPath);
 
-                if (downloadComplete == false)
+                var fi = new FileInfo(excelPath);
+                if (downloadComplete == DialogResult.Cancel)
                 {
+                    // user cancel
                     return null;
                 }
-                else
+                if (downloadComplete == DialogResult.Abort)
                 {
-                    var fi = new FileInfo(excelPath);
+                    // cannot download translate file
+                    if (fi.Exists && fi.Length>0)
+                    {
+                        return excelPath;
+                    }
+                    else
+                    {
+                        ShowErrorMessage("ไม่สามารถโหลดไฟล์ได้ กรุณาตรวจสอบการเชื่อมต่ออินเตอร์เน็ต");
+                        return null;
+                    }
+                }
+                else
+                {                    
                     if (fi.Exists)
                         fi.Delete();
                     else if (!fi.Directory.Exists)
@@ -1242,9 +1256,15 @@ namespace TheWitcher3Thai
             }
         }
 
-        public bool CheckForUpdate()
+        public bool CheckForUpdate(bool silenceMode=false)
         {
-            var lastVersion = ProcessingString(GetLastVersion, "กำลังเช็คเวอร์ชั่นล่าสุด", false);
+            string lastVersion;
+            
+            if(silenceMode)
+                lastVersion = ProcessingStringSilence(GetLastVersion, "กำลังเช็คเวอร์ชั่นล่าสุด", false);
+            else
+                lastVersion = ProcessingString(GetLastVersion, "กำลังเช็คเวอร์ชั่นล่าสุด", false);
+
             if (lastVersion == null)
                 return false;
 
@@ -1315,16 +1335,12 @@ namespace TheWitcher3Thai
             }
         }
 
-        public bool DownloadFile(string url, string saveToPath)
+        public DialogResult DownloadFile(string url, string saveToPath)
         {
             using (var dlg = new DownloadDialog(url, saveToPath))
             {
                 var result = dlg.ShowDialog();
-
-                if (result == DialogResult.OK)
-                    return true;
-                else
-                    return false;
+                return result;                
             }
         }
 
@@ -1403,7 +1419,7 @@ namespace TheWitcher3Thai
             string url = "https://dl.dropbox.com/s/iyn4vn4eiq4oegc/Thaimods.zip?dl=0";
             string downloadFilePath = Path.Combine(Application.StartupPath, "temp", "thaimod.zip");
             var downloadFileResult = DownloadFile(url, downloadFilePath);
-            if (downloadFileResult == false)
+            if (downloadFileResult != DialogResult.OK)
                 return null;
 
             Processing(() => { ProcessDownloadMod(targetPath, downloadFilePath, writeVersion, updateFont); }, false);
@@ -2217,6 +2233,25 @@ namespace TheWitcher3Thai
             ProcessingString(worker, title, true, completeMessage);
         }
 
+        public string ProcessingStringSilence(Func<string> worker, string title = "Processing", bool showCompleteMessage = true, string completeMessage = "Complete")
+        {
+            string result = null;
+            using (var dlg = new ProcessingDialog(title))
+            {
+                dlg.ShowError = false;
+                dlg.SetWorkerString(worker);
+                dlg.ShowDialog();
+                if (dlg.DialogResult == DialogResult.OK)
+                {
+                    result = dlg.Message;
+
+                    if (showCompleteMessage)
+                        ShowMessage(result, completeMessage);
+                }
+            }
+
+            return result;
+        }
 
         public string ProcessingString(Func<string> worker, string title = "Processing", bool showCompleteMessage = true, string completeMessage = "Complete")
         {

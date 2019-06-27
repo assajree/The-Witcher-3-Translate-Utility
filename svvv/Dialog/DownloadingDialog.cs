@@ -41,8 +41,18 @@ namespace TheWitcher3Thai
 
         private void DownloadComplete(object sender, AsyncCompletedEventArgs e)
         {
-            if(e.Cancelled==false)
+            if (e.Cancelled)
+            {
+                this.DialogResult = DialogResult.Cancel;
+            }
+            else if (e.Error != null)
+            {
+                this.DialogResult = DialogResult.Abort;
+            }
+            else
+            {
                 this.DialogResult = DialogResult.OK;
+            }
 
             this.Close();
         }

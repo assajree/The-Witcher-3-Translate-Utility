@@ -40,6 +40,21 @@ namespace TranslateUtility
 
             if (!ShowAdvance)
                 ToggleAdvance();
+
+            NotifyProgramUpdate();
+        }
+
+        private void NotifyProgramUpdate()
+        {
+            var hasUpdate = c.CheckForUpdate(true);
+            if (!hasUpdate)
+                return;
+
+            if (c.ShowConfirm("มีโปรแกรมเวอร์ชั่นใหม่ ต้องการดาวน์โหลดหรือไม่", "อัพเดท"))
+            {
+                this.Close();
+                c.UpdateW3tu();
+            }
         }
 
         private void InitialTooTip()
@@ -262,7 +277,9 @@ namespace TranslateUtility
             translatePath = Path.Combine(Configs.DownloadPath, "translate.xlsx");
             translatePath = c.DownloadLegacyExcel(translatePath, false, GetDownloadFrequency());
             if (translatePath == null)
+            {
                 return;
+            }
 
             // generate mod
             var result = c.Processing(GenerateModAlt, false, "กำลังสร้าง...");
