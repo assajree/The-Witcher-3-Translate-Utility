@@ -22,14 +22,18 @@ namespace svvv
         public static string UpdaterPath = Path.Combine(UpdaterDir, "Updater.exe");
 
 
-        public static string Separator = "  ";
-        public static string UpdateFileId = "1HOmaK3jaI2oW194CvyDXlzZBUEoWzGbU";
-        public static string VersionFileId = "1dChsKp641mD3EPREqSZTN_yxlu9KFXJP";
+        public const string Separator = "  ";
+        public const string UpdateFileId = "1HOmaK3jaI2oW194CvyDXlzZBUEoWzGbU";
+        public const string VersionFileId = "1dChsKp641mD3EPREqSZTN_yxlu9KFXJP";
 
-        public static string modFontSarabun = "modFontSarabun";
-        public static string modThaiFont = "modThaiFont";
-        public static string modDoubleSubtitle = "modDoubleSubtitle";
-        public static string modThaiLanguage = "modThaiLanguage"; // translate
-        public static string modKuntoonFont = "modKuntoonW3thai_mod";
+        public const string modFontSarabun = "modFontSarabun";
+        public const string modThaiFont = "modThaiFont";
+        public const string modDoubleSubtitle = "modDoubleSubtitle";
+        public const string modThaiLanguage = "modThaiLanguage"; // translate
+        public const string modKuntoonFont = "modKuntoonW3thai_mod";
+
+        public const int MaxLegacyEmptyRow = 5;
+
+        public const string MissingText = "[MISSING MESSAGE]";
     }
 }

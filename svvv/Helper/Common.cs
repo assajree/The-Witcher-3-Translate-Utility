@@ -348,7 +348,7 @@ namespace TheWitcher3Thai
                 if (downloadComplete == DialogResult.Abort)
                 {
                     // cannot download translate file
-                    if (fi.Exists && fi.Length>0)
+                    if (fi.Exists && fi.Length > 0)
                     {
                         return excelPath;
                     }
@@ -359,7 +359,7 @@ namespace TheWitcher3Thai
                     }
                 }
                 else
-                {                    
+                {
                     if (fi.Exists)
                         fi.Delete();
                     else if (!fi.Directory.Exists)
@@ -448,7 +448,6 @@ namespace TheWitcher3Thai
 
         private List<w3Strings> GetMissing(List<w3Strings> gameContent, List<w3Strings> templateContent)
         {
-
             var dictTemplate = ConvertToDictionary(templateContent);
             var result = gameContent.Where(gc => !dictTemplate.ContainsKey(gc.IdKey)).ToList();
             return result;
@@ -610,6 +609,7 @@ namespace TheWitcher3Thai
 
         public Dictionary<string, w3Strings> ConvertToDictionary(List<w3Strings> content)
         {
+            content = RemoveDupplicate(content);
             var result = content.ToDictionary((w3s) => { return w3s.ID.Trim(); });
             return result;
         }
@@ -640,7 +640,9 @@ namespace TheWitcher3Thai
                 for (i = 0; i < content.Length; i++)
                 {
                     line = content[i];
-                    w3s.Add(new w3Strings(SplitOriginalLine(line), true));
+                    var message = new w3Strings(SplitOriginalLine(line), true);
+                    message.SheetName = Path.GetFileNameWithoutExtension(path).Replace(".w3strings","");
+                    w3s.Add(message);
                 }
 
                 if (sort)
@@ -915,18 +917,35 @@ namespace TheWitcher3Thai
 
             int row = ROW_START;
             string translate;
-            string text = sht.Cells[row, COL_TEXT].Text;
-            while (!String.IsNullOrWhiteSpace(text))
+            string text;
+            while (!IsEndLegacy(sht,row))
             {
+                text = sht.Cells[row, COL_TEXT].Text;
+                if (String.IsNullOrWhiteSpace(text))
+                    text = Configs.MissingText;
 
                 translate = sht.Cells[row, COL_TRANS].Text.Replace("\r", "").Replace("\n", "");
                 result.Add(new w3Strings(null, null, null, text, translate, sht.Name, row));
 
                 row++;
-                text = sht.Cells[row, COL_TEXT].Text;
             }
 
             return result;
+
+        }
+
+        bool IsEndLegacy(ExcelWorksheet sht,int row)
+        {
+            string text;
+            for(int i=0;i<Configs.MaxLegacyEmptyRow;i++)
+            {
+                text = sht.Cells[row+i, 1].Text;
+                if (!String.IsNullOrWhiteSpace(text))
+                    return false;
+
+            }
+
+            return true;
 
         }
 
@@ -1117,6 +1136,7 @@ namespace TheWitcher3Thai
                 );
 
                 result.Add(item);
+
             }
 
             return result;
@@ -1256,11 +1276,11 @@ namespace TheWitcher3Thai
             }
         }
 
-        public bool CheckForUpdate(bool silenceMode=false)
+        public bool CheckForUpdate(bool silenceMode = false)
         {
             string lastVersion;
-            
-            if(silenceMode)
+
+            if (silenceMode)
                 lastVersion = ProcessingStringSilence(GetLastVersion, "กำลังเช็คเวอร์ชั่นล่าสุด", false);
             else
                 lastVersion = ProcessingString(GetLastVersion, "กำลังเช็คเวอร์ชั่นล่าสุด", false);
@@ -1340,7 +1360,7 @@ namespace TheWitcher3Thai
             using (var dlg = new DownloadDialog(url, saveToPath))
             {
                 var result = dlg.ShowDialog();
-                return result;                
+                return result;
             }
         }
 
@@ -1664,7 +1684,7 @@ namespace TheWitcher3Thai
                     wb.Worksheets.Delete(shtAll);
 
                 shtAll = wb.Worksheets.Add("all");
-                WriteSheetContent(shtAll, all.OrderBy(a=>a.ID).ToList(), false);
+                WriteSheetContent(shtAll, all.OrderBy(a => a.ID).ToList(), false);
 
                 p.Save();
             }
@@ -1710,6 +1730,7 @@ namespace TheWitcher3Thai
             if (!fi.Directory.Exists)
                 fi.Directory.Create();
 
+            List<w3Strings> all = new List<w3Strings>();
             using (var p = new ExcelPackage(fi))
             {
                 var wb = p.Workbook;
@@ -1720,6 +1741,7 @@ namespace TheWitcher3Thai
                     if (c.Value.Count == 0)
                         continue;
 
+                    all.AddRange(c.Value);
                     var sht = wb.Worksheets.Add(c.Key);
                     if (sort)
                         WriteSheetContent(sht, c.Value.OrderBy(v => v.ID).ToList(), false);
@@ -1727,13 +1749,26 @@ namespace TheWitcher3Thai
                         WriteSheetContent(sht, c.Value, false);
                 }
 
+                WriteAllContentSheet(wb, all);
+
                 p.Save();
             }
+        }
+
+        private void WriteAllContentSheet(ExcelWorkbook wb, List<w3Strings> all)
+        {
+            var shtAll = wb.Worksheets["all"];
+            if (shtAll != null)
+                wb.Worksheets.Delete(shtAll);
+
+            shtAll = wb.Worksheets.Add("all");
+            WriteSheetContent(shtAll, all.OrderBy(a => a.ID).ToList(), false);
         }
 
         private void WriteResultSheet(ExcelWorkbook wb, Dictionary<string, List<w3Strings>> contents)
         {
             string sheetName = "Summary";
+            string contentName;
 
             var sht = wb.Worksheets[sheetName];
 
@@ -1760,6 +1795,7 @@ namespace TheWitcher3Thai
             sht.Cells[2, 4].Value = "Complete";
 
             var extraSheet = setting.GetExtraSheetConfig();
+            var dictSheetName = setting.GetSheetName();
 
             // detail
             int currRow = ROW_START;
@@ -1775,7 +1811,16 @@ namespace TheWitcher3Thai
                 totalTranslate += translate;
                 totalContent += item.Value.Count;
 
-                sht.Cells[currRow, 1].Value = item.Key;
+                if(dictSheetName.ContainsKey(item.Key))
+                {
+                    contentName = dictSheetName[item.Key];
+                }
+                else
+                {
+                    contentName = item.Key;
+                }
+
+                sht.Cells[currRow, 1].Value = contentName;
                 sht.Cells[currRow, 2].Value = item.Value.Count.ToString("#,0");
                 sht.Cells[currRow, 3].Value = notTranslate.ToString("#,0");
 
@@ -2068,12 +2113,14 @@ namespace TheWitcher3Thai
             // WriteDupplicate(allMessage, outputPath);
 
             // remove dupplicate
-            var distinct = allMessage
-                        .GroupBy(x => x.ID)
-                        .Select(g => g.First())
-                        .ToList();
+            //var distinct = allMessage
+            //            .GroupBy(x => x.ID)
+            //            .Select(g => g.First())
+            //            .ToList();
 
             var content = Translate(allMessage, combine, originalFirst, includeNotTranslateMessageId, includeTranslateMessageId, IncludeUiMessageId, translateUI);
+
+            content = RemoveDupplicate(content);
 
             var path = Path.Combine(tempPath, "message" + ".csv");
             WriteCsv(content, path);
@@ -2106,6 +2153,26 @@ namespace TheWitcher3Thai
 
             WriteVersionUnofficial(outputPath, "unofficial");
 
+        }
+
+        private List<w3Strings> RemoveDupplicate(List<w3Strings> content)
+        {
+            var dict = new Dictionary<string, w3Strings>();
+            foreach(var item in content)
+            {
+                if(dict.ContainsKey(item.IdKey))
+                {
+                    var exist = dict[item.IdKey];
+                    if (item.TranslateStatus > exist.TranslateStatus)
+                        dict[item.IdKey] = item;
+                }
+                else
+                {
+                    dict.Add(item.IdKey, item);
+                }
+            }
+
+            return dict.Select(d => d.Value).ToList();
         }
 
         private void WriteDupplicate(List<w3Strings> allMessage, string outputPath)
