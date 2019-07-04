@@ -1638,6 +1638,7 @@ namespace TheWitcher3Thai
             if (!fi.Directory.Exists)
                 fi.Directory.Create();
 
+            List<w3Strings> all = new List<w3Strings>();
             using (var p = new ExcelPackage(fi))
             {
                 var wb = p.Workbook;
@@ -1649,6 +1650,7 @@ namespace TheWitcher3Thai
 
                     var sourcePath = Path.Combine(tempOriginalPath, f.Key + ".w3strings.csv");
                     var content = ReadOriginalCsv(sourcePath, true);
+                    all.AddRange(content);
 
                     if (content.Count == 0)
                         continue;
@@ -1656,6 +1658,13 @@ namespace TheWitcher3Thai
                     var sht = wb.Worksheets.Add(f.Key);
                     WriteSheetContent(sht, content, false);
                 }
+
+                var shtAll = wb.Worksheets["all"];
+                if (shtAll != null)
+                    wb.Worksheets.Delete(shtAll);
+
+                shtAll = wb.Worksheets.Add("all");
+                WriteSheetContent(shtAll, all.OrderBy(a=>a.ID).ToList(), false);
 
                 p.Save();
             }
