@@ -49,7 +49,7 @@ namespace TheWitcher3Thai
             //d.Add("DLC16", @"dlc\dlc16\content");
 
             d.Add("DLCall", @"dlc\dlcAll\content");
-            d.Add("MISSING", @"content\missing");
+            //d.Add("MISSING", @"content\missing");
 
             return d;
         }
@@ -71,12 +71,12 @@ namespace TheWitcher3Thai
             d.Add("content10", "content10");
             d.Add("content11", "content11");
             d.Add("content12", "content12");
+            
+            d.Add("DLCEP1content", "DLCEP1content (Heart of Stone)");
+            d.Add("DLCbobcontent", "DLCbobcontent (Blood and Wine)");
 
-            d.Add("DLCbobcontent", "Blood and Wine");
-            d.Add("DLCEP1content", "Heart of Stone");
-
-            d.Add("DLCall",  "Minor DLC");
-            d.Add("MISSING", "MISSING");
+            d.Add("DLCall", "DLCall (Other DLC)");
+            //d.Add("MISSING", "MISSING");
 
             return d;
         }

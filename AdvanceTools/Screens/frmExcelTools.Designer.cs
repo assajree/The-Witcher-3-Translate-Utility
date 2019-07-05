@@ -143,10 +143,10 @@
             this.groupBox5.Controls.Add(this.txtModFillSource);
             this.groupBox5.Controls.Add(this.btnModFill);
             this.groupBox5.Location = new System.Drawing.Point(16, 556);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox5.Size = new System.Drawing.Size(770, 146);
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox5.Size = new System.Drawing.Size(749, 146);
             this.groupBox5.TabIndex = 10;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Fill Excel from Mod";
@@ -246,8 +246,8 @@
             // btnModFillOutput
             // 
             this.btnModFillOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnModFillOutput.Location = new System.Drawing.Point(723, 50);
-            this.btnModFillOutput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnModFillOutput.Location = new System.Drawing.Point(702, 50);
+            this.btnModFillOutput.Margin = new System.Windows.Forms.Padding(4);
             this.btnModFillOutput.Name = "btnModFillOutput";
             this.btnModFillOutput.Size = new System.Drawing.Size(35, 28);
             this.btnModFillOutput.TabIndex = 5;
@@ -271,18 +271,18 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtModFillOutput.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "_ExcelFillDesc", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtModFillOutput.Location = new System.Drawing.Point(165, 53);
-            this.txtModFillOutput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtModFillOutput.Margin = new System.Windows.Forms.Padding(4);
             this.txtModFillOutput.Name = "txtModFillOutput";
             this.txtModFillOutput.ReadOnly = true;
-            this.txtModFillOutput.Size = new System.Drawing.Size(551, 22);
+            this.txtModFillOutput.Size = new System.Drawing.Size(530, 22);
             this.txtModFillOutput.TabIndex = 3;
             this.txtModFillOutput.Text = settings1._ExcelFillDesc;
             // 
             // btnModFillSource
             // 
             this.btnModFillSource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnModFillSource.Location = new System.Drawing.Point(723, 21);
-            this.btnModFillSource.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnModFillSource.Location = new System.Drawing.Point(702, 21);
+            this.btnModFillSource.Margin = new System.Windows.Forms.Padding(4);
             this.btnModFillSource.Name = "btnModFillSource";
             this.btnModFillSource.Size = new System.Drawing.Size(35, 28);
             this.btnModFillSource.TabIndex = 2;
@@ -306,16 +306,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtModFillSource.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "_ExcelFillSource", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtModFillSource.Location = new System.Drawing.Point(165, 23);
-            this.txtModFillSource.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtModFillSource.Margin = new System.Windows.Forms.Padding(4);
             this.txtModFillSource.Name = "txtModFillSource";
-            this.txtModFillSource.Size = new System.Drawing.Size(551, 22);
+            this.txtModFillSource.Size = new System.Drawing.Size(530, 22);
             this.txtModFillSource.TabIndex = 0;
             this.txtModFillSource.Text = settings1._ExcelFillSource;
             // 
             // btnModFill
             // 
             this.btnModFill.Location = new System.Drawing.Point(165, 111);
-            this.btnModFill.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnModFill.Margin = new System.Windows.Forms.Padding(4);
             this.btnModFill.Name = "btnModFill";
             this.btnModFill.Size = new System.Drawing.Size(101, 28);
             this.btnModFill.TabIndex = 0;
@@ -335,10 +335,10 @@
             this.groupBox3.Controls.Add(this.txtModSource);
             this.groupBox3.Controls.Add(this.btnGenerateExcel);
             this.groupBox3.Location = new System.Drawing.Point(16, 15);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox3.Size = new System.Drawing.Size(770, 123);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox3.Size = new System.Drawing.Size(749, 123);
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Generate Excel from Mod";
@@ -346,8 +346,8 @@
             // brnExcelOutput
             // 
             this.brnExcelOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.brnExcelOutput.Location = new System.Drawing.Point(723, 50);
-            this.brnExcelOutput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.brnExcelOutput.Location = new System.Drawing.Point(702, 50);
+            this.brnExcelOutput.Margin = new System.Windows.Forms.Padding(4);
             this.brnExcelOutput.Name = "brnExcelOutput";
             this.brnExcelOutput.Size = new System.Drawing.Size(35, 28);
             this.brnExcelOutput.TabIndex = 5;
@@ -371,18 +371,18 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtModOutput.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "_ExcelModOutput", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtModOutput.Location = new System.Drawing.Point(165, 53);
-            this.txtModOutput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtModOutput.Margin = new System.Windows.Forms.Padding(4);
             this.txtModOutput.Name = "txtModOutput";
             this.txtModOutput.ReadOnly = true;
-            this.txtModOutput.Size = new System.Drawing.Size(550, 22);
+            this.txtModOutput.Size = new System.Drawing.Size(529, 22);
             this.txtModOutput.TabIndex = 3;
             this.txtModOutput.Text = settings1._ExcelModOutput;
             // 
             // btnExcelSource
             // 
             this.btnExcelSource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExcelSource.Location = new System.Drawing.Point(723, 21);
-            this.btnExcelSource.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExcelSource.Location = new System.Drawing.Point(702, 21);
+            this.btnExcelSource.Margin = new System.Windows.Forms.Padding(4);
             this.btnExcelSource.Name = "btnExcelSource";
             this.btnExcelSource.Size = new System.Drawing.Size(35, 28);
             this.btnExcelSource.TabIndex = 2;
@@ -406,16 +406,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtModSource.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "_ExcelModSource", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtModSource.Location = new System.Drawing.Point(165, 23);
-            this.txtModSource.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtModSource.Margin = new System.Windows.Forms.Padding(4);
             this.txtModSource.Name = "txtModSource";
-            this.txtModSource.Size = new System.Drawing.Size(550, 22);
+            this.txtModSource.Size = new System.Drawing.Size(529, 22);
             this.txtModSource.TabIndex = 0;
             this.txtModSource.Text = settings1._ExcelModSource;
             // 
             // btnGenerateExcel
             // 
             this.btnGenerateExcel.Location = new System.Drawing.Point(165, 85);
-            this.btnGenerateExcel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGenerateExcel.Margin = new System.Windows.Forms.Padding(4);
             this.btnGenerateExcel.Name = "btnGenerateExcel";
             this.btnGenerateExcel.Size = new System.Drawing.Size(100, 28);
             this.btnGenerateExcel.TabIndex = 0;
@@ -440,10 +440,10 @@
             this.groupBox4.Controls.Add(this.txtLegacyMod);
             this.groupBox4.Controls.Add(this.btnLegacyGenerate);
             this.groupBox4.Location = new System.Drawing.Point(16, 710);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox4.Size = new System.Drawing.Size(770, 150);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox4.Size = new System.Drawing.Size(749, 150);
             this.groupBox4.TabIndex = 10;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Generate Excel from Legacy";
@@ -451,8 +451,8 @@
             // btnLegacyModDownload
             // 
             this.btnLegacyModDownload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLegacyModDownload.Location = new System.Drawing.Point(656, 21);
-            this.btnLegacyModDownload.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLegacyModDownload.Location = new System.Drawing.Point(635, 21);
+            this.btnLegacyModDownload.Margin = new System.Windows.Forms.Padding(4);
             this.btnLegacyModDownload.Name = "btnLegacyModDownload";
             this.btnLegacyModDownload.Size = new System.Drawing.Size(101, 28);
             this.btnLegacyModDownload.TabIndex = 11;
@@ -463,8 +463,8 @@
             // btnLegacyExcelDownload
             // 
             this.btnLegacyExcelDownload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLegacyExcelDownload.Location = new System.Drawing.Point(656, 52);
-            this.btnLegacyExcelDownload.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLegacyExcelDownload.Location = new System.Drawing.Point(635, 52);
+            this.btnLegacyExcelDownload.Margin = new System.Windows.Forms.Padding(4);
             this.btnLegacyExcelDownload.Name = "btnLegacyExcelDownload";
             this.btnLegacyExcelDownload.Size = new System.Drawing.Size(101, 28);
             this.btnLegacyExcelDownload.TabIndex = 10;
@@ -478,18 +478,18 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtLegacyExcel.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "_ExcelLegacyTranslate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtLegacyExcel.Location = new System.Drawing.Point(165, 54);
-            this.txtLegacyExcel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLegacyExcel.Margin = new System.Windows.Forms.Padding(4);
             this.txtLegacyExcel.Name = "txtLegacyExcel";
             this.txtLegacyExcel.ReadOnly = true;
-            this.txtLegacyExcel.Size = new System.Drawing.Size(439, 22);
+            this.txtLegacyExcel.Size = new System.Drawing.Size(418, 22);
             this.txtLegacyExcel.TabIndex = 9;
             this.txtLegacyExcel.Text = settings1._ExcelLegacyTranslate;
             // 
             // btnLegacyExcel
             // 
             this.btnLegacyExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLegacyExcel.Location = new System.Drawing.Point(615, 52);
-            this.btnLegacyExcel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLegacyExcel.Location = new System.Drawing.Point(594, 52);
+            this.btnLegacyExcel.Margin = new System.Windows.Forms.Padding(4);
             this.btnLegacyExcel.Name = "btnLegacyExcel";
             this.btnLegacyExcel.Size = new System.Drawing.Size(35, 28);
             this.btnLegacyExcel.TabIndex = 8;
@@ -510,8 +510,8 @@
             // btnLegacyOutput
             // 
             this.btnLegacyOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLegacyOutput.Location = new System.Drawing.Point(723, 82);
-            this.btnLegacyOutput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLegacyOutput.Location = new System.Drawing.Point(702, 82);
+            this.btnLegacyOutput.Margin = new System.Windows.Forms.Padding(4);
             this.btnLegacyOutput.Name = "btnLegacyOutput";
             this.btnLegacyOutput.Size = new System.Drawing.Size(35, 28);
             this.btnLegacyOutput.TabIndex = 5;
@@ -535,18 +535,18 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtLegacyOutput.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "_ExcelLegacyOutput", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtLegacyOutput.Location = new System.Drawing.Point(165, 84);
-            this.txtLegacyOutput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLegacyOutput.Margin = new System.Windows.Forms.Padding(4);
             this.txtLegacyOutput.Name = "txtLegacyOutput";
             this.txtLegacyOutput.ReadOnly = true;
-            this.txtLegacyOutput.Size = new System.Drawing.Size(550, 22);
+            this.txtLegacyOutput.Size = new System.Drawing.Size(529, 22);
             this.txtLegacyOutput.TabIndex = 3;
             this.txtLegacyOutput.Text = settings1._ExcelLegacyOutput;
             // 
             // btnLegacyMod
             // 
             this.btnLegacyMod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLegacyMod.Location = new System.Drawing.Point(615, 21);
-            this.btnLegacyMod.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLegacyMod.Location = new System.Drawing.Point(594, 21);
+            this.btnLegacyMod.Margin = new System.Windows.Forms.Padding(4);
             this.btnLegacyMod.Name = "btnLegacyMod";
             this.btnLegacyMod.Size = new System.Drawing.Size(35, 28);
             this.btnLegacyMod.TabIndex = 2;
@@ -570,16 +570,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtLegacyMod.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "_ExcelLegacyMod", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtLegacyMod.Location = new System.Drawing.Point(165, 23);
-            this.txtLegacyMod.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLegacyMod.Margin = new System.Windows.Forms.Padding(4);
             this.txtLegacyMod.Name = "txtLegacyMod";
-            this.txtLegacyMod.Size = new System.Drawing.Size(439, 22);
+            this.txtLegacyMod.Size = new System.Drawing.Size(418, 22);
             this.txtLegacyMod.TabIndex = 0;
             this.txtLegacyMod.Text = settings1._ExcelLegacyMod;
             // 
             // btnLegacyGenerate
             // 
             this.btnLegacyGenerate.Location = new System.Drawing.Point(165, 116);
-            this.btnLegacyGenerate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLegacyGenerate.Margin = new System.Windows.Forms.Padding(4);
             this.btnLegacyGenerate.Name = "btnLegacyGenerate";
             this.btnLegacyGenerate.Size = new System.Drawing.Size(100, 28);
             this.btnLegacyGenerate.TabIndex = 0;
@@ -605,10 +605,10 @@
             this.groupBox2.Controls.Add(this.txtMergeSource);
             this.groupBox2.Controls.Add(this.btnMergeExcel);
             this.groupBox2.Location = new System.Drawing.Point(16, 367);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox2.Size = new System.Drawing.Size(770, 182);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Size = new System.Drawing.Size(749, 182);
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Merge Excel";
@@ -616,8 +616,8 @@
             // btnMergeTranslate
             // 
             this.btnMergeTranslate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMergeTranslate.Location = new System.Drawing.Point(723, 50);
-            this.btnMergeTranslate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMergeTranslate.Location = new System.Drawing.Point(702, 50);
+            this.btnMergeTranslate.Margin = new System.Windows.Forms.Padding(4);
             this.btnMergeTranslate.Name = "btnMergeTranslate";
             this.btnMergeTranslate.Size = new System.Drawing.Size(35, 28);
             this.btnMergeTranslate.TabIndex = 16;
@@ -641,9 +641,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtMergeTranslate.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "_ExcelMergeTranslate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtMergeTranslate.Location = new System.Drawing.Point(165, 53);
-            this.txtMergeTranslate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMergeTranslate.Margin = new System.Windows.Forms.Padding(4);
             this.txtMergeTranslate.Name = "txtMergeTranslate";
-            this.txtMergeTranslate.Size = new System.Drawing.Size(551, 22);
+            this.txtMergeTranslate.Size = new System.Drawing.Size(530, 22);
             this.txtMergeTranslate.TabIndex = 14;
             this.txtMergeTranslate.Text = settings1._ExcelMergeTranslate;
             // 
@@ -689,8 +689,8 @@
             // btnMergeOutput
             // 
             this.btnMergeOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMergeOutput.Location = new System.Drawing.Point(723, 81);
-            this.btnMergeOutput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMergeOutput.Location = new System.Drawing.Point(702, 81);
+            this.btnMergeOutput.Margin = new System.Windows.Forms.Padding(4);
             this.btnMergeOutput.Name = "btnMergeOutput";
             this.btnMergeOutput.Size = new System.Drawing.Size(35, 28);
             this.btnMergeOutput.TabIndex = 11;
@@ -714,17 +714,17 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtMergeOutput.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "_ExcelMergeOutput", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtMergeOutput.Location = new System.Drawing.Point(165, 82);
-            this.txtMergeOutput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMergeOutput.Margin = new System.Windows.Forms.Padding(4);
             this.txtMergeOutput.Name = "txtMergeOutput";
-            this.txtMergeOutput.Size = new System.Drawing.Size(551, 22);
+            this.txtMergeOutput.Size = new System.Drawing.Size(530, 22);
             this.txtMergeOutput.TabIndex = 9;
             this.txtMergeOutput.Text = settings1._ExcelMergeOutput;
             // 
             // btnMergeSource
             // 
             this.btnMergeSource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMergeSource.Location = new System.Drawing.Point(723, 21);
-            this.btnMergeSource.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMergeSource.Location = new System.Drawing.Point(702, 21);
+            this.btnMergeSource.Margin = new System.Windows.Forms.Padding(4);
             this.btnMergeSource.Name = "btnMergeSource";
             this.btnMergeSource.Size = new System.Drawing.Size(35, 28);
             this.btnMergeSource.TabIndex = 2;
@@ -748,16 +748,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtMergeSource.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "_ExcelMergeSource", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtMergeSource.Location = new System.Drawing.Point(165, 23);
-            this.txtMergeSource.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMergeSource.Margin = new System.Windows.Forms.Padding(4);
             this.txtMergeSource.Name = "txtMergeSource";
-            this.txtMergeSource.Size = new System.Drawing.Size(551, 22);
+            this.txtMergeSource.Size = new System.Drawing.Size(530, 22);
             this.txtMergeSource.TabIndex = 0;
             this.txtMergeSource.Text = settings1._ExcelMergeSource;
             // 
             // btnMergeExcel
             // 
             this.btnMergeExcel.Location = new System.Drawing.Point(165, 146);
-            this.btnMergeExcel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMergeExcel.Margin = new System.Windows.Forms.Padding(4);
             this.btnMergeExcel.Name = "btnMergeExcel";
             this.btnMergeExcel.Size = new System.Drawing.Size(100, 28);
             this.btnMergeExcel.TabIndex = 0;
@@ -788,10 +788,10 @@
             this.groupBox1.Controls.Add(this.txtFilterSource);
             this.groupBox1.Controls.Add(this.btnFilterOutputOpen);
             this.groupBox1.Location = new System.Drawing.Point(16, 145);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox1.Size = new System.Drawing.Size(770, 214);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Size = new System.Drawing.Size(749, 214);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Generate Excel for Translate";
@@ -800,7 +800,7 @@
             // 
             this.chkFilterTranslated.AutoSize = true;
             this.chkFilterTranslated.Location = new System.Drawing.Point(331, 119);
-            this.chkFilterTranslated.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkFilterTranslated.Margin = new System.Windows.Forms.Padding(4);
             this.chkFilterTranslated.Name = "chkFilterTranslated";
             this.chkFilterTranslated.Size = new System.Drawing.Size(98, 21);
             this.chkFilterTranslated.TabIndex = 17;
@@ -811,7 +811,7 @@
             // btnFilterStart
             // 
             this.btnFilterStart.Location = new System.Drawing.Point(165, 178);
-            this.btnFilterStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnFilterStart.Margin = new System.Windows.Forms.Padding(4);
             this.btnFilterStart.Name = "btnFilterStart";
             this.btnFilterStart.Size = new System.Drawing.Size(100, 28);
             this.btnFilterStart.TabIndex = 16;
@@ -859,7 +859,7 @@
             // 
             this.txtFilterContain.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "_ExcelTranslateContainText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtFilterContain.Location = new System.Drawing.Point(255, 148);
-            this.txtFilterContain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFilterContain.Margin = new System.Windows.Forms.Padding(4);
             this.txtFilterContain.Name = "txtFilterContain";
             this.txtFilterContain.Size = new System.Drawing.Size(221, 22);
             this.txtFilterContain.TabIndex = 12;
@@ -936,8 +936,8 @@
             // btnFilterOutput
             // 
             this.btnFilterOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFilterOutput.Location = new System.Drawing.Point(615, 50);
-            this.btnFilterOutput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnFilterOutput.Location = new System.Drawing.Point(594, 50);
+            this.btnFilterOutput.Margin = new System.Windows.Forms.Padding(4);
             this.btnFilterOutput.Name = "btnFilterOutput";
             this.btnFilterOutput.Size = new System.Drawing.Size(35, 28);
             this.btnFilterOutput.TabIndex = 5;
@@ -961,18 +961,18 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFilterOutput.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "_ExcelTranslateOutput", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtFilterOutput.Location = new System.Drawing.Point(165, 53);
-            this.txtFilterOutput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFilterOutput.Margin = new System.Windows.Forms.Padding(4);
             this.txtFilterOutput.Name = "txtFilterOutput";
             this.txtFilterOutput.ReadOnly = true;
-            this.txtFilterOutput.Size = new System.Drawing.Size(443, 22);
+            this.txtFilterOutput.Size = new System.Drawing.Size(422, 22);
             this.txtFilterOutput.TabIndex = 3;
             this.txtFilterOutput.Text = settings1._ExcelTranslateOutput;
             // 
             // btnFilterSource
             // 
             this.btnFilterSource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFilterSource.Location = new System.Drawing.Point(727, 21);
-            this.btnFilterSource.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnFilterSource.Location = new System.Drawing.Point(706, 21);
+            this.btnFilterSource.Margin = new System.Windows.Forms.Padding(4);
             this.btnFilterSource.Name = "btnFilterSource";
             this.btnFilterSource.Size = new System.Drawing.Size(35, 28);
             this.btnFilterSource.TabIndex = 2;
@@ -996,17 +996,17 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFilterSource.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "_ExcelTranslateInput", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtFilterSource.Location = new System.Drawing.Point(165, 23);
-            this.txtFilterSource.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFilterSource.Margin = new System.Windows.Forms.Padding(4);
             this.txtFilterSource.Name = "txtFilterSource";
-            this.txtFilterSource.Size = new System.Drawing.Size(551, 22);
+            this.txtFilterSource.Size = new System.Drawing.Size(530, 22);
             this.txtFilterSource.TabIndex = 0;
             this.txtFilterSource.Text = settings1._ExcelTranslateInput;
             // 
             // btnFilterOutputOpen
             // 
             this.btnFilterOutputOpen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFilterOutputOpen.Location = new System.Drawing.Point(658, 50);
-            this.btnFilterOutputOpen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnFilterOutputOpen.Location = new System.Drawing.Point(637, 50);
+            this.btnFilterOutputOpen.Margin = new System.Windows.Forms.Padding(4);
             this.btnFilterOutputOpen.Name = "btnFilterOutputOpen";
             this.btnFilterOutputOpen.Size = new System.Drawing.Size(101, 28);
             this.btnFilterOutputOpen.TabIndex = 0;
@@ -1024,9 +1024,9 @@
             this.groupBox6.Controls.Add(this.btnCsvInput);
             this.groupBox6.Controls.Add(this.txtCsvInput);
             this.groupBox6.Location = new System.Drawing.Point(16, 868);
-            this.groupBox6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox6.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox6.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox6.Size = new System.Drawing.Size(924, 123);
             this.groupBox6.TabIndex = 12;
             this.groupBox6.TabStop = false;
@@ -1035,7 +1035,7 @@
             // btnCsvStart
             // 
             this.btnCsvStart.Location = new System.Drawing.Point(165, 87);
-            this.btnCsvStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCsvStart.Margin = new System.Windows.Forms.Padding(4);
             this.btnCsvStart.Name = "btnCsvStart";
             this.btnCsvStart.Size = new System.Drawing.Size(100, 28);
             this.btnCsvStart.TabIndex = 16;
@@ -1058,7 +1058,7 @@
             // 
             this.btnCsvOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCsvOutput.Location = new System.Drawing.Point(876, 53);
-            this.btnCsvOutput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCsvOutput.Margin = new System.Windows.Forms.Padding(4);
             this.btnCsvOutput.Name = "btnCsvOutput";
             this.btnCsvOutput.Size = new System.Drawing.Size(35, 28);
             this.btnCsvOutput.TabIndex = 14;
@@ -1069,7 +1069,7 @@
             // txtCsvOutput
             // 
             this.txtCsvOutput.Location = new System.Drawing.Point(165, 55);
-            this.txtCsvOutput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCsvOutput.Margin = new System.Windows.Forms.Padding(4);
             this.txtCsvOutput.Name = "txtCsvOutput";
             this.txtCsvOutput.Size = new System.Drawing.Size(701, 22);
             this.txtCsvOutput.TabIndex = 13;
@@ -1088,7 +1088,7 @@
             // 
             this.btnCsvInput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCsvInput.Location = new System.Drawing.Point(877, 21);
-            this.btnCsvInput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCsvInput.Margin = new System.Windows.Forms.Padding(4);
             this.btnCsvInput.Name = "btnCsvInput";
             this.btnCsvInput.Size = new System.Drawing.Size(35, 28);
             this.btnCsvInput.TabIndex = 12;
@@ -1099,7 +1099,7 @@
             // txtCsvInput
             // 
             this.txtCsvInput.Location = new System.Drawing.Point(167, 23);
-            this.txtCsvInput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCsvInput.Margin = new System.Windows.Forms.Padding(4);
             this.txtCsvInput.Name = "txtCsvInput";
             this.txtCsvInput.Size = new System.Drawing.Size(701, 22);
             this.txtCsvInput.TabIndex = 0;
@@ -1114,9 +1114,9 @@
             this.groupBox7.Controls.Add(this.button3);
             this.groupBox7.Controls.Add(this.textBox2);
             this.groupBox7.Location = new System.Drawing.Point(16, 999);
-            this.groupBox7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox7.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox7.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox7.Size = new System.Drawing.Size(924, 123);
             this.groupBox7.TabIndex = 17;
             this.groupBox7.TabStop = false;
@@ -1125,7 +1125,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(165, 87);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 28);
             this.button1.TabIndex = 16;
@@ -1146,7 +1146,7 @@
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.Location = new System.Drawing.Point(876, 53);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(35, 28);
             this.button2.TabIndex = 14;
@@ -1156,7 +1156,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(165, 55);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(701, 22);
             this.textBox1.TabIndex = 13;
@@ -1175,7 +1175,7 @@
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.Location = new System.Drawing.Point(877, 21);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(35, 28);
             this.button3.TabIndex = 12;
@@ -1185,7 +1185,7 @@
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(167, 23);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(701, 22);
             this.textBox2.TabIndex = 0;
@@ -1200,9 +1200,9 @@
             this.groupBox8.Controls.Add(this.label17);
             this.groupBox8.Controls.Add(this.btnMissingSource);
             this.groupBox8.Location = new System.Drawing.Point(16, 1130);
-            this.groupBox8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox8.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox8.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox8.Size = new System.Drawing.Size(924, 123);
             this.groupBox8.TabIndex = 18;
             this.groupBox8.TabStop = false;
@@ -1280,7 +1280,7 @@
             settings2.SettingsKey = "";
             this.txtMissingSource.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings2, "_ExcelModSource", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtMissingSource.Location = new System.Drawing.Point(165, 21);
-            this.txtMissingSource.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMissingSource.Margin = new System.Windows.Forms.Padding(4);
             this.txtMissingSource.Name = "txtMissingSource";
             this.txtMissingSource.Size = new System.Drawing.Size(701, 22);
             this.txtMissingSource.TabIndex = 17;
@@ -1289,7 +1289,7 @@
             // btnGenerateMissing
             // 
             this.btnGenerateMissing.Location = new System.Drawing.Point(165, 87);
-            this.btnGenerateMissing.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGenerateMissing.Margin = new System.Windows.Forms.Padding(4);
             this.btnGenerateMissing.Name = "btnGenerateMissing";
             this.btnGenerateMissing.Size = new System.Drawing.Size(100, 28);
             this.btnGenerateMissing.TabIndex = 16;
@@ -1311,7 +1311,7 @@
             // 
             this.btnMissingOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMissingOutput.Location = new System.Drawing.Point(876, 53);
-            this.btnMissingOutput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMissingOutput.Margin = new System.Windows.Forms.Padding(4);
             this.btnMissingOutput.Name = "btnMissingOutput";
             this.btnMissingOutput.Size = new System.Drawing.Size(35, 28);
             this.btnMissingOutput.TabIndex = 14;
@@ -1322,7 +1322,7 @@
             // txtMissingOutput
             // 
             this.txtMissingOutput.Location = new System.Drawing.Point(165, 55);
-            this.txtMissingOutput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMissingOutput.Margin = new System.Windows.Forms.Padding(4);
             this.txtMissingOutput.Name = "txtMissingOutput";
             this.txtMissingOutput.Size = new System.Drawing.Size(701, 22);
             this.txtMissingOutput.TabIndex = 13;
@@ -1341,7 +1341,7 @@
             // 
             this.btnMissingSource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMissingSource.Location = new System.Drawing.Point(877, 21);
-            this.btnMissingSource.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMissingSource.Margin = new System.Windows.Forms.Padding(4);
             this.btnMissingSource.Name = "btnMissingSource";
             this.btnMissingSource.Size = new System.Drawing.Size(35, 28);
             this.btnMissingSource.TabIndex = 12;

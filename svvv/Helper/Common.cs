@@ -405,6 +405,20 @@ namespace TheWitcher3Thai
 
         }
 
+        public Dictionary<string, w3Strings> GetAllContent(Dictionary<string, List<w3Strings>> content)
+        {
+            var all = new List<w3Strings>();
+            foreach(var c in content)
+            {
+                all.AddRange(c.Value);
+            }
+
+            var result = ConvertToDictionary(all);
+
+            return result;            
+
+        }
+
         public void GenerateMissing(string inputPath, string outputPath)
         {
             //var files = setting.GetSheetConfig();
@@ -416,8 +430,8 @@ namespace TheWitcher3Thai
 
             //read
 
-            var templateContent = ReadTemplate();
-            var gameContent = ReadGame(inputPath);
+            var templateContent = GetAllContent(ReadTemplate());
+            var gameContent = GetAllContent(ReadGame(inputPath));
 
             var fi = new FileInfo(outputPath);
             if (!fi.Directory.Exists)
@@ -426,30 +440,26 @@ namespace TheWitcher3Thai
             using (var p = new ExcelPackage(fi))
             {
                 var wb = p.Workbook;
-                foreach (var t in templateContent)
-                {
-                    if (wb.Worksheets[t.Key] != null)
-                        wb.Worksheets.Delete(t.Key);
 
-                    if (!gameContent.ContainsKey(t.Key))
-                        continue;
+                var content = GetMissing(gameContent, templateContent);
+                var sht = wb.Worksheets["Missing"];
+                if (sht != null)
+                    wb.Worksheets.Delete(sht);
 
-                    var content = GetMissing(gameContent[t.Key], t.Value);
-                    if (content.Count == 0)
-                        continue;
-
-                    var sht = wb.Worksheets.Add(t.Key);
-                    WriteSheetContent(sht, content, false);
-                }
+                sht = wb.Worksheets.Add("Missing");
+                WriteSheetContent(sht, content, false);
 
                 p.Save();
             }
         }
 
-        private List<w3Strings> GetMissing(List<w3Strings> gameContent, List<w3Strings> templateContent)
+        private List<w3Strings> GetMissing(Dictionary<string, w3Strings> gameContent, Dictionary<string, w3Strings> templateContent)
         {
-            var dictTemplate = ConvertToDictionary(templateContent);
-            var result = gameContent.Where(gc => !dictTemplate.ContainsKey(gc.IdKey)).ToList();
+            var result = gameContent
+                .Where(gc => !templateContent.ContainsKey(gc.Key))
+                .Select(gc=> gc.Value)
+                .ToList();
+
             return result;
         }
 
@@ -609,7 +619,7 @@ namespace TheWitcher3Thai
 
         public Dictionary<string, w3Strings> ConvertToDictionary(List<w3Strings> content)
         {
-            content = RemoveDupplicate(content);
+            content = DistinctContent(content);
             var result = content.ToDictionary((w3s) => { return w3s.ID.Trim(); });
             return result;
         }
@@ -808,8 +818,8 @@ namespace TheWitcher3Thai
                         source[i + extraSource].Text,
                         null,
 
-                        translate[i + extraSource].SheetName,
-                        translate[i + extraSource].RowNumber
+                        source[i + extraSource].SheetName,
+                        source[i + extraSource].RowNumber
                     ));
 
                     skipSource.Add(source[i + extraSource]);
@@ -2120,7 +2130,7 @@ namespace TheWitcher3Thai
 
             var content = Translate(allMessage, combine, originalFirst, includeNotTranslateMessageId, includeTranslateMessageId, IncludeUiMessageId, translateUI);
 
-            content = RemoveDupplicate(content);
+            content = DistinctContent(content);
 
             var path = Path.Combine(tempPath, "message" + ".csv");
             WriteCsv(content, path);
@@ -2155,7 +2165,7 @@ namespace TheWitcher3Thai
 
         }
 
-        private List<w3Strings> RemoveDupplicate(List<w3Strings> content)
+        private List<w3Strings> DistinctContent(List<w3Strings> content)
         {
             var dict = new Dictionary<string, w3Strings>();
             foreach(var item in content)
