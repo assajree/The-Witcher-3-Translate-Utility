@@ -7,6 +7,7 @@ using Svvv.Common;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -2856,7 +2857,8 @@ namespace TheWitcher3Thai
 
         public string GetVersionText(Version version)
         {
-            return $@"{GetBuildDate(version):yyyy.MM.dd.HHmm}";
+            //return $@"{GetBuildDate(version):yyyy.MM.dd.HHmm}";
+            return GetBuildDate(version).ToString("yyyy.MM.dd.HHmm", CultureInfo.InvariantCulture);
         }
 
         public void GenerateExcelFromCsv(string input, string output)
