@@ -185,5 +185,8 @@
     <Setting Name="_VerySimpleFontSize" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">28</Value>
     </Setting>
+    <Setting Name="_VerySimpleFontSizeSpeak" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">28</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

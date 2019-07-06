@@ -1793,6 +1793,8 @@ namespace TheWitcher3Thai
             float totalNotTranslate = 0;
             float totalTranslate = 0;
 
+            // column width
+            sht.Column(1).Width = 30;
 
             // summary text
             sht.Row(1).Style.Font.Bold = true;
@@ -2106,7 +2108,7 @@ namespace TheWitcher3Thai
             FinishMod(tempPath, outputPath, sheetConfig);
         }
 
-        public void GenerateModAlt(Dictionary<string, List<w3Strings>> contents, string outputPath, bool combine, bool originalFirst, Dictionary<string, string> sheetConfig, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool IncludeUiMessageId, eFontSetting font, bool translateUI, int fontSize)
+        public void GenerateModAlt(Dictionary<string, List<w3Strings>> contents, string outputPath, bool combine, bool originalFirst, Dictionary<string, string> sheetConfig, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool IncludeUiMessageId, eFontSetting font, bool translateUI)
         {
             DeleteDirectory(outputPath);
 
@@ -2136,7 +2138,7 @@ namespace TheWitcher3Thai
             var path = Path.Combine(tempPath, "message" + ".csv");
             WriteCsv(content, path);
             var w3sPath = EncodeW3String(path);
-            var targetW3sPath = Path.Combine(outputPath, "mods", Configs.modThaiLanguage, "content", "en.w3strings");
+            var targetW3sPath = Path.Combine(outputPath, Configs.modThaiLanguage, "content", "en.w3strings");
 
             var fi = new FileInfo(targetW3sPath);
             if (!fi.Directory.Exists)
@@ -2160,7 +2162,7 @@ namespace TheWitcher3Thai
             }
 
             // subtitle
-            InstallSubtitleMod(outputPath, fontSize);
+            InstallSubtitleMod(outputPath);
 
             WriteVersionUnofficial(outputPath, "unofficial");
 
@@ -2704,9 +2706,10 @@ namespace TheWitcher3Thai
             skips.Add(Path.Combine(modPath, "translate.xlsx"));
             skips.Add(Path.Combine(modPath, "dupplicate.xlsx"));
 
+            string gameModPath = Path.Combine(gamePath, "mods");
 
             // delete old mod
-            string oldModPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage);
+            string oldModPath = Path.Combine(gameModPath, Configs.modThaiLanguage);
             if (Directory.Exists(oldModPath))
                 DeleteDirectory(oldModPath);
 
@@ -2714,29 +2717,25 @@ namespace TheWitcher3Thai
             if (removeOldFont)
                 RemoveOldFont(gamePath);
 
-            var targetPath = Path.Combine(gamePath);
-
-            CopyDirectory(modPath, targetPath, skips);
+            CopyDirectory(modPath, gameModPath, skips);
         }
 
-        public void InstallSubtitleMod(string gamePath, int fontSize)
+        public void InstallSubtitleMod(string modPath)
         {
-            string modPath = Path.Combine(Application.StartupPath, "Tools", Configs.modDoubleSubtitle);
-            var targetPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage);
-            CopyDirectory(modPath, targetPath);
-
-            if (fontSize != 28)
-                ChangeFontSize(targetPath, fontSize);
+            string sourcePath = Path.Combine(Application.StartupPath, "Tools", Configs.modDoubleSubtitle);
+            //var targetPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage);
+            var targetPath = Path.Combine(modPath, Configs.modThaiLanguage);
+            CopyDirectory(sourcePath, targetPath);
         }
 
-        private void ChangeFontSize(string targetPath, int size)
+        public void ChangeFontSize(string modPath, int sizeCutScene, int sizeSpeak)
         {
             string pathScript = @"content\scripts\game\gui\hud\modules";
-            string pathDialog = Path.Combine(targetPath, pathScript, "hudModuleDialog.ws");
-            string pathSubtitle = Path.Combine(targetPath, pathScript, "hudModuleSubtitles.ws");
+            string pathDialog = Path.Combine(modPath, pathScript, "hudModuleDialog.ws");
+            string pathSubtitle = Path.Combine(modPath, pathScript, "hudModuleSubtitles.ws");
 
-            ReplaceAll(pathDialog, @"<FONT SIZE='28'>", $@"<FONT SIZE='{size}'>");
-            ReplaceAll(pathSubtitle, @"<FONT SIZE='28'>", $@"<FONT SIZE='{size}'>");
+            ReplaceAll(pathDialog, @"<FONT SIZE='28'>", $@"<FONT SIZE='{sizeCutScene}'>");
+            ReplaceAll(pathSubtitle, @"<FONT SIZE='28'>", $@"<FONT SIZE='{sizeSpeak}'>");
 
         }
 
@@ -2774,7 +2773,7 @@ namespace TheWitcher3Thai
 
         }
 
-        public void GenerateLegacyModAlt(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool includeUiMessageId, eFontSetting font, bool translateUI, int fontSize)
+        public void GenerateLegacyModAlt(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool includeUiMessageId, eFontSetting font, bool translateUI)
         {
             string templatePath = Configs.TemplatePath;
             if (!File.Exists(templatePath))
@@ -2786,7 +2785,7 @@ namespace TheWitcher3Thai
 
             var content = MergeLegacy(template, translate);
 
-            GenerateModAlt(content, outputPath, doubleLanguage, originalFirst, sheetConfig, includeNotTranslateMessageId, includeTranslateMessageId, includeUiMessageId, font, translateUI, fontSize);
+            GenerateModAlt(content, outputPath, doubleLanguage, originalFirst, sheetConfig, includeNotTranslateMessageId, includeTranslateMessageId, includeUiMessageId, font, translateUI);
 
             // write all text excel file for later use
             string tempPath = Path.Combine(outputPath, "translate.xlsx");

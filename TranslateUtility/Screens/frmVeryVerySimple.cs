@@ -137,6 +137,7 @@ namespace TranslateUtility
                 chkTranslateInfo.Checked,
                 !chkExcludeUiText.Checked
             );
+
         }
 
         private void GenerateModAlt()
@@ -150,8 +151,13 @@ namespace TranslateUtility
                 chkTranslateInfo.Checked,
                 chkUiInfo.Checked,
                 GetFontSetting(),
-                !chkExcludeUiText.Checked,
-                (int)txtFontSize.Value
+                !chkExcludeUiText.Checked
+            );
+
+            c.ChangeFontSize(
+                Path.Combine(modPath, Configs.modThaiLanguage),
+                (int)txtFontSizeCutScene.Value,
+                (int)txtFontSizeSpeak.Value
             );
         }
 
