@@ -481,7 +481,7 @@
             this.groupBox5.Size = new System.Drawing.Size(725, 75);
             this.groupBox5.TabIndex = 52;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "ดาวน์โหลดไฟล์แปลภาษา";
+            this.groupBox5.Text = "ความถี่การดาวน์โหลดไฟล์แปลภาษา";
             // 
             // rdoDownloadAlways
             // 
