@@ -2643,7 +2643,7 @@ namespace TheWitcher3Thai
             //RemoveOldFont(gamePath);
 
             string modPath = Path.Combine(Application.StartupPath, "Tools", Configs.modFontSarabun);
-            var targetPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage);
+            var targetPath = Path.Combine(gamePath, Configs.modThaiLanguage);
 
             CopyDirectory(modPath, targetPath);
         }
@@ -2651,7 +2651,7 @@ namespace TheWitcher3Thai
         public void InstallFontMod(string gamePath)
         {
             string modPath = Path.Combine(Application.StartupPath, "Tools", Configs.modThaiFont);
-            var targetPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage);
+            var targetPath = Path.Combine(gamePath, Configs.modThaiLanguage);
 
             CopyDirectory(modPath, targetPath);
         }
