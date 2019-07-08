@@ -49,6 +49,7 @@ namespace TheWitcher3Thai
             //d.Add("DLC16", @"dlc\dlc16\content");
 
             d.Add("DLCall", @"dlc\dlcAll\content");
+            //d.Add("patch1", @"content\patch1");
             //d.Add("MISSING", @"content\missing");
 
             return d;
