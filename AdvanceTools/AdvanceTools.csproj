@@ -84,6 +84,12 @@
     <Compile Include="Screens\frmSimple.Designer.cs">
       <DependentUpon>frmSimple.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\frmStorybook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\frmStorybook.Designer.cs">
+      <DependentUpon>frmStorybook.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\frmVerySimple.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\frmSimple.resx">
       <DependentUpon>frmSimple.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\frmStorybook.resx">
+      <DependentUpon>frmStorybook.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\frmVerySimple.resx">
       <DependentUpon>frmVerySimple.cs</DependentUpon>

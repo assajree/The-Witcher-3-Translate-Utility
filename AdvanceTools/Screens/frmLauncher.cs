@@ -72,5 +72,10 @@ namespace TranslateUtility
         {
             OpenForm(new frmVeryVerySimple());
         }
+
+        private void btnStorybookTool_Click(object sender, EventArgs e)
+        {
+            OpenForm(new frmStorybook());
+        }
     }
 }

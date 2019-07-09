@@ -44,5 +44,15 @@ namespace TheWitcher3Thai.Helper
 
             return txt;
         }
+
+        public static string ToStringOrNull(this object obj)
+        {
+            if (obj==null)
+            {
+                return null;
+            }
+
+            return obj.ToString();
+        }
     }
 }

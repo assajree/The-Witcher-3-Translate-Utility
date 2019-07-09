@@ -3,6 +3,7 @@ using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using OfficeOpenXml;
 using svvv;
+using svvv.Classes;
 using Svvv.Common;
 using System;
 using System.Collections.Generic;
@@ -409,14 +410,14 @@ namespace TheWitcher3Thai
         public Dictionary<string, w3Strings> GetAllContent(Dictionary<string, List<w3Strings>> content)
         {
             var all = new List<w3Strings>();
-            foreach(var c in content)
+            foreach (var c in content)
             {
                 all.AddRange(c.Value);
             }
 
             var result = ConvertToDictionary(all);
 
-            return result;            
+            return result;
 
         }
 
@@ -458,7 +459,7 @@ namespace TheWitcher3Thai
         {
             var result = gameContent
                 .Where(gc => !templateContent.ContainsKey(gc.Key))
-                .Select(gc=> gc.Value)
+                .Select(gc => gc.Value)
                 .ToList();
 
             return result;
@@ -652,7 +653,7 @@ namespace TheWitcher3Thai
                 {
                     line = content[i];
                     var message = new w3Strings(SplitOriginalLine(line), true);
-                    message.SheetName = Path.GetFileNameWithoutExtension(path).Replace(".w3strings","");
+                    message.SheetName = Path.GetFileNameWithoutExtension(path).Replace(".w3strings", "");
                     w3s.Add(message);
                 }
 
@@ -929,7 +930,7 @@ namespace TheWitcher3Thai
             int row = ROW_START;
             string translate;
             string text;
-            while (!IsEndLegacy(sht,row))
+            while (!IsEndLegacy(sht, row))
             {
                 text = sht.Cells[row, COL_TEXT].Text;
                 if (String.IsNullOrWhiteSpace(text))
@@ -945,12 +946,12 @@ namespace TheWitcher3Thai
 
         }
 
-        bool IsEndLegacy(ExcelWorksheet sht,int row)
+        bool IsEndLegacy(ExcelWorksheet sht, int row)
         {
             string text;
-            for(int i=0;i<Configs.MaxLegacyEmptyRow;i++)
+            for (int i = 0; i < Configs.MaxLegacyEmptyRow; i++)
             {
-                text = sht.Cells[row+i, 1].Text;
+                text = sht.Cells[row + i, 1].Text;
                 if (!String.IsNullOrWhiteSpace(text))
                     return false;
 
@@ -1824,7 +1825,7 @@ namespace TheWitcher3Thai
                 totalTranslate += translate;
                 totalContent += item.Value.Count;
 
-                if(dictSheetName.ContainsKey(item.Key))
+                if (dictSheetName.ContainsKey(item.Key))
                 {
                     contentName = dictSheetName[item.Key];
                 }
@@ -2171,9 +2172,9 @@ namespace TheWitcher3Thai
         private List<w3Strings> DistinctContent(List<w3Strings> content)
         {
             var dict = new Dictionary<string, w3Strings>();
-            foreach(var item in content)
+            foreach (var item in content)
             {
-                if(dict.ContainsKey(item.IdKey))
+                if (dict.ContainsKey(item.IdKey))
                 {
                     var exist = dict[item.IdKey];
                     if (item.TranslateStatus > exist.TranslateStatus)
@@ -2439,7 +2440,8 @@ namespace TheWitcher3Thai
         public void OpenFileDirectory(string filePath)
         {
             var fi = new FileInfo(filePath);
-            Open(fi.Directory.FullName);
+            if (fi.Exists)
+                Open(fi.Directory.FullName);
 
         }
 
@@ -2882,9 +2884,168 @@ namespace TheWitcher3Thai
             WriteExcel(output, content, true);
         }
 
+        public void ConvertStorybookToExcel(string modPath, string outputPath)
+        {
+            var data = ReadStoryBook(modPath);
+            WriteStorybookExcel(data, outputPath);
+
+        }
+
+        private List<Storybook> ReadStoryBook(string modPath)
+        {
+            var data = new List<Storybook>();
+            foreach (string path in Directory.GetFiles(modPath, "*.subs", SearchOption.AllDirectories))
+            {
+                var fi = new FileInfo(path);
+                data.Add(ReadSubs(path));
+            }
+
+            return data;
+        }
+
+        private void WriteStorybookExcel(List<Storybook> content, string outputPath)
+        {
+            var fi = new FileInfo(outputPath);
+            if (fi.Exists)
+                fi.Delete();
+
+            if (!fi.Directory.Exists)
+                fi.Directory.Create();
+
+            content = content.OrderBy(c => c.UniqueName).ToList();
+
+            using (var p = new ExcelPackage(fi))
+            {
+                var wb = p.Workbook;
+
+                foreach (var c in content)
+                {
+                    //// remove sheet if exist
+                    //if (wb.Worksheets[c.SheetName] != null)
+                    //    wb.Worksheets.Delete(c.SheetName);
+
+                    var sht = wb.Worksheets.Add(c.SheetName);
+                    WriteStorybookSheet(sht, c);
+                }
+
+                p.Save();
+            }
+        }
+
+        private void WriteStorybookSheet(ExcelWorksheet sht, Storybook data)
+        {
+            int row = 1;
+
+            // write filepath
+            sht.Cells[row++, 1].Value = data.FilePath;
+
+            // write header
+            sht.Row(2).Style.Font.Bold = true;
+            sht.Cells[row, 1].Value = "START";
+            sht.Cells[row, 2].Value = "STOP";
+            sht.Cells[row, 3].Value = "MESSAGE";
+            sht.Cells[row, 4].Value = "TRANSLATE";
+            row++;
+
+            foreach (var c in data.Content)
+            {
+                sht.Cells[row, 1].Value = c.Start;
+                sht.Cells[row, 2].Value = c.Stop;
+                sht.Cells[row, 3].Value = c.Message;
+                sht.Cells[row, 4].Value = c.Translate;
+
+                if (!String.IsNullOrWhiteSpace(c.Start))
+                    row++;
+            }
+        }
+
+        private Storybook ReadSubs(string path)
+        {
+            var lines = File.ReadAllLines(path);
+            var result = new Storybook(path, lines.ToList());
+            return result;
+        }
+
+        public void GenerateStorybook(string excelPath, string outputPath)
+        {
+            var data = ReadStoryBookExcel(excelPath);
+            WriteAllStorybook(outputPath, data);
+        }
+
+        private List<Storybook> ReadStoryBookExcel(string excelPath)
+        {
+            var result = new List<Storybook>();
+
+            var fi = new FileInfo(excelPath);
+            using (var p = new ExcelPackage(fi))
+            {
+                foreach (var sht in p.Workbook.Worksheets)
+                {
+                    var data = ReadStoryBookSheet(sht);
+                    if (data != null)
+                    {
+                        result.Add(data);
+                    }
+                }
+
+            }
+
+            return result;
+        }
+
+        private Storybook ReadStoryBookSheet(ExcelWorksheet sht)
+        {
+            var fileName = sht.Cells[1, 1].Value as string;
+            if (String.IsNullOrEmpty(fileName))
+                return null;
+
+            var result = new Storybook(fileName);
+
+            int row = 3;
+            string start = sht.Cells[row, 1].Value.ToStringOrNull();
+            while (!String.IsNullOrWhiteSpace(start))
+            {
+                result.Content.Add(new StorybookRow()
+                {
+                    Start = start,
+                    Stop = sht.Cells[row, 2].Value.ToStringOrNull(),
+                    Message = sht.Cells[row, 3].Value.ToStringOrNull(),
+                    Translate = sht.Cells[row, 4].Value.ToStringOrNull()
+                });
+
+                start = sht.Cells[++row, 1].Value.ToStringOrNull();
+            }
+
+            return result;
 
 
+        }
 
+        private void WriteAllStorybook(string outputRoot, List<Storybook> data)
+        {
+            foreach(var d in data)
+            {
+                WriteStorybook(outputRoot, d);
+            }
+        }
+
+        private void WriteStorybook(string outputRoot, Storybook d)
+        {
+            var arr = d.FilePath.Split(new string[] { @"\files\" }, StringSplitOptions.None);
+            if (arr.Length != 2)
+                return;
+
+            var targetPath = Path.Combine(outputRoot, arr[1]);
+            var fi = new FileInfo(targetPath);
+            if (fi.Exists)
+                fi.Delete();
+
+            if (!fi.Directory.Exists)
+                fi.Directory.Create();
+            
+            File.WriteAllText(targetPath, d.ToString());
+
+        }
     }
 
 }
