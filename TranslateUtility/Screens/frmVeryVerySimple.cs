@@ -159,6 +159,12 @@ namespace TranslateUtility
                 (int)txtFontSizeCutScene.Value,
                 (int)txtFontSizeSpeak.Value
             );
+
+            if(chkOverrideTurkish.Checked)
+            {
+                string storybookModPath = Path.Combine(Application.StartupPath, "Tools", Configs.modThaiStorybook);
+                c.OverrideTurkish(storybookModPath, Path.Combine(modPath, Configs.modThaiLanguage));
+            }
         }
 
         private void InstallMod()

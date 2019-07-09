@@ -138,6 +138,81 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook.w3modproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\finalboards\subs\fb_1a_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\finalboards\subs\fb_1b_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\finalboards\subs\fb_1c_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\finalboards\subs\fb_2a_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\finalboards\subs\fb_2b_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\finalboards\subs\fb_2c_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\finalboards\subs\fb_3a_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\finalboards\subs\fb_3b_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\finalboards\subs\fb_3c_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\finalboards\subs\fb_4a_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\finalboards\subs\fb_4b_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\finalboards\subs\fb_5a_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\finalboards\subs\fb_5b_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\finalboards\subs\fb_5c_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\finalboards\subs\fb_6a_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\finalboards\subs\fb_6b_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\finalboards\subs\fb_6c_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\flashbacks\altsubs\rs_6a_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\flashbacks\subs\rs_1a_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\flashbacks\subs\rs_1b_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\flashbacks\subs\rs_2a_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\flashbacks\subs\rs_2b_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\flashbacks\subs\rs_3a_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\flashbacks\subs\rs_3b_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\flashbacks\subs\rs_4a_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\flashbacks\subs\rs_4b_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\flashbacks\subs\rs_5a_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\flashbacks\subs\rs_5b_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\flashbacks\subs\rs_6a_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\flashbacks\subs\rs_6b_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\gamestart\subs\recap_wip_tr.subs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\pre_rendered_cutscenes\subs\cs001_nightmare_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\pre_rendered_cutscenes\subs\cs002_wild_hunt_chase_p2_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\pre_rendered_cutscenes\subs\cs002_wild_hunt_chase_p4_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\pre_rendered_cutscenes\subs\cs403_finale_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\pre_rendered_cutscenes\subs\cs501_ciri_escape_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\pre_rendered_cutscenes\subs\cs501_naglfar_arrives_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\altsubs\st_10_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\altsubs\st_12_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\altsubs\st_13_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\altsubs\st_15_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\altsubs\st_19_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\altsubs\st_1_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\altsubs\st_20_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\altsubs\st_22_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\altsubs\st_23_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\altsubs\st_3_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\altsubs\st_4_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\subs\st_10_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\subs\st_11_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\subs\st_12_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\subs\st_13_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\subs\st_14_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\subs\st_15_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\subs\st_19_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\subs\st_1_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\subs\st_20_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\subs\st_22_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\subs\st_23_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\subs\st_2_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\subs\st_3_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\subs\st_4_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\subs\st_5_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\subs\st_6_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\subs\st_7_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\subs\st_8_tr.subs" />
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\subs\st_9_tr.subs" />
+    <None Include="Tools\ThaiStorybook\storybook.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

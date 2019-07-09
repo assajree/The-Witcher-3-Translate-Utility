@@ -19,9 +19,7 @@ namespace svvv
 
         public static string UpdaterZipPath = Path.Combine(StartupPath, "Tools", "updater.zip");
         public static string UpdaterDir = Path.Combine(StartupPath, "temp", "updater");
-        public static string UpdaterPath = Path.Combine(UpdaterDir, "Updater.exe");
-
-
+        public static string UpdaterPath = Path.Combine(UpdaterDir, "Updater.exe");        
         public const string Separator = "  ";
         public const string UpdateFileId = "1HOmaK3jaI2oW194CvyDXlzZBUEoWzGbU";
         public const string VersionFileId = "1dChsKp641mD3EPREqSZTN_yxlu9KFXJP";
@@ -31,6 +29,7 @@ namespace svvv
         public const string modDoubleSubtitle = "modDoubleSubtitle";
         public const string modThaiLanguage = "modThaiLanguage"; // translate
         public const string modKuntoonFont = "modKuntoonW3thai_mod";
+        public static string modThaiStorybook= "modThaiStorybook";
 
         public const int MaxLegacyEmptyRow = 5;
 

@@ -27,10 +27,19 @@ namespace svvv.Classes
                 Stop = arr[1];
 
             if (arr.Length > 2)
-                Message = arr[2];
+                Message = GetMessage(arr);
 
-            if (arr.Length > 3)
-                Translate = arr[3];
+            //if (arr.Length > 3)
+            //    Translate = arr[3];
+        }
+
+        private string GetMessage(string[] arr)
+        {
+            List<string> message = new List<string>();
+            for (int i = 2; i < arr.Length; i++)
+                message.Add(arr[i]);
+
+            return String.Join(SEPARATOR, message); ;
         }
 
         public override string ToString()

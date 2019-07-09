@@ -766,5 +766,17 @@ namespace TranslateUtility.Properties {
                 this["_VerySimpleFontSizeSpeak"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool _VerySimpleOverrideTurkish {
+            get {
+                return ((bool)(this["_VerySimpleOverrideTurkish"]));
+            }
+            set {
+                this["_VerySimpleOverrideTurkish"] = value;
+            }
+        }
     }
 }

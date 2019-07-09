@@ -2741,6 +2741,19 @@ namespace TheWitcher3Thai
 
         }
 
+        public void OverrideTurkish(string modPath, string targetPath)
+        {
+            // rename en to tr
+            var w3stringPath = Path.Combine(targetPath, "content", "en.w3strings");
+            var fi = new FileInfo(w3stringPath);
+            if (fi.Exists)
+                fi.MoveTo(w3stringPath.Replace("en.w3strings", "tr.w3strings"));
+
+            // copy mod
+            CopyDirectory(modPath, targetPath);
+
+        }
+
         private void ReplaceAll(string path, string textToReplace, string replaceWith)
         {
             if (File.Exists(path))

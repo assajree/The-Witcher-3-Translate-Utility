@@ -188,5 +188,8 @@
     <Setting Name="_VerySimpleFontSizeSpeak" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">28</Value>
     </Setting>
+    <Setting Name="_VerySimpleOverrideTurkish" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
