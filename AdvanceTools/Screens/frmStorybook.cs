@@ -138,7 +138,8 @@ namespace TranslateUtility
                 c.FillStorybookExcel(
                     txtFillTarget.Text,
                     txtFillTranslate.Text,
-                    chkFillMessage.Checked
+                    chkFillMessage.Checked,
+                    chkFillReplaceTranslated.Checked
                 );
                 c.ShowMessage("Complete");
             }

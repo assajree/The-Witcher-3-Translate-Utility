@@ -3074,7 +3074,7 @@ namespace TheWitcher3Thai
 
         }
 
-        public void FillStorybookExcel(string targetPath, string translatePath, bool fillMessage)
+        public void FillStorybookExcel(string targetPath, string translatePath, bool fillMessage, bool fillTranslatedMessage)
         {
             var map = setting.GetStorybookMaping();
             var translate=ReadLegacyStorybook(translatePath);
@@ -3091,7 +3091,7 @@ namespace TheWitcher3Thai
                     if (sht == null)
                         continue;
 
-                    FillStoryBookSheet(sht, data.Value, fillMessage);
+                    FillStoryBookSheet(sht, data.Value, fillMessage, fillTranslatedMessage);
                 }
 
                 p.Save();
@@ -3099,7 +3099,7 @@ namespace TheWitcher3Thai
 
         }
 
-        private void FillStoryBookSheet(ExcelWorksheet sht, List<StorybookRow> data, bool fillMessage)
+        private void FillStoryBookSheet(ExcelWorksheet sht, List<StorybookRow> data, bool fillMessage, bool fillTranslatedMessage)
         {
             int sheetDataCount = GetStorybookSheetDataCount(sht);
             if (sheetDataCount != data.Count)
@@ -3112,7 +3112,19 @@ namespace TheWitcher3Thai
                     sht.Cells[currrow, STORYBOOK_COL_MESSAGE].Value = d.Message;
 
                 if (!String.IsNullOrWhiteSpace(d.Translate))
-                    sht.Cells[currrow, STORYBOOK_COL_TRANSLATE].Value = d.Translate;
+                {
+                    // translate is empty
+                    if (String.IsNullOrWhiteSpace(sht.Cells[currrow, STORYBOOK_COL_TRANSLATE].Value.ToStringOrNull()))
+                    {
+                        sht.Cells[currrow, STORYBOOK_COL_TRANSLATE].Value = d.Translate;
+                    }
+                    // already translate
+                    else
+                    {
+                        if(fillTranslatedMessage)
+                            sht.Cells[currrow, STORYBOOK_COL_TRANSLATE].Value = d.Translate;
+                    }
+                }
 
                 currrow++;
             }
