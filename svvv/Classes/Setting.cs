@@ -143,19 +143,19 @@ namespace TheWitcher3Thai
         {
             var result = new Dictionary<string, string>();
 
-            result.Add("st3main", "st_3_tr");
-            result.Add("flb1amain", "rs_1a_tr");
-            result.Add("flb5amain", "rs_5a_tr");
-            result.Add("flb4amain", "rs_4a_tr");
-            result.Add("flb4bmain", "rs_4b_tr");
-            result.Add("flb2bmain", "rs_2b_tr");
-            result.Add("flb2amain", "rs_2a_tr");
-            result.Add("flb3bmain", "rs_3b_tr");
-            result.Add("flb3amain", "rs_3a_tr");
-            result.Add("flb5bmain", "rs_5b_tr");
-            result.Add("flb6anomain", "rs_6a_tr_alt");
-            result.Add("flb6amain", "rs_6a_tr");
-            result.Add("flb6bmain", "rs_6b_tr");
+            result.Add("st3 main", "st_3_tr");
+            result.Add("flb1a main", "rs_1a_tr");
+            result.Add("flb5a main", "rs_5a_tr");
+            result.Add("flb4a main", "rs_4a_tr");
+            result.Add("flb4b main", "rs_4b_tr");
+            result.Add("flb2b main", "rs_2b_tr");
+            result.Add("flb2a main", "rs_2a_tr");
+            result.Add("flb3b main", "rs_3b_tr");
+            result.Add("flb3a main", "rs_3a_tr");
+            result.Add("flb5b main", "rs_5b_tr");
+            result.Add("flb6a no main", "rs_6a_tr_alt");
+            result.Add("flb6a main", "rs_6a_tr");
+            result.Add("flb6b main", "rs_6b_tr");
             result.Add("fnb1a", "fb_1a_tr");
             result.Add("fnb1b", "fb_1b_tr");
             result.Add("fnb3a", "fb_3a_tr");
@@ -173,6 +173,37 @@ namespace TheWitcher3Thai
             result.Add("fnb5a", "fb_5a_tr");
             result.Add("fnb5b", "fb_5b_tr");
             result.Add("fnb1c", "fb_1c_tr");
+
+            result.Add("st10 nm", "st_10_tr_alt");
+            result.Add("st10 m", "st_10_tr");
+            result.Add("st4 nm", "st_4_tr_alt");
+            result.Add("st12 nm", "st_12_tr_alt");
+            result.Add("st13 nm", "st_13_tr_alt");
+            result.Add("st15 nm", "st_15_tr_alt");
+            result.Add("st19 nm", "st_19_tr_alt");
+            result.Add("st20 nm", "st_20_tr_alt");
+            result.Add("st22 nm", "st_22_tr_alt");
+            result.Add("st23 nm", "st_23_tr_alt");
+            result.Add("st4 m", "st_4_tr");
+            result.Add("st12 m", "st_12_tr");
+            result.Add("st13 m", "st_13_tr");
+            result.Add("st15 m", "st_15_tr");
+            result.Add("st19 m", "st_19_tr");
+            result.Add("st20 m", "st_20_tr");
+            result.Add("st22 m", "st_22_tr");
+            result.Add("st23 m", "st_23_tr");
+            result.Add("st14 m", "st_14_tr");
+            result.Add("st5 m", "st_5_tr");
+            result.Add("st6 m", "st_6_tr");
+            result.Add("st7 m", "st_7_tr");
+            result.Add("st8 m", "st_8_tr");
+            result.Add("st9 m", "st_9_tr");
+            result.Add("st11 m", "st_11_tr");
+
+            var keyCount = result.Select(r => r.Key).Distinct().ToList().Count;
+            var valueCount = result.Select(r => r.Value).Distinct().ToList().Count;
+            if (keyCount != valueCount)
+                throw new Exception("Incorrect sheet mapping");
 
             return result;
         }

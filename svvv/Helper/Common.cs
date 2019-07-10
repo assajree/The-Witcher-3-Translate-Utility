@@ -38,12 +38,13 @@ namespace TheWitcher3Thai
 
         private Setting setting = new Setting();
 
-        const int STORYBOOK_ROW_START = 3;
-        const int STORYBOOK_COL_MESSAGE = 3;
-        const int STORYBOOK_COL_TRANSLATE = 4;
-        const int STORYBOOK_ROW_START_LEGACY = 5;
-        const int STORYBOOK_COL_MESSAGE_LEGACY = 1;
-        const int STORYBOOK_COL_TRANSLATE_LEGACY = 3;
+        const string STORYBOOK_SHEET_NAME = "Cinematics ALL";
+        const int ROW_STORYBOOK_START = 3;
+        const int COL_STORYBOOK_MESSAGE = 3;
+        const int COL_STORYBOOK_TRANSLATE = 4;
+        const int ROW_STORYBOOK_START_LEGACY = 5;
+        const int COL_STORYBOOK_MESSAGE_LEGACY = 1;
+        const int COL_STORYBOOK_TRANSLATE_LEGACY = 3;
 
         #region Decode
 
@@ -2748,7 +2749,7 @@ namespace TheWitcher3Thai
 
         }
 
-        public void OverrideTurkish(string modPath, string targetPath)
+        public void MigrateToTr(string targetPath)
         {
             // rename en to tr
             var w3stringPath = Path.Combine(targetPath, "content", "en.w3strings");
@@ -2756,6 +2757,10 @@ namespace TheWitcher3Thai
             if (fi.Exists)
                 fi.MoveTo(w3stringPath.Replace("en.w3strings", "tr.w3strings"));
 
+        }
+
+        public void InstallModStoryBook(string modPath, string targetPath)
+        {
             // copy mod
             CopyDirectory(modPath, targetPath);
 
@@ -3021,7 +3026,7 @@ namespace TheWitcher3Thai
 
             var result = new Storybook(fileName);
 
-            int row = STORYBOOK_ROW_START;
+            int row = ROW_STORYBOOK_START;
             string start = sht.Cells[row, 1].Value.ToStringOrNull();
             while (!String.IsNullOrWhiteSpace(start))
             {
@@ -3074,7 +3079,7 @@ namespace TheWitcher3Thai
 
         }
 
-        public void FillStorybookExcel(string targetPath, string translatePath, bool fillMessage, bool fillTranslatedMessage)
+        public void FillStorybookExcel(string targetPath, string translatePath, bool fillMessage, bool fillTranslatedMessage, bool fillMessageAsTranslate)
         {
             var map = setting.GetStorybookMaping();
             var translate=ReadLegacyStorybook(translatePath);
@@ -3091,7 +3096,7 @@ namespace TheWitcher3Thai
                     if (sht == null)
                         continue;
 
-                    FillStoryBookSheet(sht, data.Value, fillMessage, fillTranslatedMessage);
+                    FillStoryBookSheet(sht, data.Value, fillMessage, fillTranslatedMessage, fillMessageAsTranslate);
                 }
 
                 p.Save();
@@ -3099,30 +3104,34 @@ namespace TheWitcher3Thai
 
         }
 
-        private void FillStoryBookSheet(ExcelWorksheet sht, List<StorybookRow> data, bool fillMessage, bool fillTranslatedMessage)
+        private void FillStoryBookSheet(ExcelWorksheet sht, List<StorybookRow> data, bool fillMessage, bool fillTranslatedMessage, bool fillMessageAsTranslate)
         {
             int sheetDataCount = GetStorybookSheetDataCount(sht);
             if (sheetDataCount != data.Count)
                 return;
 
-            int currrow = STORYBOOK_ROW_START;
+            int currrow = ROW_STORYBOOK_START;
             foreach (var d in data)
             {
                 if (fillMessage && !String.IsNullOrWhiteSpace(d.Message))
-                    sht.Cells[currrow, STORYBOOK_COL_MESSAGE].Value = d.Message;
+                    sht.Cells[currrow, COL_STORYBOOK_MESSAGE].Value = d.Message;
 
-                if (!String.IsNullOrWhiteSpace(d.Translate))
+                if(fillMessageAsTranslate)
+                {
+                    sht.Cells[currrow, COL_STORYBOOK_TRANSLATE].Value = d.Message;
+                }
+                else if (!String.IsNullOrWhiteSpace(d.Translate))
                 {
                     // translate is empty
-                    if (String.IsNullOrWhiteSpace(sht.Cells[currrow, STORYBOOK_COL_TRANSLATE].Value.ToStringOrNull()))
+                    if (String.IsNullOrWhiteSpace(sht.Cells[currrow, COL_STORYBOOK_TRANSLATE].Value.ToStringOrNull()))
                     {
-                        sht.Cells[currrow, STORYBOOK_COL_TRANSLATE].Value = d.Translate;
+                        sht.Cells[currrow, COL_STORYBOOK_TRANSLATE].Value = d.Translate;
                     }
                     // already translate
                     else
                     {
                         if(fillTranslatedMessage)
-                            sht.Cells[currrow, STORYBOOK_COL_TRANSLATE].Value = d.Translate;
+                            sht.Cells[currrow, COL_STORYBOOK_TRANSLATE].Value = d.Translate;
                     }
                 }
 
@@ -3133,14 +3142,14 @@ namespace TheWitcher3Thai
         private int GetStorybookSheetDataCount(ExcelWorksheet sht)
         {
             int result = 0;
-            int row = STORYBOOK_ROW_START;
-            string message = sht.Cells[row, STORYBOOK_COL_MESSAGE_LEGACY].Value.ToStringOrNull();
+            int row = ROW_STORYBOOK_START;
+            string message = sht.Cells[row, COL_STORYBOOK_MESSAGE_LEGACY].Value.ToStringOrNull();
             while (!String.IsNullOrWhiteSpace(message))
             {
                 result++;
 
                 row++;
-                message = sht.Cells[row, STORYBOOK_COL_MESSAGE_LEGACY].Value.ToStringOrNull();                
+                message = sht.Cells[row, COL_STORYBOOK_MESSAGE_LEGACY].Value.ToStringOrNull();                
             }
 
             return result;
@@ -3156,9 +3165,6 @@ namespace TheWitcher3Thai
 
         private Dictionary<string, List<StorybookRow>> ReadLegacyStorybook(string translatePath)
         {
-            const string STORYBOOK_SHEET_NAME = "Cinematics ALL";
-            
-
             var result = new Dictionary<string, List<StorybookRow>>();
 
             var fi = new FileInfo(translatePath);
@@ -3170,11 +3176,11 @@ namespace TheWitcher3Thai
 
                 string comment;
                 List<StorybookRow> currBook = null;
-                int row = STORYBOOK_ROW_START_LEGACY;
-                string message = sht.Cells[row, STORYBOOK_COL_MESSAGE_LEGACY].Value.ToStringOrNull();
+                int row = ROW_STORYBOOK_START_LEGACY;
+                string message = sht.Cells[row, COL_STORYBOOK_MESSAGE_LEGACY].Value.ToStringOrNull();
                 while (!String.IsNullOrWhiteSpace(message))
                 {
-                    comment = sht.Cells[row, STORYBOOK_COL_MESSAGE_LEGACY].Comment?.Text;
+                    comment = sht.Cells[row, COL_STORYBOOK_MESSAGE_LEGACY].Comment?.Text;
                     if (!String.IsNullOrWhiteSpace(comment))
                     {
                         currBook = new List<StorybookRow>();
@@ -3189,17 +3195,151 @@ namespace TheWitcher3Thai
                             Start = "0",
                             Stop = "0",
                             Message = message,
-                            Translate = sht.Cells[row, STORYBOOK_COL_TRANSLATE_LEGACY].Value.ToStringOrNull()
+                            Translate = sht.Cells[row, COL_STORYBOOK_TRANSLATE_LEGACY].Value.ToStringOrNull()
                         });
                     }
 
                     row++;
-                    message = sht.Cells[row, STORYBOOK_COL_MESSAGE_LEGACY].Value.ToStringOrNull();
+                    message = sht.Cells[row, COL_STORYBOOK_MESSAGE_LEGACY].Value.ToStringOrNull();
                 }
             }
 
             return result;
 
+        }
+
+
+
+        public string ReadStorybookComment(string translatePath)
+        {
+            string result = "";
+            var fi = new FileInfo(translatePath);
+            using (var p = new ExcelPackage(fi))
+            {
+                var sht = p.Workbook.Worksheets[STORYBOOK_SHEET_NAME];
+                if (sht == null)
+                    return result;
+
+                string comment;
+                int row = ROW_STORYBOOK_START_LEGACY;
+                string message = sht.Cells[row, COL_STORYBOOK_MESSAGE_LEGACY].Value.ToStringOrNull();
+                while (!String.IsNullOrWhiteSpace(message))
+                {
+                    comment = sht.Cells[row, COL_STORYBOOK_MESSAGE_LEGACY].Comment?.Text;
+                    if (!String.IsNullOrWhiteSpace(comment))
+                    {
+                        result += comment + Environment.NewLine;
+                    }
+
+                    row++;
+                    message = sht.Cells[row, COL_STORYBOOK_MESSAGE_LEGACY].Value.ToStringOrNull();
+                }
+            }
+
+            return result;
+        }
+
+        public void ClearAllStorybookTranslate(string excelPath)
+        {
+            var fi = new FileInfo(excelPath);
+            using (var p = new ExcelPackage(fi))
+            {
+                foreach(var sht in p.Workbook.Worksheets)
+                {
+                    int row = ROW_STORYBOOK_START;
+                    string message = sht.Cells[row, COL_STORYBOOK_MESSAGE_LEGACY].Value.ToStringOrNull();
+                    while (!String.IsNullOrWhiteSpace(message))
+                    {
+                        sht.Cells[row, COL_STORYBOOK_TRANSLATE].Clear();
+
+                        row++;
+                        message = sht.Cells[row, COL_STORYBOOK_MESSAGE_LEGACY].Value.ToStringOrNull();
+                    }
+                }
+
+                p.Save();
+            }
+        }
+
+        public void ClearStorybookTranslate(string excelPath)
+        {
+            var sheets = setting.GetStorybookMaping().Select(m => m.Value);
+            var fi = new FileInfo(excelPath);
+            using (var p = new ExcelPackage(fi))
+            {
+                var wb = p.Workbook;
+                foreach (var sheetName in sheets)
+                {
+                    var sht = wb.Worksheets[sheetName];
+                    if (sht == null)
+                        continue;
+
+                    int row = ROW_STORYBOOK_START;
+                    string message = sht.Cells[row, COL_STORYBOOK_MESSAGE_LEGACY].Value.ToStringOrNull();
+                    while (!String.IsNullOrWhiteSpace(message))
+                    {
+                        sht.Cells[row, COL_STORYBOOK_TRANSLATE].Clear();
+
+                        row++;
+                        message = sht.Cells[row, COL_STORYBOOK_MESSAGE_LEGACY].Value.ToStringOrNull();
+                    }
+                }
+
+
+                p.Save();
+            }
+        }
+
+        private void ChangeLanguageSettingToTR()
+        {
+            ChangeLanguageSetting("EN", "TR");
+        }
+
+        private void ChangeLanguageSettingToEN()
+        {
+            ChangeLanguageSetting("TR", "EN");
+        }
+
+        private void ChangeLanguageSetting(string fromLangCode, string toLangCode)
+        {
+            var settingPath = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                "The Witcher 3",
+                "user.settings"
+            );
+
+            // check file exist
+            var fi = new FileInfo(settingPath);
+            if (!fi.Exists)
+                return;
+
+            // read file content
+            var content=File.ReadAllText(settingPath);
+
+            // check neeed to change language setting
+            bool needChange = IsNeedToChangeSetting(content, fromLangCode);
+            if (!needChange)
+                return;
+
+            // backup old setting
+            fi.CopyTo(settingPath + $@".{DateTime.Now:yyyyMMddHHmmssffff}.bak");
+
+            content=content.Replace($@"RequestedTextLanguage={fromLangCode}", $@"RequestedTextLanguage={toLangCode}");
+            content=content.Replace($@"TextLanguage={fromLangCode}", $@"TextLanguage={toLangCode}");
+
+            File.WriteAllText(settingPath, content);
+
+        }
+
+        private bool IsNeedToChangeSetting(string content, string fromLangCode)
+        {
+            if (content.Contains($@"RequestedTextLanguage={fromLangCode}"))
+                return true;
+
+            if (content.Contains($@"TextLanguage={fromLangCode}"))
+                return true;
+
+            return false;
         }
     }
 

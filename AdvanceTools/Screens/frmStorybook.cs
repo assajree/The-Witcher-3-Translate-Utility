@@ -139,7 +139,8 @@ namespace TranslateUtility
                     txtFillTarget.Text,
                     txtFillTranslate.Text,
                     chkFillMessage.Checked,
-                    chkFillReplaceTranslated.Checked
+                    chkFillReplaceTranslated.Checked,
+                    chkFillMessageAsTranslate.Checked
                 );
                 c.ShowMessage("Complete");
             }
@@ -147,6 +148,55 @@ namespace TranslateUtility
             {
                 c.ShowErrorMessage(ex);
             }
+        }
+
+        private void btnReadCommentInput_Click(object sender, EventArgs e)
+        {
+            c.SelectXlsxTextBox(txtReadCommentInput);
+        }
+
+        private void btnStartReadComment_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string str = c.ReadStorybookComment(txtReadCommentInput.Text);
+                txtReadCommentOutput.Text = str;
+                c.ShowMessage("Complete");
+            }
+            catch(Exception ex)
+            {
+                c.ShowErrorMessage(ex);
+            }
+        }
+
+        private void btnClearTranslateInput_Click(object sender, EventArgs e)
+        {
+            c.SelectXlsxTextBox(txtClearTranslatePath);
+        }
+
+        private void btnClearTranslateStart_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chkClearAllSheet.Checked)
+                {
+                    if (c.ShowConfirm("Are you sure to clear ALL translate"))
+                        c.ClearAllStorybookTranslate(txtClearTranslatePath.Text);
+                    else
+                        return;
+                }
+                else
+                {
+                    c.ClearStorybookTranslate(txtClearTranslatePath.Text);
+                }
+
+                c.ShowMessage("Complete");
+            }
+            catch (Exception ex)
+            {
+                c.ShowErrorMessage(ex);
+            }
+            
         }
     }
 }

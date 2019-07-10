@@ -160,11 +160,7 @@ namespace TranslateUtility
                 (int)txtFontSizeSpeak.Value
             );
 
-            if(chkOverrideTurkish.Checked)
-            {
-                string storybookModPath = Path.Combine(Application.StartupPath, "Tools", Configs.modThaiStorybook);
-                c.OverrideTurkish(storybookModPath, Path.Combine(modPath, Configs.modThaiLanguage));
-            }
+            c.MigrateToTr(Path.Combine(modPath, Configs.modThaiLanguage));
         }
 
         private void InstallMod()
@@ -178,6 +174,9 @@ namespace TranslateUtility
                 txtGamePath.Text,
                 !rdoFontNone.Checked
             );
+
+            string storybookModPath = Path.Combine(Application.StartupPath, "Tools", Configs.modThaiStorybook);
+            c.OverrideTurkish(storybookModPath, Path.Combine(modPath, Configs.modThaiLanguage));
         }
 
         private void Backup(bool overwrite)
