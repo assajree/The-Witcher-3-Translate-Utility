@@ -38,6 +38,13 @@ namespace TheWitcher3Thai
 
         private Setting setting = new Setting();
 
+        const int STORYBOOK_ROW_START = 3;
+        const int STORYBOOK_COL_MESSAGE = 3;
+        const int STORYBOOK_COL_TRANSLATE = 4;
+        const int STORYBOOK_ROW_START_LEGACY = 5;
+        const int STORYBOOK_COL_MESSAGE_LEGACY = 1;
+        const int STORYBOOK_COL_TRANSLATE_LEGACY = 3;
+
         #region Decode
 
         public void DecodeDirectory(string path)
@@ -3014,7 +3021,7 @@ namespace TheWitcher3Thai
 
             var result = new Storybook(fileName);
 
-            int row = 3;
+            int row = STORYBOOK_ROW_START;
             string start = sht.Cells[row, 1].Value.ToStringOrNull();
             while (!String.IsNullOrWhiteSpace(start))
             {
@@ -3036,8 +3043,15 @@ namespace TheWitcher3Thai
 
         private void WriteAllStorybook(string outputRoot, List<Storybook> data)
         {
-            foreach(var d in data)
+            // clear story book
+            DeleteDirectory(outputRoot);
+            Directory.CreateDirectory(outputRoot);
+
+            foreach (var d in data)
             {
+                if (!d.IsComplete())
+                    continue;
+
                 WriteStorybook(outputRoot, d);
             }
         }
@@ -3055,8 +3069,124 @@ namespace TheWitcher3Thai
 
             if (!fi.Directory.Exists)
                 fi.Directory.Create();
+
+            File.WriteAllText(targetPath, d.ToString(), Encoding.UTF8);
+
+        }
+
+        public void FillStorybookExcel(string targetPath, string translatePath, bool fillMessage)
+        {
+            var map = setting.GetStorybookMaping();
+            var translate=ReadLegacyStorybook(translatePath);
+
+            var fi = new FileInfo(targetPath);
+            using (var p = new ExcelPackage(fi))
+            {
+                var wb = p.Workbook;
+                
+                foreach(var data in translate)
+                {
+                    string sheetName = GetStorybookSheetName(map, data.Key);
+                    var sht = wb.Worksheets[sheetName];
+                    if (sht == null)
+                        continue;
+
+                    FillStoryBookSheet(sht, data.Value, fillMessage);
+                }
+
+                p.Save();
+            }
+
+        }
+
+        private void FillStoryBookSheet(ExcelWorksheet sht, List<StorybookRow> data, bool fillMessage)
+        {
+            int sheetDataCount = GetStorybookSheetDataCount(sht);
+            if (sheetDataCount != data.Count)
+                return;
+
+            int currrow = STORYBOOK_ROW_START;
+            foreach (var d in data)
+            {
+                if (fillMessage && !String.IsNullOrWhiteSpace(d.Message))
+                    sht.Cells[currrow, STORYBOOK_COL_MESSAGE].Value = d.Message;
+
+                if (!String.IsNullOrWhiteSpace(d.Translate))
+                    sht.Cells[currrow, STORYBOOK_COL_TRANSLATE].Value = d.Translate;
+
+                currrow++;
+            }
+        }
+
+        private int GetStorybookSheetDataCount(ExcelWorksheet sht)
+        {
+            int result = 0;
+            int row = STORYBOOK_ROW_START;
+            string message = sht.Cells[row, STORYBOOK_COL_MESSAGE_LEGACY].Value.ToStringOrNull();
+            while (!String.IsNullOrWhiteSpace(message))
+            {
+                result++;
+
+                row++;
+                message = sht.Cells[row, STORYBOOK_COL_MESSAGE_LEGACY].Value.ToStringOrNull();                
+            }
+
+            return result;
+        }
+
+        private string GetStorybookSheetName(Dictionary<string, string> map, string key)
+        {
+            if (map.ContainsKey(key))
+                return map[key];
+            else
+                return null;
+        }
+
+        private Dictionary<string, List<StorybookRow>> ReadLegacyStorybook(string translatePath)
+        {
+            const string STORYBOOK_SHEET_NAME = "Cinematics ALL";
             
-            File.WriteAllText(targetPath, d.ToString());
+
+            var result = new Dictionary<string, List<StorybookRow>>();
+
+            var fi = new FileInfo(translatePath);
+            using (var p = new ExcelPackage(fi))
+            {
+                var sht = p.Workbook.Worksheets[STORYBOOK_SHEET_NAME];
+                if (sht == null)
+                    return result;
+
+                string comment;
+                List<StorybookRow> currBook = null;
+                int row = STORYBOOK_ROW_START_LEGACY;
+                string message = sht.Cells[row, STORYBOOK_COL_MESSAGE_LEGACY].Value.ToStringOrNull();
+                while (!String.IsNullOrWhiteSpace(message))
+                {
+                    comment = sht.Cells[row, STORYBOOK_COL_MESSAGE_LEGACY].Comment?.Text;
+                    if (!String.IsNullOrWhiteSpace(comment))
+                    {
+                        currBook = new List<StorybookRow>();
+                        result.Add(comment, currBook);
+                        currBook.Add(new StorybookRow() { Start = "0" });
+                    }
+
+                    if (currBook != null)
+                    {
+                        currBook.Add(new StorybookRow()
+                        {
+                            Start = "0",
+                            Stop = "0",
+                            Message = message,
+                            Translate = sht.Cells[row, STORYBOOK_COL_TRANSLATE_LEGACY].Value.ToStringOrNull()
+                        });
+                    }
+
+                    row++;
+                    message = sht.Cells[row, STORYBOOK_COL_MESSAGE_LEGACY].Value.ToStringOrNull();
+                }
+            }
+
+            return result;
 
         }
     }

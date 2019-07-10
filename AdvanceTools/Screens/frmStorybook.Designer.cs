@@ -40,12 +40,22 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnWriteInput = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnFillStart = new System.Windows.Forms.Button();
+            this.btnFillTranslate = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnFillTarget = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtFillTranslate = new System.Windows.Forms.TextBox();
+            this.txtFillTarget = new System.Windows.Forms.TextBox();
             this.txtWriteOutput = new System.Windows.Forms.TextBox();
             this.txtWriteInput = new System.Windows.Forms.TextBox();
             this.txtReadOutput = new System.Windows.Forms.TextBox();
             this.txtReadPath = new System.Windows.Forms.TextBox();
+            this.chkFillMessage = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -170,11 +180,96 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(42, 22);
+            this.label4.Location = new System.Drawing.Point(37, 22);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(58, 13);
             this.label4.TabIndex = 1;
             this.label4.Text = "Excel Path";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.chkFillMessage);
+            this.groupBox3.Controls.Add(this.btnFillStart);
+            this.groupBox3.Controls.Add(this.btnFillTranslate);
+            this.groupBox3.Controls.Add(this.txtFillTarget);
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.btnFillTarget);
+            this.groupBox3.Controls.Add(this.txtFillTranslate);
+            this.groupBox3.Location = new System.Drawing.Point(12, 188);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(611, 94);
+            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Fill Storybook Excel from Excel";
+            // 
+            // btnFillStart
+            // 
+            this.btnFillStart.Location = new System.Drawing.Point(524, 17);
+            this.btnFillStart.Name = "btnFillStart";
+            this.btnFillStart.Size = new System.Drawing.Size(75, 49);
+            this.btnFillStart.TabIndex = 6;
+            this.btnFillStart.Text = "Start";
+            this.btnFillStart.UseVisualStyleBackColor = true;
+            this.btnFillStart.Click += new System.EventHandler(this.btnFillStart_Click);
+            // 
+            // btnFillTranslate
+            // 
+            this.btnFillTranslate.Location = new System.Drawing.Point(491, 17);
+            this.btnFillTranslate.Name = "btnFillTranslate";
+            this.btnFillTranslate.Size = new System.Drawing.Size(26, 23);
+            this.btnFillTranslate.TabIndex = 5;
+            this.btnFillTranslate.Text = "...";
+            this.btnFillTranslate.UseVisualStyleBackColor = true;
+            this.btnFillTranslate.Click += new System.EventHandler(this.btnFillTranslate_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(19, 22);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(76, 13);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Translate Path";
+            // 
+            // btnFillTarget
+            // 
+            this.btnFillTarget.Location = new System.Drawing.Point(491, 43);
+            this.btnFillTarget.Name = "btnFillTarget";
+            this.btnFillTarget.Size = new System.Drawing.Size(26, 23);
+            this.btnFillTarget.TabIndex = 2;
+            this.btnFillTarget.Text = "...";
+            this.btnFillTarget.UseVisualStyleBackColor = true;
+            this.btnFillTarget.Click += new System.EventHandler(this.btnFillTarget_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(15, 48);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(80, 13);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Storybook Path";
+            // 
+            // txtFillTranslate
+            // 
+            this.txtFillTranslate.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AdvanceTools.Properties.Settings.Default, "StorybookFillTranslatePath", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtFillTranslate.Location = new System.Drawing.Point(101, 19);
+            this.txtFillTranslate.Name = "txtFillTranslate";
+            this.txtFillTranslate.Size = new System.Drawing.Size(384, 20);
+            this.txtFillTranslate.TabIndex = 3;
+            this.txtFillTranslate.Text = global::AdvanceTools.Properties.Settings.Default.StorybookFillTranslatePath;
+            this.txtFillTranslate.DoubleClick += new System.EventHandler(this.txtFillTranslate_DoubleClick);
+            // 
+            // txtFillTarget
+            // 
+            this.txtFillTarget.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AdvanceTools.Properties.Settings.Default, "StorybookFillTargetPath", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtFillTarget.Location = new System.Drawing.Point(101, 45);
+            this.txtFillTarget.Name = "txtFillTarget";
+            this.txtFillTarget.Size = new System.Drawing.Size(384, 20);
+            this.txtFillTarget.TabIndex = 0;
+            this.txtFillTarget.Text = global::AdvanceTools.Properties.Settings.Default.StorybookFillTargetPath;
+            this.txtFillTarget.DoubleClick += new System.EventHandler(this.txtFillTarget_DoubleClick);
             // 
             // txtWriteOutput
             // 
@@ -213,11 +308,22 @@
             this.txtReadPath.TabIndex = 0;
             this.txtReadPath.Text = global::AdvanceTools.Properties.Settings.Default.StorybookReadInputPath;
             // 
+            // chkFillMessage
+            // 
+            this.chkFillMessage.AutoSize = true;
+            this.chkFillMessage.Location = new System.Drawing.Point(101, 71);
+            this.chkFillMessage.Name = "chkFillMessage";
+            this.chkFillMessage.Size = new System.Drawing.Size(84, 17);
+            this.chkFillMessage.TabIndex = 7;
+            this.chkFillMessage.Text = "Fill Message";
+            this.chkFillMessage.UseVisualStyleBackColor = true;
+            // 
             // frmStorybook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(657, 450);
+            this.ClientSize = new System.Drawing.Size(636, 287);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmStorybook";
@@ -228,6 +334,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -250,5 +358,14 @@
         private System.Windows.Forms.Button btnWriteInput;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtWriteInput;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button btnFillStart;
+        private System.Windows.Forms.Button btnFillTranslate;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtFillTranslate;
+        private System.Windows.Forms.Button btnFillTarget;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtFillTarget;
+        private System.Windows.Forms.CheckBox chkFillMessage;
     }
 }

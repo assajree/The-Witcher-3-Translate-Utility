@@ -18,7 +18,7 @@ namespace svvv.Classes
         public StorybookRow() { }
         public StorybookRow(string row)
         {
-            var arr = row.Split(new string[] { ", " }, StringSplitOptions.None);
+            var arr = row.Split(new string[] { ", " }, 3, StringSplitOptions.None);
 
             if (arr.Length > 0)
                 Start = arr[0];
@@ -27,7 +27,8 @@ namespace svvv.Classes
                 Stop = arr[1];
 
             if (arr.Length > 2)
-                Message = GetMessage(arr);
+                Message = arr[2];
+                //Message = GetMessage(arr);
 
             //if (arr.Length > 3)
             //    Translate = arr[3];
@@ -67,8 +68,7 @@ namespace svvv.Classes
     public class Storybook
     {
 
-        public string FilePath { get; private set; } 
-        //private List<string> Content { get; set; }
+        public string FilePath { get; private set; }
         public List<StorybookRow> Content { get; set; }
         
 
@@ -77,6 +77,17 @@ namespace svvv.Classes
         public string SheetName { get; private set; }
         public string Parent { get; private set; }
         public string UniqueName { get; private set; }
+
+        public bool IsComplete()
+        {
+            for(int i=1;i< Content.Count;i++)
+            {
+                if (String.IsNullOrWhiteSpace(Content[i].Translate))
+                    return false;
+            }
+
+            return true;
+        }
 
         public Storybook() { }
 

@@ -67,5 +67,29 @@ namespace AdvanceTools.Properties {
                 this["StorybookWriteOutputPath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string StorybookFillTargetPath {
+            get {
+                return ((string)(this["StorybookFillTargetPath"]));
+            }
+            set {
+                this["StorybookFillTargetPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string StorybookFillTranslatePath {
+            get {
+                return ((string)(this["StorybookFillTranslatePath"]));
+            }
+            set {
+                this["StorybookFillTranslatePath"] = value;
+            }
+        }
     }
 }

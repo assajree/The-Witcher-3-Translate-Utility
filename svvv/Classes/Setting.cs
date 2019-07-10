@@ -138,5 +138,43 @@ namespace TheWitcher3Thai
 
             return result;
         }
+
+        public Dictionary<string,string> GetStorybookMaping()
+        {
+            var result = new Dictionary<string, string>();
+
+            result.Add("st3main", "st_3_tr");
+            result.Add("flb1amain", "rs_1a_tr");
+            result.Add("flb5amain", "rs_5a_tr");
+            result.Add("flb4amain", "rs_4a_tr");
+            result.Add("flb4bmain", "rs_4b_tr");
+            result.Add("flb2bmain", "rs_2b_tr");
+            result.Add("flb2amain", "rs_2a_tr");
+            result.Add("flb3bmain", "rs_3b_tr");
+            result.Add("flb3amain", "rs_3a_tr");
+            result.Add("flb5bmain", "rs_5b_tr");
+            result.Add("flb6anomain", "rs_6a_tr_alt");
+            result.Add("flb6amain", "rs_6a_tr");
+            result.Add("flb6bmain", "rs_6b_tr");
+            result.Add("fnb1a", "fb_1a_tr");
+            result.Add("fnb1b", "fb_1b_tr");
+            result.Add("fnb3a", "fb_3a_tr");
+            result.Add("fnb3c", "fb_3c_tr");
+            result.Add("fnb3b", "fb_3b_tr");
+            result.Add("fnb4b", "fb_4b_tr");
+            result.Add("fnb4a", "fb_4a_tr");
+            result.Add("fnb2c", "fb_2c_tr");
+            result.Add("fnb2b", "fb_2b_tr");
+            result.Add("fnb2a", "fb_2a_tr");
+            result.Add("fnb6a", "fb_6a_tr");
+            result.Add("fnb6c", "fb_6c_tr");
+            result.Add("fnb6b", "fb_6b_tr");
+            result.Add("fnb5c", "fb_5c_tr");
+            result.Add("fnb5a", "fb_5a_tr");
+            result.Add("fnb5b", "fb_5b_tr");
+            result.Add("fnb1c", "fb_1c_tr");
+
+            return result;
+        }
     }
 }

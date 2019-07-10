@@ -110,5 +110,42 @@ namespace TranslateUtility
         {
             c.SelectFolderTextBox(txtWriteOutput);
         }
+
+        private void txtFillTranslate_DoubleClick(object sender, EventArgs e)
+        {
+            c.Open(txtFillTranslate.Text);
+        }
+
+        private void txtFillTarget_DoubleClick(object sender, EventArgs e)
+        {
+            c.Open(txtFillTarget.Text);
+        }
+
+        private void btnFillTarget_Click(object sender, EventArgs e)
+        {
+            c.SelectXlsxTextBox(txtFillTarget);
+        }
+
+        private void btnFillTranslate_Click(object sender, EventArgs e)
+        {
+            c.SelectXlsxTextBox(txtFillTranslate);
+        }
+
+        private void btnFillStart_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                c.FillStorybookExcel(
+                    txtFillTarget.Text,
+                    txtFillTranslate.Text,
+                    chkFillMessage.Checked
+                );
+                c.ShowMessage("Complete");
+            }
+            catch (Exception ex)
+            {
+                c.ShowErrorMessage(ex);
+            }
+        }
     }
 }
