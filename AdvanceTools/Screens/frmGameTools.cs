@@ -206,7 +206,7 @@ namespace TranslateUtility
 
         private void InstallFont()
         {
-            c.InstallFontMod(txtFontModDesc.Text);
+            c.InstallFontKuntoon(txtFontModDesc.Text);
         }
 
         private void RemoveFont()

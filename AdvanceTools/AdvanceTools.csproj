@@ -138,6 +138,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Tools\ThaiStorybook\en.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Tools\ThaiStorybook\modThaiStoryBook.w3modproj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

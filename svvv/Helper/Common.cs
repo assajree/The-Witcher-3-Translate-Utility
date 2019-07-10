@@ -302,6 +302,26 @@ namespace TheWitcher3Thai
             }
         }
 
+        public bool UpdateStorybook()
+        {
+            // check version
+
+            // download
+            string downloadPath = Path.Combine(Configs.TempPath, "modThaiStoryBook.zip");
+            if (!DownloadGoogleFile(Configs.StorybookFileId, downloadPath))
+            {
+                ShowErrorMessage("การอัพเดทถูกยกเลิก");
+                return false;
+            }
+
+            // extract
+            string modPaht = Path.Combine(Application.StartupPath, "Tools", Configs.modThaiStoryBook);
+            ExtractFile(downloadPath, modPaht);
+
+            return true;
+
+        }
+
         public void ShowErrorMessage(Exception ex, string caption = "Error")
         {
             MessageBox.Show(ex.GetBaseException().Message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -2166,7 +2186,7 @@ namespace TheWitcher3Thai
                     InstallFontSarabun(outputPath);
                     break;
                 case eFontSetting.Normal:
-                    InstallFontMod(outputPath);
+                    InstallFontKuntoon(outputPath);
                     break;
             }
 
@@ -2648,20 +2668,33 @@ namespace TheWitcher3Thai
 
         }
 
+        public void InstallFontMod(eFontSetting font, string outputPath)
+        {
+            switch (font)
+            {
+                case eFontSetting.Sarabun:
+                    InstallFontSarabun(outputPath);
+                    break;
+                case eFontSetting.Normal:
+                    InstallFontKuntoon(outputPath);
+                    break;
+            }
+        }
+
         public void InstallFontSarabun(string gamePath)
         {
             //RemoveOldFont(gamePath);
 
             string modPath = Path.Combine(Application.StartupPath, "Tools", Configs.modFontSarabun);
-            var targetPath = Path.Combine(gamePath, Configs.modThaiLanguage);
+            var targetPath = Path.Combine(gamePath, Configs.modThaiFont);
 
             CopyDirectory(modPath, targetPath);
         }
 
-        public void InstallFontMod(string gamePath)
+        public void InstallFontKuntoon(string gamePath)
         {
             string modPath = Path.Combine(Application.StartupPath, "Tools", Configs.modThaiFont);
-            var targetPath = Path.Combine(gamePath, Configs.modThaiLanguage);
+            var targetPath = Path.Combine(gamePath, Configs.modThaiFont);
 
             CopyDirectory(modPath, targetPath);
         }
@@ -2704,6 +2737,10 @@ namespace TheWitcher3Thai
         public void RemoveMod(string gamePath)
         {
             string modPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage);
+            if (Directory.Exists(modPath))
+                DeleteDirectory(modPath);
+
+            string fontPath = Path.Combine(gamePath, "mods", Configs.modThaiFont);
             if (Directory.Exists(modPath))
                 DeleteDirectory(modPath);
         }
@@ -2761,8 +2798,11 @@ namespace TheWitcher3Thai
 
         public void InstallModStoryBook(string modPath, string targetPath)
         {
+            var skips = new List<string>();
+            skips.Add(Path.Combine(modPath, "version.ini"));
+
             // copy mod
-            CopyDirectory(modPath, targetPath);
+            CopyDirectory(modPath, targetPath, skips);
 
         }
 
@@ -3075,7 +3115,7 @@ namespace TheWitcher3Thai
             if (!fi.Directory.Exists)
                 fi.Directory.Create();
 
-            File.WriteAllText(targetPath, d.ToString(), Encoding.UTF8);
+            File.WriteAllText(targetPath, d.ToString(), Encoding.Unicode);
 
         }
 
@@ -3290,12 +3330,12 @@ namespace TheWitcher3Thai
             }
         }
 
-        private void ChangeLanguageSettingToTR()
+        public void ChangeLanguageSettingToTR()
         {
             ChangeLanguageSetting("EN", "TR");
         }
 
-        private void ChangeLanguageSettingToEN()
+        public void ChangeLanguageSettingToEN()
         {
             ChangeLanguageSetting("TR", "EN");
         }

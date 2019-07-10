@@ -23,7 +23,9 @@ namespace svvv
         public const string Separator = "  ";
         public const string UpdateFileId = "1HOmaK3jaI2oW194CvyDXlzZBUEoWzGbU";
         public const string VersionFileId = "1dChsKp641mD3EPREqSZTN_yxlu9KFXJP";
+        public const string StorybookFileId = "132FnSeYLJAQamrTptaEVtqfwqiOzdHRj";
 
+        public const string modThaiStoryBook = "modThaiStoryBook";
         public const string modFontSarabun = "modFontSarabun";
         public const string modThaiFont = "modThaiFont";
         public const string modDoubleSubtitle = "modDoubleSubtitle";

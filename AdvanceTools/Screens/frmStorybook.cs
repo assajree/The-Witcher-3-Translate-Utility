@@ -176,6 +176,8 @@ namespace TranslateUtility
 
         private void btnClearTranslateStart_Click(object sender, EventArgs e)
         {
+            c.UpdateStorybook();
+            return;
             try
             {
                 if (chkClearAllSheet.Checked)

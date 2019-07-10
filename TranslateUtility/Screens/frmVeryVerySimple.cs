@@ -161,22 +161,25 @@ namespace TranslateUtility
             );
 
             c.MigrateToTr(Path.Combine(modPath, Configs.modThaiLanguage));
+
+            string storybookModPath = Path.Combine(Application.StartupPath, "Tools", Configs.modThaiStorybook);
+            c.InstallModStoryBook(storybookModPath, Path.Combine(modPath, Configs.modThaiLanguage));
         }
 
         private void InstallMod()
         {
-            // silence backup
-            //if (!c.BackupExists(Configs.BackupPath))
-            //    Backup(false);
-
             c.InstallMod(
                 modPath,
                 txtGamePath.Text,
                 !rdoFontNone.Checked
             );
 
-            string storybookModPath = Path.Combine(Application.StartupPath, "Tools", Configs.modThaiStorybook);
-            c.OverrideTurkish(storybookModPath, Path.Combine(modPath, Configs.modThaiLanguage));
+            c.InstallFontMod(
+                GetFontSetting(),
+                Path.Combine(txtGamePath.Text, "mods", Configs.modThaiFont)
+            );
+
+            c.ChangeLanguageSettingToTR();
         }
 
         private void Backup(bool overwrite)
@@ -245,9 +248,10 @@ namespace TranslateUtility
 
         private void RemoveMod()
         {
-            c.Backup(Configs.BackupPath, txtGamePath.Text, true, false);
+            //c.Backup(Configs.BackupPath, txtGamePath.Text, true, false);
+            c.ChangeLanguageSettingToEN();
             c.RemoveMod(txtGamePath.Text);
-            c.InstallFontMod(txtGamePath.Text);
+            //c.InstallFontMod(txtGamePath.Text);
 
             //// remove font mod
             //if (c.CheckFontMod(txtGamePath.Text))
@@ -284,6 +288,9 @@ namespace TranslateUtility
 
         private void StartAlt()
         {
+            // update storybook
+            c.UpdateStorybook();
+
             // download translate excel file
             translatePath = Path.Combine(Configs.DownloadPath, "translate.xlsx");
             translatePath = c.DownloadLegacyExcel(translatePath, false, GetDownloadFrequency());
@@ -349,13 +356,13 @@ namespace TranslateUtility
             if (hasUpdate)
             {
                 this.Close();
-                c.UpdateW3tu();                
+                c.UpdateW3tu();
             }
             else
             {
                 c.ShowMessage("ไม่พบอัพเดท");
             }
-            
+
         }
 
         private void lblGameDir_DoubleClick(object sender, EventArgs e)
