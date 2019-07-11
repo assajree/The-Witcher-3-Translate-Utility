@@ -138,7 +138,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Tools\ThaiStorybook\en.xlsx">
+    <None Include="Tools\en.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Tools\ThaiStorybook\modThaiStoryBook.w3modproj">
@@ -174,9 +174,7 @@
     <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\flashbacks\subs\rs_5b_tr.subs" />
     <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\flashbacks\subs\rs_6a_tr.subs" />
     <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\flashbacks\subs\rs_6b_tr.subs" />
-    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\gamestart\subs\recap_wip_tr.subs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\gamestart\subs\recap_wip_tr.subs" />
     <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\pre_rendered_cutscenes\subs\cs001_nightmare_tr.subs" />
     <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\pre_rendered_cutscenes\subs\cs002_wild_hunt_chase_p2_tr.subs" />
     <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\pre_rendered_cutscenes\subs\cs002_wild_hunt_chase_p4_tr.subs" />
@@ -213,7 +211,7 @@
     <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\subs\st_7_tr.subs" />
     <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\subs\st_8_tr.subs" />
     <None Include="Tools\ThaiStorybook\modThaiStoryBook\files\movies\cutscenes\storybook\subs\st_9_tr.subs" />
-    <None Include="Tools\ThaiStorybook\storybook.xlsx">
+    <None Include="Tools\storybook.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

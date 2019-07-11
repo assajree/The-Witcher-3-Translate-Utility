@@ -3197,7 +3197,7 @@ namespace TheWitcher3Thai
                     Start = start,
                     Stop = sht.Cells[row, 2].Value.ToStringOrNull(),
                     Message = sht.Cells[row, 3].Value.ToStringOrNull(),
-                    Translate = sht.Cells[row, 4].Value.ToStringOrNull()
+                    Translate = sht.Cells[row, 4].Value.ToStringOrNull()?.Trim()
                 });
 
                 start = sht.Cells[++row, 1].Value.ToStringOrNull();

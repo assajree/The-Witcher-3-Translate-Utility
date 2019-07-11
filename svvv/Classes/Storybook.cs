@@ -156,10 +156,10 @@ namespace svvv.Classes
             var sb = new StringBuilder();
             foreach(var c in Content)
             {
-                sb.Append(c.ToString() + Environment.NewLine);
+                sb.AppendLine(c.ToString());
             }
 
-            return sb.ToString();
+            return sb.ToString().Trim();
         }
     }
 
