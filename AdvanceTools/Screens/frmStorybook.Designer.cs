@@ -32,20 +32,21 @@
             this.btnWriteStart = new System.Windows.Forms.Button();
             this.btnWriteOutput = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.txtWriteOutput = new System.Windows.Forms.TextBox();
             this.btnWriteInput = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.txtWriteInput = new System.Windows.Forms.TextBox();
             this.pnFill = new System.Windows.Forms.GroupBox();
+            this.chkFillMessageAsTranslate = new System.Windows.Forms.CheckBox();
+            this.chkFillReplaceTranslated = new System.Windows.Forms.CheckBox();
+            this.chkFillMessage = new System.Windows.Forms.CheckBox();
             this.btnFillStart = new System.Windows.Forms.Button();
             this.btnFillTranslate = new System.Windows.Forms.Button();
+            this.txtFillTarget = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnFillTarget = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.chkFillMessage = new System.Windows.Forms.CheckBox();
-            this.txtFillTarget = new System.Windows.Forms.TextBox();
             this.txtFillTranslate = new System.Windows.Forms.TextBox();
-            this.txtWriteOutput = new System.Windows.Forms.TextBox();
-            this.txtWriteInput = new System.Windows.Forms.TextBox();
-            this.chkFillReplaceTranslated = new System.Windows.Forms.CheckBox();
             this.txtReadPath = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnReadPath = new System.Windows.Forms.Button();
@@ -56,18 +57,18 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnStartReadComment = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtReadCommentOutput = new System.Windows.Forms.TextBox();
+            this.btnReadCommentInput = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.txtReadCommentInput = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.btnReadCommentInput = new System.Windows.Forms.Button();
-            this.txtReadCommentOutput = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.chkClearAllSheet = new System.Windows.Forms.CheckBox();
             this.btnClearTranslateStart = new System.Windows.Forms.Button();
             this.btnClearTranslateInput = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.txtClearTranslatePath = new System.Windows.Forms.TextBox();
-            this.chkFillMessageAsTranslate = new System.Windows.Forms.CheckBox();
-            this.chkClearAllSheet = new System.Windows.Forms.CheckBox();
+            this.btnDownload = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.pnFill.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -84,7 +85,7 @@
             this.groupBox2.Controls.Add(this.btnWriteInput);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.txtWriteInput);
-            this.groupBox2.Location = new System.Drawing.Point(12, 100);
+            this.groupBox2.Location = new System.Drawing.Point(12, 123);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(611, 82);
             this.groupBox2.TabIndex = 1;
@@ -120,6 +121,16 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Output Path";
             // 
+            // txtWriteOutput
+            // 
+            this.txtWriteOutput.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AdvanceTools.Properties.Settings.Default, "StorybookWriteOutputPath", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtWriteOutput.Location = new System.Drawing.Point(136, 45);
+            this.txtWriteOutput.Name = "txtWriteOutput";
+            this.txtWriteOutput.Size = new System.Drawing.Size(349, 20);
+            this.txtWriteOutput.TabIndex = 3;
+            this.txtWriteOutput.Text = global::AdvanceTools.Properties.Settings.Default.StorybookWriteOutputPath;
+            this.txtWriteOutput.DoubleClick += new System.EventHandler(this.txtWriteOutput_DoubleClick);
+            // 
             // btnWriteInput
             // 
             this.btnWriteInput.Location = new System.Drawing.Point(491, 17);
@@ -139,6 +150,15 @@
             this.label4.TabIndex = 1;
             this.label4.Text = "Storybook Excel Path";
             // 
+            // txtWriteInput
+            // 
+            this.txtWriteInput.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AdvanceTools.Properties.Settings.Default, "StorybookWriteInputPath", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtWriteInput.Location = new System.Drawing.Point(136, 19);
+            this.txtWriteInput.Name = "txtWriteInput";
+            this.txtWriteInput.Size = new System.Drawing.Size(349, 20);
+            this.txtWriteInput.TabIndex = 0;
+            this.txtWriteInput.Text = global::AdvanceTools.Properties.Settings.Default.StorybookWriteInputPath;
+            // 
             // pnFill
             // 
             this.pnFill.Controls.Add(this.chkFillMessageAsTranslate);
@@ -151,12 +171,42 @@
             this.pnFill.Controls.Add(this.label5);
             this.pnFill.Controls.Add(this.btnFillTarget);
             this.pnFill.Controls.Add(this.txtFillTranslate);
-            this.pnFill.Location = new System.Drawing.Point(12, 188);
+            this.pnFill.Location = new System.Drawing.Point(12, 211);
             this.pnFill.Name = "pnFill";
             this.pnFill.Size = new System.Drawing.Size(611, 94);
             this.pnFill.TabIndex = 2;
             this.pnFill.TabStop = false;
             this.pnFill.Text = "Fill Storybook Excel from Translate";
+            // 
+            // chkFillMessageAsTranslate
+            // 
+            this.chkFillMessageAsTranslate.AutoSize = true;
+            this.chkFillMessageAsTranslate.Location = new System.Drawing.Point(397, 71);
+            this.chkFillMessageAsTranslate.Name = "chkFillMessageAsTranslate";
+            this.chkFillMessageAsTranslate.Size = new System.Drawing.Size(145, 17);
+            this.chkFillMessageAsTranslate.TabIndex = 9;
+            this.chkFillMessageAsTranslate.Text = "Fill Message as Translate";
+            this.chkFillMessageAsTranslate.UseVisualStyleBackColor = true;
+            // 
+            // chkFillReplaceTranslated
+            // 
+            this.chkFillReplaceTranslated.AutoSize = true;
+            this.chkFillReplaceTranslated.Location = new System.Drawing.Point(226, 71);
+            this.chkFillReplaceTranslated.Name = "chkFillReplaceTranslated";
+            this.chkFillReplaceTranslated.Size = new System.Drawing.Size(165, 17);
+            this.chkFillReplaceTranslated.TabIndex = 8;
+            this.chkFillReplaceTranslated.Text = "Replace Translated Message";
+            this.chkFillReplaceTranslated.UseVisualStyleBackColor = true;
+            // 
+            // chkFillMessage
+            // 
+            this.chkFillMessage.AutoSize = true;
+            this.chkFillMessage.Location = new System.Drawing.Point(136, 71);
+            this.chkFillMessage.Name = "chkFillMessage";
+            this.chkFillMessage.Size = new System.Drawing.Size(84, 17);
+            this.chkFillMessage.TabIndex = 7;
+            this.chkFillMessage.Text = "Fill Message";
+            this.chkFillMessage.UseVisualStyleBackColor = true;
             // 
             // btnFillStart
             // 
@@ -178,6 +228,25 @@
             this.btnFillTranslate.UseVisualStyleBackColor = true;
             this.btnFillTranslate.Click += new System.EventHandler(this.btnFillTranslate_Click);
             // 
+            // txtFillTarget
+            // 
+            this.txtFillTarget.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AdvanceTools.Properties.Settings.Default, "StorybookFillTargetPath", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtFillTarget.Location = new System.Drawing.Point(136, 45);
+            this.txtFillTarget.Name = "txtFillTarget";
+            this.txtFillTarget.Size = new System.Drawing.Size(349, 20);
+            this.txtFillTarget.TabIndex = 0;
+            this.txtFillTarget.Text = global::AdvanceTools.Properties.Settings.Default.StorybookFillTargetPath;
+            this.txtFillTarget.DoubleClick += new System.EventHandler(this.txtFillTarget_DoubleClick);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(50, 48);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(80, 13);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Storybook Path";
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -197,35 +266,6 @@
             this.btnFillTarget.UseVisualStyleBackColor = true;
             this.btnFillTarget.Click += new System.EventHandler(this.btnFillTarget_Click);
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(50, 48);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(80, 13);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "Storybook Path";
-            // 
-            // chkFillMessage
-            // 
-            this.chkFillMessage.AutoSize = true;
-            this.chkFillMessage.Location = new System.Drawing.Point(136, 71);
-            this.chkFillMessage.Name = "chkFillMessage";
-            this.chkFillMessage.Size = new System.Drawing.Size(84, 17);
-            this.chkFillMessage.TabIndex = 7;
-            this.chkFillMessage.Text = "Fill Message";
-            this.chkFillMessage.UseVisualStyleBackColor = true;
-            // 
-            // txtFillTarget
-            // 
-            this.txtFillTarget.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AdvanceTools.Properties.Settings.Default, "StorybookFillTargetPath", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtFillTarget.Location = new System.Drawing.Point(136, 45);
-            this.txtFillTarget.Name = "txtFillTarget";
-            this.txtFillTarget.Size = new System.Drawing.Size(349, 20);
-            this.txtFillTarget.TabIndex = 0;
-            this.txtFillTarget.Text = global::AdvanceTools.Properties.Settings.Default.StorybookFillTargetPath;
-            this.txtFillTarget.DoubleClick += new System.EventHandler(this.txtFillTarget_DoubleClick);
-            // 
             // txtFillTranslate
             // 
             this.txtFillTranslate.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AdvanceTools.Properties.Settings.Default, "StorybookFillTranslatePath", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -235,35 +275,6 @@
             this.txtFillTranslate.TabIndex = 3;
             this.txtFillTranslate.Text = global::AdvanceTools.Properties.Settings.Default.StorybookFillTranslatePath;
             this.txtFillTranslate.DoubleClick += new System.EventHandler(this.txtFillTranslate_DoubleClick);
-            // 
-            // txtWriteOutput
-            // 
-            this.txtWriteOutput.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AdvanceTools.Properties.Settings.Default, "StorybookWriteOutputPath", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtWriteOutput.Location = new System.Drawing.Point(136, 45);
-            this.txtWriteOutput.Name = "txtWriteOutput";
-            this.txtWriteOutput.Size = new System.Drawing.Size(349, 20);
-            this.txtWriteOutput.TabIndex = 3;
-            this.txtWriteOutput.Text = global::AdvanceTools.Properties.Settings.Default.StorybookWriteOutputPath;
-            this.txtWriteOutput.DoubleClick += new System.EventHandler(this.txtWriteOutput_DoubleClick);
-            // 
-            // txtWriteInput
-            // 
-            this.txtWriteInput.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AdvanceTools.Properties.Settings.Default, "StorybookWriteInputPath", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtWriteInput.Location = new System.Drawing.Point(136, 19);
-            this.txtWriteInput.Name = "txtWriteInput";
-            this.txtWriteInput.Size = new System.Drawing.Size(349, 20);
-            this.txtWriteInput.TabIndex = 0;
-            this.txtWriteInput.Text = global::AdvanceTools.Properties.Settings.Default.StorybookWriteInputPath;
-            // 
-            // chkFillReplaceTranslated
-            // 
-            this.chkFillReplaceTranslated.AutoSize = true;
-            this.chkFillReplaceTranslated.Location = new System.Drawing.Point(226, 71);
-            this.chkFillReplaceTranslated.Name = "chkFillReplaceTranslated";
-            this.chkFillReplaceTranslated.Size = new System.Drawing.Size(165, 17);
-            this.chkFillReplaceTranslated.TabIndex = 8;
-            this.chkFillReplaceTranslated.Text = "Replace Translated Message";
-            this.chkFillReplaceTranslated.UseVisualStyleBackColor = true;
             // 
             // txtReadPath
             // 
@@ -340,7 +351,7 @@
             this.groupBox1.Controls.Add(this.btnReadPath);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtReadPath);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(12, 35);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(611, 82);
             this.groupBox1.TabIndex = 0;
@@ -355,7 +366,7 @@
             this.groupBox3.Controls.Add(this.btnReadCommentInput);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.txtReadCommentInput);
-            this.groupBox3.Location = new System.Drawing.Point(12, 288);
+            this.groupBox3.Location = new System.Drawing.Point(12, 311);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(611, 117);
             this.groupBox3.TabIndex = 3;
@@ -371,6 +382,34 @@
             this.btnStartReadComment.Text = "Start";
             this.btnStartReadComment.UseVisualStyleBackColor = true;
             this.btnStartReadComment.Click += new System.EventHandler(this.btnStartReadComment_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(66, 48);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(64, 13);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "Output Path";
+            // 
+            // txtReadCommentOutput
+            // 
+            this.txtReadCommentOutput.Location = new System.Drawing.Point(136, 45);
+            this.txtReadCommentOutput.Multiline = true;
+            this.txtReadCommentOutput.Name = "txtReadCommentOutput";
+            this.txtReadCommentOutput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtReadCommentOutput.Size = new System.Drawing.Size(381, 66);
+            this.txtReadCommentOutput.TabIndex = 3;
+            // 
+            // btnReadCommentInput
+            // 
+            this.btnReadCommentInput.Location = new System.Drawing.Point(491, 17);
+            this.btnReadCommentInput.Name = "btnReadCommentInput";
+            this.btnReadCommentInput.Size = new System.Drawing.Size(26, 23);
+            this.btnReadCommentInput.TabIndex = 2;
+            this.btnReadCommentInput.Text = "...";
+            this.btnReadCommentInput.UseVisualStyleBackColor = true;
+            this.btnReadCommentInput.Click += new System.EventHandler(this.btnReadCommentInput_Click);
             // 
             // label8
             // 
@@ -388,34 +427,6 @@
             this.txtReadCommentInput.Size = new System.Drawing.Size(349, 20);
             this.txtReadCommentInput.TabIndex = 0;
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(66, 48);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(64, 13);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "Output Path";
-            // 
-            // btnReadCommentInput
-            // 
-            this.btnReadCommentInput.Location = new System.Drawing.Point(491, 17);
-            this.btnReadCommentInput.Name = "btnReadCommentInput";
-            this.btnReadCommentInput.Size = new System.Drawing.Size(26, 23);
-            this.btnReadCommentInput.TabIndex = 2;
-            this.btnReadCommentInput.Text = "...";
-            this.btnReadCommentInput.UseVisualStyleBackColor = true;
-            this.btnReadCommentInput.Click += new System.EventHandler(this.btnReadCommentInput_Click);
-            // 
-            // txtReadCommentOutput
-            // 
-            this.txtReadCommentOutput.Location = new System.Drawing.Point(136, 45);
-            this.txtReadCommentOutput.Multiline = true;
-            this.txtReadCommentOutput.Name = "txtReadCommentOutput";
-            this.txtReadCommentOutput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtReadCommentOutput.Size = new System.Drawing.Size(381, 66);
-            this.txtReadCommentOutput.TabIndex = 3;
-            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.chkClearAllSheet);
@@ -423,12 +434,22 @@
             this.groupBox4.Controls.Add(this.btnClearTranslateInput);
             this.groupBox4.Controls.Add(this.label10);
             this.groupBox4.Controls.Add(this.txtClearTranslatePath);
-            this.groupBox4.Location = new System.Drawing.Point(13, 411);
+            this.groupBox4.Location = new System.Drawing.Point(13, 434);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(611, 67);
             this.groupBox4.TabIndex = 4;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Clear Storybook Translate";
+            // 
+            // chkClearAllSheet
+            // 
+            this.chkClearAllSheet.AutoSize = true;
+            this.chkClearAllSheet.Location = new System.Drawing.Point(136, 44);
+            this.chkClearAllSheet.Name = "chkClearAllSheet";
+            this.chkClearAllSheet.Size = new System.Drawing.Size(95, 17);
+            this.chkClearAllSheet.TabIndex = 7;
+            this.chkClearAllSheet.Text = "Clear All Sheet";
+            this.chkClearAllSheet.UseVisualStyleBackColor = true;
             // 
             // btnClearTranslateStart
             // 
@@ -466,31 +487,22 @@
             this.txtClearTranslatePath.Size = new System.Drawing.Size(349, 20);
             this.txtClearTranslatePath.TabIndex = 0;
             // 
-            // chkFillMessageAsTranslate
+            // btnDownload
             // 
-            this.chkFillMessageAsTranslate.AutoSize = true;
-            this.chkFillMessageAsTranslate.Location = new System.Drawing.Point(397, 71);
-            this.chkFillMessageAsTranslate.Name = "chkFillMessageAsTranslate";
-            this.chkFillMessageAsTranslate.Size = new System.Drawing.Size(145, 17);
-            this.chkFillMessageAsTranslate.TabIndex = 9;
-            this.chkFillMessageAsTranslate.Text = "Fill Message as Translate";
-            this.chkFillMessageAsTranslate.UseVisualStyleBackColor = true;
-            // 
-            // chkClearAllSheet
-            // 
-            this.chkClearAllSheet.AutoSize = true;
-            this.chkClearAllSheet.Location = new System.Drawing.Point(136, 44);
-            this.chkClearAllSheet.Name = "chkClearAllSheet";
-            this.chkClearAllSheet.Size = new System.Drawing.Size(95, 17);
-            this.chkClearAllSheet.TabIndex = 7;
-            this.chkClearAllSheet.Text = "Clear All Sheet";
-            this.chkClearAllSheet.UseVisualStyleBackColor = true;
+            this.btnDownload.Location = new System.Drawing.Point(12, 6);
+            this.btnDownload.Name = "btnDownload";
+            this.btnDownload.Size = new System.Drawing.Size(75, 23);
+            this.btnDownload.TabIndex = 8;
+            this.btnDownload.Text = "Download";
+            this.btnDownload.UseVisualStyleBackColor = true;
+            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
             // 
             // frmStorybook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(636, 490);
+            this.ClientSize = new System.Drawing.Size(636, 507);
+            this.Controls.Add(this.btnDownload);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.pnFill);
@@ -555,5 +567,6 @@
         private System.Windows.Forms.TextBox txtClearTranslatePath;
         private System.Windows.Forms.CheckBox chkFillMessageAsTranslate;
         private System.Windows.Forms.CheckBox chkClearAllSheet;
+        private System.Windows.Forms.Button btnDownload;
     }
 }

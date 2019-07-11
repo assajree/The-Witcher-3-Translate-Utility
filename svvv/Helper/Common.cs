@@ -305,6 +305,8 @@ namespace TheWitcher3Thai
         public bool UpdateStorybook()
         {
             // check version
+            if (!CheckUpdateStorybook(true))
+                return false;
 
             // download
             string downloadPath = Path.Combine(Configs.TempPath, "modThaiStoryBook.zip");
@@ -1321,14 +1323,31 @@ namespace TheWitcher3Thai
             string lastVersion;
 
             if (silenceMode)
-                lastVersion = ProcessingStringSilence(GetLastVersion, "กำลังเช็คเวอร์ชั่นล่าสุด", false);
+                lastVersion = ProcessingStringSilence(GetLastVersion, "กำลังเช็คเวอร์ชั่นโปรแกรม", false);
             else
-                lastVersion = ProcessingString(GetLastVersion, "กำลังเช็คเวอร์ชั่นล่าสุด", false);
+                lastVersion = ProcessingString(GetLastVersion, "กำลังเช็คเวอร์ชั่นโปรแกรม", false);
 
             if (lastVersion == null)
                 return false;
 
             var localVersion = ReadLocalVersion(Configs.StartupPath);
+
+            return localVersion != lastVersion;
+        }
+
+        public bool CheckUpdateStorybook(bool silenceMode = false)
+        {
+            string lastVersion;
+
+            if (silenceMode)
+                lastVersion = ProcessingStringSilence(GetVersionStorybook, "กำลังเช็คเวอร์ชั่น Story Book", false);
+            else
+                lastVersion = ProcessingString(GetVersionStorybook, "กำลังเช็คเวอร์ชั่น Story Book", false);
+
+            if (lastVersion == null)
+                return false;
+
+            var localVersion = ReadVersion(Configs.StorybookVersionPath);
 
             return localVersion != lastVersion;
         }
@@ -1353,10 +1372,39 @@ namespace TheWitcher3Thai
             return lastVersion;
         }
 
+        public string GetVersionStorybook()
+        {
+            string url = GetGoogleDownloadUrl(Configs.StorybookVersionFileId);
+            var client = new WebClient();
+            var data = client.DownloadData(url);
+            var stream = new StreamReader(new MemoryStream(data));
+
+            //var request = WebRequest.Create(url);
+            //var stream = new StreamReader(request.GetResponse().GetResponseStream());
+            var lastVersion = stream.ReadToEnd().ToString();
+
+            //if (String.IsNullOrWhiteSpace(lastVersion))
+            //{
+            //    throw new Exception("Get version fail. Try again later.");
+            //    //lastVersion = "N/A";
+            //}
+
+            return lastVersion;
+        }
+
         public string ReadLocalVersion(string modPath)
         {
             string versionPath = Path.Combine(modPath, "version.ini");
 
+            if (!File.Exists(versionPath))
+                return "N/A";
+
+            var lines = File.ReadLines(versionPath).ToList();
+            return lines.FirstOrDefault() ?? "N/A";
+        }
+
+        public string ReadVersion(string versionPath)
+        {
             if (!File.Exists(versionPath))
                 return "N/A";
 

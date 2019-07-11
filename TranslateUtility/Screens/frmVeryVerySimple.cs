@@ -40,12 +40,15 @@ namespace TranslateUtility
 
             if (!ShowAdvance)
                 ToggleAdvance();
-
+                        
             NotifyProgramUpdate();
         }
 
         private void NotifyProgramUpdate()
         {
+            // update storybook
+            c.UpdateStorybook();
+
             var hasUpdate = c.CheckForUpdate(true);
             if (!hasUpdate)
                 return;
@@ -288,8 +291,6 @@ namespace TranslateUtility
 
         private void StartAlt()
         {
-            // update storybook
-            c.UpdateStorybook();
 
             // download translate excel file
             translatePath = Path.Combine(Configs.DownloadPath, "translate.xlsx");

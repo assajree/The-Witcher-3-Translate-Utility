@@ -1,4 +1,5 @@
-﻿using System;
+﻿using svvv;
+using System;
 using System.IO;
 using System.Windows.Forms;
 using TheWitcher3Thai;
@@ -176,8 +177,6 @@ namespace TranslateUtility
 
         private void btnClearTranslateStart_Click(object sender, EventArgs e)
         {
-            c.UpdateStorybook();
-            return;
             try
             {
                 if (chkClearAllSheet.Checked)
@@ -199,6 +198,12 @@ namespace TranslateUtility
                 c.ShowErrorMessage(ex);
             }
             
+        }
+
+        private void btnDownload_Click(object sender, EventArgs e)
+        {
+            var translatePath = Path.Combine(Configs.DownloadPath, "translate.xlsx");
+            c.DownloadLegacyExcel(translatePath, false, Common.eDownloadFrequency.Always);
         }
     }
 }
