@@ -36,6 +36,7 @@
             this.rdoModTranslateFirst = new System.Windows.Forms.RadioButton();
             this.btnLegacyGenerate = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkAltSub = new System.Windows.Forms.CheckBox();
             this.chkExcludeUiText = new System.Windows.Forms.CheckBox();
             this.chkModDoubleLanguage = new System.Windows.Forms.CheckBox();
             this.rdoModOriginFirst = new System.Windows.Forms.RadioButton();
@@ -71,7 +72,6 @@
             this.miCredit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.txtGamePath = new System.Windows.Forms.TextBox();
-            this.chkAltSub = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -88,7 +88,7 @@
             // 
             this.btnGamePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGamePath.Location = new System.Drawing.Point(715, 36);
-            this.btnGamePath.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGamePath.Margin = new System.Windows.Forms.Padding(4);
             this.btnGamePath.Name = "btnGamePath";
             this.btnGamePath.Size = new System.Drawing.Size(43, 28);
             this.btnGamePath.TabIndex = 7;
@@ -127,7 +127,7 @@
             this.btnLegacyGenerate.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnLegacyGenerate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.btnLegacyGenerate.Location = new System.Drawing.Point(285, 81);
-            this.btnLegacyGenerate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLegacyGenerate.Margin = new System.Windows.Forms.Padding(4);
             this.btnLegacyGenerate.Name = "btnLegacyGenerate";
             this.btnLegacyGenerate.Size = new System.Drawing.Size(188, 42);
             this.btnLegacyGenerate.TabIndex = 33;
@@ -143,13 +143,25 @@
             this.groupBox1.Controls.Add(this.rdoModTranslateFirst);
             this.groupBox1.Controls.Add(this.rdoModOriginFirst);
             this.groupBox1.Location = new System.Drawing.Point(4, 4);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(725, 75);
             this.groupBox1.TabIndex = 45;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "สองภาษา";
+            // 
+            // chkAltSub
+            // 
+            this.chkAltSub.AutoSize = true;
+            this.chkAltSub.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkAltSub.Location = new System.Drawing.Point(527, 0);
+            this.chkAltSub.Margin = new System.Windows.Forms.Padding(4);
+            this.chkAltSub.Name = "chkAltSub";
+            this.chkAltSub.Size = new System.Drawing.Size(171, 24);
+            this.chkAltSub.TabIndex = 38;
+            this.chkAltSub.Text = "ซับไทยโดยสะหวีวี่วี";
+            this.chkAltSub.UseVisualStyleBackColor = true;
             // 
             // chkExcludeUiText
             // 
@@ -158,7 +170,7 @@
             this.chkExcludeUiText.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::TranslateUtility.Properties.Settings.Default, "_VerySimpleTranslateUI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.chkExcludeUiText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkExcludeUiText.Location = new System.Drawing.Point(131, 0);
-            this.chkExcludeUiText.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkExcludeUiText.Margin = new System.Windows.Forms.Padding(4);
             this.chkExcludeUiText.Name = "chkExcludeUiText";
             this.chkExcludeUiText.Size = new System.Drawing.Size(153, 24);
             this.chkExcludeUiText.TabIndex = 37;
@@ -245,7 +257,7 @@
             this.chkModDoubleLanguage.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_Simple2Language", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.chkModDoubleLanguage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkModDoubleLanguage.Location = new System.Drawing.Point(8, 0);
-            this.chkModDoubleLanguage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkModDoubleLanguage.Margin = new System.Windows.Forms.Padding(4);
             this.chkModDoubleLanguage.Name = "chkModDoubleLanguage";
             this.chkModDoubleLanguage.Size = new System.Drawing.Size(100, 24);
             this.chkModDoubleLanguage.TabIndex = 36;
@@ -274,9 +286,9 @@
             this.groupBox2.Controls.Add(this.chkTranslateInfo);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(4, 89);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(725, 75);
             this.groupBox2.TabIndex = 46;
             this.groupBox2.TabStop = false;
@@ -289,7 +301,7 @@
             this.chkUiInfo.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_SimpleUiInfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.chkUiInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkUiInfo.Location = new System.Drawing.Point(384, 36);
-            this.chkUiInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkUiInfo.Margin = new System.Windows.Forms.Padding(4);
             this.chkUiInfo.Name = "chkUiInfo";
             this.chkUiInfo.Size = new System.Drawing.Size(47, 24);
             this.chkUiInfo.TabIndex = 40;
@@ -303,7 +315,7 @@
             this.chkUntranslateInfo.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_SimpleUntranslateInfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.chkUntranslateInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkUntranslateInfo.Location = new System.Drawing.Point(33, 36);
-            this.chkUntranslateInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkUntranslateInfo.Margin = new System.Windows.Forms.Padding(4);
             this.chkUntranslateInfo.Name = "chkUntranslateInfo";
             this.chkUntranslateInfo.Size = new System.Drawing.Size(126, 24);
             this.chkUntranslateInfo.TabIndex = 37;
@@ -317,7 +329,7 @@
             this.chkTranslateInfo.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_SimpleTranslateInfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.chkTranslateInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkTranslateInfo.Location = new System.Drawing.Point(203, 36);
-            this.chkTranslateInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkTranslateInfo.Margin = new System.Windows.Forms.Padding(4);
             this.chkTranslateInfo.Name = "chkTranslateInfo";
             this.chkTranslateInfo.Size = new System.Drawing.Size(100, 24);
             this.chkTranslateInfo.TabIndex = 39;
@@ -328,7 +340,7 @@
             // 
             this.btnResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnResult.Location = new System.Drawing.Point(8, 23);
-            this.btnResult.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnResult.Margin = new System.Windows.Forms.Padding(4);
             this.btnResult.Name = "btnResult";
             this.btnResult.Size = new System.Drawing.Size(164, 39);
             this.btnResult.TabIndex = 48;
@@ -340,7 +352,7 @@
             // 
             this.btnRestore.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRestore.Location = new System.Drawing.Point(553, 23);
-            this.btnRestore.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRestore.Margin = new System.Windows.Forms.Padding(4);
             this.btnRestore.Name = "btnRestore";
             this.btnRestore.Size = new System.Drawing.Size(164, 39);
             this.btnRestore.TabIndex = 49;
@@ -355,9 +367,9 @@
             this.groupBox3.Controls.Add(this.btnRestore);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(8, 420);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox3.Size = new System.Drawing.Size(725, 75);
             this.groupBox3.TabIndex = 50;
             this.groupBox3.TabStop = false;
@@ -367,7 +379,7 @@
             // 
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.Location = new System.Drawing.Point(180, 23);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(164, 39);
             this.btnUpdate.TabIndex = 49;
@@ -397,7 +409,7 @@
             this.pnAdvance.Controls.Add(this.groupBox2);
             this.pnAdvance.Controls.Add(this.groupBox3);
             this.pnAdvance.Location = new System.Drawing.Point(20, 133);
-            this.pnAdvance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnAdvance.Margin = new System.Windows.Forms.Padding(4);
             this.pnAdvance.Name = "pnAdvance";
             this.pnAdvance.Size = new System.Drawing.Size(737, 510);
             this.pnAdvance.TabIndex = 52;
@@ -410,9 +422,9 @@
             this.groupBox6.Controls.Add(this.label2);
             this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox6.Location = new System.Drawing.Point(4, 254);
-            this.groupBox6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox6.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox6.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox6.Size = new System.Drawing.Size(725, 75);
             this.groupBox6.TabIndex = 52;
             this.groupBox6.TabStop = false;
@@ -428,7 +440,7 @@
             0,
             0});
             this.txtFontSizeCutScene.Location = new System.Drawing.Point(88, 34);
-            this.txtFontSizeCutScene.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFontSizeCutScene.Margin = new System.Windows.Forms.Padding(4);
             this.txtFontSizeCutScene.Minimum = new decimal(new int[] {
             10,
             0,
@@ -450,7 +462,7 @@
             0,
             0});
             this.txtFontSizeSpeak.Location = new System.Drawing.Point(287, 33);
-            this.txtFontSizeSpeak.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFontSizeSpeak.Margin = new System.Windows.Forms.Padding(4);
             this.txtFontSizeSpeak.Minimum = new decimal(new int[] {
             10,
             0,
@@ -492,9 +504,9 @@
             this.groupBox5.Controls.Add(this.rdoDownloadHourly);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.Location = new System.Drawing.Point(4, 337);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox5.Size = new System.Drawing.Size(725, 75);
             this.groupBox5.TabIndex = 52;
             this.groupBox5.TabStop = false;
@@ -505,7 +517,7 @@
             this.rdoDownloadAlways.AutoSize = true;
             this.rdoDownloadAlways.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdoDownloadAlways.Location = new System.Drawing.Point(33, 32);
-            this.rdoDownloadAlways.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rdoDownloadAlways.Margin = new System.Windows.Forms.Padding(4);
             this.rdoDownloadAlways.Name = "rdoDownloadAlways";
             this.rdoDownloadAlways.Size = new System.Drawing.Size(77, 24);
             this.rdoDownloadAlways.TabIndex = 0;
@@ -517,7 +529,7 @@
             this.rdoDownloadDialy.AutoSize = true;
             this.rdoDownloadDialy.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdoDownloadDialy.Location = new System.Drawing.Point(285, 32);
-            this.rdoDownloadDialy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rdoDownloadDialy.Margin = new System.Windows.Forms.Padding(4);
             this.rdoDownloadDialy.Name = "rdoDownloadDialy";
             this.rdoDownloadDialy.Size = new System.Drawing.Size(91, 24);
             this.rdoDownloadDialy.TabIndex = 0;
@@ -529,7 +541,7 @@
             this.rdoDownloadOnce.AutoSize = true;
             this.rdoDownloadOnce.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdoDownloadOnce.Location = new System.Drawing.Point(423, 32);
-            this.rdoDownloadOnce.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rdoDownloadOnce.Margin = new System.Windows.Forms.Padding(4);
             this.rdoDownloadOnce.Name = "rdoDownloadOnce";
             this.rdoDownloadOnce.Size = new System.Drawing.Size(89, 24);
             this.rdoDownloadOnce.TabIndex = 0;
@@ -542,7 +554,7 @@
             this.rdoDownloadHourly.Checked = true;
             this.rdoDownloadHourly.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdoDownloadHourly.Location = new System.Drawing.Point(155, 32);
-            this.rdoDownloadHourly.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rdoDownloadHourly.Margin = new System.Windows.Forms.Padding(4);
             this.rdoDownloadHourly.Name = "rdoDownloadHourly";
             this.rdoDownloadHourly.Size = new System.Drawing.Size(96, 24);
             this.rdoDownloadHourly.TabIndex = 0;
@@ -557,9 +569,9 @@
             this.groupBox4.Controls.Add(this.rdoFontKuntoon);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(4, 171);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox4.Size = new System.Drawing.Size(725, 75);
             this.groupBox4.TabIndex = 51;
             this.groupBox4.TabStop = false;
@@ -570,7 +582,7 @@
             this.rdoFontSarabun.AutoSize = true;
             this.rdoFontSarabun.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdoFontSarabun.Location = new System.Drawing.Point(33, 30);
-            this.rdoFontSarabun.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rdoFontSarabun.Margin = new System.Windows.Forms.Padding(4);
             this.rdoFontSarabun.Name = "rdoFontSarabun";
             this.rdoFontSarabun.Size = new System.Drawing.Size(78, 24);
             this.rdoFontSarabun.TabIndex = 2;
@@ -582,7 +594,7 @@
             this.rdoFontNone.AutoSize = true;
             this.rdoFontNone.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdoFontNone.Location = new System.Drawing.Point(384, 30);
-            this.rdoFontNone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rdoFontNone.Margin = new System.Windows.Forms.Padding(4);
             this.rdoFontNone.Name = "rdoFontNone";
             this.rdoFontNone.Size = new System.Drawing.Size(111, 24);
             this.rdoFontNone.TabIndex = 1;
@@ -595,7 +607,7 @@
             this.rdoFontKuntoon.Checked = true;
             this.rdoFontKuntoon.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdoFontKuntoon.Location = new System.Drawing.Point(203, 30);
-            this.rdoFontKuntoon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rdoFontKuntoon.Margin = new System.Windows.Forms.Padding(4);
             this.rdoFontKuntoon.Name = "rdoFontKuntoon";
             this.rdoFontKuntoon.Size = new System.Drawing.Size(73, 24);
             this.rdoFontKuntoon.TabIndex = 0;
@@ -633,21 +645,21 @@
             // 
             this.miChangeLog.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.miChangeLog.Name = "miChangeLog";
-            this.miChangeLog.Size = new System.Drawing.Size(216, 26);
+            this.miChangeLog.Size = new System.Drawing.Size(174, 26);
             this.miChangeLog.Text = "การเปลี่ยนแปลง";
             this.miChangeLog.Click += new System.EventHandler(this.miChangeLog_Click);
             // 
             // miUpdate
             // 
             this.miUpdate.Name = "miUpdate";
-            this.miUpdate.Size = new System.Drawing.Size(216, 26);
+            this.miUpdate.Size = new System.Drawing.Size(174, 26);
             this.miUpdate.Text = "อัพเดทโปรแกรม";
             this.miUpdate.Click += new System.EventHandler(this.miUpdate_Click);
             // 
             // miCredit
             // 
             this.miCredit.Name = "miCredit";
-            this.miCredit.Size = new System.Drawing.Size(216, 26);
+            this.miCredit.Size = new System.Drawing.Size(174, 26);
             this.miCredit.Text = "เครดิต";
             this.miCredit.Click += new System.EventHandler(this.miCredit_Click);
             // 
@@ -661,25 +673,13 @@
             this.txtGamePath.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::TranslateUtility.Properties.Settings.Default, "_VerySimpleGamePath", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtGamePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGamePath.Location = new System.Drawing.Point(20, 36);
-            this.txtGamePath.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtGamePath.Margin = new System.Windows.Forms.Padding(4);
             this.txtGamePath.Name = "txtGamePath";
             this.txtGamePath.Size = new System.Drawing.Size(687, 26);
             this.txtGamePath.TabIndex = 6;
             this.txtGamePath.Text = global::TranslateUtility.Properties.Settings.Default._VerySimpleGamePath;
             this.txtGamePath.TextChanged += new System.EventHandler(this.txtGamePath_TextChanged);
             this.txtGamePath.DoubleClick += new System.EventHandler(this.txtGamePath_DoubleClick);
-            // 
-            // chkAltSub
-            // 
-            this.chkAltSub.AutoSize = true;
-            this.chkAltSub.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkAltSub.Location = new System.Drawing.Point(557, 0);
-            this.chkAltSub.Margin = new System.Windows.Forms.Padding(4);
-            this.chkAltSub.Name = "chkAltSub";
-            this.chkAltSub.Size = new System.Drawing.Size(156, 24);
-            this.chkAltSub.TabIndex = 38;
-            this.chkAltSub.Text = "ซับไทยโดยคู่ปรับ";
-            this.chkAltSub.UseVisualStyleBackColor = true;
             // 
             // frmVeryVerySimple
             // 
@@ -696,7 +696,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "frmVeryVerySimple";
             this.Text = "The Witcher 3 Translate Utility by svvv";
