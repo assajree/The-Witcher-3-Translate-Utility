@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static TheWitcher3Thai.Common;
 
 namespace TheWitcher3Thai.Helper
 {
@@ -53,6 +54,40 @@ namespace TheWitcher3Thai.Helper
             }
 
             return obj.ToString();
+        }
+
+        public static bool ToBoolean(this string obj,bool defaultValue)
+        {
+            if (Boolean.TryParse(obj, out var val))
+                return val;
+            else
+                return defaultValue;
+            
+        }
+
+        public static int ToInt32(this string obj, int defaultValue)
+        {
+            if (Int32.TryParse(obj, out var val))
+                return val;
+            else
+                return defaultValue;
+
+        }
+
+        public static eDownloadFrequency ToDownloadFrequency(this string str, eDownloadFrequency defaultValue)
+        {
+            if (!Enum.TryParse(str, true, out eDownloadFrequency frequency))
+                frequency = defaultValue;
+
+            return frequency;
+        }
+
+        public static eFontSetting ToFontSetting(this string str, eFontSetting defaultValue)
+        {
+            if (!Enum.TryParse(str, true, out eFontSetting val))
+                val = defaultValue;
+
+            return val;
         }
     }
 }

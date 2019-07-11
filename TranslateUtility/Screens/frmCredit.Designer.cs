@@ -54,7 +54,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(240, 21);
             this.label2.TabIndex = 1;
-            this.label2.Text = "mod แปลภาษา";
+            this.label2.Text = "Mod แปลภาษาต้นฉบับ";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label3

@@ -1,4 +1,5 @@
 ﻿using svvv;
+using svvv.Classes;
 using System;
 using System.IO;
 using System.Windows.Forms;
@@ -14,6 +15,7 @@ namespace TranslateUtility
         string modPath = null;
         string resultPath = null;
         string translatePath = null;
+        AppSetting mAppSetting = new AppSetting(Configs.SettingPath);
 
         bool ShowAdvance
         {
@@ -40,24 +42,28 @@ namespace TranslateUtility
 
             if (!ShowAdvance)
                 ToggleAdvance();
-                        
-            NotifyProgramUpdate();
+
+            DownloadRequireComponent();
+
+            //CheckForUpdate(false, false, false);
+            CheckForUpdate(false);
         }
 
-        private void NotifyProgramUpdate()
+        private void DownloadRequireComponent()
         {
             // update storybook
-            c.UpdateStorybook();
+            if (!File.Exists(Configs.StorybookVersionPath))
+                c.UpdateStorybook();
 
-            var hasUpdate = c.CheckForUpdate(true);
-            if (!hasUpdate)
-                return;
+            // update template
+            if (!File.Exists(Configs.TemplateVersionPath))
+                c.UpdateTemplate();
+        }
 
-            if (c.ShowConfirm("มีโปรแกรมเวอร์ชั่นใหม่ ต้องการดาวน์โหลดหรือไม่", "อัพเดท"))
-            {
-                this.Close();
-                c.UpdateW3tu();
-            }
+        private void UpdateProgram()
+        {
+            this.Close();
+            c.UpdateW3tu();
         }
 
         private void InitialTooTip()
@@ -90,9 +96,27 @@ namespace TranslateUtility
             // install
             txtGamePath.SetDefault(c.GetGameDirectory());
 
+            LoadSetting();
             SetDownloadFrequencyRadio();
             SetFontRadio();
 
+        }
+
+        private void LoadSetting()
+        {
+            chkModDoubleLanguage.Checked = mAppSetting.DoubleLanguage;
+            chkExcludeUiText.Checked = mAppSetting.EnglishUi;
+
+            if (mAppSetting.ThaiFirst)
+                rdoModTranslateFirst.Checked = true;
+            else
+                rdoModOriginFirst.Checked = true;
+
+            chkUntranslateInfo.Checked = mAppSetting.ShowNotTranslateRow;
+            chkTranslateInfo.Checked = mAppSetting.ShowTranslateRow;
+            chkUiInfo.Checked = mAppSetting.ShowUiRow;
+            txtFontSizeCutScene.Value = mAppSetting.SizeCutscene;
+            txtFontSizeSpeak.Value = mAppSetting.SizeDialog;
         }
 
         private void lblModVersion_DoubleClick(object sender, EventArgs e)
@@ -163,10 +187,11 @@ namespace TranslateUtility
                 (int)txtFontSizeSpeak.Value
             );
 
-            c.MigrateToTr(Path.Combine(modPath, Configs.modThaiLanguage));
+            // change to tr
+            c.UpgradeToFullTranslate(Path.Combine(modPath, Configs.modThaiLanguage));
 
-            string storybookModPath = Path.Combine(Application.StartupPath, "Tools", Configs.modThaiStorybook);
-            c.InstallModStoryBook(storybookModPath, Path.Combine(modPath, Configs.modThaiLanguage));
+            // install storybook
+            c.InstallModStoryBook(Configs.StorybookPath, Path.Combine(modPath, Configs.modThaiLanguage));
         }
 
         private void InstallMod()
@@ -177,10 +202,7 @@ namespace TranslateUtility
                 !rdoFontNone.Checked
             );
 
-            c.InstallFontMod(
-                GetFontSetting(),
-                Path.Combine(txtGamePath.Text, "mods", Configs.modThaiFont)
-            );
+            c.MigrateOtherModToTr(Path.Combine(txtGamePath.Text, "mods"));
 
             c.ChangeLanguageSettingToTR();
         }
@@ -252,8 +274,8 @@ namespace TranslateUtility
         private void RemoveMod()
         {
             //c.Backup(Configs.BackupPath, txtGamePath.Text, true, false);
-            c.ChangeLanguageSettingToEN();
             c.RemoveMod(txtGamePath.Text);
+            c.ChangeLanguageSettingToEN();
             //c.InstallFontMod(txtGamePath.Text);
 
             //// remove font mod
@@ -275,6 +297,20 @@ namespace TranslateUtility
             Properties.Settings.Default._SimpleDownloadFrequency = GetDownloadFrequency().ToString();
             Properties.Settings.Default._SimpleFontSetting = GetFontSetting().ToString();
             Properties.Settings.Default.Save();
+
+
+            mAppSetting.DoubleLanguage = chkModDoubleLanguage.Checked;
+            mAppSetting.EnglishUi = chkExcludeUiText.Checked;
+            mAppSetting.ThaiFirst = rdoModTranslateFirst.Checked;
+            mAppSetting.ShowNotTranslateRow = chkUntranslateInfo.Checked;
+            mAppSetting.ShowTranslateRow = chkTranslateInfo.Checked;
+            mAppSetting.ShowUiRow = chkUiInfo.Checked;
+            mAppSetting.FontSetting = GetFontSetting();
+            mAppSetting.SizeCutscene = (int)txtFontSizeCutScene.Value;
+            mAppSetting.SizeDialog = (int)txtFontSizeSpeak.Value;
+            mAppSetting.DownloadFrequency = GetDownloadFrequency();
+
+            mAppSetting.SaveSetting();
         }
 
         private void txtGamePath_TextChanged(object sender, EventArgs e)
@@ -293,12 +329,10 @@ namespace TranslateUtility
         {
 
             // download translate excel file
-            translatePath = Path.Combine(Configs.DownloadPath, "translate.xlsx");
-            translatePath = c.DownloadLegacyExcel(translatePath, false, GetDownloadFrequency());
-            if (translatePath == null)
-            {
+            var downloadResult = c.Processing(DownloadTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษา...");
+            if (downloadResult != DialogResult.OK)
                 return;
-            }
+
 
             // generate mod
             var result = c.Processing(GenerateModAlt, false, "กำลังสร้าง...");
@@ -313,6 +347,12 @@ namespace TranslateUtility
 
             c.ShowMessage("ติดตั้งสำเร็จ");
             EnableButton();
+        }
+
+        private void DownloadTranslateFile()
+        {
+            translatePath = Path.Combine(Configs.DownloadPath, "translate.xlsx");
+            translatePath = c.DownloadLegacyExcel(translatePath, false, GetDownloadFrequency());
         }
 
         private void lblAdvance_Click(object sender, EventArgs e)
@@ -353,17 +393,32 @@ namespace TranslateUtility
 
         private void miUpdate_Click(object sender, EventArgs e)
         {
+            //CheckForUpdate(true, true, true);
+            CheckForUpdate(true);
+        }
+
+        //private void CheckForUpdate(bool isUpdateComponent, bool isForceUpdate, bool isShowMessage)
+        private void CheckForUpdate(bool isManualCheck)
+        {
+            if (isManualCheck)
+            {
+                c.UpdateTemplate();
+                c.UpdateStorybook();
+            }
+
             var hasUpdate = c.CheckForUpdate();
             if (hasUpdate)
             {
-                this.Close();
-                c.UpdateW3tu();
+                if (isManualCheck || c.ShowConfirm("มีโปรแกรมเวอร์ชั่นใหม่ ต้องการดาวน์โหลดหรือไม่", "อัพเดท"))
+                {
+                    UpdateProgram();
+                }
             }
             else
             {
-                c.ShowMessage("ไม่พบอัพเดท");
+                if (isManualCheck)
+                    c.ShowMessage("โปรแกรมเป็นเวอร์ชั่นล่าสุดแล้ว");
             }
-
         }
 
         private void lblGameDir_DoubleClick(object sender, EventArgs e)
@@ -378,10 +433,11 @@ namespace TranslateUtility
         {
             if (rdoFontNone.Checked)
                 return Common.eFontSetting.None;
-            else if (rdoFontSizeLarge.Checked)
-                return Common.eFontSetting.Sarabun;
+            else if (rdoFontKuntoon.Checked)
+                return Common.eFontSetting.KoonToon;
             else
-                return Common.eFontSetting.Normal;
+                return Common.eFontSetting.Sarabun;
+
         }
 
 
@@ -399,11 +455,11 @@ namespace TranslateUtility
 
         private void SetDownloadFrequencyRadio()
         {
-            Common.eDownloadFrequency frequency;
-            var setting = Properties.Settings.Default._SimpleDownloadFrequency;
-            if (!Enum.TryParse(setting, true, out frequency))
-                frequency = Common.eDownloadFrequency.Hour;
-
+            //Common.eDownloadFrequency frequency;
+            //var setting = Properties.Settings.Default._SimpleDownloadFrequency;
+            //if (!Enum.TryParse(setting, true, out frequency))
+            //    frequency = Common.eDownloadFrequency.Hour;
+            var frequency = mAppSetting.DownloadFrequency;
             switch (frequency)
             {
                 case Common.eDownloadFrequency.Always:
@@ -423,10 +479,12 @@ namespace TranslateUtility
 
         private void SetFontRadio()
         {
-            Common.eFontSetting font;
-            var setting = Properties.Settings.Default._SimpleFontSetting;
-            if (!Enum.TryParse(setting, true, out font))
-                font = Common.eFontSetting.Normal;
+            //Common.eFontSetting font;
+            //var setting = Properties.Settings.Default._SimpleFontSetting;
+            //if (!Enum.TryParse(setting, true, out font))
+            //    font = Common.eFontSetting.Sarabun;
+
+            var font = mAppSetting.FontSetting;
 
             switch (font)
             {
@@ -434,10 +492,10 @@ namespace TranslateUtility
                     rdoFontNone.Checked = true;
                     break;
                 case Common.eFontSetting.Sarabun:
-                    rdoFontSizeLarge.Checked = true;
+                    rdoFontSarabun.Checked = true;
                     break;
                 default:
-                    rdoFontSizeNormal.Checked = true;
+                    rdoFontKuntoon.Checked = true;
                     break;
             }
         }
@@ -446,6 +504,12 @@ namespace TranslateUtility
         {
             var credit = new frmCredit();
             credit.ShowDialog();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            //CheckForUpdate(true, true, true);
+            CheckForUpdate(true);
         }
     }
 }

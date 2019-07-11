@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\AppSetting.cs" />
     <Compile Include="Classes\Excel.cs" />
     <Compile Include="Classes\MergeException.cs" />
     <Compile Include="Classes\Setting.cs" />

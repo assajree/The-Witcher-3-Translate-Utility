@@ -31,8 +31,8 @@ namespace TheWitcher3Thai
 
         public enum eFontSetting
         {
-            Normal,
             Sarabun,
+            KoonToon,
             None
         }
 
@@ -189,6 +189,16 @@ namespace TheWitcher3Thai
             }
         }
 
+        public void MigrateOtherModToTr(string modPath)
+        {
+            foreach (string path in Directory.GetFiles(modPath, "*.w3strings", SearchOption.AllDirectories))
+            {
+                var targetPath = path.Replace("en.w3strings", "tr.w3strings");
+                if (!File.Exists(targetPath))
+                    File.Copy(path, targetPath);
+            }
+        }
+
         public string SaveXlsx(string initialPath, string defaultPath = null)
         {
             if (String.IsNullOrWhiteSpace(initialPath))
@@ -324,6 +334,28 @@ namespace TheWitcher3Thai
 
         }
 
+        public bool UpdateTemplate()
+        {
+            // check version
+            if (!CheckUpdateTemplate(true))
+                return false;
+
+            // download
+            string downloadPath = Path.Combine(Configs.TempPath, "Template.zip");
+            if (!DownloadGoogleFile(Configs.TemplateFileId, downloadPath))
+            {
+                ShowErrorMessage("การอัพเดทถูกยกเลิก");
+                return false;
+            }
+
+            // extract
+            string targetPath = Path.Combine(Application.StartupPath, "Tools", Configs.TemplatePath);
+            ExtractFile(downloadPath, targetPath);
+
+            return true;
+
+        }
+
         public void ShowErrorMessage(Exception ex, string caption = "Error")
         {
             MessageBox.Show(ex.GetBaseException().Message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -406,7 +438,7 @@ namespace TheWitcher3Thai
 
         public Dictionary<string, List<w3Strings>> ReadTemplate()
         {
-            string templatePath = Configs.TemplatePath;
+            string templatePath = Configs.TemplateFilePath;
             if (!File.Exists(templatePath))
                 throw new Exception("ไม่พบไฟล์ template.xlsx กรุณาติดตั้งโปรแกมใหม่");
 
@@ -1352,6 +1384,23 @@ namespace TheWitcher3Thai
             return localVersion != lastVersion;
         }
 
+        public bool CheckUpdateTemplate(bool silenceMode = false)
+        {
+            string lastVersion;
+
+            if (silenceMode)
+                lastVersion = ProcessingStringSilence(GetVersionTemplate, "กำลังเช็คเวอร์ชั่น Template", false);
+            else
+                lastVersion = ProcessingString(GetVersionTemplate, "กำลังเช็คเวอร์ชั่น Template", false);
+
+            if (lastVersion == null)
+                return false;
+
+            var localVersion = ReadVersion(Configs.TemplateVersionPath);
+
+            return localVersion != lastVersion;
+        }
+
         public string GetLastVersion()
         {
             string url = GetGoogleDownloadUrl(Configs.VersionFileId);
@@ -1390,6 +1439,23 @@ namespace TheWitcher3Thai
             //}
 
             return lastVersion;
+        }
+
+        public string GetVersionTemplate()
+        {
+            string version = ReadGoogleFileContent(Configs.TemplateVersionFileId);
+            return version;
+        }
+
+        public string ReadGoogleFileContent(string fileId)
+        {
+            string url = GetGoogleDownloadUrl(fileId);
+            var client = new WebClient();
+            var data = client.DownloadData(url);
+            var stream = new StreamReader(new MemoryStream(data));
+            var content = stream.ReadToEnd().ToString();
+
+            return content;
         }
 
         public string ReadLocalVersion(string modPath)
@@ -1707,7 +1773,7 @@ namespace TheWitcher3Thai
 
         public string GetTranslateFilePath()
         {
-            return Configs.TemplatePath;
+            return Configs.TemplateFilePath;
             //var path = Path.Combine(Application.StartupPath, "Translate");
             //var dir = new DirectoryInfo(path);
             //if (!dir.Exists)
@@ -2233,7 +2299,7 @@ namespace TheWitcher3Thai
                 case eFontSetting.Sarabun:
                     InstallFontSarabun(outputPath);
                     break;
-                case eFontSetting.Normal:
+                case eFontSetting.KoonToon:
                     InstallFontKuntoon(outputPath);
                     break;
             }
@@ -2338,7 +2404,7 @@ namespace TheWitcher3Thai
         {
             var result = new Dictionary<string, List<w3Strings>>();
 
-            var fi = new FileInfo(excelPath);
+            var fi = new FileInfo(excelPath);  
             using (var p = new ExcelPackage(fi))
             {
                 if (sheetConfig == null)
@@ -2723,7 +2789,7 @@ namespace TheWitcher3Thai
                 case eFontSetting.Sarabun:
                     InstallFontSarabun(outputPath);
                     break;
-                case eFontSetting.Normal:
+                case eFontSetting.KoonToon:
                     InstallFontKuntoon(outputPath);
                     break;
             }
@@ -2789,17 +2855,18 @@ namespace TheWitcher3Thai
                 DeleteDirectory(modPath);
 
             string fontPath = Path.Combine(gamePath, "mods", Configs.modThaiFont);
-            if (Directory.Exists(modPath))
-                DeleteDirectory(modPath);
+            if (Directory.Exists(fontPath))
+                DeleteDirectory(fontPath);
         }
 
-        public void InstallMod(string modPath, string gamePath, bool removeOldFont = false)
+        public void InstallMod(string modPath, string gamePath, bool removeKuntoonFont = false)
         {
             var skips = new List<string>();
             skips.Add(Path.Combine(modPath, "version.ini"));
             skips.Add(Path.Combine(modPath, "result.xlsx"));
             skips.Add(Path.Combine(modPath, "translate.xlsx"));
             skips.Add(Path.Combine(modPath, "dupplicate.xlsx"));
+            skips.Add(Path.Combine(modPath, "version_storybook.ini"));
 
             string gameModPath = Path.Combine(gamePath, "mods");
 
@@ -2808,8 +2875,12 @@ namespace TheWitcher3Thai
             if (Directory.Exists(oldModPath))
                 DeleteDirectory(oldModPath);
 
+            string oldFontPath = Path.Combine(gameModPath, Configs.modThaiFont);
+            if (Directory.Exists(oldFontPath))
+                DeleteDirectory(oldFontPath);
+
             // delete kuntoon mod
-            if (removeOldFont)
+            if (removeKuntoonFont)
                 RemoveOldFont(gamePath);
 
             CopyDirectory(modPath, gameModPath, skips);
@@ -2834,7 +2905,7 @@ namespace TheWitcher3Thai
 
         }
 
-        public void MigrateToTr(string targetPath)
+        public void UpgradeToFullTranslate(string targetPath)
         {
             // rename en to tr
             var w3stringPath = Path.Combine(targetPath, "content", "en.w3strings");
@@ -2846,8 +2917,11 @@ namespace TheWitcher3Thai
 
         public void InstallModStoryBook(string modPath, string targetPath)
         {
+            if (!Directory.Exists(modPath))
+                return;
+
             var skips = new List<string>();
-            skips.Add(Path.Combine(modPath, "version.ini"));
+            skips.Add(Path.Combine(modPath, "version_storybook.ini"));
 
             // copy mod
             CopyDirectory(modPath, targetPath, skips);
@@ -2866,9 +2940,9 @@ namespace TheWitcher3Thai
 
         public void GenerateLegacyMod(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool IncludeUiMessageId, bool translateUI)
         {
-            string templatePath = Configs.TemplatePath;
+            string templatePath = Configs.TemplateFilePath;
             if (!File.Exists(templatePath))
-                throw new Exception("ไม่พบไฟล์ template.xlsx กรุณาติดตั้งโปรแกมใหม่");
+                throw new Exception("ไม่พบ Template กรุณาต่ออินเตอร์เน็ตและเปิดโปรแกรมใหม่เพิ่อดาวน์โหลดไฟล์ Template");
 
             var sheetConfig = setting.GetSheetConfig();
             var template = ReadExcel(templatePath, sheetConfig);
@@ -2890,9 +2964,9 @@ namespace TheWitcher3Thai
 
         public void GenerateLegacyModAlt(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool includeUiMessageId, eFontSetting font, bool translateUI)
         {
-            string templatePath = Configs.TemplatePath;
+            string templatePath = Configs.TemplateFilePath;
             if (!File.Exists(templatePath))
-                throw new Exception("ไม่พบไฟล์ template.xlsx กรุณาติดตั้งโปรแกมใหม่");
+                throw new Exception("ไม่พบ Template กรุณาต่ออินเตอร์เน็ตและเปิดโปรแกรมใหม่เพิ่อดาวน์โหลดไฟล์ Template");
 
             var sheetConfig = setting.GetSheetConfig();
             var template = ReadExcel(templatePath, sheetConfig);
