@@ -327,6 +327,7 @@ namespace TranslateUtility
 
         private void StartAlt()
         {
+            c.UpdateStorybook();
 
             // download translate excel file
             var downloadResult = c.Processing(DownloadTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษา...");
