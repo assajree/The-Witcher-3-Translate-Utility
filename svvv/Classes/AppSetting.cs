@@ -13,6 +13,7 @@ namespace svvv.Classes
 
         public bool DoubleLanguage { get; set; }
         public bool EnglishUi { get; set; }
+        public bool AlternativeSubtitle { get; set; }
         public bool ThaiFirst { get; set; }
         public bool ShowNotTranslateRow { get; set; }
         public bool ShowTranslateRow { get; set; }
@@ -48,6 +49,7 @@ namespace svvv.Classes
         {
             DoubleLanguage = true;
             EnglishUi = false;
+            AlternativeSubtitle = true;
             ThaiFirst = true;
             ShowNotTranslateRow = false;
             ShowTranslateRow = false;
@@ -68,6 +70,7 @@ namespace svvv.Classes
             var sb = new StringBuilder();
             sb.AppendLine($@"DoubleLanguage = {DoubleLanguage}");
             sb.AppendLine($@"EnglishUi = {EnglishUi}");
+            sb.AppendLine($@"AlternativeSubtitle = {AlternativeSubtitle}");
             sb.AppendLine($@"ThaiFirst = {ThaiFirst}");
             sb.AppendLine($@"ShowNotTranslateRow = {ShowNotTranslateRow}");
             sb.AppendLine($@"ShowTranslateRow = {ShowTranslateRow}");
@@ -96,6 +99,9 @@ namespace svvv.Classes
                     break;
                 case "EnglishUi":
                     EnglishUi = value.ToBoolean(false);
+                    break;
+                case "AlternativeSubtitle":
+                    AlternativeSubtitle = value.ToBoolean(false);
                     break;
                 case "ThaiFirst":
                     ThaiFirst = value.ToBoolean(true);

@@ -103,6 +103,7 @@ namespace TranslateUtility
                 chkUiInfo.Checked,
                 chkTranslateInfo.Checked,
                 Common.eFontSetting.KoonToon,
+                true,
                 true
             );
         }

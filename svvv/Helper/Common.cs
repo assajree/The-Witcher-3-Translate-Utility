@@ -443,7 +443,7 @@ namespace TheWitcher3Thai
                 throw new Exception("ไม่พบไฟล์ template.xlsx กรุณาติดตั้งโปรแกมใหม่");
 
             var sheetConfig = setting.GetSheetConfig();
-            var template = ReadExcel(templatePath, sheetConfig);
+            var template = ReadExcel(templatePath, sheetConfig, true);
 
             return template;
         }
@@ -669,13 +669,13 @@ namespace TheWitcher3Thai
             WriteVersionUnofficial(targetPath, "unofficial");
         }
 
-        public List<w3Strings> ReadExcelSheet(string path, string sheetName)
+        public List<w3Strings> ReadExcelSheet(string path, string sheetName, bool isReadTranslate)
         {
             var fi = new FileInfo(path);
             using (var p = new ExcelPackage(fi))
             {
                 var sht = p.Workbook.Worksheets[sheetName];
-                var result = ReadExcelSheet(sht);
+                var result = ReadExcelSheet(sht,isReadTranslate);
                 return result;
 
             }
@@ -1091,7 +1091,7 @@ namespace TheWitcher3Thai
                         //var sourceContent = ReadOriginalCsv(sourcePath, true);
                         //var translateContent = ReadExcel(sht);
                         var sourceContent = ConvertToDictionary(ReadOriginalCsv(sourcePath, true));
-                        var translateContent = ConvertToDictionary(ReadExcelSheet(sht));
+                        var translateContent = ConvertToDictionary(ReadExcelSheet(sht,true));
 
                         var mergeContent = MergeContentDictionary(sourceContent, translateContent, false, combine, originalFirst, null, out skipSource, out skipTranslate);
 
@@ -2007,7 +2007,7 @@ namespace TheWitcher3Thai
 
         }
 
-        public List<w3Strings> ReadExcelSheet(ExcelWorksheet sht)
+        public List<w3Strings> ReadExcelSheet(ExcelWorksheet sht, bool isReadTranslatee)
         {
             List<w3Strings> result = new List<w3Strings>();
 
@@ -2020,7 +2020,7 @@ namespace TheWitcher3Thai
                         sht.Cells[row, Excel.COL_KEY_HEX].Text,
                         sht.Cells[row, Excel.COL_KEY_STRING].Text,
                         sht.Cells[row, Excel.COL_TEXT].Text,
-                        sht.Cells[row, Excel.COL_TRANSLATE].Text.Replace("\r", "").Replace("\n", "")
+                        isReadTranslatee?sht.Cells[row, Excel.COL_TRANSLATE].Text.Replace("\r", "").Replace("\n", ""):null
 
                         , sht.Name
                         , sht.Cells[row, Excel.COL_ROW].Text.ToIntOrNull()
@@ -2178,7 +2178,7 @@ namespace TheWitcher3Thai
         {
             var sheets = setting.GetSheetConfig();
 
-            var contents = ReadExcel(sourcePath, sheets);
+            var contents = ReadExcel(sourcePath, sheets, true);
             var result = FillExcel(targetPath, contents, sheets, fillText, fillTranslate);
 
             return result;
@@ -2395,12 +2395,12 @@ namespace TheWitcher3Thai
             var tempPath = Path.Combine(Application.StartupPath, "temp");
             var sheetConfig = setting.GetSheetConfig();
 
-            var raw = ReadExcel(excelPath, sheetConfig);
+            var raw = ReadExcel(excelPath, sheetConfig, true);
 
             GenerateMod(raw, outputPath, combine, originalFirst, sheetConfig, false, false, false, true);
         }
 
-        public Dictionary<string, List<w3Strings>> ReadExcel(string excelPath, Dictionary<string, string> sheetConfig)
+        public Dictionary<string, List<w3Strings>> ReadExcel(string excelPath, Dictionary<string, string> sheetConfig,bool isReadTranslate)
         {
             var result = new Dictionary<string, List<w3Strings>>();
 
@@ -2422,7 +2422,7 @@ namespace TheWitcher3Thai
                     var sht = p.Workbook.Worksheets[s.Key];
                     if (sht != null)
                     {
-                        var content = ReadExcelSheet(sht);
+                        var content = ReadExcelSheet(sht,isReadTranslate);
                         result.Add(s.Key, content);
                     }
                     else
@@ -2510,7 +2510,7 @@ namespace TheWitcher3Thai
 
         public void FilterExcel(string excelPath, string outputPath, bool emptyTranslate, bool translated, bool sameWord, bool singleWord, bool uiText, string containText, bool sortByTextLength)
         {
-            var contents = ReadExcel(excelPath, null);
+            var contents = ReadExcel(excelPath, null, true);
             var result = new Dictionary<string, List<w3Strings>>();
 
             foreach (var c in contents)
@@ -2607,8 +2607,8 @@ namespace TheWitcher3Thai
                 File.Delete(resultPath);
 
             var sheetConfig = setting.GetSheetConfig();
-            var source = ReadExcel(sourcePath, sheetConfig);
-            var translate = ReadExcel(translatePath, sheetConfig);
+            var source = ReadExcel(sourcePath, sheetConfig, true);
+            var translate = ReadExcel(translatePath, sheetConfig, true);
             var newTranslate = new Dictionary<string, List<w3Strings>>();
 
             // fill message
@@ -2945,7 +2945,7 @@ namespace TheWitcher3Thai
                 throw new Exception("ไม่พบ Template กรุณาต่ออินเตอร์เน็ตและเปิดโปรแกรมใหม่เพิ่อดาวน์โหลดไฟล์ Template");
 
             var sheetConfig = setting.GetSheetConfig();
-            var template = ReadExcel(templatePath, sheetConfig);
+            var template = ReadExcel(templatePath, sheetConfig,true);
             var translate = ReadExcelLegacy(excelPath, sheetConfig);
 
             var content = MergeLegacy(template, translate);
@@ -2962,14 +2962,14 @@ namespace TheWitcher3Thai
 
         }
 
-        public void GenerateLegacyModAlt(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool includeUiMessageId, eFontSetting font, bool translateUI)
+        public void GenerateLegacyModAlt(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool includeUiMessageId, eFontSetting font, bool translateUI, bool alternativeTranslate)
         {
             string templatePath = Configs.TemplateFilePath;
             if (!File.Exists(templatePath))
                 throw new Exception("ไม่พบ Template กรุณาต่ออินเตอร์เน็ตและเปิดโปรแกรมใหม่เพิ่อดาวน์โหลดไฟล์ Template");
 
             var sheetConfig = setting.GetSheetConfig();
-            var template = ReadExcel(templatePath, sheetConfig);
+            var template = ReadExcel(templatePath, sheetConfig, alternativeTranslate);
             var translate = ReadExcelLegacy(excelPath, sheetConfig);
 
             var content = MergeLegacy(template, translate);

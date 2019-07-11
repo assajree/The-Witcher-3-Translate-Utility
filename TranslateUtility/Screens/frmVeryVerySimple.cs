@@ -106,6 +106,7 @@ namespace TranslateUtility
         {
             chkModDoubleLanguage.Checked = mAppSetting.DoubleLanguage;
             chkExcludeUiText.Checked = mAppSetting.EnglishUi;
+            chkAltSub.Checked = mAppSetting.AlternativeSubtitle;
 
             if (mAppSetting.ThaiFirst)
                 rdoModTranslateFirst.Checked = true;
@@ -178,7 +179,8 @@ namespace TranslateUtility
                 chkTranslateInfo.Checked,
                 chkUiInfo.Checked,
                 GetFontSetting(),
-                !chkExcludeUiText.Checked
+                !chkExcludeUiText.Checked,
+                chkAltSub.Checked
             );
 
             c.ChangeFontSize(
@@ -301,6 +303,7 @@ namespace TranslateUtility
 
             mAppSetting.DoubleLanguage = chkModDoubleLanguage.Checked;
             mAppSetting.EnglishUi = chkExcludeUiText.Checked;
+            mAppSetting.AlternativeSubtitle = chkAltSub.Checked;
             mAppSetting.ThaiFirst = rdoModTranslateFirst.Checked;
             mAppSetting.ShowNotTranslateRow = chkUntranslateInfo.Checked;
             mAppSetting.ShowTranslateRow = chkTranslateInfo.Checked;

@@ -63,6 +63,24 @@ namespace TranslateUtility
         private void frmStorybook_Load(object sender, EventArgs e)
         {
             txtReadOutput.SetDefault(Path.Combine(Application.StartupPath, "output", "storybook.xlsx"));
+
+            txtFillTranslate.SetDefault(Path.Combine(Configs.DownloadPath, "translate.xlsx"));
+            txtFillTarget.SetDefault(Configs.StorybookExcelPath);
+            txtWriteInput.SetDefault(Configs.StorybookExcelPath);
+            txtWriteOutput.SetDefault(GetStorybookModPath());
+        }
+
+        private string GetStorybookModPath()
+        {
+            try
+            {
+                var dir = new DirectoryInfo(Configs.StartupPath);
+                return Path.Combine(dir.Parent.Parent.FullName, "Tools", "ThaiStorybook", "modThaiStoryBook", "files");
+            }
+            catch(Exception)
+            {
+                return null;
+            }
         }
 
 
@@ -205,6 +223,11 @@ namespace TranslateUtility
         {
             var translatePath = Path.Combine(Configs.DownloadPath, "translate.xlsx");
             c.DownloadLegacyExcel(translatePath, false, Common.eDownloadFrequency.Always);
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
