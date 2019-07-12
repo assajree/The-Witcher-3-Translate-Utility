@@ -38,6 +38,7 @@
             this.btnVerySimple = new System.Windows.Forms.Button();
             this.btnVvSimple = new System.Windows.Forms.Button();
             this.btnStorybookTool = new System.Windows.Forms.Button();
+            this.btnMessageFindet = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnGameTools
@@ -83,7 +84,7 @@
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.Location = new System.Drawing.Point(58, 305);
+            this.btnClose.Location = new System.Drawing.Point(58, 328);
             this.btnClose.Margin = new System.Windows.Forms.Padding(2);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(126, 29);
@@ -96,7 +97,7 @@
             // 
             this.btnDonate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDonate.Location = new System.Drawing.Point(0, 335);
+            this.btnDonate.Location = new System.Drawing.Point(0, 358);
             this.btnDonate.Name = "btnDonate";
             this.btnDonate.Size = new System.Drawing.Size(243, 24);
             this.btnDonate.TabIndex = 4;
@@ -135,7 +136,7 @@
             // 
             this.btnVvSimple.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnVvSimple.Location = new System.Drawing.Point(58, 177);
+            this.btnVvSimple.Location = new System.Drawing.Point(58, 194);
             this.btnVvSimple.Margin = new System.Windows.Forms.Padding(2);
             this.btnVvSimple.Name = "btnVvSimple";
             this.btnVvSimple.Size = new System.Drawing.Size(126, 29);
@@ -148,7 +149,7 @@
             // 
             this.btnStorybookTool.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStorybookTool.Location = new System.Drawing.Point(58, 210);
+            this.btnStorybookTool.Location = new System.Drawing.Point(58, 227);
             this.btnStorybookTool.Margin = new System.Windows.Forms.Padding(2);
             this.btnStorybookTool.Name = "btnStorybookTool";
             this.btnStorybookTool.Size = new System.Drawing.Size(126, 29);
@@ -157,12 +158,26 @@
             this.btnStorybookTool.UseVisualStyleBackColor = true;
             this.btnStorybookTool.Click += new System.EventHandler(this.btnStorybookTool_Click);
             // 
+            // btnMessageFindet
+            // 
+            this.btnMessageFindet.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMessageFindet.Location = new System.Drawing.Point(58, 260);
+            this.btnMessageFindet.Margin = new System.Windows.Forms.Padding(2);
+            this.btnMessageFindet.Name = "btnMessageFindet";
+            this.btnMessageFindet.Size = new System.Drawing.Size(126, 29);
+            this.btnMessageFindet.TabIndex = 8;
+            this.btnMessageFindet.Text = "Message Finder";
+            this.btnMessageFindet.UseVisualStyleBackColor = true;
+            this.btnMessageFindet.Click += new System.EventHandler(this.btnMessageFindet_Click);
+            // 
             // frmLauncher
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(243, 366);
+            this.ClientSize = new System.Drawing.Size(243, 389);
             this.ControlBox = false;
+            this.Controls.Add(this.btnMessageFindet);
             this.Controls.Add(this.btnStorybookTool);
             this.Controls.Add(this.btnVvSimple);
             this.Controls.Add(this.btnVerySimple);
@@ -194,5 +209,6 @@
         private System.Windows.Forms.Button btnVerySimple;
         private System.Windows.Forms.Button btnVvSimple;
         private System.Windows.Forms.Button btnStorybookTool;
+        private System.Windows.Forms.Button btnMessageFindet;
     }
 }

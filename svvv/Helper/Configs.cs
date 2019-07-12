@@ -10,6 +10,8 @@ namespace svvv
 {
     public static class Configs
     {
+        
+
         public const string modThaiStoryBook = "modThaiStoryBook";
         public const string modFontSarabun = "modFontSarabun";
         public const string modThaiFont = "modThaiFont";
@@ -28,7 +30,7 @@ namespace svvv
         public const string StorybookVersionFileId = "1TGw2rDafTr0ObM-7Bvzd3S6pIgLbrnjW";
         public const string TemplateFileId = "1QPvUzSLTJ4GRy552BLH1l4hZOPcWq8wb";
         public const string TemplateVersionFileId = "1bZwJvkY1APBNTSS5Y3kmzt8n9_2P8guj";
-
+        public const string DefaultCustomTranslateFileId = "1X2VOm21x5ow_duSutaXV3AsCdz2YT1RVZZQoiPZHp14";
 
         public static string StartupPath = Application.StartupPath;
 
@@ -49,9 +51,17 @@ namespace svvv
 
         public static string UpdaterZipPath = Path.Combine(StartupPath, "Tools", "updater.zip");
         public static string UpdaterDir = Path.Combine(StartupPath, "temp", "updater");
-        public static string UpdaterPath = Path.Combine(UpdaterDir, "Updater.exe");        
-        
-        
-        
+        public static string UpdaterPath = Path.Combine(UpdaterDir, "Updater.exe");
+
+        public static string CustomTranslateFileId { get; private set; }        
+        public static string CustomTranslateFileName { get; private set; }        
+        public static string CustomTranslateFilePath { get; private set; }        
+        public static void SetCustomTranslateFileId(string fileId)
+        {
+            CustomTranslateFileId = fileId;
+            CustomTranslateFileName = fileId+".xlsx";
+            CustomTranslateFilePath = Path.Combine(DownloadPath, CustomTranslateFileName);
+        }
+
     }
 }

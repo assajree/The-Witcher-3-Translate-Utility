@@ -22,21 +22,21 @@ namespace svvv.Classes
         public int SizeCutscene { get; set; }
         public int SizeDialog { get; set; }
         public eDownloadFrequency DownloadFrequency { get; set; }
+        public string CustomTranslateFileId { get; set; }
 
         public AppSetting(string settingPath)
         {
             mSettingPath = settingPath;
             LoadSetting();
+            Configs.SetCustomTranslateFileId(this.CustomTranslateFileId);
         }
 
 
         private void LoadSetting()
         {
+            InitialValue();
             if (!File.Exists(mSettingPath))
-            {
-                InitialValue();
                 return;
-            }
 
             var content = File.ReadAllText(mSettingPath).Split('\n').ToList();
             foreach (var c in content)
@@ -58,6 +58,7 @@ namespace svvv.Classes
             SizeCutscene = 28;
             SizeDialog = 28;
             DownloadFrequency = eDownloadFrequency.Hour;
+            CustomTranslateFileId = Configs.DefaultCustomTranslateFileId;
         }
 
         public void SaveSetting()
@@ -68,17 +69,18 @@ namespace svvv.Classes
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.AppendLine($@"DoubleLanguage = {DoubleLanguage}");
-            sb.AppendLine($@"EnglishUi = {EnglishUi}");
-            sb.AppendLine($@"AlternativeSubtitle = {AlternativeSubtitle}");
-            sb.AppendLine($@"ThaiFirst = {ThaiFirst}");
-            sb.AppendLine($@"ShowNotTranslateRow = {ShowNotTranslateRow}");
-            sb.AppendLine($@"ShowTranslateRow = {ShowTranslateRow}");
-            sb.AppendLine($@"ShowUiRow = {ShowUiRow}");
-            sb.AppendLine($@"FontSetting = {FontSetting}");
-            sb.AppendLine($@"SizeCutscene = {SizeCutscene}");
-            sb.AppendLine($@"SizeDialog = {SizeDialog}");
-            sb.AppendLine($@"DownloadFrequency = {DownloadFrequency}");
+            sb.AppendLine($@"CustomTranslateFileId={CustomTranslateFileId}");
+            sb.AppendLine($@"DoubleLanguage={DoubleLanguage}");
+            sb.AppendLine($@"EnglishUi={EnglishUi}");
+            sb.AppendLine($@"AlternativeSubtitle={AlternativeSubtitle}");
+            sb.AppendLine($@"ThaiFirst={ThaiFirst}");
+            sb.AppendLine($@"ShowNotTranslateRow={ShowNotTranslateRow}");
+            sb.AppendLine($@"ShowTranslateRow={ShowTranslateRow}");
+            sb.AppendLine($@"ShowUiRow={ShowUiRow}");
+            sb.AppendLine($@"FontSetting={FontSetting}");
+            sb.AppendLine($@"SizeCutscene={SizeCutscene}");
+            sb.AppendLine($@"SizeDialog={SizeDialog}");
+            sb.AppendLine($@"DownloadFrequency={DownloadFrequency}");
 
             return sb.ToString();
         }
@@ -126,6 +128,9 @@ namespace svvv.Classes
                     break;
                 case "DownloadFrequency":
                     DownloadFrequency = value.ToDownloadFrequency(eDownloadFrequency.Hour);
+                    break;
+                case "CustomTranslateFileId":
+                    CustomTranslateFileId = value;
                     break;
             }
         }

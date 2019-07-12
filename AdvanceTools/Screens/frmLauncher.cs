@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TheWitcher3Thai;
+using TranslateUtility.Screens;
 
 namespace TranslateUtility
 {
@@ -76,6 +77,11 @@ namespace TranslateUtility
         private void btnStorybookTool_Click(object sender, EventArgs e)
         {
             OpenForm(new frmStorybook());
+        }
+
+        private void btnMessageFindet_Click(object sender, EventArgs e)
+        {
+            OpenForm(new frmMessageFinder());
         }
     }
 }

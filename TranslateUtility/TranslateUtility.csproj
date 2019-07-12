@@ -64,6 +64,12 @@
     <Compile Include="Screens\frmCredit.Designer.cs">
       <DependentUpon>frmCredit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\frmMessageFinder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\frmMessageFinder.Designer.cs">
+      <DependentUpon>frmMessageFinder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\frmVeryVerySimple.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,10 +89,14 @@
     <EmbeddedResource Include="Screens\frmCredit.resx">
       <DependentUpon>frmCredit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Screens\frmMessageFinder.resx">
+      <DependentUpon>frmMessageFinder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Screens\frmVeryVerySimple.resx">
       <DependentUpon>frmVeryVerySimple.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="download\custom_translate.xlsx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>

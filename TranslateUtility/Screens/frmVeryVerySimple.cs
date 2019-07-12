@@ -43,7 +43,7 @@ namespace TranslateUtility
             if (!ShowAdvance)
                 ToggleAdvance();
 
-            DownloadRequireComponent();
+            //DownloadRequireComponent();
 
             //CheckForUpdate(false, false, false);
             CheckForUpdate(false);
@@ -131,42 +131,42 @@ namespace TranslateUtility
             StartAlt();
         }
 
-        private void Start()
-        {
-            // download translate excel file
-            translatePath = Path.Combine(Configs.DownloadPath, "translate.xlsx");
-            translatePath = c.DownloadLegacyExcel(translatePath, false, GetDownloadFrequency());
-            if (translatePath == null)
-                return;
+        //private void Start()
+        //{
+        //    // download translate excel file
+        //    translatePath = Path.Combine(Configs.DownloadPath, "translate.xlsx");
+        //    translatePath = c.DownloadLegacyExcel(translatePath, false, GetDownloadFrequency());
+        //    if (translatePath == null)
+        //        return;
 
-            // generate mod
-            var result = c.Processing(GenerateMod, false, "กำลังสร้าง...");
-            if (result != DialogResult.OK)
-                return;
+        //    // generate mod
+        //    var result = c.Processing(GenerateMod, false, "กำลังสร้าง...");
+        //    if (result != DialogResult.OK)
+        //        return;
 
-            // install mod
-            result = c.Processing(InstallMod, false, "กำลังติดตั้ง");
-            if (result != DialogResult.OK)
-                return;
+        //    // install mod
+        //    result = c.Processing(InstallMod, false, "กำลังติดตั้ง");
+        //    if (result != DialogResult.OK)
+        //        return;
 
-            c.ShowMessage("ติดตั้งสำเร็จ");
-            EnableButton();
-        }
+        //    c.ShowMessage("ติดตั้งสำเร็จ");
+        //    EnableButton();
+        //}
 
-        private void GenerateMod()
-        {
-            c.GenerateLegacyMod(
-                translatePath,
-                modPath,
-                chkModDoubleLanguage.Checked,
-                rdoModOriginFirst.Checked,
-                chkUntranslateInfo.Checked,
-                chkUiInfo.Checked,
-                chkTranslateInfo.Checked,
-                !chkExcludeUiText.Checked
-            );
+        //private void GenerateMod()
+        //{
+        //    c.GenerateLegacyMod(
+        //        translatePath,
+        //        modPath,
+        //        chkModDoubleLanguage.Checked,
+        //        rdoModOriginFirst.Checked,
+        //        chkUntranslateInfo.Checked,
+        //        chkUiInfo.Checked,
+        //        chkTranslateInfo.Checked,
+        //        !chkExcludeUiText.Checked
+        //    );
 
-        }
+        //}
 
         private void GenerateModAlt()
         {
@@ -209,15 +209,16 @@ namespace TranslateUtility
             c.ChangeLanguageSettingToTR();
         }
 
-        private void Backup(bool overwrite)
-        {
-            c.Backup(txtGamePath.Text, Configs.BackupPath, overwrite, true);
-        }
+        //private void Backup(bool overwrite)
+        //{
+        //    c.Backup(txtGamePath.Text, Configs.BackupPath, overwrite, true);
+        //}
 
         private void EnableButton()
         {
             // result button
             btnResult.Enabled = File.Exists(resultPath);
+            btnMessageFinder.Enabled = File.Exists(resultPath);
 
             // install button && restore button
             if (c.IsValidGamePath(txtGamePath.Text))
@@ -321,8 +322,6 @@ namespace TranslateUtility
             EnableButton();
         }
 
-
-
         private void btnInstallAlt_Click(object sender, EventArgs e)
         {
             StartAlt();
@@ -331,6 +330,10 @@ namespace TranslateUtility
         private void StartAlt()
         {
             c.UpdateStorybook();
+            c.UpdateTemplate();
+
+            if(chkAltSub.Checked)
+                c.Processing(DownloadCustomTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษาเสริม...");
 
             // download translate excel file
             var downloadResult = c.Processing(DownloadTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษา...");
@@ -339,7 +342,7 @@ namespace TranslateUtility
 
 
             // generate mod
-            var result = c.Processing(GenerateModAlt, false, "กำลังสร้าง...");
+            var result = c.Processing(GenerateModAlt, false, "กำลังสร้างม็อด...");
             if (result != DialogResult.OK)
                 return;
 
@@ -351,6 +354,11 @@ namespace TranslateUtility
 
             c.ShowMessage("ติดตั้งสำเร็จ");
             EnableButton();
+        }
+
+        private void DownloadCustomTranslateFile()
+        {
+            c.DownloadCustomTranslateFile(GetDownloadFrequency());
         }
 
         private void DownloadTranslateFile()
@@ -514,6 +522,39 @@ namespace TranslateUtility
         {
             //CheckForUpdate(true, true, true);
             CheckForUpdate(true);
+        }
+
+        private void btnMessageFinder_Click(object sender, EventArgs e)
+        {
+            OpenMessageFinder();
+        }
+
+        private void OpenMessageFinder()
+        {
+            var frm = new frmMessageFinder();
+            OpenForm(frm);
+        }
+
+        private void OpenForm(Form frm)
+        {
+            this.Hide();
+            frm.Closed += OnChildClosed;
+            frm.ShowDialog();
+        }
+
+        private void OnChildClosed(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void miTranslateProgress_Click(object sender, EventArgs e)
+        {
+            c.Open(resultPath);
+        }
+
+        private void miMessageFinder_Click(object sender, EventArgs e)
+        {
+            OpenMessageFinder();
         }
     }
 }

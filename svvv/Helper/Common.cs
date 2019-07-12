@@ -469,6 +469,17 @@ namespace TheWitcher3Thai
 
         }
 
+        public Dictionary<string, w3Strings> ReadAllExcel(string excelPath)
+        {
+            var data = ReadExcel(excelPath, setting.GetSheetConfig(), true);
+            return GetAllContent(data);
+        }
+
+        public List<w3Strings> ConvertToList(Dictionary<string, w3Strings> data)
+        {
+            return data.Select(d => d.Value).ToList();
+        }
+
         public Dictionary<string, w3Strings> GetAllContent(Dictionary<string, List<w3Strings>> content)
         {
             var all = new List<w3Strings>();
@@ -675,7 +686,7 @@ namespace TheWitcher3Thai
             using (var p = new ExcelPackage(fi))
             {
                 var sht = p.Workbook.Worksheets[sheetName];
-                var result = ReadExcelSheet(sht,isReadTranslate);
+                var result = ReadExcelSheet(sht, isReadTranslate);
                 return result;
 
             }
@@ -1091,7 +1102,7 @@ namespace TheWitcher3Thai
                         //var sourceContent = ReadOriginalCsv(sourcePath, true);
                         //var translateContent = ReadExcel(sht);
                         var sourceContent = ConvertToDictionary(ReadOriginalCsv(sourcePath, true));
-                        var translateContent = ConvertToDictionary(ReadExcelSheet(sht,true));
+                        var translateContent = ConvertToDictionary(ReadExcelSheet(sht, true));
 
                         var mergeContent = MergeContentDictionary(sourceContent, translateContent, false, combine, originalFirst, null, out skipSource, out skipTranslate);
 
@@ -1492,12 +1503,31 @@ namespace TheWitcher3Thai
 
         public string GetGoogleDownloadUrl(string id)
         {
-            return $@"https://drive.google.com/uc?id={id}&export=download";
+            return $@"https://drive.google.com/uc?export=download&id={id}";
+        }
+
+        public string GetGoogleSheetDownloadUrl(string id)
+        {
+            return $@"https://docs.google.com/spreadsheets/d/{id}/export?format=xlsx";
         }
 
         public bool DownloadGoogleFile(string id, string saveToPath)
         {
             string url = GetGoogleDownloadUrl(id);
+            using (var dlg = new DownloadDialog(url, saveToPath))
+            {
+                var result = dlg.ShowDialog();
+
+                if (result == DialogResult.OK)
+                    return true;
+                else
+                    return false;
+            }
+        }
+
+        public bool DownloadGoogleSheetFile(string id, string saveToPath)
+        {
+            string url = GetGoogleSheetDownloadUrl(id);
             using (var dlg = new DownloadDialog(url, saveToPath))
             {
                 var result = dlg.ShowDialog();
@@ -2020,7 +2050,7 @@ namespace TheWitcher3Thai
                         sht.Cells[row, Excel.COL_KEY_HEX].Text,
                         sht.Cells[row, Excel.COL_KEY_STRING].Text,
                         sht.Cells[row, Excel.COL_TEXT].Text,
-                        isReadTranslatee?sht.Cells[row, Excel.COL_TRANSLATE].Text.Replace("\r", "").Replace("\n", ""):null
+                        isReadTranslatee ? sht.Cells[row, Excel.COL_TRANSLATE].Text.Replace("\r", "").Replace("\n", "") : null
 
                         , sht.Name
                         , sht.Cells[row, Excel.COL_ROW].Text.ToIntOrNull()
@@ -2251,7 +2281,7 @@ namespace TheWitcher3Thai
             FinishMod(tempPath, outputPath, sheetConfig);
         }
 
-        public void GenerateModAlt(Dictionary<string, List<w3Strings>> contents, string outputPath, bool combine, bool originalFirst, Dictionary<string, string> sheetConfig, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool IncludeUiMessageId, eFontSetting font, bool translateUI)
+        public void GenerateModAlt(Dictionary<string, List<w3Strings>> contents, string outputPath, bool combine, bool originalFirst, Dictionary<string, string> sheetConfig, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool IncludeUiMessageId, eFontSetting font, bool translateUI, bool alternativeTranslate)
         {
             DeleteDirectory(outputPath);
 
@@ -2264,6 +2294,14 @@ namespace TheWitcher3Thai
                 allMessage.AddRange(sheet.Value);
             }
 
+            if (alternativeTranslate)
+            {
+                var allMessageDict = ConvertToDictionary(allMessage);
+                var customTranslate = ReadCustomTranslate();
+                FillCustomTranslate(allMessageDict, customTranslate);
+                allMessage = ConvertToList(allMessageDict);
+            }
+
 
             // write duplicate sheet
             // WriteDupplicate(allMessage, outputPath);
@@ -2274,9 +2312,7 @@ namespace TheWitcher3Thai
             //            .Select(g => g.First())
             //            .ToList();
 
-            var content = Translate(allMessage, combine, originalFirst, includeNotTranslateMessageId, includeTranslateMessageId, IncludeUiMessageId, translateUI);
-
-            content = DistinctContent(content);
+            var content = Translate(allMessage, combine, originalFirst, includeNotTranslateMessageId, includeTranslateMessageId, IncludeUiMessageId, translateUI);            
 
             var path = Path.Combine(tempPath, "message" + ".csv");
             WriteCsv(content, path);
@@ -2308,6 +2344,32 @@ namespace TheWitcher3Thai
             InstallSubtitleMod(outputPath);
 
             WriteVersionUnofficial(outputPath, "unofficial");
+
+        }
+
+        private void FillCustomTranslate(Dictionary<string, w3Strings> contentDict, List<w3Strings> customTranslate)
+        {
+            foreach (var message in customTranslate)
+            {
+                if (contentDict.ContainsKey(message.IdKey) && !String.IsNullOrWhiteSpace(message.Translate))
+                    contentDict[message.IdKey].Translate = message.Translate;
+            }
+        }
+
+        private List<w3Strings> ReadCustomTranslate()
+        {
+            string path = Configs.CustomTranslateFilePath;
+
+            var fi = new FileInfo(path);
+            if (!fi.Exists)
+                return new List<w3Strings>();
+
+            using (var p = new ExcelPackage(fi))
+            {
+                var sht = p.Workbook.Worksheets[1];
+                var result = ReadExcelSheet(sht, true);
+                return result;
+            }
 
         }
 
@@ -2400,11 +2462,11 @@ namespace TheWitcher3Thai
             GenerateMod(raw, outputPath, combine, originalFirst, sheetConfig, false, false, false, true);
         }
 
-        public Dictionary<string, List<w3Strings>> ReadExcel(string excelPath, Dictionary<string, string> sheetConfig,bool isReadTranslate)
+        public Dictionary<string, List<w3Strings>> ReadExcel(string excelPath, Dictionary<string, string> sheetConfig, bool isReadTranslate)
         {
             var result = new Dictionary<string, List<w3Strings>>();
 
-            var fi = new FileInfo(excelPath);  
+            var fi = new FileInfo(excelPath);
             using (var p = new ExcelPackage(fi))
             {
                 if (sheetConfig == null)
@@ -2422,7 +2484,7 @@ namespace TheWitcher3Thai
                     var sht = p.Workbook.Worksheets[s.Key];
                     if (sht != null)
                     {
-                        var content = ReadExcelSheet(sht,isReadTranslate);
+                        var content = ReadExcelSheet(sht, isReadTranslate);
                         result.Add(s.Key, content);
                     }
                     else
@@ -2945,7 +3007,7 @@ namespace TheWitcher3Thai
                 throw new Exception("ไม่พบ Template กรุณาต่ออินเตอร์เน็ตและเปิดโปรแกรมใหม่เพิ่อดาวน์โหลดไฟล์ Template");
 
             var sheetConfig = setting.GetSheetConfig();
-            var template = ReadExcel(templatePath, sheetConfig,true);
+            var template = ReadExcel(templatePath, sheetConfig, true);
             var translate = ReadExcelLegacy(excelPath, sheetConfig);
 
             var content = MergeLegacy(template, translate);
@@ -2974,7 +3036,7 @@ namespace TheWitcher3Thai
 
             var content = MergeLegacy(template, translate);
 
-            GenerateModAlt(content, outputPath, doubleLanguage, originalFirst, sheetConfig, includeNotTranslateMessageId, includeTranslateMessageId, includeUiMessageId, font, translateUI);
+            GenerateModAlt(content, outputPath, doubleLanguage, originalFirst, sheetConfig, includeNotTranslateMessageId, includeTranslateMessageId, includeUiMessageId, font, translateUI, alternativeTranslate);
 
             // write all text excel file for later use
             string tempPath = Path.Combine(outputPath, "translate.xlsx");
@@ -3244,14 +3306,14 @@ namespace TheWitcher3Thai
         public void FillStorybookExcel(string targetPath, string translatePath, bool fillMessage, bool fillTranslatedMessage, bool fillMessageAsTranslate)
         {
             var map = setting.GetStorybookMaping();
-            var translate=ReadLegacyStorybook(translatePath);
+            var translate = ReadLegacyStorybook(translatePath);
 
             var fi = new FileInfo(targetPath);
             using (var p = new ExcelPackage(fi))
             {
                 var wb = p.Workbook;
-                
-                foreach(var data in translate)
+
+                foreach (var data in translate)
                 {
                     string sheetName = GetStorybookSheetName(map, data.Key);
                     var sht = wb.Worksheets[sheetName];
@@ -3278,7 +3340,7 @@ namespace TheWitcher3Thai
                 if (fillMessage && !String.IsNullOrWhiteSpace(d.Message))
                     sht.Cells[currrow, COL_STORYBOOK_MESSAGE].Value = d.Message;
 
-                if(fillMessageAsTranslate)
+                if (fillMessageAsTranslate)
                 {
                     sht.Cells[currrow, COL_STORYBOOK_TRANSLATE].Value = d.Message;
                 }
@@ -3292,7 +3354,7 @@ namespace TheWitcher3Thai
                     // already translate
                     else
                     {
-                        if(fillTranslatedMessage)
+                        if (fillTranslatedMessage)
                             sht.Cells[currrow, COL_STORYBOOK_TRANSLATE].Value = d.Translate;
                     }
                 }
@@ -3311,7 +3373,7 @@ namespace TheWitcher3Thai
                 result++;
 
                 row++;
-                message = sht.Cells[row, COL_STORYBOOK_MESSAGE_LEGACY].Value.ToStringOrNull();                
+                message = sht.Cells[row, COL_STORYBOOK_MESSAGE_LEGACY].Value.ToStringOrNull();
             }
 
             return result;
@@ -3406,7 +3468,7 @@ namespace TheWitcher3Thai
             var fi = new FileInfo(excelPath);
             using (var p = new ExcelPackage(fi))
             {
-                foreach(var sht in p.Workbook.Worksheets)
+                foreach (var sht in p.Workbook.Worksheets)
                 {
                     int row = ROW_STORYBOOK_START;
                     string message = sht.Cells[row, COL_STORYBOOK_MESSAGE_LEGACY].Value.ToStringOrNull();
@@ -3476,7 +3538,7 @@ namespace TheWitcher3Thai
                 return;
 
             // read file content
-            var content=File.ReadAllText(settingPath);
+            var content = File.ReadAllText(settingPath);
 
             // check neeed to change language setting
             bool needChange = IsNeedToChangeSetting(content, fromLangCode);
@@ -3486,8 +3548,8 @@ namespace TheWitcher3Thai
             // backup old setting
             fi.CopyTo(settingPath + $@".{DateTime.Now:yyyyMMddHHmmssffff}.bak");
 
-            content=content.Replace($@"RequestedTextLanguage={fromLangCode}", $@"RequestedTextLanguage={toLangCode}");
-            content=content.Replace($@"TextLanguage={fromLangCode}", $@"TextLanguage={toLangCode}");
+            content = content.Replace($@"RequestedTextLanguage={fromLangCode}", $@"RequestedTextLanguage={toLangCode}");
+            content = content.Replace($@"TextLanguage={fromLangCode}", $@"TextLanguage={toLangCode}");
 
             File.WriteAllText(settingPath, content);
 
@@ -3503,6 +3565,57 @@ namespace TheWitcher3Thai
 
             return false;
         }
-    }
 
+        public bool IsNeedToDownload(string filePath, eDownloadFrequency frequency)
+        {
+            if (filePath == null)
+                return false;
+
+
+            if (File.Exists(filePath))
+            {
+                if (frequency == eDownloadFrequency.Once)
+                {
+                    return false;
+                }
+                else
+                {
+                    // check translate file up to date
+                    var lastDownload = File.GetLastWriteTime(filePath);
+                    switch (frequency)
+                    {
+                        case eDownloadFrequency.Day:
+                            if (lastDownload > DateTime.Now.AddDays(-1)) // download less than 1 day
+                                return false;
+                            break;
+                        case eDownloadFrequency.Hour:
+                            if (lastDownload > DateTime.Now.AddMinutes(-60)) // download less than 1 hour
+                                return false;
+                            break;
+                        default: // Always
+                            break;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        public void DownloadCustomTranslateFile(eDownloadFrequency frequency)
+        {
+            var translatePath = Configs.CustomTranslateFilePath;
+
+            if (!IsNeedToDownload(translatePath, frequency))
+                return;
+
+            var tmpPath = Path.Combine(Configs.TempPath, Configs.CustomTranslateFileName);
+            if (!DownloadGoogleSheetFile(Configs.CustomTranslateFileId, tmpPath))
+                return;
+
+            if (File.Exists(tmpPath))
+                File.Copy(tmpPath, translatePath, true);
+
+        }
+
+    }
 }
