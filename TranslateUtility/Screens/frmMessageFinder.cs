@@ -16,6 +16,8 @@ namespace TranslateUtility.Screens
         Common c = new Common();
         Setting setting = new Setting();
 
+        const int MAX_SEARCH_ROW = 999;
+
         enum eSearchFild
         {
             All,
@@ -35,33 +37,33 @@ namespace TranslateUtility.Screens
 
         private void frmMessageFinder_Shown(object sender, EventArgs e)
         {
-            gvSearchResult.AutoGenerateColumns = false;            
+            gvSearchResult.AutoGenerateColumns = false;
         }
 
         private void ReadData()
         {
-            try
-            {
-                string excelPath = Path.Combine(Configs.StartupPath, "mod", "translate.xlsx");
-                if (!File.Exists(excelPath))
-                    throw new Exception("ไม่พบไฟล์ข้อความ กรุณาสร้าง mod ก่อน");
+            string excelPath = Path.Combine(Configs.StartupPath, "mod", "translate.xlsx");
+            if (!File.Exists(excelPath))
+                throw new Exception("ไม่พบไฟล์ข้อความ กรุณาสร้าง mod ก่อน");
 
-                var dict = c.ReadAllExcel(excelPath);
-                mData = c.ConvertToList(dict);
-            }
-            catch (Exception ex)
-            {
-                mData = new List<w3Strings>();
-                throw ex;
-            }
+            var dict = c.ReadAllExcel(excelPath);
+            mData = c.ConvertToList(dict);
+
         }
 
         private void setRowNumber(DataGridView dgv)
         {
+            if (dgv.Rows.Count < 1)
+                return;
+
             foreach (DataGridViewRow row in dgv.Rows)
             {
                 row.HeaderCell.Value = $@"{row.Index + 1}";
             }
+
+            var lastRow = dgv.Rows[dgv.Rows.Count - 1];
+            if (lastRow.Index >= MAX_SEARCH_ROW)
+                lastRow.HeaderCell.Value = "...";
 
             dgv.AutoResizeRowHeadersWidth(DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders);
 
@@ -74,20 +76,31 @@ namespace TranslateUtility.Screens
 
         private void SearchData()
         {
-            if(mData==null)
-                c.Processing(ReadData, false, "กำลังอ่านข้อความ...");
-
             if (String.IsNullOrWhiteSpace(txtInput.Text))
                 return;
 
+            if (mData == null)
+            {
+                c.Processing(ReadData, false, "กำลังอ่านข้อความ...");
+
+                // return to main app
+                if (mData == null)
+                {
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                    return;
+                }
+            }
+
             ClearDetail();
 
-            FilterData();
+            mSearchResult = FilterData();
             gvSearchResult.DataSource = mSearchResult;
             setRowNumber(gvSearchResult);
 
             if (mSearchResult.Count == 0)
                 c.ShowMessage("ไม่พบข้อความ");
+
         }
 
         private eSearchFild GetSearchField()
@@ -102,7 +115,7 @@ namespace TranslateUtility.Screens
                 return eSearchFild.All;
         }
 
-        private void FilterData()
+        private List<w3Strings> FilterData()
         {
             string textToSearch = txtInput.Text.Trim().ToLower();
             eSearchFild searchFild = GetSearchField();
@@ -112,6 +125,13 @@ namespace TranslateUtility.Screens
             List<w3Strings> result = new List<w3Strings>();
             foreach (var message in mData)
             {
+
+                if (result.Count > MAX_SEARCH_ROW)
+                {
+                    result.Add(new w3Strings("ขี้เกียจหาแล้วเยอะเกิน", "ลองใส่ข้อความที่ต้องการค้นหาให้มากขึ้นดูสิ"));
+                    return result;
+                }
+
                 if (searchFild == eSearchFild.All)
                 {
                     if (message.Text.ToLower().Contains(textToSearch) || message.Translate.ToLower().Contains(textToSearch))
@@ -129,26 +149,36 @@ namespace TranslateUtility.Screens
                 }
             }
 
-            mSearchResult = result;
+            return result;
+
         }
 
-        
+
 
         private void gvSearchResult_SelectionChanged(object sender, EventArgs e)
         {
-                SetData();
+            SetData();
         }
 
         private void SetData()
         {
             if (gvSearchResult.SelectedRows.Count < 1)
+            {
+                btnCopy.Enabled = false;
                 return;
+            }
 
+            ;
             var data = mSearchResult[gvSearchResult.SelectedRows[0].Index];
             txtSheetName.Text = data.SheetName;
             txtRowNumber.Text = data.RowNumber.ToStringOrNull();
             txtOriginalText.Text = data.Text;
             txtTranslateText.Text = data.Translate;
+
+            if (data.ID != null)
+                btnCopy.Enabled = true;
+            else
+                btnCopy.Enabled = false;
         }
 
         private void ClearDetail()
@@ -192,7 +222,7 @@ namespace TranslateUtility.Screens
                 return;
 
             var data = mSearchResult[gvSearchResult.SelectedRows[0].Index];
-            var result = String.Format("{0}\t{1}\t{2}\t{3}\t{4}",data.ID,data.KeyHex,data.KeyString,data.Text,data.Translate);
+            var result = String.Format("{0}\t{1}\t{2}\t{3}\t{4}", data.ID, data.KeyHex, data.KeyString, data.Text, data.Translate);
             Clipboard.SetText(result);
         }
     }

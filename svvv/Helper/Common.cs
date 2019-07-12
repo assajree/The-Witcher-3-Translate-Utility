@@ -2037,8 +2037,11 @@ namespace TheWitcher3Thai
 
         }
 
-        public List<w3Strings> ReadExcelSheet(ExcelWorksheet sht, bool isReadTranslatee)
+        public List<w3Strings> ReadExcelSheet(ExcelWorksheet sht, bool isReadTranslate)
         {
+            if (IsExtrasheet(sht.Name))
+                isReadTranslate = true;
+
             List<w3Strings> result = new List<w3Strings>();
 
             int row = Excel.ROW_START;
@@ -2050,7 +2053,7 @@ namespace TheWitcher3Thai
                         sht.Cells[row, Excel.COL_KEY_HEX].Text,
                         sht.Cells[row, Excel.COL_KEY_STRING].Text,
                         sht.Cells[row, Excel.COL_TEXT].Text,
-                        isReadTranslatee ? sht.Cells[row, Excel.COL_TRANSLATE].Text.Replace("\r", "").Replace("\n", "") : null
+                        isReadTranslate ? sht.Cells[row, Excel.COL_TRANSLATE].Text.Replace("\r", "").Replace("\n", "") : null
 
                         , sht.Name
                         , sht.Cells[row, Excel.COL_ROW].Text.ToIntOrNull()
@@ -2062,6 +2065,11 @@ namespace TheWitcher3Thai
 
             return result;
 
+        }
+
+        private bool IsExtrasheet(string sheetName)
+        {
+            return setting.GetExtraSheetConfig().ContainsKey(sheetName);
         }
 
         public void WriteSheetContent(ExcelWorksheet sht, List<w3Strings> content, bool textAsTranslate)

@@ -9,26 +9,34 @@ namespace TheWitcher3Thai
 {
     public class Setting
     {
+        Dictionary<string, string> mSheetConfig;
+        Dictionary<string, string> mExtraSheetConfig;
+        Dictionary<string, string> mStorybookMaping;
+        Dictionary<string, string> mSheetName;
+
         public Dictionary<string, string> GetSheetConfig()
         {
-            Dictionary<string, string> d = new Dictionary<string, string>();
+            if (mSheetConfig != null)
+                return mSheetConfig;
 
-            d.Add("content0", @"content\content0");
-            d.Add("content1", @"content\content1");
-            d.Add("content2", @"content\content2");
-            d.Add("content3", @"content\content3");
-            d.Add("content4", @"content\content4");
-            d.Add("content5", @"content\content5");
-            d.Add("content6", @"content\content6");
-            d.Add("content7", @"content\content7");
-            d.Add("content8", @"content\content8");
-            d.Add("content9", @"content\content9");
-            d.Add("content10", @"content\content10");
-            d.Add("content11", @"content\content11");
-            d.Add("content12", @"content\content12");
+            mSheetConfig = new Dictionary<string, string>();
 
-            d.Add("DLCbobcontent", @"dlc\bob\content");
-            d.Add("DLCEP1content", @"dlc\ep1\content");
+            mSheetConfig.Add("content0", @"content\content0");
+            mSheetConfig.Add("content1", @"content\content1");
+            mSheetConfig.Add("content2", @"content\content2");
+            mSheetConfig.Add("content3", @"content\content3");
+            mSheetConfig.Add("content4", @"content\content4");
+            mSheetConfig.Add("content5", @"content\content5");
+            mSheetConfig.Add("content6", @"content\content6");
+            mSheetConfig.Add("content7", @"content\content7");
+            mSheetConfig.Add("content8", @"content\content8");
+            mSheetConfig.Add("content9", @"content\content9");
+            mSheetConfig.Add("content10", @"content\content10");
+            mSheetConfig.Add("content11", @"content\content11");
+            mSheetConfig.Add("content12", @"content\content12");
+
+            mSheetConfig.Add("DLCbobcontent", @"dlc\bob\content");
+            mSheetConfig.Add("DLCEP1content", @"dlc\ep1\content");
 
             // extra
             //d.Add("DLC1", @"dlc\dlc1\content");
@@ -48,44 +56,50 @@ namespace TheWitcher3Thai
             //d.Add("DLC15", @"dlc\dlc15\content");
             //d.Add("DLC16", @"dlc\dlc16\content");
 
-            d.Add("DLCall", @"dlc\dlcAll\content");
+            mSheetConfig.Add("DLCall", @"dlc\dlcAll\content");
             //d.Add("patch1", @"content\patch1");
-            //d.Add("MISSING", @"content\missing");
+            mSheetConfig.Add("MISSING", @"content\missing");
 
-            return d;
+            return mSheetConfig;
         }
 
         public Dictionary<string, string> GetSheetName()
         {
-            Dictionary<string, string> d = new Dictionary<string, string>();
+            if (mSheetName != null)
+                return mSheetName;
 
-            d.Add("content0", "content0");
-            d.Add("content1", "content1");
-            d.Add("content2", "content2");
-            d.Add("content3", "content3");
-            d.Add("content4", "content4");
-            d.Add("content5", "content5");
-            d.Add("content6", "content6");
-            d.Add("content7", "content7");
-            d.Add("content8", "content8");
-            d.Add("content9", "content9");
-            d.Add("content10", "content10");
-            d.Add("content11", "content11");
-            d.Add("content12", "content12");
+            mSheetName = new Dictionary<string, string>();
+
+            mSheetName.Add("content0", "content0");
+            mSheetName.Add("content1", "content1");
+            mSheetName.Add("content2", "content2");
+            mSheetName.Add("content3", "content3");
+            mSheetName.Add("content4", "content4");
+            mSheetName.Add("content5", "content5");
+            mSheetName.Add("content6", "content6");
+            mSheetName.Add("content7", "content7");
+            mSheetName.Add("content8", "content8");
+            mSheetName.Add("content9", "content9");
+            mSheetName.Add("content10", "content10");
+            mSheetName.Add("content11", "content11");
+            mSheetName.Add("content12", "content12");
             
-            d.Add("DLCEP1content", "DLCEP1content (Heart of Stone)");
-            d.Add("DLCbobcontent", "DLCbobcontent (Blood and Wine)");
+            mSheetName.Add("DLCEP1content", "DLCEP1content (Heart of Stone)");
+            mSheetName.Add("DLCbobcontent", "DLCbobcontent (Blood and Wine)");
 
-            d.Add("DLCall", "DLCall (Other DLC)");
+            mSheetName.Add("DLCall", "DLCall (Other DLC)");
             //d.Add("MISSING", "MISSING");
 
-            return d;
+            return mSheetName;
         }
 
 
         public Dictionary<string, string> GetExtraSheetConfig()
         {
-            Dictionary<string, string> d = new Dictionary<string, string>();
+            if (mExtraSheetConfig != null)
+                return mExtraSheetConfig;
+
+            mExtraSheetConfig = new Dictionary<string, string>();
 
             // extra
             //d.Add("DLC1", @"dlc\dlc1\content");
@@ -105,107 +119,81 @@ namespace TheWitcher3Thai
             //d.Add("DLC15", @"dlc\dlc15\content");
             //d.Add("DLC16", @"dlc\dlc16\content");
 
-            d.Add("MISSING", @"content\missing");
+            mExtraSheetConfig.Add("MISSING", @"content\missing");
 
-            return d;
-        }
-
-        public List<string> GetKnowIssueKey()
-        {
-            List<string> result = new List<string>();
-
-            result.Add("1092719"); // Already started in on it. Hope they didn't muck up the tracks. | muck up the tracks..
-
-            return result;
-        }
-
-        public List<string> GetDoubleLanguageIgnoreList()
-        {
-            List<string> result = new List<string>();
-
-            // ui 
-            result.Add("1086687"); //เลเวลที่แนะนำ
-            result.Add("397232");  //อภิธานศัพท์
-            result.Add("1046641"); 
-            result.Add("1076399"); 
-            result.Add("6dcdb31f"); //ปรุงยา
-            result.Add("1084742"); 
-            result.Add("1084766"); 
-            result.Add("1086265"); 
-            result.Add("456530"); //ช่องเก็บของ
-            result.Add("69b768e1"); 
-            result.Add("1084772"); 
-
-            return result;
+            return mExtraSheetConfig;
         }
 
         public Dictionary<string,string> GetStorybookMaping()
         {
-            var result = new Dictionary<string, string>();
+            if (mStorybookMaping != null)
+                return mStorybookMaping;
 
-            result.Add("st3 main", "st_3_tr");
-            result.Add("flb1a main", "rs_1a_tr");
-            result.Add("flb5a main", "rs_5a_tr");
-            result.Add("flb4a main", "rs_4a_tr");
-            result.Add("flb4b main", "rs_4b_tr");
-            result.Add("flb2b main", "rs_2b_tr");
-            result.Add("flb2a main", "rs_2a_tr");
-            result.Add("flb3b main", "rs_3b_tr");
-            result.Add("flb3a main", "rs_3a_tr");
-            result.Add("flb5b main", "rs_5b_tr");
-            result.Add("flb6a no main", "rs_6a_tr_alt");
-            result.Add("flb6a main", "rs_6a_tr");
-            result.Add("flb6b main", "rs_6b_tr");
-            result.Add("fnb1a", "fb_1a_tr");
-            result.Add("fnb1b", "fb_1b_tr");
-            result.Add("fnb3a", "fb_3a_tr");
-            result.Add("fnb3c", "fb_3c_tr");
-            result.Add("fnb3b", "fb_3b_tr");
-            result.Add("fnb4b", "fb_4b_tr");
-            result.Add("fnb4a", "fb_4a_tr");
-            result.Add("fnb2c", "fb_2c_tr");
-            result.Add("fnb2b", "fb_2b_tr");
-            result.Add("fnb2a", "fb_2a_tr");
-            result.Add("fnb6a", "fb_6a_tr");
-            result.Add("fnb6c", "fb_6c_tr");
-            result.Add("fnb6b", "fb_6b_tr");
-            result.Add("fnb5c", "fb_5c_tr");
-            result.Add("fnb5a", "fb_5a_tr");
-            result.Add("fnb5b", "fb_5b_tr");
-            result.Add("fnb1c", "fb_1c_tr");
+            mStorybookMaping = new Dictionary<string, string>();
 
-            result.Add("st10 nm", "st_10_tr_alt");
-            result.Add("st10 m", "st_10_tr");
-            result.Add("st4 nm", "st_4_tr_alt");
-            result.Add("st12 nm", "st_12_tr_alt");
-            result.Add("st13 nm", "st_13_tr_alt");
-            result.Add("st15 nm", "st_15_tr_alt");
-            result.Add("st19 nm", "st_19_tr_alt");
-            result.Add("st20 nm", "st_20_tr_alt");
-            result.Add("st22 nm", "st_22_tr_alt");
-            result.Add("st23 nm", "st_23_tr_alt");
-            result.Add("st4 m", "st_4_tr");
-            result.Add("st12 m", "st_12_tr");
-            result.Add("st13 m", "st_13_tr");
-            result.Add("st15 m", "st_15_tr");
-            result.Add("st19 m", "st_19_tr");
-            result.Add("st20 m", "st_20_tr");
-            result.Add("st22 m", "st_22_tr");
-            result.Add("st23 m", "st_23_tr");
-            result.Add("st14 m", "st_14_tr");
-            result.Add("st5 m", "st_5_tr");
-            result.Add("st6 m", "st_6_tr");
-            result.Add("st7 m", "st_7_tr");
-            result.Add("st8 m", "st_8_tr");
-            result.Add("st9 m", "st_9_tr");
-            result.Add("st11 m", "st_11_tr");
+            mStorybookMaping.Add("st3 main", "st_3_tr");
+            mStorybookMaping.Add("flb1a main", "rs_1a_tr");
+            mStorybookMaping.Add("flb5a main", "rs_5a_tr");
+            mStorybookMaping.Add("flb4a main", "rs_4a_tr");
+            mStorybookMaping.Add("flb4b main", "rs_4b_tr");
+            mStorybookMaping.Add("flb2b main", "rs_2b_tr");
+            mStorybookMaping.Add("flb2a main", "rs_2a_tr");
+            mStorybookMaping.Add("flb3b main", "rs_3b_tr");
+            mStorybookMaping.Add("flb3a main", "rs_3a_tr");
+            mStorybookMaping.Add("flb5b main", "rs_5b_tr");
+            mStorybookMaping.Add("flb6a no main", "rs_6a_tr_alt");
+            mStorybookMaping.Add("flb6a main", "rs_6a_tr");
+            mStorybookMaping.Add("flb6b main", "rs_6b_tr");
+            mStorybookMaping.Add("fnb1a", "fb_1a_tr");
+            mStorybookMaping.Add("fnb1b", "fb_1b_tr");
+            mStorybookMaping.Add("fnb3a", "fb_3a_tr");
+            mStorybookMaping.Add("fnb3c", "fb_3c_tr");
+            mStorybookMaping.Add("fnb3b", "fb_3b_tr");
+            mStorybookMaping.Add("fnb4b", "fb_4b_tr");
+            mStorybookMaping.Add("fnb4a", "fb_4a_tr");
+            mStorybookMaping.Add("fnb2c", "fb_2c_tr");
+            mStorybookMaping.Add("fnb2b", "fb_2b_tr");
+            mStorybookMaping.Add("fnb2a", "fb_2a_tr");
+            mStorybookMaping.Add("fnb6a", "fb_6a_tr");
+            mStorybookMaping.Add("fnb6c", "fb_6c_tr");
+            mStorybookMaping.Add("fnb6b", "fb_6b_tr");
+            mStorybookMaping.Add("fnb5c", "fb_5c_tr");
+            mStorybookMaping.Add("fnb5a", "fb_5a_tr");
+            mStorybookMaping.Add("fnb5b", "fb_5b_tr");
+            mStorybookMaping.Add("fnb1c", "fb_1c_tr");
 
-            var keyCount = result.Select(r => r.Key).Distinct().ToList().Count;
-            var valueCount = result.Select(r => r.Value).Distinct().ToList().Count;
+            mStorybookMaping.Add("st10 nm", "st_10_tr_alt");
+            mStorybookMaping.Add("st10 m", "st_10_tr");
+            mStorybookMaping.Add("st4 nm", "st_4_tr_alt");
+            mStorybookMaping.Add("st12 nm", "st_12_tr_alt");
+            mStorybookMaping.Add("st13 nm", "st_13_tr_alt");
+            mStorybookMaping.Add("st15 nm", "st_15_tr_alt");
+            mStorybookMaping.Add("st19 nm", "st_19_tr_alt");
+            mStorybookMaping.Add("st20 nm", "st_20_tr_alt");
+            mStorybookMaping.Add("st22 nm", "st_22_tr_alt");
+            mStorybookMaping.Add("st23 nm", "st_23_tr_alt");
+            mStorybookMaping.Add("st4 m", "st_4_tr");
+            mStorybookMaping.Add("st12 m", "st_12_tr");
+            mStorybookMaping.Add("st13 m", "st_13_tr");
+            mStorybookMaping.Add("st15 m", "st_15_tr");
+            mStorybookMaping.Add("st19 m", "st_19_tr");
+            mStorybookMaping.Add("st20 m", "st_20_tr");
+            mStorybookMaping.Add("st22 m", "st_22_tr");
+            mStorybookMaping.Add("st23 m", "st_23_tr");
+            mStorybookMaping.Add("st14 m", "st_14_tr");
+            mStorybookMaping.Add("st5 m", "st_5_tr");
+            mStorybookMaping.Add("st6 m", "st_6_tr");
+            mStorybookMaping.Add("st7 m", "st_7_tr");
+            mStorybookMaping.Add("st8 m", "st_8_tr");
+            mStorybookMaping.Add("st9 m", "st_9_tr");
+            mStorybookMaping.Add("st11 m", "st_11_tr");
+
+            var keyCount = mStorybookMaping.Select(r => r.Key).Distinct().ToList().Count;
+            var valueCount = mStorybookMaping.Select(r => r.Value).Distinct().ToList().Count;
             if (keyCount != valueCount)
                 throw new Exception("Incorrect sheet mapping");
 
-            return result;
+            return mStorybookMaping;
         }
     }
 }

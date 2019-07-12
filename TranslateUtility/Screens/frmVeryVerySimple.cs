@@ -539,12 +539,14 @@ namespace TranslateUtility
         {
             this.Hide();
             frm.Closed += OnChildClosed;
-            frm.ShowDialog();
+            var result= frm.ShowDialog();
+            if (result != DialogResult.OK)
+                this.Close();
         }
 
         private void OnChildClosed(object sender, EventArgs e)
         {
-            this.Close();
+            this.Show();
         }
 
         private void miTranslateProgress_Click(object sender, EventArgs e)
