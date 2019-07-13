@@ -225,5 +225,29 @@ namespace TranslateUtility.Screens
             var result = String.Format("{0}\t{1}\t{2}\t{3}\t{4}", data.ID, data.KeyHex, data.KeyString, data.Text, data.Translate);
             Clipboard.SetText(result);
         }
+
+        private void gvSearchResult_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ToggleDetail();
+        }
+
+        private void btnCopyAll_Click(object sender, EventArgs e)
+        {
+            if (gvSearchResult.SelectedRows.Count < 1)
+                return;
+
+            var result = "";
+            for (int i = 0;i<gvSearchResult.SelectedRows.Count;i++)
+            {
+                var data = mSearchResult[gvSearchResult.SelectedRows[i].Index];
+                result += String.Format("\n{0}\t{1}\t{3}\t{3}\t{4}", data.ID, data.KeyHex, data.KeyString, data.Text, data.Translate);
+                
+            }
+            result=result.TrimStart('\n');
+            if(!String.IsNullOrWhiteSpace(result))
+                Clipboard.SetText(result);
+
+
+        }
     }
 }

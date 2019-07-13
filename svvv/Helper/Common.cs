@@ -54,6 +54,11 @@ namespace TheWitcher3Thai
             DecodeDirectory(originalDirectory);
         }
 
+        public void OpenGoogleSheet(string fileId)
+        {
+            Open($@"https://docs.google.com/spreadsheets/d/{fileId}");
+        }
+
         public void DecodeDirectory(DirectoryInfo directory)
         {
             foreach (var file in directory.GetFiles())
@@ -191,6 +196,9 @@ namespace TheWitcher3Thai
 
         public void MigrateOtherModToTr(string modPath)
         {
+            if (!Directory.Exists(modPath))
+                return;
+
             foreach (string path in Directory.GetFiles(modPath, "*.w3strings", SearchOption.AllDirectories))
             {
                 var targetPath = path.Replace("en.w3strings", "tr.w3strings");
@@ -322,7 +330,7 @@ namespace TheWitcher3Thai
             string downloadPath = Path.Combine(Configs.TempPath, "modThaiStoryBook.zip");
             if (!DownloadGoogleFile(Configs.StorybookFileId, downloadPath))
             {
-                ShowErrorMessage("การอัพเดทถูกยกเลิก");
+                //ShowErrorMessage("การอัพเดทถูกยกเลิก");
                 return false;
             }
 
@@ -344,7 +352,7 @@ namespace TheWitcher3Thai
             string downloadPath = Path.Combine(Configs.TempPath, "Template.zip");
             if (!DownloadGoogleFile(Configs.TemplateFileId, downloadPath))
             {
-                ShowErrorMessage("การอัพเดทถูกยกเลิก");
+                //ShowErrorMessage("การอัพเดทถูกยกเลิก");
                 return false;
             }
 
@@ -1414,22 +1422,29 @@ namespace TheWitcher3Thai
 
         public string GetLastVersion()
         {
-            string url = GetGoogleDownloadUrl(Configs.VersionFileId);
-            var client = new WebClient();
-            var data = client.DownloadData(url);
-            var stream = new StreamReader(new MemoryStream(data));
+            try
+            {
+                string url = GetGoogleDownloadUrl(Configs.VersionFileId);
+                var client = new WebClient();
+                var data = client.DownloadData(url);
+                var stream = new StreamReader(new MemoryStream(data));
 
-            //var request = WebRequest.Create(url);
-            //var stream = new StreamReader(request.GetResponse().GetResponseStream());
-            var lastVersion = stream.ReadToEnd().ToString();
+                //var request = WebRequest.Create(url);
+                //var stream = new StreamReader(request.GetResponse().GetResponseStream());
+                var lastVersion = stream.ReadToEnd().ToString();
 
-            //if (String.IsNullOrWhiteSpace(lastVersion))
-            //{
-            //    throw new Exception("Get version fail. Try again later.");
-            //    //lastVersion = "N/A";
-            //}
+                //if (String.IsNullOrWhiteSpace(lastVersion))
+                //{
+                //    throw new Exception("Get version fail. Try again later.");
+                //    //lastVersion = "N/A";
+                //}
 
-            return lastVersion;
+                return lastVersion;
+            }
+            catch(Exception)
+            {
+                return null;
+            }
         }
 
         public string GetVersionStorybook()
@@ -2056,7 +2071,7 @@ namespace TheWitcher3Thai
                         isReadTranslate ? sht.Cells[row, Excel.COL_TRANSLATE].Text.Replace("\r", "").Replace("\n", "") : null
 
                         , sht.Name
-                        , sht.Cells[row, Excel.COL_ROW].Text.ToIntOrNull()
+                        , sht.Cells[row, Excel.COL_ROW].Text.ToIntOrNull()??row
                 ));
 
                 row++;
@@ -2359,8 +2374,18 @@ namespace TheWitcher3Thai
         {
             foreach (var message in customTranslate)
             {
-                if (contentDict.ContainsKey(message.IdKey) && !String.IsNullOrWhiteSpace(message.Translate))
-                    contentDict[message.IdKey].Translate = message.Translate;
+                if (contentDict.ContainsKey(message.IdKey))
+                {
+                    var w3s = contentDict[message.IdKey];
+
+                    //w3s.Locked = true;
+                    w3s.Translate = message.Translate;
+                    if (!String.IsNullOrWhiteSpace(message.Text))
+                        w3s.Text = message.Text;
+
+                    
+                    
+                }
             }
         }
 
@@ -3612,6 +3637,8 @@ namespace TheWitcher3Thai
         public void DownloadCustomTranslateFile(eDownloadFrequency frequency)
         {
             var translatePath = Configs.CustomTranslateFilePath;
+            if (String.IsNullOrWhiteSpace(Configs.CustomTranslateFileId))
+                return;
 
             if (!IsNeedToDownload(translatePath, frequency))
                 return;
@@ -3620,9 +3647,27 @@ namespace TheWitcher3Thai
             if (!DownloadGoogleSheetFile(Configs.CustomTranslateFileId, tmpPath))
                 return;
 
-            if (File.Exists(tmpPath))
-                File.Copy(tmpPath, translatePath, true);
+            if (!File.Exists(tmpPath))
+                return;
 
+            
+
+            CopyFile(tmpPath, translatePath);
+
+        }
+
+        public void CopyFile(string sourcePath, string targetPath)
+        {
+            if (!File.Exists(sourcePath))
+                return;
+
+            var fi = new FileInfo(targetPath);
+            if (fi.Exists)
+                fi.Delete();
+            else if (!fi.Directory.Exists)
+                fi.Directory.Create();
+
+            File.Copy(sourcePath, targetPath);
         }
 
     }

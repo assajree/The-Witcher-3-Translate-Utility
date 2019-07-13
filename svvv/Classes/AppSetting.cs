@@ -13,6 +13,7 @@ namespace svvv.Classes
 
         public bool DoubleLanguage { get; set; }
         public bool EnglishUi { get; set; }
+        public bool OldMethod { get; set; }
         public bool AlternativeSubtitle { get; set; }
         public bool ThaiFirst { get; set; }
         public bool ShowNotTranslateRow { get; set; }
@@ -22,12 +23,19 @@ namespace svvv.Classes
         public int SizeCutscene { get; set; }
         public int SizeDialog { get; set; }
         public eDownloadFrequency DownloadFrequency { get; set; }
-        public string CustomTranslateFileId { get; set; }
+        public string CustomTranslateFileId { get; private set; }
 
         public AppSetting(string settingPath)
         {
             mSettingPath = settingPath;
             LoadSetting();
+            SaveSetting();
+            Configs.SetCustomTranslateFileId(this.CustomTranslateFileId);
+        }
+
+        public void SetFileId(string fileId)
+        {
+            this.CustomTranslateFileId = fileId;
             Configs.SetCustomTranslateFileId(this.CustomTranslateFileId);
         }
 
@@ -49,6 +57,7 @@ namespace svvv.Classes
         {
             DoubleLanguage = true;
             EnglishUi = false;
+            OldMethod = false;
             AlternativeSubtitle = true;
             ThaiFirst = true;
             ShowNotTranslateRow = false;
@@ -72,6 +81,7 @@ namespace svvv.Classes
             sb.AppendLine($@"CustomTranslateFileId={CustomTranslateFileId}");
             sb.AppendLine($@"DoubleLanguage={DoubleLanguage}");
             sb.AppendLine($@"EnglishUi={EnglishUi}");
+            sb.AppendLine($@"OldMethod={OldMethod}");
             sb.AppendLine($@"AlternativeSubtitle={AlternativeSubtitle}");
             sb.AppendLine($@"ThaiFirst={ThaiFirst}");
             sb.AppendLine($@"ShowNotTranslateRow={ShowNotTranslateRow}");
@@ -101,6 +111,9 @@ namespace svvv.Classes
                     break;
                 case "EnglishUi":
                     EnglishUi = value.ToBoolean(false);
+                    break;
+                case "OldMethod":
+                    OldMethod = value.ToBoolean(false);
                     break;
                 case "AlternativeSubtitle":
                     AlternativeSubtitle = value.ToBoolean(false);

@@ -22,6 +22,7 @@ namespace TheWitcher3Thai
         public string Translate { get; set; }
         public int? RowNumber { get; set; }
         public string SheetName { get; set; }
+        //public bool Locked { get; set; } = false;
 
         public w3Strings()
         {

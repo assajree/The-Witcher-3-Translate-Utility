@@ -106,6 +106,7 @@ namespace TranslateUtility
         {
             chkModDoubleLanguage.Checked = mAppSetting.DoubleLanguage;
             chkExcludeUiText.Checked = mAppSetting.EnglishUi;
+            chkOldMethod.Checked = mAppSetting.OldMethod;
             chkAltSub.Checked = mAppSetting.AlternativeSubtitle;
 
             if (mAppSetting.ThaiFirst)
@@ -122,12 +123,12 @@ namespace TranslateUtility
 
         private void lblModVersion_DoubleClick(object sender, EventArgs e)
         {
-            if (Directory.Exists(modPath))
-                c.Open(modPath);
+
         }
 
         private void btnLegacyGenerate_Click(object sender, EventArgs e)
         {
+            SaveAppSetting();
             StartAlt();
         }
 
@@ -189,11 +190,14 @@ namespace TranslateUtility
                 (int)txtFontSizeSpeak.Value
             );
 
-            // change to tr
-            c.UpgradeToFullTranslate(Path.Combine(modPath, Configs.modThaiLanguage));
+            if (!chkOldMethod.Checked)
+            {
+                // change to tr
+                c.UpgradeToFullTranslate(Path.Combine(modPath, Configs.modThaiLanguage));
 
-            // install storybook
-            c.InstallModStoryBook(Configs.StorybookPath, Path.Combine(modPath, Configs.modThaiLanguage));
+                // install storybook
+                c.InstallModStoryBook(Configs.StorybookPath, Path.Combine(modPath, Configs.modThaiLanguage));
+            }
         }
 
         private void InstallMod()
@@ -204,9 +208,17 @@ namespace TranslateUtility
                 !rdoFontNone.Checked
             );
 
-            c.MigrateOtherModToTr(Path.Combine(txtGamePath.Text, "mods"));
-
-            c.ChangeLanguageSettingToTR();
+            var trPath = Path.Combine(txtGamePath.Text, "mods", Configs.modThaiLanguage, "content", "tr.w3strings");
+            if (File.Exists(trPath))
+            {
+                c.MigrateOtherModToTr(Path.Combine(txtGamePath.Text, "mods"));
+                c.ChangeLanguageSettingToTR();
+            }
+            else
+            {
+                c.ChangeLanguageSettingToEN();
+            }
+                
         }
 
         //private void Backup(bool overwrite)
@@ -224,12 +236,14 @@ namespace TranslateUtility
             if (c.IsValidGamePath(txtGamePath.Text))
             {
                 btnLegacyGenerate.Enabled = true;
+                btnFixMod.Enabled = true;
                 //btnInstallAlt.Enabled = true;
                 btnRestore.Enabled = true;
             }
             else
             {
                 btnLegacyGenerate.Enabled = false;
+                btnFixMod.Enabled = false;
                 //btnInstallAlt.Enabled = false;
                 btnRestore.Enabled = false;
             }
@@ -300,10 +314,13 @@ namespace TranslateUtility
             Properties.Settings.Default._SimpleDownloadFrequency = GetDownloadFrequency().ToString();
             Properties.Settings.Default._SimpleFontSetting = GetFontSetting().ToString();
             Properties.Settings.Default.Save();
+        }
 
-
+        private void SaveAppSetting()
+        {
             mAppSetting.DoubleLanguage = chkModDoubleLanguage.Checked;
             mAppSetting.EnglishUi = chkExcludeUiText.Checked;
+            mAppSetting.OldMethod = chkOldMethod.Checked;
             mAppSetting.AlternativeSubtitle = chkAltSub.Checked;
             mAppSetting.ThaiFirst = rdoModTranslateFirst.Checked;
             mAppSetting.ShowNotTranslateRow = chkUntranslateInfo.Checked;
@@ -329,19 +346,25 @@ namespace TranslateUtility
 
         private void StartAlt()
         {
-            c.UpdateStorybook();
+            bool oldMethod = chkOldMethod.Checked;
+
+            if(!oldMethod)
+                c.UpdateStorybook();
+
             c.UpdateTemplate();
 
-            if(chkAltSub.Checked)
-                c.Processing(DownloadCustomTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษาเสริม...");
+            if (chkAltSub.Checked)
+                c.Processing(DownloadCustomTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษาแบบปรับแต่ง...");
 
             // download translate excel file
             var downloadResult = c.Processing(DownloadTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษา...");
             if (downloadResult != DialogResult.OK)
                 return;
 
-
             // generate mod
+            if (translatePath==null)
+                return;
+
             var result = c.Processing(GenerateModAlt, false, "กำลังสร้างม็อด...");
             if (result != DialogResult.OK)
                 return;
@@ -557,6 +580,64 @@ namespace TranslateUtility
         private void miMessageFinder_Click(object sender, EventArgs e)
         {
             OpenMessageFinder();
+        }
+
+        private void btnAltSubDownload_Click(object sender, EventArgs e)
+        {
+            UpdateCustomTranslate();
+        }
+
+        private void UpdateCustomTranslate()
+        {
+            if (String.IsNullOrWhiteSpace(Configs.CustomTranslateFileId))
+            {
+                c.ShowMessage("ไม่ได้ตั้งค่า");
+                return;
+            }
+
+            c.DownloadCustomTranslateFile(Common.eDownloadFrequency.Always);
+            c.ShowMessage("สำเร็จ");
+        }
+
+        private void btnAltSubSetting_Click(object sender, EventArgs e)
+        {
+            var dlg = new frmCustomSubtitleSetting(mAppSetting);
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                mAppSetting.SaveSetting();
+            }
+        }
+
+        private void btnFixMod_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (c.ShowConfirm("มีม็อดที่แสดงข้อความไม่ถูกต้องหรือข้อความหายใช่หรือไม่?"))
+                {
+                    c.MigrateOtherModToTr(Path.Combine(txtGamePath.Text, "mods"));
+                    c.ShowMessage("สำเร็จ");
+                }
+            }
+            catch(Exception ex)
+            {
+                c.ShowErrorMessage(ex);
+            }
+        }
+
+        private void btnFontSizeRecomend_Click(object sender, EventArgs e)
+        {
+            SetFontSize(34);            
+        }
+
+        private void btnFontSizeDefault_Click(object sender, EventArgs e)
+        {
+            SetFontSize(28);
+        }
+
+        private void SetFontSize(int size)
+        {
+            txtFontSizeCutScene.Value = size;
+            txtFontSizeSpeak.Value = size;
         }
     }
 }

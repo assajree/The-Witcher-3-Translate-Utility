@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtInput = new System.Windows.Forms.TextBox();
             this.rdoAll = new System.Windows.Forms.RadioButton();
             this.rdoOriginal = new System.Windows.Forms.RadioButton();
             this.rdoTranslate = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.gvSearchResult = new System.Windows.Forms.DataGridView();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.gvSearchResult = new System.Windows.Forms.DataGridView();
             this.ButtonCopy = new System.Windows.Forms.DataGridViewButtonColumn();
             this.SheetName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RowNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,18 +45,19 @@
             this.OriginalMessage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TranslateMessage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnDetail = new System.Windows.Forms.Panel();
-            this.btnCopy = new System.Windows.Forms.Button();
-            this.lblDetail = new System.Windows.Forms.LinkLabel();
-            this.txtOriginalText = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtTranslateText = new System.Windows.Forms.TextBox();
-            this.pnButton = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtSheetName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtRowNumber = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtSheetName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtTranslateText = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtOriginalText = new System.Windows.Forms.TextBox();
+            this.btnCopy = new System.Windows.Forms.Button();
+            this.lblDetail = new System.Windows.Forms.LinkLabel();
+            this.pnButton = new System.Windows.Forms.Panel();
+            this.btnCopyAll = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvSearchResult)).BeginInit();
             this.pnDetail.SuspendLayout();
@@ -69,9 +70,10 @@
             this.txtInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtInput.Location = new System.Drawing.Point(6, 49);
+            this.txtInput.Location = new System.Drawing.Point(8, 60);
+            this.txtInput.Margin = new System.Windows.Forms.Padding(4);
             this.txtInput.Name = "txtInput";
-            this.txtInput.Size = new System.Drawing.Size(465, 23);
+            this.txtInput.Size = new System.Drawing.Size(619, 26);
             this.txtInput.TabIndex = 0;
             this.txtInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtInput_KeyDown);
             // 
@@ -80,9 +82,10 @@
             this.rdoAll.AutoSize = true;
             this.rdoAll.Checked = true;
             this.rdoAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.rdoAll.Location = new System.Drawing.Point(6, 22);
+            this.rdoAll.Location = new System.Drawing.Point(8, 27);
+            this.rdoAll.Margin = new System.Windows.Forms.Padding(4);
             this.rdoAll.Name = "rdoAll";
-            this.rdoAll.Size = new System.Drawing.Size(65, 21);
+            this.rdoAll.Size = new System.Drawing.Size(80, 24);
             this.rdoAll.TabIndex = 2;
             this.rdoAll.TabStop = true;
             this.rdoAll.Text = "ทั้งหมด";
@@ -92,9 +95,10 @@
             // 
             this.rdoOriginal.AutoSize = true;
             this.rdoOriginal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.rdoOriginal.Location = new System.Drawing.Point(80, 22);
+            this.rdoOriginal.Location = new System.Drawing.Point(107, 27);
+            this.rdoOriginal.Margin = new System.Windows.Forms.Padding(4);
             this.rdoOriginal.Name = "rdoOriginal";
-            this.rdoOriginal.Size = new System.Drawing.Size(68, 21);
+            this.rdoOriginal.Size = new System.Drawing.Size(81, 24);
             this.rdoOriginal.TabIndex = 3;
             this.rdoOriginal.Text = "ต้นฉบับ";
             this.rdoOriginal.UseVisualStyleBackColor = true;
@@ -103,9 +107,10 @@
             // 
             this.rdoTranslate.AutoSize = true;
             this.rdoTranslate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.rdoTranslate.Location = new System.Drawing.Point(154, 22);
+            this.rdoTranslate.Location = new System.Drawing.Point(205, 27);
+            this.rdoTranslate.Margin = new System.Windows.Forms.Padding(4);
             this.rdoTranslate.Name = "rdoTranslate";
-            this.rdoTranslate.Size = new System.Drawing.Size(63, 21);
+            this.rdoTranslate.Size = new System.Drawing.Size(78, 24);
             this.rdoTranslate.TabIndex = 4;
             this.rdoTranslate.Text = "คำแปล";
             this.rdoTranslate.UseVisualStyleBackColor = true;
@@ -120,12 +125,26 @@
             this.groupBox1.Controls.Add(this.txtInput);
             this.groupBox1.Controls.Add(this.rdoOriginal);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.groupBox1.Location = new System.Drawing.Point(15, 12);
+            this.groupBox1.Location = new System.Drawing.Point(20, 15);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(558, 81);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Size = new System.Drawing.Size(744, 100);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ค้นหา";
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearch.Location = new System.Drawing.Point(636, 58);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(100, 32);
+            this.btnSearch.TabIndex = 5;
+            this.btnSearch.Text = "ค้นหา";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // gvSearchResult
             // 
@@ -135,6 +154,7 @@
             this.gvSearchResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gvSearchResult.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.gvSearchResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvSearchResult.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ButtonCopy,
@@ -145,27 +165,17 @@
             this.KeyString,
             this.OriginalMessage,
             this.TranslateMessage});
-            this.gvSearchResult.Location = new System.Drawing.Point(0, 0);
-            this.gvSearchResult.MultiSelect = false;
+            this.gvSearchResult.Location = new System.Drawing.Point(4, 4);
+            this.gvSearchResult.Margin = new System.Windows.Forms.Padding(4);
             this.gvSearchResult.Name = "gvSearchResult";
             this.gvSearchResult.ReadOnly = true;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.gvSearchResult.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.gvSearchResult.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gvSearchResult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gvSearchResult.Size = new System.Drawing.Size(557, 189);
+            this.gvSearchResult.Size = new System.Drawing.Size(736, 226);
             this.gvSearchResult.TabIndex = 8;
+            this.gvSearchResult.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvSearchResult_CellDoubleClick);
             this.gvSearchResult.SelectionChanged += new System.EventHandler(this.gvSearchResult_SelectionChanged);
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearch.Location = new System.Drawing.Point(477, 47);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 26);
-            this.btnSearch.TabIndex = 5;
-            this.btnSearch.Text = "ค้นหา";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // ButtonCopy
             // 
@@ -186,7 +196,7 @@
             this.SheetName.HeaderText = "ชีท";
             this.SheetName.Name = "SheetName";
             this.SheetName.ReadOnly = true;
-            this.SheetName.Width = 46;
+            this.SheetName.Width = 53;
             // 
             // RowNumber
             // 
@@ -195,7 +205,7 @@
             this.RowNumber.HeaderText = "บรรทัด";
             this.RowNumber.Name = "RowNumber";
             this.RowNumber.ReadOnly = true;
-            this.RowNumber.Width = 65;
+            this.RowNumber.Width = 75;
             // 
             // ID
             // 
@@ -205,7 +215,6 @@
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
             this.ID.Visible = false;
-            this.ID.Width = 43;
             // 
             // KeyHex
             // 
@@ -215,7 +224,6 @@
             this.KeyHex.Name = "KeyHex";
             this.KeyHex.ReadOnly = true;
             this.KeyHex.Visible = false;
-            this.KeyHex.Width = 59;
             // 
             // KeyString
             // 
@@ -225,7 +233,6 @@
             this.KeyString.Name = "KeyString";
             this.KeyString.ReadOnly = true;
             this.KeyString.Visible = false;
-            this.KeyString.Width = 59;
             // 
             // OriginalMessage
             // 
@@ -255,17 +262,107 @@
             this.pnDetail.Controls.Add(this.txtTranslateText);
             this.pnDetail.Controls.Add(this.label1);
             this.pnDetail.Controls.Add(this.txtOriginalText);
-            this.pnDetail.Location = new System.Drawing.Point(3, 230);
+            this.pnDetail.Location = new System.Drawing.Point(4, 284);
+            this.pnDetail.Margin = new System.Windows.Forms.Padding(4);
             this.pnDetail.Name = "pnDetail";
-            this.pnDetail.Size = new System.Drawing.Size(552, 88);
+            this.pnDetail.Size = new System.Drawing.Size(736, 108);
             this.pnDetail.TabIndex = 9;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label4.Location = new System.Drawing.Point(537, 7);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(56, 20);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "บรรทัด";
+            // 
+            // txtRowNumber
+            // 
+            this.txtRowNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtRowNumber.Location = new System.Drawing.Point(607, 4);
+            this.txtRowNumber.Margin = new System.Windows.Forms.Padding(4);
+            this.txtRowNumber.Name = "txtRowNumber";
+            this.txtRowNumber.ReadOnly = true;
+            this.txtRowNumber.Size = new System.Drawing.Size(124, 26);
+            this.txtRowNumber.TabIndex = 7;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label3.Location = new System.Drawing.Point(101, 7);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(30, 20);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "ชีท";
+            // 
+            // txtSheetName
+            // 
+            this.txtSheetName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtSheetName.Location = new System.Drawing.Point(141, 4);
+            this.txtSheetName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSheetName.Name = "txtSheetName";
+            this.txtSheetName.ReadOnly = true;
+            this.txtSheetName.Size = new System.Drawing.Size(387, 26);
+            this.txtSheetName.TabIndex = 5;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label2.Location = new System.Drawing.Point(73, 79);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(57, 20);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "คำแปล";
+            // 
+            // txtTranslateText
+            // 
+            this.txtTranslateText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTranslateText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtTranslateText.Location = new System.Drawing.Point(141, 75);
+            this.txtTranslateText.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTranslateText.Name = "txtTranslateText";
+            this.txtTranslateText.ReadOnly = true;
+            this.txtTranslateText.Size = new System.Drawing.Size(589, 26);
+            this.txtTranslateText.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label1.Location = new System.Drawing.Point(8, 43);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(116, 20);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "ข้อความต้นฉบับ";
+            // 
+            // txtOriginalText
+            // 
+            this.txtOriginalText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtOriginalText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtOriginalText.Location = new System.Drawing.Point(141, 39);
+            this.txtOriginalText.Margin = new System.Windows.Forms.Padding(4);
+            this.txtOriginalText.Name = "txtOriginalText";
+            this.txtOriginalText.ReadOnly = true;
+            this.txtOriginalText.Size = new System.Drawing.Size(589, 26);
+            this.txtOriginalText.TabIndex = 1;
             // 
             // btnCopy
             // 
             this.btnCopy.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.btnCopy.Location = new System.Drawing.Point(3, 2);
+            this.btnCopy.Location = new System.Drawing.Point(4, 2);
+            this.btnCopy.Margin = new System.Windows.Forms.Padding(4);
             this.btnCopy.Name = "btnCopy";
-            this.btnCopy.Size = new System.Drawing.Size(75, 26);
+            this.btnCopy.Size = new System.Drawing.Size(100, 32);
             this.btnCopy.TabIndex = 10;
             this.btnCopy.Text = "คัดลอก";
             this.btnCopy.UseVisualStyleBackColor = true;
@@ -276,66 +373,39 @@
             this.lblDetail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDetail.AutoSize = true;
             this.lblDetail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDetail.Location = new System.Drawing.Point(485, 7);
+            this.lblDetail.Location = new System.Drawing.Point(647, 9);
+            this.lblDetail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDetail.Name = "lblDetail";
-            this.lblDetail.Size = new System.Drawing.Size(67, 17);
+            this.lblDetail.Size = new System.Drawing.Size(85, 20);
             this.lblDetail.TabIndex = 52;
             this.lblDetail.TabStop = true;
             this.lblDetail.Text = "รายละเอียด";
             this.lblDetail.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblDetail_LinkClicked);
             // 
-            // txtOriginalText
-            // 
-            this.txtOriginalText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtOriginalText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtOriginalText.Location = new System.Drawing.Point(106, 32);
-            this.txtOriginalText.Name = "txtOriginalText";
-            this.txtOriginalText.ReadOnly = true;
-            this.txtOriginalText.Size = new System.Drawing.Size(443, 23);
-            this.txtOriginalText.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label1.Location = new System.Drawing.Point(6, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 17);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "ข้อความต้นฉบับ";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label2.Location = new System.Drawing.Point(55, 64);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 17);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "คำแปล";
-            // 
-            // txtTranslateText
-            // 
-            this.txtTranslateText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTranslateText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtTranslateText.Location = new System.Drawing.Point(106, 61);
-            this.txtTranslateText.Name = "txtTranslateText";
-            this.txtTranslateText.ReadOnly = true;
-            this.txtTranslateText.Size = new System.Drawing.Size(443, 23);
-            this.txtTranslateText.TabIndex = 3;
-            // 
             // pnButton
             // 
             this.pnButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnButton.Controls.Add(this.btnCopyAll);
             this.pnButton.Controls.Add(this.btnCopy);
             this.pnButton.Controls.Add(this.lblDetail);
-            this.pnButton.Location = new System.Drawing.Point(3, 193);
+            this.pnButton.Location = new System.Drawing.Point(4, 238);
+            this.pnButton.Margin = new System.Windows.Forms.Padding(4);
             this.pnButton.Name = "pnButton";
-            this.pnButton.Size = new System.Drawing.Size(552, 31);
+            this.pnButton.Size = new System.Drawing.Size(736, 38);
             this.pnButton.TabIndex = 53;
+            // 
+            // btnCopyAll
+            // 
+            this.btnCopyAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.btnCopyAll.Location = new System.Drawing.Point(112, 3);
+            this.btnCopyAll.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCopyAll.Name = "btnCopyAll";
+            this.btnCopyAll.Size = new System.Drawing.Size(199, 32);
+            this.btnCopyAll.TabIndex = 53;
+            this.btnCopyAll.Text = "คัดลอกทุกบรรทัดที่เลือก";
+            this.btnCopyAll.UseVisualStyleBackColor = true;
+            this.btnCopyAll.Click += new System.EventHandler(this.btnCopyAll_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -347,61 +417,25 @@
             this.tableLayoutPanel1.Controls.Add(this.pnDetail, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.pnButton, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.gvSearchResult, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(15, 99);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(20, 122);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(558, 322);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(744, 396);
             this.tableLayoutPanel1.TabIndex = 54;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label3.Location = new System.Drawing.Point(76, 6);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(24, 17);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "ชีท";
-            // 
-            // txtSheetName
-            // 
-            this.txtSheetName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtSheetName.Location = new System.Drawing.Point(106, 3);
-            this.txtSheetName.Name = "txtSheetName";
-            this.txtSheetName.ReadOnly = true;
-            this.txtSheetName.Size = new System.Drawing.Size(291, 23);
-            this.txtSheetName.TabIndex = 5;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label4.Location = new System.Drawing.Point(403, 6);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 17);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "บรรทัด";
-            // 
-            // txtRowNumber
-            // 
-            this.txtRowNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtRowNumber.Location = new System.Drawing.Point(455, 3);
-            this.txtRowNumber.Name = "txtRowNumber";
-            this.txtRowNumber.ReadOnly = true;
-            this.txtRowNumber.Size = new System.Drawing.Size(94, 23);
-            this.txtRowNumber.TabIndex = 7;
             // 
             // frmMessageFinder
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 427);
+            this.ClientSize = new System.Drawing.Size(779, 526);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.groupBox1);
-            this.MinimumSize = new System.Drawing.Size(600, 400);
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MinimumSize = new System.Drawing.Size(794, 481);
             this.Name = "frmMessageFinder";
             this.ShowIcon = false;
             this.Text = "Message Finder";
@@ -449,5 +483,6 @@
         private System.Windows.Forms.TextBox txtRowNumber;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtSheetName;
+        private System.Windows.Forms.Button btnCopyAll;
     }
 }

@@ -64,6 +64,12 @@
     <Compile Include="Screens\frmCredit.Designer.cs">
       <DependentUpon>frmCredit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\frmCustomSubtitleSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\frmCustomSubtitleSetting.Designer.cs">
+      <DependentUpon>frmCustomSubtitleSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\frmMessageFinder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +95,9 @@
     <EmbeddedResource Include="Screens\frmCredit.resx">
       <DependentUpon>frmCredit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Screens\frmCustomSubtitleSetting.resx">
+      <DependentUpon>frmCustomSubtitleSetting.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Screens\frmMessageFinder.resx">
       <DependentUpon>frmMessageFinder.cs</DependentUpon>
     </EmbeddedResource>
@@ -96,6 +105,7 @@
       <DependentUpon>frmVeryVerySimple.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="download\custom_template.xlsx" />
     <None Include="download\custom_translate.xlsx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
