@@ -108,7 +108,7 @@
             this.Controls.Add(this.txtFileId);
             this.Name = "frmCustomSubtitleSetting";
             this.ShowIcon = false;
-            this.Text = "ตั้งค่าไฟล์ภาษาทางเลือก";
+            this.Text = "ตั้งค่าไฟล์แปลภาษาแบบปรับแต่ง";
             this.Load += new System.EventHandler(this.frmCustomSubtitleSetting_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
