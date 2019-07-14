@@ -18,7 +18,8 @@ namespace svvv
         public const string modDoubleSubtitle = "modDoubleSubtitle";
         public const string modThaiLanguage = "modThaiLanguage"; // translate
         public const string modKuntoonFont = "modKuntoonW3thai_mod";
-        public static string modThaiStorybook = "modThaiStorybook";
+
+        public static string CUSTOM_TRANSLATE_LABEL = "การแปลภาษาแบบปรับแต่ง";
 
         public const int MaxLegacyEmptyRow = 5;
         public const string MissingText = "[MISSING MESSAGE]";

@@ -36,6 +36,7 @@
             this.rdoModTranslateFirst = new System.Windows.Forms.RadioButton();
             this.btnLegacyGenerate = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkOldMethod = new System.Windows.Forms.CheckBox();
             this.chkExcludeUiText = new System.Windows.Forms.CheckBox();
             this.chkModDoubleLanguage = new System.Windows.Forms.CheckBox();
             this.rdoModOriginFirst = new System.Windows.Forms.RadioButton();
@@ -55,6 +56,8 @@
             this.btnAltSubSetting = new System.Windows.Forms.Button();
             this.btnAltSubDownload = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.btnFontSizeRecomend = new System.Windows.Forms.Button();
+            this.btnFontSizeDefault = new System.Windows.Forms.Button();
             this.txtFontSizeCutScene = new System.Windows.Forms.NumericUpDown();
             this.txtFontSizeSpeak = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
@@ -78,9 +81,6 @@
             this.miCredit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.txtGamePath = new System.Windows.Forms.TextBox();
-            this.chkOldMethod = new System.Windows.Forms.CheckBox();
-            this.btnFontSizeDefault = new System.Windows.Forms.Button();
-            this.btnFontSizeRecomend = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -165,6 +165,18 @@
             this.groupBox1.TabIndex = 45;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "สองภาษา";
+            // 
+            // chkOldMethod
+            // 
+            this.chkOldMethod.AutoSize = true;
+            this.chkOldMethod.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkOldMethod.Location = new System.Drawing.Point(501, 0);
+            this.chkOldMethod.Margin = new System.Windows.Forms.Padding(4);
+            this.chkOldMethod.Name = "chkOldMethod";
+            this.chkOldMethod.Size = new System.Drawing.Size(144, 24);
+            this.chkOldMethod.TabIndex = 38;
+            this.chkOldMethod.Text = "ลงม็อดแบบเก่า";
+            this.chkOldMethod.UseVisualStyleBackColor = true;
             // 
             // chkExcludeUiText
             // 
@@ -486,7 +498,7 @@
             this.btnAltSubDownload.Name = "btnAltSubDownload";
             this.btnAltSubDownload.Size = new System.Drawing.Size(123, 39);
             this.btnAltSubDownload.TabIndex = 48;
-            this.btnAltSubDownload.Text = "ดาวน์โหลด";
+            this.btnAltSubDownload.Text = "อัพเดทไฟล์";
             this.btnAltSubDownload.UseVisualStyleBackColor = true;
             this.btnAltSubDownload.Click += new System.EventHandler(this.btnAltSubDownload_Click);
             // 
@@ -509,6 +521,30 @@
             this.groupBox6.TabIndex = 52;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "ขนาดซับไตเติ้ล";
+            // 
+            // btnFontSizeRecomend
+            // 
+            this.btnFontSizeRecomend.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFontSizeRecomend.Location = new System.Drawing.Point(423, 25);
+            this.btnFontSizeRecomend.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFontSizeRecomend.Name = "btnFontSizeRecomend";
+            this.btnFontSizeRecomend.Size = new System.Drawing.Size(72, 38);
+            this.btnFontSizeRecomend.TabIndex = 51;
+            this.btnFontSizeRecomend.Text = "แนะนำ";
+            this.btnFontSizeRecomend.UseVisualStyleBackColor = true;
+            this.btnFontSizeRecomend.Click += new System.EventHandler(this.btnFontSizeRecomend_Click);
+            // 
+            // btnFontSizeDefault
+            // 
+            this.btnFontSizeDefault.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFontSizeDefault.Location = new System.Drawing.Point(503, 26);
+            this.btnFontSizeDefault.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFontSizeDefault.Name = "btnFontSizeDefault";
+            this.btnFontSizeDefault.Size = new System.Drawing.Size(89, 37);
+            this.btnFontSizeDefault.TabIndex = 50;
+            this.btnFontSizeDefault.Text = "ค่าเริ่มต้น";
+            this.btnFontSizeDefault.UseVisualStyleBackColor = true;
+            this.btnFontSizeDefault.Click += new System.EventHandler(this.btnFontSizeDefault_Click);
             // 
             // txtFontSizeCutScene
             // 
@@ -731,21 +767,21 @@
             // miUpdate
             // 
             this.miUpdate.Name = "miUpdate";
-            this.miUpdate.Size = new System.Drawing.Size(216, 26);
+            this.miUpdate.Size = new System.Drawing.Size(215, 26);
             this.miUpdate.Text = "อัพเดทโปรแกรม";
             this.miUpdate.Click += new System.EventHandler(this.miUpdate_Click);
             // 
             // miTranslateProgress
             // 
             this.miTranslateProgress.Name = "miTranslateProgress";
-            this.miTranslateProgress.Size = new System.Drawing.Size(216, 26);
+            this.miTranslateProgress.Size = new System.Drawing.Size(215, 26);
             this.miTranslateProgress.Text = "ข้อมูลการแปล";
             this.miTranslateProgress.Click += new System.EventHandler(this.miTranslateProgress_Click);
             // 
             // miMessageFinder
             // 
             this.miMessageFinder.Name = "miMessageFinder";
-            this.miMessageFinder.Size = new System.Drawing.Size(216, 26);
+            this.miMessageFinder.Size = new System.Drawing.Size(215, 26);
             this.miMessageFinder.Text = "เครื่องมือค้นหาข้อความ";
             this.miMessageFinder.Click += new System.EventHandler(this.miMessageFinder_Click);
             // 
@@ -753,14 +789,14 @@
             // 
             this.miChangeLog.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.miChangeLog.Name = "miChangeLog";
-            this.miChangeLog.Size = new System.Drawing.Size(216, 26);
+            this.miChangeLog.Size = new System.Drawing.Size(215, 26);
             this.miChangeLog.Text = "การเปลี่ยนแปลง";
             this.miChangeLog.Click += new System.EventHandler(this.miChangeLog_Click);
             // 
             // miCredit
             // 
             this.miCredit.Name = "miCredit";
-            this.miCredit.Size = new System.Drawing.Size(216, 26);
+            this.miCredit.Size = new System.Drawing.Size(215, 26);
             this.miCredit.Text = "เครดิต";
             this.miCredit.Click += new System.EventHandler(this.miCredit_Click);
             // 
@@ -783,42 +819,6 @@
             this.txtGamePath.Text = global::TranslateUtility.Properties.Settings.Default._VerySimpleGamePath;
             this.txtGamePath.TextChanged += new System.EventHandler(this.txtGamePath_TextChanged);
             this.txtGamePath.DoubleClick += new System.EventHandler(this.txtGamePath_DoubleClick);
-            // 
-            // chkOldMethod
-            // 
-            this.chkOldMethod.AutoSize = true;
-            this.chkOldMethod.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkOldMethod.Location = new System.Drawing.Point(501, 0);
-            this.chkOldMethod.Margin = new System.Windows.Forms.Padding(4);
-            this.chkOldMethod.Name = "chkOldMethod";
-            this.chkOldMethod.Size = new System.Drawing.Size(144, 24);
-            this.chkOldMethod.TabIndex = 38;
-            this.chkOldMethod.Text = "ลงม็อดแบบเก่า";
-            this.chkOldMethod.UseVisualStyleBackColor = true;
-            // 
-            // btnFontSizeDefault
-            // 
-            this.btnFontSizeDefault.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFontSizeDefault.Location = new System.Drawing.Point(503, 26);
-            this.btnFontSizeDefault.Margin = new System.Windows.Forms.Padding(4);
-            this.btnFontSizeDefault.Name = "btnFontSizeDefault";
-            this.btnFontSizeDefault.Size = new System.Drawing.Size(89, 37);
-            this.btnFontSizeDefault.TabIndex = 50;
-            this.btnFontSizeDefault.Text = "ค่าเริ่มต้น";
-            this.btnFontSizeDefault.UseVisualStyleBackColor = true;
-            this.btnFontSizeDefault.Click += new System.EventHandler(this.btnFontSizeDefault_Click);
-            // 
-            // btnFontSizeRecomend
-            // 
-            this.btnFontSizeRecomend.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFontSizeRecomend.Location = new System.Drawing.Point(423, 25);
-            this.btnFontSizeRecomend.Margin = new System.Windows.Forms.Padding(4);
-            this.btnFontSizeRecomend.Name = "btnFontSizeRecomend";
-            this.btnFontSizeRecomend.Size = new System.Drawing.Size(72, 38);
-            this.btnFontSizeRecomend.TabIndex = 51;
-            this.btnFontSizeRecomend.Text = "แนะนำ";
-            this.btnFontSizeRecomend.UseVisualStyleBackColor = true;
-            this.btnFontSizeRecomend.Click += new System.EventHandler(this.btnFontSizeRecomend_Click);
             // 
             // frmVeryVerySimple
             // 

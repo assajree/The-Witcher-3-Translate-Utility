@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtInput = new System.Windows.Forms.TextBox();
             this.rdoAll = new System.Windows.Forms.RadioButton();
             this.rdoOriginal = new System.Windows.Forms.RadioButton();
@@ -74,6 +74,7 @@
             this.txtInput.Name = "txtInput";
             this.txtInput.Size = new System.Drawing.Size(619, 26);
             this.txtInput.TabIndex = 0;
+            this.txtInput.Enter += new System.EventHandler(this.txtInput_Enter);
             this.txtInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtInput_KeyDown);
             // 
             // rdoAll
@@ -168,8 +169,8 @@
             this.gvSearchResult.Margin = new System.Windows.Forms.Padding(4);
             this.gvSearchResult.Name = "gvSearchResult";
             this.gvSearchResult.ReadOnly = true;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.gvSearchResult.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.gvSearchResult.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.gvSearchResult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gvSearchResult.Size = new System.Drawing.Size(736, 226);
             this.gvSearchResult.TabIndex = 8;

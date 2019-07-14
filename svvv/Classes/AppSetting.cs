@@ -58,7 +58,7 @@ namespace svvv.Classes
             DoubleLanguage = true;
             EnglishUi = false;
             OldMethod = false;
-            AlternativeSubtitle = true;
+            AlternativeSubtitle = false;
             ThaiFirst = true;
             ShowNotTranslateRow = false;
             ShowTranslateRow = false;

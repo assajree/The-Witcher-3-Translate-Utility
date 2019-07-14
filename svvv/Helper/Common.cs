@@ -588,6 +588,32 @@ namespace TheWitcher3Thai
             return result == DialogResult.Yes;
         }
 
+        public string GetCustomTranslateDescription()
+        {
+            try
+            {
+                var fi = new FileInfo(Configs.CustomTranslateFilePath);
+                if(!fi.Exists)
+                    return Configs.CUSTOM_TRANSLATE_LABEL;
+
+                using (var p = new ExcelPackage(fi))
+                {
+                    var sht = p.Workbook.Worksheets[1];
+                    var desc = sht.Cells[1, 1].Text;
+
+                    if (String.IsNullOrWhiteSpace(desc))
+                        desc = "UNKNOW";
+
+                    return $@"{Configs.CUSTOM_TRANSLATE_LABEL} ({desc})";
+                }
+            }
+            catch(Exception)
+            {
+                return Configs.CUSTOM_TRANSLATE_LABEL;
+            }
+            
+        }
+
         public bool ShowConfirmWarning(string message, string caption = "")
         {
             var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -2386,6 +2412,8 @@ namespace TheWitcher3Thai
 
                     //w3s.Locked = true;
                     w3s.Translate = message.Translate;
+                    w3s.SheetName = message.SheetName;
+                    w3s.RowNumber = message.RowNumber;
                     if (!String.IsNullOrWhiteSpace(message.Text))
                         w3s.Text = message.Text;
 

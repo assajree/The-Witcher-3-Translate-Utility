@@ -257,18 +257,29 @@ namespace TranslateUtility.Screens
 
         private string GetClipboardText(w3Strings data)
         {
-            return String.Format("{0}\t{1}\t{3}\t{3}\t{4}", data.ID, data.KeyHex, data.KeyString, data.Text, data.Translate);
+            return String.Format("{0}\t{1}\t{2}\t{3}\t{4}", data.ID, data.KeyHex, data.KeyString, data.Text, data.Translate);
+            //return String.Format("{0}\t{1}\t{3}\t{3}\t{4}", data.ID, data.KeyHex, data.KeyString, data.Text, data.Translate);
         }
 
         private void frmMessageFinder_Activated(object sender, EventArgs e)
         {
+            FocusTextbox();
+        }
+
+        private void FocusTextbox()
+        {
             txtInput.Focus();
-            txtInput.SelectAll();
+            
         }
 
         private void gvSearchResult_Click(object sender, EventArgs e)
         {
-            txtInput.Focus();
+            FocusTextbox();
+        }
+
+        private void txtInput_Enter(object sender, EventArgs e)
+        {
+            txtInput.SelectAll();
         }
     }
 }

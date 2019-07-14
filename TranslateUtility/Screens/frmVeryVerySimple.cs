@@ -39,6 +39,7 @@ namespace TranslateUtility
         {
             InitialScreen();
             InitialTooTip();
+            ReadCustomTranslateDescription();
 
             if (!ShowAdvance)
                 ToggleAdvance();
@@ -47,6 +48,11 @@ namespace TranslateUtility
 
             //CheckForUpdate(false, false, false);
             CheckForUpdate(false);
+        }
+
+        private void ReadCustomTranslateDescription()
+        {
+            chkAltSub.Text = c.GetCustomTranslateDescription();
         }
 
         private void DownloadRequireComponent()
@@ -596,6 +602,7 @@ namespace TranslateUtility
             }
 
             c.DownloadCustomTranslateFile(Common.eDownloadFrequency.Always);
+            ReadCustomTranslateDescription();
             c.ShowMessage("สำเร็จ");
         }
 
