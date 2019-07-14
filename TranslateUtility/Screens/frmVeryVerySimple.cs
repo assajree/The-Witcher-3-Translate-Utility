@@ -590,7 +590,7 @@ namespace TranslateUtility
 
         private void btnAltSubDownload_Click(object sender, EventArgs e)
         {
-            UpdateCustomTranslate();
+            c.Processing(UpdateCustomTranslate, "กำลังโหลดไฟล์แปลภาษาแบบปรับแต่ง");
         }
 
         private void UpdateCustomTranslate()
@@ -603,7 +603,6 @@ namespace TranslateUtility
 
             c.DownloadCustomTranslateFile(Common.eDownloadFrequency.Always);
             ReadCustomTranslateDescription();
-            c.ShowMessage("สำเร็จ");
         }
 
         private void btnAltSubSetting_Click(object sender, EventArgs e)
