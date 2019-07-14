@@ -360,7 +360,9 @@ namespace TranslateUtility
             c.UpdateTemplate();
 
             if (chkAltSub.Checked)
-                c.Processing(DownloadCustomTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษาแบบปรับแต่ง...");
+            {
+                c.Processing(DownloadCustomTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษาแบบปรับแต่ง...");                
+            }
 
             // download translate excel file
             var downloadResult = c.Processing(DownloadTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษา...");
@@ -388,6 +390,7 @@ namespace TranslateUtility
         private void DownloadCustomTranslateFile()
         {
             c.DownloadCustomTranslateFile(GetDownloadFrequency());
+            ReadCustomTranslateDescription();
         }
 
         private void DownloadTranslateFile()
