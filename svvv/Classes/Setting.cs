@@ -191,7 +191,7 @@ namespace TheWitcher3Thai
             var keyCount = mStorybookMaping.Select(r => r.Key).Distinct().ToList().Count;
             var valueCount = mStorybookMaping.Select(r => r.Value).Distinct().ToList().Count;
             if (keyCount != valueCount)
-                throw new Exception("Incorrect sheet mapping");
+                throw new KnowException("Incorrect sheet mapping");
 
             return mStorybookMaping;
         }

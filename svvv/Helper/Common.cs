@@ -56,7 +56,7 @@ namespace TheWitcher3Thai
 
         public void OpenGoogleSheet(string fileId)
         {
-            Open($@"https://docs.google.com/spreadsheets/d/{fileId}");
+            Open($@"https://docs.google.com/spreadsheets/d/{fileId}/edit");
         }
 
         public void DecodeDirectory(DirectoryInfo directory)
@@ -366,7 +366,13 @@ namespace TheWitcher3Thai
 
         public void ShowErrorMessage(Exception ex, string caption = "Error")
         {
-            MessageBox.Show(ex.GetBaseException().Message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            var b = ex.GetBaseException();
+            var message = b.Message;            
+
+            if (!(ex is KnowException))
+                message += "\n\n" + b.StackTrace.Trim();
+
+            MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         public string DownloadLegacyExcel(string initialPath, bool showSaveDialog, eDownloadFrequency frequency = eDownloadFrequency.Hour)
@@ -745,7 +751,7 @@ namespace TheWitcher3Thai
             }
             catch (Exception)
             {
-                throw new Exception($@"Error at line {i + skip + 2} (index {i}) : ""{line}""");
+                throw new KnowException($@"Error at line {i + skip + 2} (index {i}) : ""{line}""");
             }
 
         }
@@ -1134,7 +1140,7 @@ namespace TheWitcher3Thai
                 error += $@"Source Text    : {ex.SourceText}{Environment.NewLine}";
                 error += $@"Translate Text : {ex.TranslateText}";
 
-                throw new Exception(error);
+                throw new KnowException(error);
             }
         }
 
@@ -1354,7 +1360,7 @@ namespace TheWitcher3Thai
 
                 if (String.IsNullOrWhiteSpace(lastVersion))
                 {
-                    throw new Exception("Get version fail. Try again later.");
+                    throw new KnowException("Get version fail. Try again later.");
                     //lastVersion = "N/A";
                 }
 
@@ -1435,7 +1441,7 @@ namespace TheWitcher3Thai
 
                 //if (String.IsNullOrWhiteSpace(lastVersion))
                 //{
-                //    throw new Exception("Get version fail. Try again later.");
+                //    throw new KnowException("Get version fail. Try again later.");
                 //    //lastVersion = "N/A";
                 //}
 
@@ -1460,7 +1466,7 @@ namespace TheWitcher3Thai
 
             //if (String.IsNullOrWhiteSpace(lastVersion))
             //{
-            //    throw new Exception("Get version fail. Try again later.");
+            //    throw new KnowException("Get version fail. Try again later.");
             //    //lastVersion = "N/A";
             //}
 
@@ -1633,7 +1639,7 @@ namespace TheWitcher3Thai
 
             // if directory not empty
             //if (Directory.EnumerateFileSystemEntries(targetPath).Any())
-            //    throw new Exception("Please select empty folder");           
+            //    throw new KnowException("Please select empty folder");           
 
             string url = "https://dl.dropbox.com/s/iyn4vn4eiq4oegc/Thaimods.zip?dl=0";
             string downloadFilePath = Path.Combine(Application.StartupPath, "temp", "thaimod.zip");

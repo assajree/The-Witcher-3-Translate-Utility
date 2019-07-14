@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Classes\AppSetting.cs" />
     <Compile Include="Classes\Excel.cs" />
+    <Compile Include="Classes\KnowException.cs" />
     <Compile Include="Classes\MergeException.cs" />
     <Compile Include="Classes\Setting.cs" />
     <Compile Include="Classes\SheetConfig.cs" />

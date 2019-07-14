@@ -1,7 +1,9 @@
 ﻿using svvv;
+using svvv.Classes;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using TheWitcher3Thai;
 using TheWitcher3Thai.Helper;
@@ -44,7 +46,7 @@ namespace TranslateUtility.Screens
         {
             string excelPath = Path.Combine(Configs.StartupPath, "mod", "translate.xlsx");
             if (!File.Exists(excelPath))
-                throw new Exception("ไม่พบไฟล์ข้อความ กรุณาสร้าง mod ก่อน");
+                throw new KnowException("ไม่พบไฟล์ข้อความ กรุณาสร้าง mod ก่อน");
 
             var dict = c.ReadAllExcel(excelPath);
             mData = c.ConvertToList(dict);
@@ -149,7 +151,10 @@ namespace TranslateUtility.Screens
                 }
             }
 
-            return result;
+            if (rdoTranslate.Checked)
+                return result.OrderBy(r => r.Translate).ToList();
+            else
+                return result.OrderBy(r => r.Text).ToList();
 
         }
 
@@ -222,7 +227,7 @@ namespace TranslateUtility.Screens
                 return;
 
             var data = mSearchResult[gvSearchResult.SelectedRows[0].Index];
-            var result = String.Format("{0}\t{1}\t{2}\t{3}\t{4}", data.ID, data.KeyHex, data.KeyString, data.Text, data.Translate);
+            var result = GetClipboardText(data);
             Clipboard.SetText(result);
         }
 
@@ -240,7 +245,7 @@ namespace TranslateUtility.Screens
             for (int i = 0;i<gvSearchResult.SelectedRows.Count;i++)
             {
                 var data = mSearchResult[gvSearchResult.SelectedRows[i].Index];
-                result += String.Format("\n{0}\t{1}\t{3}\t{3}\t{4}", data.ID, data.KeyHex, data.KeyString, data.Text, data.Translate);
+                result += "\n"+GetClipboardText(data);
                 
             }
             result=result.TrimStart('\n');
@@ -248,6 +253,22 @@ namespace TranslateUtility.Screens
                 Clipboard.SetText(result);
 
 
+        }
+
+        private string GetClipboardText(w3Strings data)
+        {
+            return String.Format("{0}\t{1}\t{3}\t{3}\t{4}", data.ID, data.KeyHex, data.KeyString, data.Text, data.Translate);
+        }
+
+        private void frmMessageFinder_Activated(object sender, EventArgs e)
+        {
+            txtInput.Focus();
+            txtInput.SelectAll();
+        }
+
+        private void gvSearchResult_Click(object sender, EventArgs e)
+        {
+            txtInput.Focus();
         }
     }
 }

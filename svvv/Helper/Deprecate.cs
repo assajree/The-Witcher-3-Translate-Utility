@@ -142,7 +142,7 @@ namespace svvv.Helper
         //    }
         //    catch (Exception)
         //    {
-        //        throw new Exception($@"Error at line {i + skip + 2} (index {i}) : ""{line}""");
+        //        throw new KnowException($@"Error at line {i + skip + 2} (index {i}) : ""{line}""");
         //    }
 
         //}
