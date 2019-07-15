@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnUp = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
@@ -40,7 +41,7 @@
             this.View = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnRemove = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnUpdateAll = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvSettingList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,8 +49,8 @@
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.btnSave.Location = new System.Drawing.Point(585, 316);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSave.Location = new System.Drawing.Point(541, 314);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 37);
             this.btnSave.TabIndex = 1;
@@ -61,8 +62,8 @@
             // 
             this.btnUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.btnUp.Location = new System.Drawing.Point(696, 36);
-            this.btnUp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUp.Location = new System.Drawing.Point(652, 36);
+            this.btnUp.Margin = new System.Windows.Forms.Padding(4);
             this.btnUp.Name = "btnUp";
             this.btnUp.Size = new System.Drawing.Size(100, 37);
             this.btnUp.TabIndex = 1;
@@ -74,8 +75,8 @@
             // 
             this.btnDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.btnDown.Location = new System.Drawing.Point(696, 80);
-            this.btnDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDown.Location = new System.Drawing.Point(652, 80);
+            this.btnDown.Margin = new System.Windows.Forms.Padding(4);
             this.btnDown.Name = "btnDown";
             this.btnDown.Size = new System.Drawing.Size(100, 37);
             this.btnDown.TabIndex = 1;
@@ -87,8 +88,8 @@
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.btnAdd.Location = new System.Drawing.Point(16, 316);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAdd.Location = new System.Drawing.Point(16, 314);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(100, 37);
             this.btnAdd.TabIndex = 1;
@@ -115,12 +116,21 @@
             this.Button,
             this.View});
             this.gvSettingList.Location = new System.Drawing.Point(16, 36);
-            this.gvSettingList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gvSettingList.Margin = new System.Windows.Forms.Padding(4);
             this.gvSettingList.MultiSelect = false;
             this.gvSettingList.Name = "gvSettingList";
-            this.gvSettingList.RowHeadersVisible = false;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvSettingList.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.gvSettingList.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gvSettingList.RowTemplate.Height = 25;
             this.gvSettingList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gvSettingList.Size = new System.Drawing.Size(672, 272);
+            this.gvSettingList.Size = new System.Drawing.Size(628, 270);
             this.gvSettingList.TabIndex = 4;
             this.gvSettingList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvSettingList_CellClick);
             this.gvSettingList.Click += new System.EventHandler(this.gvSettingList_Click);
@@ -154,7 +164,7 @@
             this.Button.Name = "Button";
             this.Button.Text = "อัพเดท";
             this.Button.UseColumnTextForButtonValue = true;
-            this.Button.Width = 50;
+            this.Button.Width = 60;
             // 
             // View
             // 
@@ -163,14 +173,14 @@
             this.View.Name = "View";
             this.View.Text = "เปิด";
             this.View.UseColumnTextForButtonValue = true;
-            this.View.Width = 50;
+            this.View.Width = 60;
             // 
             // btnRemove
             // 
             this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.btnRemove.Location = new System.Drawing.Point(124, 316);
-            this.btnRemove.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRemove.Location = new System.Drawing.Point(124, 314);
+            this.btnRemove.Margin = new System.Windows.Forms.Padding(4);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(100, 37);
             this.btnRemove.TabIndex = 5;
@@ -189,24 +199,25 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "* ถ้าข้อความซ้ำกัน ข้อความของไฟล์ข้างบนจะถูกทับด้วยข้อความจากไฟล์ข้างล่าง";
             // 
-            // button1
+            // btnUpdateAll
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.button1.Location = new System.Drawing.Point(448, 316);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(129, 37);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "อัพเดททั้งหมด";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnUpdateAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUpdateAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.btnUpdateAll.Location = new System.Drawing.Point(404, 314);
+            this.btnUpdateAll.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUpdateAll.Name = "btnUpdateAll";
+            this.btnUpdateAll.Size = new System.Drawing.Size(129, 37);
+            this.btnUpdateAll.TabIndex = 7;
+            this.btnUpdateAll.Text = "อัพเดททั้งหมด";
+            this.btnUpdateAll.UseVisualStyleBackColor = true;
+            this.btnUpdateAll.Click += new System.EventHandler(this.btnUpdateAll_Click);
             // 
             // frmCustomTranslateSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(809, 368);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(765, 366);
+            this.Controls.Add(this.btnUpdateAll);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.gvSettingList);
@@ -214,10 +225,10 @@
             this.Controls.Add(this.btnDown);
             this.Controls.Add(this.btnUp);
             this.Controls.Add(this.btnSave);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(661, 235);
             this.Name = "frmCustomTranslateSetting";
-            this.Text = "frmCustomTranslateSetting";
+            this.Text = "ตั้งค่าการแปลแบบปรับแต่ง";
             this.Load += new System.EventHandler(this.frmCustomTranslateSetting_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gvSettingList)).EndInit();
             this.ResumeLayout(false);
@@ -232,12 +243,12 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.DataGridView gvSettingList;
         private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnUpdateAll;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Enable;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
         private System.Windows.Forms.DataGridViewButtonColumn Button;
         private System.Windows.Forms.DataGridViewButtonColumn View;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
     }
 }

@@ -9,6 +9,7 @@ namespace TranslateUtility.Screens
 {
     public partial class frmCustomTranslateSetting : Form
     {
+        const string EMPTY_ID_MESSAGE = "[ใส่ ID และกดอัพเดทเพื่อดูคำอธิบาย]";
         enum eCol
         {
             Enable,
@@ -56,7 +57,7 @@ namespace TranslateUtility.Screens
             {
                 gvSettingList.Rows[lastrowIndex].Cells[(int)eCol.Enable].Value = true;
                 //gvSettingList.Rows[lastrowIndex].Cells[(int)eCol.Id].Value = $@"item {gvSettingList.Rows.Count}";
-                gvSettingList.Rows[lastrowIndex].Cells[(int)eCol.Description].Value = "[ใส่ ID และกดอัพเดทเพื่อดูคำอธิบาย]";
+                gvSettingList.Rows[lastrowIndex].Cells[(int)eCol.Description].Value = EMPTY_ID_MESSAGE;
             }
             else
             {
@@ -125,36 +126,67 @@ namespace TranslateUtility.Screens
 
         private void btnUp_Click(object sender, EventArgs e)
         {
-            MoveUp(GetSelectedRowIndex());
+            try
+            {
+                MoveUp(GetSelectedRowIndex());
+            }
+            catch (Exception ex)
+            {
+                c.ShowErrorMessage(ex);
+            }
         }
 
         private void btnDown_Click(object sender, EventArgs e)
         {
-            MoveDown(GetSelectedRowIndex());
+            try
+            {
+                MoveDown(GetSelectedRowIndex());
+            }
+            catch (Exception ex)
+            {
+                c.ShowErrorMessage(ex);
+            }
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            var index = GetSelectedRowIndex();
-            if (index < 0)
-                return;
+            try
+            {
+                var index = GetSelectedRowIndex();
+                if (index < 0)
+                    return;
 
-            if (gvSettingList.Rows.Count > 1 && index == gvSettingList.Rows.Count - 1)
-                gvSettingList.Rows[index - 1].Selected = true;
+                if (gvSettingList.Rows.Count > 1 && index == gvSettingList.Rows.Count - 1)
+                    gvSettingList.Rows[index - 1].Selected = true;
 
-            gvSettingList.Rows.RemoveAt(index);
+                gvSettingList.Rows.RemoveAt(index);
+            }
+            catch (Exception ex)
+            {
+                c.ShowErrorMessage(ex);
+            }
         }
 
         private void gvSettingList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == (int)eCol.Enable)
-                ToggleEnable(e.RowIndex);
+            try
+            {
+                if (e.RowIndex < 0)
+                    return;
 
-            else if (e.ColumnIndex == (int)eCol.Update)
-                UpdateCustomTranslate(e.RowIndex);
+                if (e.ColumnIndex == (int)eCol.Enable)
+                    ToggleEnable(e.RowIndex);
 
-            else if (e.ColumnIndex == (int)eCol.Open)
-                OpenGoogleSheet(e.RowIndex);
+                else if (e.ColumnIndex == (int)eCol.Update)
+                    UpdateCustomTranslate(e.RowIndex);
+
+                else if (e.ColumnIndex == (int)eCol.Open)
+                    OpenGoogleSheet(e.RowIndex);
+            }
+            catch (Exception ex)
+            {
+                c.ShowErrorMessage(ex);
+            }
         }
 
         private void OpenGoogleSheet(int rowIndex)
@@ -165,12 +197,20 @@ namespace TranslateUtility.Screens
 
         private void UpdateCustomTranslate(int rowIndex)
         {
+            string desc;
             var id = gvSettingList.Rows[rowIndex].Cells[(int)eCol.Id].Value as string;
-            c.DownloadCustomTranslateFile(id, Common.eDownloadFrequency.Always);
+            if (String.IsNullOrWhiteSpace(id))
+            {
+                desc = EMPTY_ID_MESSAGE;
+            }
+            else
+            {
+                c.DownloadCustomTranslateFile(id, Common.eDownloadFrequency.Always);
 
-            var desc = c.GetCustomTranslateDescription(id);
-            if (desc == null)
-                desc = "[ID ไม่ถูกต้อง]";
+                desc = c.GetCustomTranslateDescription(id);
+                if (desc == null)
+                    desc = "[ID ไม่ถูกต้อง]";
+            }
 
             gvSettingList.Rows[rowIndex].Cells[(int)eCol.Description].Value = desc;
         }
@@ -183,23 +223,30 @@ namespace TranslateUtility.Screens
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            SaveData();
-            this.Close();
+            try
+            {
+                SaveData();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                c.ShowErrorMessage(ex);
+            }
         }
 
         private void SaveData()
         {
             customSetting.Value = GetDataFromGrid();
             customSetting.Save();
-            c.ShowMessage("บันทึกเรียบร้อย");
+            //c.ShowMessage("บันทึกเรียบร้อย");
 
         }
 
         private Dictionary<string, CustomTranslateItem> GetDataFromGrid()
         {
             string id;
-            var result= new Dictionary<string, CustomTranslateItem>();
-            
+            var result = new Dictionary<string, CustomTranslateItem>();
+
             foreach (DataGridViewRow row in gvSettingList.Rows)
             {
                 id = row.Cells[(int)eCol.Id].Value as string;
@@ -215,6 +262,26 @@ namespace TranslateUtility.Screens
             }
 
             return result;
+        }
+
+        private void btnUpdateAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                c.Processing(UpdateAllCustomTranslate, "กำลังอัพเดท...", "สำเร็จ");
+            }
+            catch(Exception ex)
+            {
+                c.ShowErrorMessage(ex);
+            }
+        }
+
+        private void UpdateAllCustomTranslate()
+        {
+            for (int i = 0; i < gvSettingList.Rows.Count; i++)
+            {
+                UpdateCustomTranslate(i);
+            }
         }
     }
 }
