@@ -55,15 +55,15 @@ namespace svvv
         public static string UpdaterDir = Path.Combine(StartupPath, "temp", "updater");
         public static string UpdaterPath = Path.Combine(UpdaterDir, "Updater.exe");
 
-        public static string CustomTranslateFileId { get; private set; }        
-        public static string CustomTranslateFileName { get; private set; }        
-        public static string CustomTranslateFilePath { get; private set; }        
-        public static void SetCustomTranslateFileId(string fileId)
-        {
-            CustomTranslateFileId = fileId;
-            CustomTranslateFileName = fileId+".xlsx";
-            CustomTranslateFilePath = Path.Combine(DownloadPath, CustomTranslateFileName);
-        }
+        //public static string CustomTranslateFileId { get; private set; }        
+        //public static string CustomTranslateFileName { get; private set; }        
+        //public static string CustomTranslateFilePath { get; private set; }        
+        //public static void SetCustomTranslateFileId(string fileId)
+        //{
+        //    CustomTranslateFileId = fileId;
+        //    CustomTranslateFileName = fileId+".xlsx";
+        //    CustomTranslateFilePath = Path.Combine(DownloadPath, CustomTranslateFileName);
+        //}
 
     }
 }

@@ -588,31 +588,31 @@ namespace TheWitcher3Thai
             return result == DialogResult.Yes;
         }
 
-        public string GetCustomTranslateDescription()
-        {
-            try
-            {
-                var fi = new FileInfo(Configs.CustomTranslateFilePath);
-                if(!fi.Exists)
-                    return Configs.CUSTOM_TRANSLATE_LABEL;
+        //public string GetCustomTranslateDescription()
+        //{
+        //    try
+        //    {
+        //        var fi = new FileInfo(Configs.CustomTranslateFilePath);
+        //        if(!fi.Exists)
+        //            return Configs.CUSTOM_TRANSLATE_LABEL;
 
-                using (var p = new ExcelPackage(fi))
-                {
-                    var sht = p.Workbook.Worksheets[1];
-                    var desc = sht.Cells[1, 1].Text;
+        //        using (var p = new ExcelPackage(fi))
+        //        {
+        //            var sht = p.Workbook.Worksheets[1];
+        //            var desc = sht.Cells[1, 1].Text;
 
-                    if (String.IsNullOrWhiteSpace(desc))
-                        desc = "UNKNOW";
+        //            if (String.IsNullOrWhiteSpace(desc))
+        //                desc = "UNKNOW";
 
-                    return $@"{Configs.CUSTOM_TRANSLATE_LABEL} ({desc})";
-                }
-            }
-            catch(Exception)
-            {
-                return Configs.CUSTOM_TRANSLATE_LABEL;
-            }
+        //            return $@"{Configs.CUSTOM_TRANSLATE_LABEL} ({desc})";
+        //        }
+        //    }
+        //    catch(Exception)
+        //    {
+        //        return Configs.CUSTOM_TRANSLATE_LABEL;
+        //    }
             
-        }
+        //}
 
         
 
@@ -2354,8 +2354,13 @@ namespace TheWitcher3Thai
             if (alternativeTranslate)
             {
                 var allMessageDict = ConvertToDictionary(allMessage);
-                var customTranslate = ReadCustomTranslate();
-                FillCustomTranslate(allMessageDict, customTranslate);
+
+                var custom = new CustomTranslateSetting(Configs.CustomTranslateSettingPath);
+                foreach(var c in custom.Value.Values)
+                {
+                    var customTranslate = ReadCustomTranslate(c.ID);
+                    FillCustomTranslate(allMessageDict, customTranslate);
+                }
                 allMessage = ConvertToList(allMessageDict);
             }
 
@@ -2425,18 +2430,22 @@ namespace TheWitcher3Thai
             }
         }
 
-        private List<w3Strings> ReadCustomTranslate()
+        private List<w3Strings> ReadCustomTranslate(string id)
         {
-            string path = Configs.CustomTranslateFilePath;
+            var result= new List<w3Strings>();
 
+            if (String.IsNullOrWhiteSpace(id))
+                return result;
+
+            string path = Path.Combine(Configs.DownloadPath,id+".xlsx");
             var fi = new FileInfo(path);
             if (!fi.Exists)
-                return new List<w3Strings>();
+                return result;
 
             using (var p = new ExcelPackage(fi))
             {
                 var sht = p.Workbook.Worksheets[1];
-                var result = ReadExcelSheet(sht, true);
+                result = ReadExcelSheet(sht, true);
                 return result;
             }
 
@@ -3670,33 +3679,41 @@ namespace TheWitcher3Thai
             return true;
         }
 
-        public void DownloadCustomTranslateFile(eDownloadFrequency frequency)
-        {
-            var translatePath = Configs.CustomTranslateFilePath;
-            if (String.IsNullOrWhiteSpace(Configs.CustomTranslateFileId))
-                return;
+        //public void DownloadCustomTranslateFile(eDownloadFrequency frequency)
+        //{
+        //    var translatePath = Configs.CustomTranslateFilePath;
+        //    if (String.IsNullOrWhiteSpace(Configs.CustomTranslateFileId))
+        //        return;
 
-            if (!IsNeedToDownload(translatePath, frequency))
-                return;
+        //    if (!IsNeedToDownload(translatePath, frequency))
+        //        return;
 
-            var tmpPath = Path.Combine(Configs.TempPath, Configs.CustomTranslateFileName);
-            if (!DownloadGoogleSheetFile(Configs.CustomTranslateFileId, tmpPath))
-                return;
+        //    var tmpPath = Path.Combine(Configs.TempPath, Configs.CustomTranslateFileName);
+        //    if (!DownloadGoogleSheetFile(Configs.CustomTranslateFileId, tmpPath))
+        //        return;
 
-            if (!File.Exists(tmpPath))
-                return;
+        //    if (!File.Exists(tmpPath))
+        //        return;
 
             
 
-            CopyFile(tmpPath, translatePath);
+        //    CopyFile(tmpPath, translatePath);
 
+        //}
+
+        public void DownloadAllCustomTranslateFile(eDownloadFrequency frequency)
+        {
+            var custom = new CustomTranslateSetting(Configs.CustomTranslateSettingPath);
+            foreach(var item in custom.Value.Values)
+            {
+                DownloadCustomTranslateFile(item.ID, frequency);
+            }
         }
 
         public void DownloadCustomTranslateFile(string id, eDownloadFrequency frequency)
         {
             if (String.IsNullOrWhiteSpace(id))
                 return;
-
             
             var fileName = id + ".xlsx";
             var translatePath = Path.Combine(Configs.DownloadPath, fileName);

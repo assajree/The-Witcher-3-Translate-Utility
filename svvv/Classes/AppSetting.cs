@@ -23,20 +23,13 @@ namespace svvv.Classes
         public int SizeCutscene { get; set; }
         public int SizeDialog { get; set; }
         public eDownloadFrequency DownloadFrequency { get; set; }
-        public string CustomTranslateFileId { get; private set; }
+        public string GamePath { get; set; }
 
         public AppSetting(string settingPath)
         {
             mSettingPath = settingPath;
             LoadSetting();
             SaveSetting();
-            Configs.SetCustomTranslateFileId(this.CustomTranslateFileId);
-        }
-
-        public void SetFileId(string fileId)
-        {
-            this.CustomTranslateFileId = fileId;
-            Configs.SetCustomTranslateFileId(this.CustomTranslateFileId);
         }
 
 
@@ -67,7 +60,7 @@ namespace svvv.Classes
             SizeCutscene = 28;
             SizeDialog = 28;
             DownloadFrequency = eDownloadFrequency.Hour;
-            CustomTranslateFileId = Configs.DefaultCustomTranslateFileId;
+            GamePath = "";
         }
 
         public void SaveSetting()
@@ -78,7 +71,7 @@ namespace svvv.Classes
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.AppendLine($@"CustomTranslateFileId={CustomTranslateFileId}");
+            sb.AppendLine($@"GamePath={GamePath}");
             sb.AppendLine($@"DoubleLanguage={DoubleLanguage}");
             sb.AppendLine($@"EnglishUi={EnglishUi}");
             sb.AppendLine($@"OldMethod={OldMethod}");
@@ -142,8 +135,8 @@ namespace svvv.Classes
                 case "DownloadFrequency":
                     DownloadFrequency = value.ToDownloadFrequency(eDownloadFrequency.Hour);
                     break;
-                case "CustomTranslateFileId":
-                    CustomTranslateFileId = value;
+                case "GamePath":
+                    GamePath = value;
                     break;
             }
         }

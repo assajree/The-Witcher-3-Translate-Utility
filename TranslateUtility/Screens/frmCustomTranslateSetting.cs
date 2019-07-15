@@ -2,7 +2,6 @@
 using svvv.Classes;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
 using TheWitcher3Thai;
 
@@ -53,7 +52,7 @@ namespace TranslateUtility.Screens
             gvSettingList.Rows[lastrowIndex].Selected = true;
 
             // set data
-            if(item==null)
+            if (item == null)
             {
                 gvSettingList.Rows[lastrowIndex].Cells[(int)eCol.Enable].Value = true;
                 //gvSettingList.Rows[lastrowIndex].Cells[(int)eCol.Id].Value = $@"item {gvSettingList.Rows.Count}";
@@ -65,7 +64,7 @@ namespace TranslateUtility.Screens
                 gvSettingList.Rows[lastrowIndex].Cells[(int)eCol.Id].Value = item.ID;
                 gvSettingList.Rows[lastrowIndex].Cells[(int)eCol.Description].Value = item.Description;
             }
-            
+
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -76,7 +75,7 @@ namespace TranslateUtility.Screens
         private void gvSettingList_Click(object sender, EventArgs e)
         {
             gvSettingList.EndEdit();
-        }        
+        }
 
         private int GetSelectedRowIndex()
         {
@@ -84,7 +83,7 @@ namespace TranslateUtility.Screens
                 return -1;
 
             return gvSettingList.SelectedRows[0].Index;
-        }        
+        }
 
         private void MoveUp(int index)
         {
@@ -101,12 +100,12 @@ namespace TranslateUtility.Screens
         {
             // check first row
             // check last row
-            if (index >= gvSettingList.Rows.Count-1)
+            if (index >= gvSettingList.Rows.Count - 1)
                 return;
 
             int targetIndex = index + 1;
             MoveRow(index, targetIndex);
-            
+
         }
 
         private void MoveRow(int sourceIndex, int targetIndex)
@@ -141,7 +140,7 @@ namespace TranslateUtility.Screens
                 return;
 
             if (gvSettingList.Rows.Count > 1 && index == gvSettingList.Rows.Count - 1)
-                gvSettingList.Rows[index - 1].Selected=true;
+                gvSettingList.Rows[index - 1].Selected = true;
 
             gvSettingList.Rows.RemoveAt(index);
         }
@@ -166,7 +165,7 @@ namespace TranslateUtility.Screens
 
         private void UpdateCustomTranslate(int rowIndex)
         {
-            var id= gvSettingList.Rows[rowIndex].Cells[(int)eCol.Id].Value as string;
+            var id = gvSettingList.Rows[rowIndex].Cells[(int)eCol.Id].Value as string;
             c.DownloadCustomTranslateFile(id, Common.eDownloadFrequency.Always);
 
             var desc = c.GetCustomTranslateDescription(id);
@@ -180,6 +179,42 @@ namespace TranslateUtility.Screens
         {
             var enable = gvSettingList.Rows[rowIndex].Cells[(int)eCol.Enable].Value as bool?;
             gvSettingList.Rows[rowIndex].Cells[(int)eCol.Enable].Value = !(enable ?? false);
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            SaveData();
+            this.Close();
+        }
+
+        private void SaveData()
+        {
+            customSetting.Value = GetDataFromGrid();
+            customSetting.Save();
+            c.ShowMessage("บันทึกเรียบร้อย");
+
+        }
+
+        private Dictionary<string, CustomTranslateItem> GetDataFromGrid()
+        {
+            string id;
+            var result= new Dictionary<string, CustomTranslateItem>();
+            
+            foreach (DataGridViewRow row in gvSettingList.Rows)
+            {
+                id = row.Cells[(int)eCol.Id].Value as string;
+                if (!String.IsNullOrWhiteSpace(id) && !result.ContainsKey(id))
+                {
+                    var item = new CustomTranslateItem();
+                    item.Enable = (row.Cells[(int)eCol.Enable].Value as bool?) ?? false;
+                    item.ID = id;
+                    item.Description = row.Cells[(int)eCol.Description].Value as string;
+
+                    result.Add(id, item);
+                }
+            }
+
+            return result;
         }
     }
 }

@@ -54,7 +54,6 @@
             this.pnAdvance = new System.Windows.Forms.Panel();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.btnAltSubSetting = new System.Windows.Forms.Button();
-            this.btnAltSubDownload = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.btnFontSizeRecomend = new System.Windows.Forms.Button();
             this.btnFontSizeDefault = new System.Windows.Forms.Button();
@@ -81,6 +80,7 @@
             this.miCredit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.txtGamePath = new System.Windows.Forms.TextBox();
+            this.lblCustomTranslateCount = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -466,9 +466,9 @@
             // 
             this.groupBox7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox7.Controls.Add(this.lblCustomTranslateCount);
             this.groupBox7.Controls.Add(this.btnAltSubSetting);
             this.groupBox7.Controls.Add(this.chkAltSub);
-            this.groupBox7.Controls.Add(this.btnAltSubDownload);
             this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox7.Location = new System.Drawing.Point(4, 420);
             this.groupBox7.Margin = new System.Windows.Forms.Padding(4);
@@ -489,18 +489,6 @@
             this.btnAltSubSetting.Text = "ตั้งค่า";
             this.btnAltSubSetting.UseVisualStyleBackColor = true;
             this.btnAltSubSetting.Click += new System.EventHandler(this.btnAltSubSetting_Click);
-            // 
-            // btnAltSubDownload
-            // 
-            this.btnAltSubDownload.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAltSubDownload.Location = new System.Drawing.Point(139, 27);
-            this.btnAltSubDownload.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAltSubDownload.Name = "btnAltSubDownload";
-            this.btnAltSubDownload.Size = new System.Drawing.Size(123, 39);
-            this.btnAltSubDownload.TabIndex = 48;
-            this.btnAltSubDownload.Text = "อัพเดทไฟล์";
-            this.btnAltSubDownload.UseVisualStyleBackColor = true;
-            this.btnAltSubDownload.Click += new System.EventHandler(this.btnAltSubDownload_Click);
             // 
             // groupBox6
             // 
@@ -820,6 +808,16 @@
             this.txtGamePath.TextChanged += new System.EventHandler(this.txtGamePath_TextChanged);
             this.txtGamePath.DoubleClick += new System.EventHandler(this.txtGamePath_DoubleClick);
             // 
+            // lblCustomTranslateCount
+            // 
+            this.lblCustomTranslateCount.AutoSize = true;
+            this.lblCustomTranslateCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCustomTranslateCount.Location = new System.Drawing.Point(138, 36);
+            this.lblCustomTranslateCount.Name = "lblCustomTranslateCount";
+            this.lblCustomTranslateCount.Size = new System.Drawing.Size(198, 20);
+            this.lblCustomTranslateCount.TabIndex = 50;
+            this.lblCustomTranslateCount.Text = "ไฟล์ปรับแต่งที่เปิดใช้งาน : 0";
+            // 
             // frmVeryVerySimple
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -911,10 +909,10 @@
         private System.Windows.Forms.ToolStripMenuItem miMessageFinder;
         private System.Windows.Forms.Button btnFixMod;
         private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.Button btnAltSubDownload;
         private System.Windows.Forms.Button btnAltSubSetting;
         private System.Windows.Forms.CheckBox chkOldMethod;
         private System.Windows.Forms.Button btnFontSizeRecomend;
         private System.Windows.Forms.Button btnFontSizeDefault;
+        private System.Windows.Forms.Label lblCustomTranslateCount;
     }
 }

@@ -1,9 +1,6 @@
 ﻿using svvv.Classes;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TheWitcher3Thai
 {
@@ -84,7 +81,7 @@ namespace TheWitcher3Thai
             mSheetName.Add("content10", "content10");
             mSheetName.Add("content11", "content11");
             mSheetName.Add("content12", "content12");
-            
+
             mSheetName.Add("DLCEP1content", "DLCEP1content (Heart of Stone)");
             mSheetName.Add("DLCbobcontent", "DLCbobcontent (Blood and Wine)");
 
@@ -125,7 +122,7 @@ namespace TheWitcher3Thai
             return mExtraSheetConfig;
         }
 
-        public Dictionary<string,string> GetStorybookMaping()
+        public Dictionary<string, string> GetStorybookMaping()
         {
             if (mStorybookMaping != null)
                 return mStorybookMaping;
@@ -205,7 +202,10 @@ namespace TheWitcher3Thai
             mCustomTranslate = new List<CustomTranslateItem>();
 
             // english quest name
-            mCustomTranslate.Add(new CustomTranslateItem(true,"1X2VOm21x5ow_duSutaXV3AsCdz2YT1RVZZQoiPZHp14",null));
+            mCustomTranslate.Add(new CustomTranslateItem(true, "1X2VOm21x5ow_duSutaXV3AsCdz2YT1RVZZQoiPZHp14", null));
+
+            // funny subtitle
+            mCustomTranslate.Add(new CustomTranslateItem(false, "19uVPHxzMBwCxpnjKqakNkBqxSOm2CH173L4wpwiUjS0", null));
 
             return mCustomTranslate;
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using TheWitcher3Thai;
 using TheWitcher3Thai.Helper;
 
@@ -9,6 +10,7 @@ namespace svvv.Classes
 {
     public class CustomTranslateSetting
     {
+        const string SEPARATOR = ":";
         Common c = new Common();
         string mSettingPath;
 
@@ -57,36 +59,52 @@ namespace svvv.Classes
                 return;
             }
 
-            // set all enable to false
-            foreach (var item in this.Value)
-            {
-                item.Value.Enable = false;
-            }
+            //// set all enable to false
+            //foreach (var item in this.Value)
+            //{
+            //    item.Value.Enable = false;
+            //}
 
             var content = File.ReadAllText(mSettingPath).Split('\n').ToList();
             foreach (var c in content)
             {
-                var val = c.Trim();
-                if (!String.IsNullOrWhiteSpace(val))
-                {
-                    if(this.Value.ContainsKey(val))
-                    {
-                        this.Value[val].Enable = true;
-                    }
-                    else
-                    {
-                        this.Value.Add(val, new CustomTranslateItem(true,val,null));
-                    }
+                var setting = GetSetting(c);
+                if (String.IsNullOrWhiteSpace(setting.ID))
+                    continue;
 
-                    
+                if (this.Value.ContainsKey(setting.ID))
+                {
+                    this.Value[setting.ID].Enable = setting.Enable;
+                }
+                else
+                {
+                    this.Value.Add(setting.ID, setting);
                 }
             }
         }
 
+        private CustomTranslateItem GetSetting(string str)
+        {
+            var result = new CustomTranslateItem();
+            if (String.IsNullOrWhiteSpace(str))
+                return result;
+
+            var arr = str.Split(new string[] { SEPARATOR }, 2, StringSplitOptions.None);
+            result.ID = arr[0].Trim();
+            if(arr.Length>1)
+                result.Enable= arr[1].ToBoolean(false);
+
+            return result;
+        }
+
         public void Save()
         {
-            var text = string.Join(Environment.NewLine, this.Value);
-            File.WriteAllText(mSettingPath, text);
+            var sb = new StringBuilder();
+            foreach(var item in this.Value.Values)
+            {
+                sb.AppendLine($@"{item.ID}{SEPARATOR}{item.Enable}");
+            }
+            File.WriteAllText(mSettingPath, sb.ToString());
         }
     }
 }

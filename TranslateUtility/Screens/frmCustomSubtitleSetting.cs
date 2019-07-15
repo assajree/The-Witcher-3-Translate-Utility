@@ -30,15 +30,15 @@ namespace TranslateUtility.Screens
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            mAppSetting.SetFileId(txtFileId.Text.Trim());
+            //mAppSetting.SetFileId(txtFileId.Text.Trim());
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
         private void frmCustomSubtitleSetting_Load(object sender, EventArgs e)
         {
-            if (mAppSetting != null)
-                txtFileId.Text = mAppSetting.CustomTranslateFileId;
+            //if (mAppSetting != null)
+            //    txtFileId.Text = mAppSetting.GamePath;
         }
 
         private void btnReset_Click(object sender, EventArgs e)

@@ -2,6 +2,7 @@
 using svvv.Classes;
 using System;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using TheWitcher3Thai;
 using TheWitcher3Thai.Helper;
@@ -39,7 +40,7 @@ namespace TranslateUtility
         {
             InitialScreen();
             InitialTooTip();
-            ReadCustomTranslateDescription();
+            //ReadCustomTranslateDescription();
 
             if (!ShowAdvance)
                 ToggleAdvance();
@@ -50,10 +51,10 @@ namespace TranslateUtility
             CheckForUpdate(false);
         }
 
-        private void ReadCustomTranslateDescription()
-        {
-            chkAltSub.Text = c.GetCustomTranslateDescription();
-        }
+        //private void ReadCustomTranslateDescription()
+        //{
+        //    chkAltSub.Text = c.GetCustomTranslateDescription();
+        //}
 
         private void DownloadRequireComponent()
         {
@@ -102,10 +103,20 @@ namespace TranslateUtility
             // install
             txtGamePath.SetDefault(c.GetGameDirectory());
 
-            LoadSetting();
+            
             SetDownloadFrequencyRadio();
             SetFontRadio();
+            LoadSetting();
+            SaveAppSetting();
+            RefreshCustomTranslateCount();
 
+        }
+
+        private void RefreshCustomTranslateCount()
+        {
+            var custom = new CustomTranslateSetting(Configs.CustomTranslateSettingPath);
+            var count = custom.Value.Values.Where(v => v.Enable).ToList().Count;
+            lblCustomTranslateCount.Text = $@"ไฟล์ปรับแต่งที่เปิดใช้งาน : {count:#,0}";
         }
 
         private void LoadSetting()
@@ -125,6 +136,11 @@ namespace TranslateUtility
             chkUiInfo.Checked = mAppSetting.ShowUiRow;
             txtFontSizeCutScene.Value = mAppSetting.SizeCutscene;
             txtFontSizeSpeak.Value = mAppSetting.SizeDialog;
+
+            if(String.IsNullOrWhiteSpace(txtGamePath.Text))
+            {
+                txtGamePath.Text = mAppSetting.GamePath;
+            }
         }
 
         private void lblModVersion_DoubleClick(object sender, EventArgs e)
@@ -336,6 +352,7 @@ namespace TranslateUtility
             mAppSetting.SizeCutscene = (int)txtFontSizeCutScene.Value;
             mAppSetting.SizeDialog = (int)txtFontSizeSpeak.Value;
             mAppSetting.DownloadFrequency = GetDownloadFrequency();
+            mAppSetting.GamePath = txtGamePath.Text;
 
             mAppSetting.SaveSetting();
         }
@@ -361,7 +378,7 @@ namespace TranslateUtility
 
             if (chkAltSub.Checked)
             {
-                c.Processing(DownloadCustomTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษาแบบปรับแต่ง...");                
+                c.Processing(DownloadAllCustomTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษาแบบปรับแต่ง...");                
             }
 
             // download translate excel file
@@ -387,11 +404,16 @@ namespace TranslateUtility
             EnableButton();
         }
 
-        private void DownloadCustomTranslateFile()
+        private void DownloadAllCustomTranslateFile()
         {
-            c.DownloadCustomTranslateFile(GetDownloadFrequency());
-            ReadCustomTranslateDescription();
+            c.DownloadAllCustomTranslateFile(GetDownloadFrequency());
         }
+
+        //private void DownloadCustomTranslateFile()
+        //{
+        //    c.DownloadCustomTranslateFile(GetDownloadFrequency());
+        //    ReadCustomTranslateDescription();
+        //}
 
         private void DownloadTranslateFile()
         {
@@ -593,28 +615,26 @@ namespace TranslateUtility
 
         private void btnAltSubDownload_Click(object sender, EventArgs e)
         {
-            c.Processing(UpdateCustomTranslate, "กำลังโหลดไฟล์แปลภาษาแบบปรับแต่ง");
+            //c.Processing(UpdateCustomTranslate, "กำลังโหลดไฟล์แปลภาษาแบบปรับแต่ง");
         }
 
-        private void UpdateCustomTranslate()
-        {
-            if (String.IsNullOrWhiteSpace(Configs.CustomTranslateFileId))
-            {
-                c.ShowMessage("ไม่ได้ตั้งค่า");
-                return;
-            }
+        //private void UpdateCustomTranslate()
+        //{
+        //    if (String.IsNullOrWhiteSpace(Configs.CustomTranslateFileId))
+        //    {
+        //        c.ShowMessage("ไม่ได้ตั้งค่า");
+        //        return;
+        //    }
 
-            c.DownloadCustomTranslateFile(Common.eDownloadFrequency.Always);
-            ReadCustomTranslateDescription();
-        }
+        //    c.DownloadCustomTranslateFile(Common.eDownloadFrequency.Always);
+        //    ReadCustomTranslateDescription();
+        //}
 
         private void btnAltSubSetting_Click(object sender, EventArgs e)
         {
-            var dlg = new frmCustomSubtitleSetting(mAppSetting);
-            if (dlg.ShowDialog() == DialogResult.OK)
-            {
-                mAppSetting.SaveSetting();
-            }
+            var dlg = new frmCustomTranslateSetting();
+            dlg.ShowDialog();
+            RefreshCustomTranslateCount();
         }
 
         private void btnFixMod_Click(object sender, EventArgs e)
