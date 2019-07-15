@@ -13,6 +13,7 @@ namespace TheWitcher3Thai
         Dictionary<string, string> mExtraSheetConfig;
         Dictionary<string, string> mStorybookMaping;
         Dictionary<string, string> mSheetName;
+        List<CustomTranslateItem> mCustomTranslate;
 
         public Dictionary<string, string> GetSheetConfig()
         {
@@ -194,6 +195,19 @@ namespace TheWitcher3Thai
                 throw new KnowException("Incorrect sheet mapping");
 
             return mStorybookMaping;
+        }
+
+        public List<CustomTranslateItem> GetCustomTranslate()
+        {
+            if (mCustomTranslate != null)
+                return mCustomTranslate;
+
+            mCustomTranslate = new List<CustomTranslateItem>();
+
+            // english quest name
+            mCustomTranslate.Add(new CustomTranslateItem(true,"1X2VOm21x5ow_duSutaXV3AsCdz2YT1RVZZQoiPZHp14",null));
+
+            return mCustomTranslate;
         }
     }
 }

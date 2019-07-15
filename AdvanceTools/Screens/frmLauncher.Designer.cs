@@ -39,6 +39,7 @@
             this.btnVvSimple = new System.Windows.Forms.Button();
             this.btnStorybookTool = new System.Windows.Forms.Button();
             this.btnMessageFindet = new System.Windows.Forms.Button();
+            this.btnTest = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnGameTools
@@ -84,7 +85,7 @@
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.Location = new System.Drawing.Point(58, 328);
+            this.btnClose.Location = new System.Drawing.Point(58, 357);
             this.btnClose.Margin = new System.Windows.Forms.Padding(2);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(126, 29);
@@ -97,7 +98,7 @@
             // 
             this.btnDonate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDonate.Location = new System.Drawing.Point(0, 358);
+            this.btnDonate.Location = new System.Drawing.Point(0, 387);
             this.btnDonate.Name = "btnDonate";
             this.btnDonate.Size = new System.Drawing.Size(243, 24);
             this.btnDonate.TabIndex = 4;
@@ -171,12 +172,26 @@
             this.btnMessageFindet.UseVisualStyleBackColor = true;
             this.btnMessageFindet.Click += new System.EventHandler(this.btnMessageFindet_Click);
             // 
+            // btnTest
+            // 
+            this.btnTest.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTest.Location = new System.Drawing.Point(58, 293);
+            this.btnTest.Margin = new System.Windows.Forms.Padding(2);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(126, 29);
+            this.btnTest.TabIndex = 9;
+            this.btnTest.Text = "TEST";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
+            // 
             // frmLauncher
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(243, 389);
+            this.ClientSize = new System.Drawing.Size(243, 418);
             this.ControlBox = false;
+            this.Controls.Add(this.btnTest);
             this.Controls.Add(this.btnMessageFindet);
             this.Controls.Add(this.btnStorybookTool);
             this.Controls.Add(this.btnVvSimple);
@@ -210,5 +225,6 @@
         private System.Windows.Forms.Button btnVvSimple;
         private System.Windows.Forms.Button btnStorybookTool;
         private System.Windows.Forms.Button btnMessageFindet;
+        private System.Windows.Forms.Button btnTest;
     }
 }

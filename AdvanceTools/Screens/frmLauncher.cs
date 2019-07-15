@@ -83,5 +83,10 @@ namespace TranslateUtility
         {
             OpenForm(new frmMessageFinder());
         }
+
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            OpenForm(new frmCustomTranslateSetting());
+        }
     }
 }

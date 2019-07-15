@@ -70,6 +70,12 @@
     <Compile Include="Screens\frmCustomSubtitleSetting.Designer.cs">
       <DependentUpon>frmCustomSubtitleSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\frmCustomTranslateSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\frmCustomTranslateSetting.Designer.cs">
+      <DependentUpon>frmCustomTranslateSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\frmMessageFinder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +103,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\frmCustomSubtitleSetting.resx">
       <DependentUpon>frmCustomSubtitleSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\frmCustomTranslateSetting.resx">
+      <DependentUpon>frmCustomTranslateSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\frmMessageFinder.resx">
       <DependentUpon>frmMessageFinder.cs</DependentUpon>

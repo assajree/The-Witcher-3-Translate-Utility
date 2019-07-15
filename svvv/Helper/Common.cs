@@ -614,6 +614,8 @@ namespace TheWitcher3Thai
             
         }
 
+        
+
         public bool ShowConfirmWarning(string message, string caption = "")
         {
             var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -3687,6 +3689,58 @@ namespace TheWitcher3Thai
             
 
             CopyFile(tmpPath, translatePath);
+
+        }
+
+        public void DownloadCustomTranslateFile(string id, eDownloadFrequency frequency)
+        {
+            if (String.IsNullOrWhiteSpace(id))
+                return;
+
+            
+            var fileName = id + ".xlsx";
+            var translatePath = Path.Combine(Configs.DownloadPath, fileName);
+
+            if (!IsNeedToDownload(translatePath, frequency))
+                return;
+
+            var tmpPath = Path.Combine(Configs.TempPath, fileName);
+            if (!DownloadGoogleSheetFile(id, tmpPath))
+                return;
+
+            if (!File.Exists(tmpPath))
+                return;
+
+            CopyFile(tmpPath, translatePath);
+
+        }
+
+        public string GetCustomTranslateDescription(string id)
+        {
+            try
+            {
+                var fileName = id + ".xlsx";
+                var filePath = Path.Combine(Configs.DownloadPath, fileName);
+
+                var fi = new FileInfo(filePath);
+                if (!fi.Exists)
+                    return null;
+
+                using (var p = new ExcelPackage(fi))
+                {
+                    var sht = p.Workbook.Worksheets[1];
+                    var desc = sht.Cells[1, 1].Text;
+
+                    if (String.IsNullOrWhiteSpace(desc))
+                        desc = "ไม่ระบุ";
+
+                    return desc;
+                }
+            }
+            catch (Exception)
+            {
+                return Configs.CUSTOM_TRANSLATE_LABEL;
+            }
 
         }
 

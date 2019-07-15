@@ -41,6 +41,7 @@ namespace svvv
         public static string BackupPath = Path.Combine(StartupPath, "backup");
         public static string LogPath = Path.Combine(StartupPath, "changelog.txt");
         public static string SettingPath = Path.Combine(StartupPath, "setting.ini");
+        public static string CustomTranslateSettingPath = Path.Combine(StartupPath, "custom.ini");
 
         public static string StorybookPath = Path.Combine(ToolsPath, modThaiStoryBook);
         public static string StorybookExcelPath = Path.Combine(ToolsPath, "storybook.xlsx");

@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\AppSetting.cs" />
+    <Compile Include="Classes\CustomTranslateSetting.cs" />
     <Compile Include="Classes\Excel.cs" />
     <Compile Include="Classes\KnowException.cs" />
     <Compile Include="Classes\MergeException.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Classes\TranslateResult.cs" />
     <Compile Include="Classes\Updater.cs" />
     <Compile Include="Classes\w3Strings.cs" />
+    <Compile Include="Classes\CustomTranslateItem.cs" />
     <Compile Include="Helper\Configs.cs" />
     <Compile Include="Dialog\DownloadingDialog.cs">
       <SubType>Form</SubType>
