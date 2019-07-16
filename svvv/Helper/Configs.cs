@@ -10,10 +10,13 @@ namespace svvv
 {
     public static class Configs
     {
-        
+        public const int SIZE_DEFAULT_EXPAND = 635;
+        public const int SIZE_DEFAULT_COLLASPE = 150;
 
         public const string modThaiStoryBook = "modThaiStoryBook";
         public const string modFontSarabun = "modFontSarabun";
+        public const string modFontCsParkas = "modFontCsPraKas";
+        public const string modFontDilleniaUPC = "modFontDilleniaUPC";
         public const string modThaiFont = "modThaiFont";
         public const string modDoubleSubtitle = "modDoubleSubtitle";
         public const string modThaiLanguage = "modThaiLanguage"; // translate
@@ -46,6 +49,11 @@ namespace svvv
         public static string StorybookPath = Path.Combine(ToolsPath, modThaiStoryBook);
         public static string StorybookExcelPath = Path.Combine(ToolsPath, "storybook.xlsx");
         public static string StorybookVersionPath = Path.Combine(StorybookPath, "version_storybook.ini");
+
+        public static string FontSarabunPath = Path.Combine(ToolsPath, modFontSarabun);
+        public static string FontKunToonPath = Path.Combine(ToolsPath, modThaiFont);
+        public static string FontCsPrakasPath = Path.Combine(ToolsPath, modFontCsParkas);
+        public static string FontDilleniaUPCPath = Path.Combine(ToolsPath, modFontDilleniaUPC);
 
         public static string TemplatePath = Path.Combine(ToolsPath, "Template");
         public static string TemplateFilePath = Path.Combine(TemplatePath, "template.xlsx");

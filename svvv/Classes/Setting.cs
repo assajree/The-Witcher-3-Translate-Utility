@@ -56,7 +56,9 @@ namespace TheWitcher3Thai
 
             mSheetConfig.Add("DLCall", @"dlc\dlcAll\content");
             //d.Add("patch1", @"content\patch1");
+
             mSheetConfig.Add("MISSING", @"content\missing");
+            mSheetConfig.Add("FIX", @"content\fix");
 
             return mSheetConfig;
         }
@@ -118,6 +120,7 @@ namespace TheWitcher3Thai
             //d.Add("DLC16", @"dlc\dlc16\content");
 
             mExtraSheetConfig.Add("MISSING", @"content\missing");
+            mExtraSheetConfig.Add("FIX", @"content\fix");
 
             return mExtraSheetConfig;
         }
@@ -204,8 +207,13 @@ namespace TheWitcher3Thai
             // english quest name
             mCustomTranslate.Add(new CustomTranslateItem(true, "1X2VOm21x5ow_duSutaXV3AsCdz2YT1RVZZQoiPZHp14", null));
 
+            // message fix
+            mCustomTranslate.Add(new CustomTranslateItem(false, "1eDp6YF3kdx9FXc8dfMFhz72QbH9wYJfKRx2gwvD4Wcg", null));
+
             // funny subtitle
             mCustomTranslate.Add(new CustomTranslateItem(false, "19uVPHxzMBwCxpnjKqakNkBqxSOm2CH173L4wpwiUjS0", null));
+
+           
 
             return mCustomTranslate;
         }

@@ -32,8 +32,10 @@ namespace TheWitcher3Thai
         public enum eFontSetting
         {
             Sarabun,
-            KoonToon,
-            None
+            KunToon,
+            None,
+            CSPraKas,
+            DilleniaUPC
         }
 
         private Setting setting = new Setting();
@@ -367,7 +369,7 @@ namespace TheWitcher3Thai
         public void ShowErrorMessage(Exception ex, string caption = "Error")
         {
             var b = ex.GetBaseException();
-            var message = b.Message;            
+            var message = b.Message;
 
             if (!(ex is KnowException))
                 message += "\n\n" + b.StackTrace.Trim();
@@ -611,10 +613,10 @@ namespace TheWitcher3Thai
         //    {
         //        return Configs.CUSTOM_TRANSLATE_LABEL;
         //    }
-            
+
         //}
 
-        
+
 
         public bool ShowConfirmWarning(string message, string caption = "")
         {
@@ -1475,7 +1477,7 @@ namespace TheWitcher3Thai
 
                 return lastVersion;
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return null;
             }
@@ -2105,7 +2107,7 @@ namespace TheWitcher3Thai
                         isReadTranslate ? sht.Cells[row, Excel.COL_TRANSLATE].Text.Replace("\r", "").Replace("\n", "") : null
 
                         , sht.Name
-                        , sht.Cells[row, Excel.COL_ROW].Text.ToIntOrNull()??row
+                        , sht.Cells[row, Excel.COL_ROW].Text.ToIntOrNull() ?? row
                 ));
 
                 row++;
@@ -2356,7 +2358,7 @@ namespace TheWitcher3Thai
                 var allMessageDict = ConvertToDictionary(allMessage);
 
                 var custom = new CustomTranslateSetting(Configs.CustomTranslateSettingPath);
-                foreach(var c in custom.Value.Values)
+                foreach (var c in custom.Value.Values)
                 {
                     var customTranslate = ReadCustomTranslate(c.ID);
                     FillCustomTranslate(allMessageDict, customTranslate);
@@ -2374,7 +2376,7 @@ namespace TheWitcher3Thai
             //            .Select(g => g.First())
             //            .ToList();
 
-            var content = Translate(allMessage, combine, originalFirst, includeNotTranslateMessageId, includeTranslateMessageId, IncludeUiMessageId, translateUI);            
+            var content = Translate(allMessage, combine, originalFirst, includeNotTranslateMessageId, includeTranslateMessageId, IncludeUiMessageId, translateUI);
 
             var path = Path.Combine(tempPath, "message" + ".csv");
             WriteCsv(content, path);
@@ -2392,15 +2394,7 @@ namespace TheWitcher3Thai
             );
 
             // font
-            switch (font)
-            {
-                case eFontSetting.Sarabun:
-                    InstallFontSarabun(outputPath);
-                    break;
-                case eFontSetting.KoonToon:
-                    InstallFontKuntoon(outputPath);
-                    break;
-            }
+            InstallFontMod(font, outputPath);
 
             // subtitle
             InstallSubtitleMod(outputPath);
@@ -2424,20 +2418,20 @@ namespace TheWitcher3Thai
                     if (!String.IsNullOrWhiteSpace(message.Text))
                         w3s.Text = message.Text;
 
-                    
-                    
+
+
                 }
             }
         }
 
         private List<w3Strings> ReadCustomTranslate(string id)
         {
-            var result= new List<w3Strings>();
+            var result = new List<w3Strings>();
 
             if (String.IsNullOrWhiteSpace(id))
                 return result;
 
-            string path = Path.Combine(Configs.DownloadPath,id+".xlsx");
+            string path = Path.Combine(Configs.DownloadPath, id + ".xlsx");
             var fi = new FileInfo(path);
             if (!fi.Exists)
                 return result;
@@ -2924,15 +2918,32 @@ namespace TheWitcher3Thai
 
         public void InstallFontMod(eFontSetting font, string outputPath)
         {
+            string modPath = null;
             switch (font)
             {
                 case eFontSetting.Sarabun:
-                    InstallFontSarabun(outputPath);
+                    modPath = Configs.FontSarabunPath;
                     break;
-                case eFontSetting.KoonToon:
-                    InstallFontKuntoon(outputPath);
+                case eFontSetting.KunToon:
+                    modPath = Configs.FontKunToonPath;
+                    break;
+                case eFontSetting.CSPraKas:
+                    modPath = Configs.FontCsPrakasPath;
+                    break;
+                case eFontSetting.DilleniaUPC:
+                    modPath = Configs.FontDilleniaUPCPath;
                     break;
             }
+
+            if (String.IsNullOrWhiteSpace(modPath))
+            {
+                DeleteDirectory(Path.Combine(outputPath, Configs.modThaiFont));
+                return;
+            }
+
+            var targetPath = Path.Combine(outputPath, Configs.modThaiFont);
+
+            CopyDirectory(modPath, targetPath);
         }
 
         public void InstallFontSarabun(string gamePath)
@@ -3695,7 +3706,7 @@ namespace TheWitcher3Thai
         //    if (!File.Exists(tmpPath))
         //        return;
 
-            
+
 
         //    CopyFile(tmpPath, translatePath);
 
@@ -3704,7 +3715,7 @@ namespace TheWitcher3Thai
         public void DownloadAllCustomTranslateFile(eDownloadFrequency frequency)
         {
             var custom = new CustomTranslateSetting(Configs.CustomTranslateSettingPath);
-            foreach(var item in custom.Value.Values)
+            foreach (var item in custom.Value.Values)
             {
                 DownloadCustomTranslateFile(item.ID, frequency);
             }
@@ -3714,7 +3725,7 @@ namespace TheWitcher3Thai
         {
             if (String.IsNullOrWhiteSpace(id))
                 return;
-            
+
             var fileName = id + ".xlsx";
             var translatePath = Path.Combine(Configs.DownloadPath, fileName);
 

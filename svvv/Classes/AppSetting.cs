@@ -11,19 +11,21 @@ namespace svvv.Classes
         const char SEPARATOR = '=';
         string mSettingPath;
 
-        public bool DoubleLanguage { get; set; }
-        public bool EnglishUi { get; set; }
-        public bool OldMethod { get; set; }
-        public bool AlternativeSubtitle { get; set; }
-        public bool ThaiFirst { get; set; }
-        public bool ShowNotTranslateRow { get; set; }
-        public bool ShowTranslateRow { get; set; }
-        public bool ShowUiRow { get; set; }
-        public eFontSetting FontSetting { get; set; }
-        public int SizeCutscene { get; set; }
-        public int SizeDialog { get; set; }
-        public eDownloadFrequency DownloadFrequency { get; set; }
-        public string GamePath { get; set; }
+        public bool DoubleLanguage { get; set; } = true;
+        public bool EnglishUi { get; set; } = false;
+        public bool OldMethod { get; set; } = false;
+        public bool AlternativeSubtitle { get; set; } = false;
+        public bool ThaiFirst { get; set; } = true;
+        public bool ShowNotTranslateRow { get; set; } = false;
+        public bool ShowTranslateRow { get; set; } = false;
+        public bool ShowUiRow { get; set; } = false;
+        public eFontSetting FontSetting { get; set; } = eFontSetting.Sarabun;
+        public int SizeCutscene { get; set; } = 34;
+        public int SizeDialog { get; set; } = 34;
+        public eDownloadFrequency DownloadFrequency { get; set; } = eDownloadFrequency.Hour;
+        public string GamePath { get; set; } = "";
+        public int ExpandHeight { get; set; } = Configs.SIZE_DEFAULT_EXPAND;
+        public int CollaspeHeight { get; set; } = Configs.SIZE_DEFAULT_COLLASPE;
 
         public AppSetting(string settingPath)
         {
@@ -35,7 +37,7 @@ namespace svvv.Classes
 
         private void LoadSetting()
         {
-            InitialValue();
+            //InitialValue();
             if (!File.Exists(mSettingPath))
                 return;
 
@@ -46,22 +48,22 @@ namespace svvv.Classes
             }
         }
 
-        private void InitialValue()
-        {
-            DoubleLanguage = true;
-            EnglishUi = false;
-            OldMethod = false;
-            AlternativeSubtitle = false;
-            ThaiFirst = true;
-            ShowNotTranslateRow = false;
-            ShowTranslateRow = false;
-            ShowUiRow = false;
-            FontSetting = eFontSetting.Sarabun;
-            SizeCutscene = 28;
-            SizeDialog = 28;
-            DownloadFrequency = eDownloadFrequency.Hour;
-            GamePath = "";
-        }
+        //private void InitialValue()
+        //{
+        //    DoubleLanguage = true;
+        //    EnglishUi = false;
+        //    OldMethod = false;
+        //    AlternativeSubtitle = false;
+        //    ThaiFirst = true;
+        //    ShowNotTranslateRow = false;
+        //    ShowTranslateRow = false;
+        //    ShowUiRow = false;
+        //    FontSetting = eFontSetting.Sarabun;
+        //    SizeCutscene = 34;
+        //    SizeDialog = 34;
+        //    DownloadFrequency = eDownloadFrequency.Hour;
+        //    GamePath = "";
+        //}
 
         public void SaveSetting()
         {
@@ -84,6 +86,8 @@ namespace svvv.Classes
             sb.AppendLine($@"SizeCutscene={SizeCutscene}");
             sb.AppendLine($@"SizeDialog={SizeDialog}");
             sb.AppendLine($@"DownloadFrequency={DownloadFrequency}");
+            sb.AppendLine($@"ExpandHeight={ExpandHeight}");
+            sb.AppendLine($@"CollaspeHeight={CollaspeHeight}");
 
             return sb.ToString();
         }
@@ -127,16 +131,22 @@ namespace svvv.Classes
                     FontSetting = value.ToFontSetting(eFontSetting.Sarabun);
                     break;
                 case "SizeCutscene":
-                    SizeCutscene = value.ToInt32(28);
+                    SizeCutscene = value.ToInt32(34);
                     break;
                 case "SizeDialog":
-                    SizeDialog = value.ToInt32(28);
+                    SizeDialog = value.ToInt32(34);
                     break;
                 case "DownloadFrequency":
                     DownloadFrequency = value.ToDownloadFrequency(eDownloadFrequency.Hour);
                     break;
                 case "GamePath":
                     GamePath = value;
+                    break;
+                case "ExpandHeight":
+                    ExpandHeight = value.ToInt32(Configs.SIZE_DEFAULT_EXPAND);
+                    break;
+                case "CollaspeHeight":
+                    CollaspeHeight = value.ToInt32(Configs.SIZE_DEFAULT_COLLASPE);
                     break;
             }
         }

@@ -147,7 +147,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="_Simple2Language" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="_SimpleOriginalFirst" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

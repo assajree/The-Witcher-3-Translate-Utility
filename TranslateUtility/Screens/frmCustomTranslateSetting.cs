@@ -2,6 +2,7 @@
 using svvv.Classes;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using TheWitcher3Thai;
 
@@ -172,7 +173,12 @@ namespace TranslateUtility.Screens
             try
             {
                 if (e.RowIndex < 0)
+                {
+                    if (e.ColumnIndex == (int)eCol.Enable)
+                        ToggleEnableAll();
+
                     return;
+                }
 
                 if (e.ColumnIndex == (int)eCol.Enable)
                     ToggleEnable(e.RowIndex);
@@ -186,6 +192,25 @@ namespace TranslateUtility.Screens
             catch (Exception ex)
             {
                 c.ShowErrorMessage(ex);
+            }
+        }
+
+        private void ToggleEnableAll()
+        {
+            var all = GetDataFromGrid();
+
+            // have any disable
+            if (all.Values.Any(c => c.Enable == false))
+                SetAllCustomTranslateEnableEnable(true); // enable all
+            else
+                SetAllCustomTranslateEnableEnable(false); // disable all
+        }
+
+        private void SetAllCustomTranslateEnableEnable(bool enable)
+        {
+            for(int i=0;i<gvSettingList.RowCount;i++)
+            {
+                SetCustomTranslateEnableEnable(i, enable);
             }
         }
 
@@ -219,6 +244,11 @@ namespace TranslateUtility.Screens
         {
             var enable = gvSettingList.Rows[rowIndex].Cells[(int)eCol.Enable].Value as bool?;
             gvSettingList.Rows[rowIndex].Cells[(int)eCol.Enable].Value = !(enable ?? false);
+        }
+
+        private void SetCustomTranslateEnableEnable(int rowIndex, bool enable)
+        {
+            gvSettingList.Rows[rowIndex].Cells[(int)eCol.Enable].Value = enable;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -282,6 +312,11 @@ namespace TranslateUtility.Screens
             {
                 UpdateCustomTranslate(i);
             }
+        }
+
+        private void btnSelectAll_Click(object sender, EventArgs e)
+        {
+            ToggleEnableAll();
         }
     }
 }

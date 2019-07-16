@@ -141,6 +141,7 @@
     <None Include="Tools\en.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Tools\icon.psd" />
     <None Include="Tools\ThaiStorybook\modThaiStoryBook.w3modproj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

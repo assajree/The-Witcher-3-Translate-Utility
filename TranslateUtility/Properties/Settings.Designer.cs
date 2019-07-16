@@ -601,7 +601,7 @@ namespace TranslateUtility.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool _Simple2Language {
             get {
                 return ((bool)(this["_Simple2Language"]));

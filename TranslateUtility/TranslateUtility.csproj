@@ -35,7 +35,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\b0ff6bdb2da01a5924a7f67359af45b8c69ff5b9.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\icon1.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
@@ -141,6 +141,18 @@
     <None Include="Tools\modDoubleSubtitle\content\scripts\game\gui\hud\modules\hudModuleSubtitles.ws">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Tools\modFontCsPraKas\content\blob0.bundle">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Tools\modFontCsPraKas\content\metadata.store">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Tools\modFontDilleniaUPC\content\blob0.bundle">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Tools\modFontDilleniaUPC\content\metadata.store">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Tools\modFontSarabun\content\blob0.bundle">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -179,10 +191,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\b0ff6bdb2da01a5924a7f67359af45b8c69ff5b9.ico" />
     <Content Include="changelog.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\icon1.ico" />
     <Content Include="Tools\w3strings.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

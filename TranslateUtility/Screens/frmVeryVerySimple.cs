@@ -13,10 +13,14 @@ namespace TranslateUtility
     public partial class frmVeryVerySimple : Form
     {
         Common c = new Common();
+        Setting setting = new Setting();
         string modPath = null;
         string resultPath = null;
         string translatePath = null;
         AppSetting mAppSetting = new AppSetting(Configs.SettingPath);
+
+        int mHeightCollapse = Configs.SIZE_DEFAULT_COLLASPE;
+        int mHeightExpand = Configs.SIZE_DEFAULT_EXPAND;
 
         bool ShowAdvance
         {
@@ -41,14 +45,19 @@ namespace TranslateUtility
             InitialScreen();
             InitialTooTip();
             //ReadCustomTranslateDescription();
-
-            if (!ShowAdvance)
-                ToggleAdvance();
+            
 
             //DownloadRequireComponent();
 
             //CheckForUpdate(false, false, false);
             CheckForUpdate(false);
+        }
+
+        private void frmVeryVerySimple_Shown(object sender, EventArgs e)
+        {
+            //mExpandHeight = this.Height;
+            if (!ShowAdvance)
+                ToggleAdvance();
         }
 
         //private void ReadCustomTranslateDescription()
@@ -79,6 +88,8 @@ namespace TranslateUtility
             toolTip1.SetToolTip(rdoDownloadDialy, "ดาวน์โหลดเมื่อผ่านไป 1 วัน จากการดาวน์โหลดครั้งที่แล้วเท่านั้น");
             toolTip1.SetToolTip(rdoDownloadHourly, "ดาวน์โหลดเมื่อผ่านไป 1 ชั่วโมง จากการดาวน์โหลดครั้งที่แล้วเท่านั้น");
             toolTip1.SetToolTip(rdoDownloadOnce, "ดาวน์โหลดเมื่อไม่มีไฟล์แปลภาษาเท่านั้น");
+            toolTip1.SetToolTip(btnSizeRecommend, "ขนาดแนะนำ");
+            toolTip1.SetToolTip(btnSizeReset, "ขนาดเริ่มต้น");
         }
 
         private void InitialScreen()
@@ -114,9 +125,9 @@ namespace TranslateUtility
 
         private void RefreshCustomTranslateCount()
         {
-            var custom = new CustomTranslateSetting(Configs.CustomTranslateSettingPath);
+            var custom = new CustomTranslateSetting(Configs.CustomTranslateSettingPath,setting.GetCustomTranslate());
             var count = custom.Value.Values.Where(v => v.Enable).ToList().Count;
-            lblCustomTranslateCount.Text = $@"ไฟล์ปรับแต่งที่เปิดใช้งาน : {count:#,0}";
+            lblCustomTranslateCount.Text = $@"ไฟล์ปรับแต่งที่เปิดใช้งาน : {count:#,0}/{custom.Value.Count}";
         }
 
         private void LoadSetting()
@@ -141,6 +152,10 @@ namespace TranslateUtility
             {
                 txtGamePath.Text = mAppSetting.GamePath;
             }
+
+            mHeightCollapse = mAppSetting.CollaspeHeight;
+            mHeightExpand = mAppSetting.ExpandHeight;
+            this.Height = mHeightExpand;
         }
 
         private void lblModVersion_DoubleClick(object sender, EventArgs e)
@@ -150,7 +165,7 @@ namespace TranslateUtility
 
         private void btnLegacyGenerate_Click(object sender, EventArgs e)
         {
-            SaveAppSetting();
+            //SaveAppSetting();
             StartAlt();
         }
 
@@ -252,7 +267,7 @@ namespace TranslateUtility
         {
             // result button
             btnResult.Enabled = File.Exists(resultPath);
-            btnMessageFinder.Enabled = File.Exists(resultPath);
+            btnMessageFinder.Enabled = btnResult.Enabled;
 
             // install button && restore button
             if (c.IsValidGamePath(txtGamePath.Text))
@@ -268,6 +283,15 @@ namespace TranslateUtility
                 btnFixMod.Enabled = false;
                 //btnInstallAlt.Enabled = false;
                 btnRestore.Enabled = false;
+            }
+
+            if(btnResult.Enabled && btnLegacyGenerate.Enabled)
+            {
+                btnInstallFont.Enabled = true;
+            }
+            else
+            {
+                btnInstallFont.Enabled = false;
             }
         }
 
@@ -329,6 +353,7 @@ namespace TranslateUtility
         private void frmVerySimple_FormClosing(object sender, FormClosingEventArgs e)
         {
             SaveSetting();
+            SaveAppSetting();
         }
 
         private void SaveSetting()
@@ -353,6 +378,8 @@ namespace TranslateUtility
             mAppSetting.SizeDialog = (int)txtFontSizeSpeak.Value;
             mAppSetting.DownloadFrequency = GetDownloadFrequency();
             mAppSetting.GamePath = txtGamePath.Text;
+            mAppSetting.ExpandHeight = mHeightExpand;
+            mAppSetting.CollaspeHeight = mHeightCollapse;
 
             mAppSetting.SaveSetting();
         }
@@ -431,16 +458,26 @@ namespace TranslateUtility
             if (pnAdvance.Visible)
             {
                 pnAdvance.Visible = false;
-                this.Height -= pnAdvance.Height;
+                mHeightExpand = this.Height;
+                
+                //this.Height -= pnAdvance.Height;
+                this.Height = mHeightCollapse;
+
             }
             else
             {
+                mHeightCollapse = this.Height;
+                
+                //this.Height += pnAdvance.Height;                
+                this.Height = mHeightExpand;
                 pnAdvance.Visible = true;
-                this.Height += pnAdvance.Height;
             }
 
-            ShowAdvance = pnAdvance.Visible;
+            //ShowAdvance = pnAdvance.Visible;
+
+            //Debug();
         }
+        
 
         private void btnResult_Click(object sender, EventArgs e)
         {
@@ -500,7 +537,11 @@ namespace TranslateUtility
             if (rdoFontNone.Checked)
                 return Common.eFontSetting.None;
             else if (rdoFontKuntoon.Checked)
-                return Common.eFontSetting.KoonToon;
+                return Common.eFontSetting.KunToon;
+            else if (rdoFontDillenia.Checked)
+                return Common.eFontSetting.DilleniaUPC;
+            else if (rdoFontCsPrakas.Checked)
+                return Common.eFontSetting.CSPraKas;
             else
                 return Common.eFontSetting.Sarabun;
 
@@ -557,11 +598,17 @@ namespace TranslateUtility
                 case Common.eFontSetting.None:
                     rdoFontNone.Checked = true;
                     break;
-                case Common.eFontSetting.Sarabun:
-                    rdoFontSarabun.Checked = true;
+                case Common.eFontSetting.KunToon:
+                    rdoFontKuntoon.Checked = true;
+                    break;
+                case Common.eFontSetting.CSPraKas:
+                    rdoFontCsPrakas.Checked = true;
+                    break;
+                case Common.eFontSetting.DilleniaUPC:
+                    rdoFontDillenia.Checked = true;
                     break;
                 default:
-                    rdoFontKuntoon.Checked = true;
+                    rdoFontSarabun.Checked = true;
                     break;
             }
         }
@@ -653,20 +700,63 @@ namespace TranslateUtility
             }
         }
 
-        private void btnFontSizeRecomend_Click(object sender, EventArgs e)
-        {
-            SetFontSize(34);            
-        }
-
-        private void btnFontSizeDefault_Click(object sender, EventArgs e)
-        {
-            SetFontSize(28);
-        }
-
         private void SetFontSize(int size)
         {
             txtFontSizeCutScene.Value = size;
             txtFontSizeSpeak.Value = size;
+        }
+
+        private void btnInstallFont_Click(object sender, EventArgs e)
+        {
+            c.Processing(InstallFont, "กำลังติดตั้งฟอนต์", "สำเร็จ");
+        }
+
+        private void InstallFont()
+        {
+            var modPath = Path.Combine(txtGamePath.Text, "mods");
+            c.InstallFontMod(GetFontSetting(), modPath);
+        }
+
+        private void ChangeFontSize()
+        {
+            var modPath = Path.Combine(txtGamePath.Text, "mods");
+            c.InstallSubtitleMod(modPath);
+            c.ChangeFontSize(
+                Path.Combine(modPath, Configs.modThaiLanguage),
+                (int)txtFontSizeCutScene.Value,
+                (int)txtFontSizeSpeak.Value
+            );
+        }
+
+        private void btnChangeFontSize_Click(object sender, EventArgs e)
+        {
+            c.Processing(InstallFont, "กำลังปรับขนาดซับไตเติ้ล", "สำเร็จ");
+        }
+
+        private void btnSizeReset_Click(object sender, EventArgs e)
+        {
+            SetFontSize(28);
+        }
+
+        private void btnSizeRecommend_Click(object sender, EventArgs e)
+        {
+            SetFontSize(34);
+        }
+
+        private void Debug()
+        {
+            miDebug.Text = $@"{this.Height}";
+        }
+
+        private void miDebug_Click(object sender, EventArgs e)
+        {
+            this.FormBorderStyle = FormBorderStyle.Sizable;
+            c.ShowMessage("ปรับขนาดได้แล้ว :)");
+        }
+
+        private void miVersion_Click(object sender, EventArgs e)
+        {
+            Debug();
         }
     }
 }
