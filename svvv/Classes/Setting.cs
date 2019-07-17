@@ -189,6 +189,11 @@ namespace TheWitcher3Thai
             mStorybookMaping.Add("st9 m", "st_9_tr");
             mStorybookMaping.Add("st11 m", "st_11_tr");
 
+            mStorybookMaping.Add("cs702_vision_1_tr", "cs702_vision_1_tr");
+            mStorybookMaping.Add("cs702_vision_2_tr", "cs702_vision_2_tr");
+            mStorybookMaping.Add("cs702_vision_3_tr", "cs702_vision_3_tr");
+            mStorybookMaping.Add("cs704_sister_lives_teleport_tr", "cs704_sister_lives_teleport_tr");
+
             var keyCount = mStorybookMaping.Select(r => r.Key).Distinct().ToList().Count;
             var valueCount = mStorybookMaping.Select(r => r.Value).Distinct().ToList().Count;
             if (keyCount != valueCount)
