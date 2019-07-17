@@ -89,12 +89,16 @@ namespace TranslateUtility
 
         private void btnGenerateExcel_Click(object sender, EventArgs e)
         {
-            c.Processing(GenerateExcelFromMod, "Processing...", "Generate complete");            
+            c.Processing(GenerateExcelFromMod, "Processing...", "Generate complete");
         }
 
         private void GenerateExcelFromMod()
         {
-            c.GenerateExcelFromMod(txtModSource.Text, txtModOutput.Text);
+            string langCode = txtLangCode.Text;
+            if (string.IsNullOrWhiteSpace(langCode))
+                langCode = "en";
+
+            c.GenerateExcelFromMod(txtModSource.Text, txtModOutput.Text, langCode);
         }
 
         #endregion
@@ -145,9 +149,9 @@ namespace TranslateUtility
         private void btnLegacyGenerate_Click(object sender, EventArgs e)
         {
             var startTime = DateTime.Now;
-            var message=c.ProcessingString(GenrateFromLegacy, "กรุณานอนรอซักครู่...",false);            
+            var message = c.ProcessingString(GenrateFromLegacy, "กรุณานอนรอซักครู่...", false);
 
-            if(message!=null)
+            if (message != null)
             {
                 var endTime = DateTime.Now;
                 c.ShowMessage(message + Environment.NewLine + $@"{(endTime - startTime).Minutes} minutes", "Generate Complete");
@@ -254,7 +258,7 @@ namespace TranslateUtility
 
         private void btnLegacyExcelDownload_Click(object sender, EventArgs e)
         {
-            var path = c.DownloadLegacyExcel(txtLegacyExcel.Text,true);
+            var path = c.DownloadLegacyExcel(txtLegacyExcel.Text, true);
             if (path != null)
                 txtLegacyExcel.Text = path;
         }
@@ -267,7 +271,7 @@ namespace TranslateUtility
                 if (path != null)
                     txtLegacyMod.Text = path;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 c.ShowErrorMessage(ex);
             }

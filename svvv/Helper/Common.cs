@@ -675,21 +675,43 @@ namespace TheWitcher3Thai
             Directory.Delete(target_dir, true);
         }
 
-        /// <summary>
+        ///// <summary>
+        ///// copy all w3strings from mod directory to temp directory
+        ///// </summary>
+        ///// <param name="originalPath"></param>
+        ///// <param name="tempPath"></param>
+        ///// <param name="files"></param>
+        //public void PrepareTemp(string originalPath, string tempPath, Dictionary<string, string> files)
+        //{
+        //    if (!Directory.Exists(tempPath))
+        //        Directory.CreateDirectory(tempPath);
+
+        //    foreach (var f in files)
+        //    {
+        //        var sourcePath = Path.Combine(originalPath, f.Value, "en.w3strings");
+        //        var descPath = Path.Combine(tempPath, f.Key + ".w3strings");
+        //        if (File.Exists(sourcePath))
+        //        {
+        //            File.Copy(sourcePath, descPath, true);
+        //        }
+        //    }
+        //}
+
+        // <summary>
         /// copy all w3strings from mod directory to temp directory
         /// </summary>
         /// <param name="originalPath"></param>
         /// <param name="tempPath"></param>
         /// <param name="files"></param>
-        public void PrepareTemp(string originalPath, string tempPath, Dictionary<string, string> files)
+        public void PrepareTemp(string originalPath, string targetPath, Dictionary<string, string> files, string langCode)
         {
-            if (!Directory.Exists(tempPath))
-                Directory.CreateDirectory(tempPath);
+            if (!Directory.Exists(targetPath))
+                Directory.CreateDirectory(targetPath);
 
             foreach (var f in files)
             {
-                var sourcePath = Path.Combine(originalPath, f.Value, "en.w3strings");
-                var descPath = Path.Combine(tempPath, f.Key + ".w3strings");
+                var sourcePath = Path.Combine(originalPath, f.Value, $@"{langCode}.w3strings");
+                var descPath = Path.Combine(targetPath, f.Key + ".w3strings");
                 if (File.Exists(sourcePath))
                 {
                     File.Copy(sourcePath, descPath, true);
@@ -1866,7 +1888,7 @@ namespace TheWitcher3Thai
             //return fi?.FullName;
         }
 
-        public void PrepareFile(string modPath, string tempPath, Dictionary<string, string> fileList)
+        public void PrepareFile(string modPath, string tempPath, Dictionary<string, string> fileList, string langCode="en")
         {
             // for test
             //return;
@@ -1874,11 +1896,11 @@ namespace TheWitcher3Thai
             string tempOriginalPath = Path.Combine(tempPath, "original");
 
             DeleteDirectory(tempPath);
-            PrepareTemp(modPath, tempOriginalPath, fileList);
+            PrepareTemp(modPath, tempOriginalPath, fileList, langCode);
             DecodeDirectory(tempOriginalPath);
         }
 
-        public void GenerateExcelFromMod(string modPath, string excelPath = null)
+        public void GenerateExcelFromMod(string modPath, string excelPath = null, string langCode="en")
         {
             var files = setting.GetSheetConfig();
             var tempPath = Path.Combine(Application.StartupPath, "temp");
@@ -1887,7 +1909,7 @@ namespace TheWitcher3Thai
             if (String.IsNullOrWhiteSpace(excelPath))
                 excelPath = Path.Combine(Application.StartupPath, "output", "translate.xlsx");
 
-            PrepareFile(modPath, tempPath, files);
+            PrepareFile(modPath, tempPath, files, langCode);
 
             var fi = new FileInfo(excelPath);
             if (!fi.Directory.Exists)
