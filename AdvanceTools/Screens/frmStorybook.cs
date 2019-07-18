@@ -1,5 +1,4 @@
 ﻿using svvv;
-using svvv.Classes;
 using System;
 using System.IO;
 using System.Windows.Forms;
@@ -14,6 +13,25 @@ namespace TranslateUtility
         public frmStorybook()
         {
             InitializeComponent();
+            InitialScreen();
+        }
+
+        private void InitialScreen()
+        {
+            var startupDir = new DirectoryInfo(Configs.StartupPath);
+            var projectDir = startupDir
+                                // bin
+                                .Parent
+                                // advancetool
+                                .Parent;
+            var filesDir = Path.Combine(
+                                projectDir.FullName,
+                                "Tools",
+                                "ThaiStorybook",
+                                "modThaiStoryBook",
+                                "files"
+                            );
+            txtReadPath.Text = filesDir;
         }
 
         private void frmStorybook_FormClosing(object sender, FormClosingEventArgs e)
@@ -77,7 +95,7 @@ namespace TranslateUtility
                 var dir = new DirectoryInfo(Configs.StartupPath);
                 return Path.Combine(dir.Parent.Parent.FullName, "Tools", "ThaiStorybook", "modThaiStoryBook", "files");
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return null;
             }
@@ -91,7 +109,7 @@ namespace TranslateUtility
         private void btnWriteStart_Click(object sender, EventArgs e)
         {
             var outputDir = new DirectoryInfo(txtWriteOutput.Text);
-            if(outputDir.Name!="files")
+            if (outputDir.Name != "files")
             {
                 c.ShowMessage("Output directory name should be \"files\"");
                 return;
@@ -110,7 +128,7 @@ namespace TranslateUtility
                 );
                 c.ShowMessage("Complete");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 c.ShowErrorMessage(ex);
             }
@@ -183,7 +201,7 @@ namespace TranslateUtility
                 txtReadCommentOutput.Text = str;
                 c.ShowMessage("Complete");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 c.ShowErrorMessage(ex);
             }
@@ -216,7 +234,7 @@ namespace TranslateUtility
             {
                 c.ShowErrorMessage(ex);
             }
-            
+
         }
 
         private void btnDownload_Click(object sender, EventArgs e)
