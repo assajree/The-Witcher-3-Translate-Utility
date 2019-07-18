@@ -177,6 +177,7 @@ namespace TranslateUtility.Screens
             var data = mSearchResult[gvSearchResult.SelectedRows[0].Index];
             txtSheetName.Text = data.SheetName;
             txtRowNumber.Text = data.RowNumber.ToStringOrNull();
+            txtId.Text = data.ID;
             txtOriginalText.Text = data.Text;
             txtTranslateText.Text = data.Translate;
 
