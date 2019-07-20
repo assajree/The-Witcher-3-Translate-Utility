@@ -220,6 +220,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MessageFinder\MessageFinder.csproj">
+      <Project>{b428fb56-5e23-4883-b31a-79e74f24878e}</Project>
+      <Name>MessageFinder</Name>
+    </ProjectReference>
     <ProjectReference Include="..\svvv\svvv.csproj">
       <Project>{d9ecdead-56fe-476b-b7aa-6895272ba35b}</Project>
       <Name>svvv</Name>
