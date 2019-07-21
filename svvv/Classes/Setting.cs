@@ -215,10 +215,11 @@ namespace TheWitcher3Thai
             // message fix
             mCustomTranslate.Add(new CustomTranslateItem(false, "1eDp6YF3kdx9FXc8dfMFhz72QbH9wYJfKRx2gwvD4Wcg", null));
 
+            // polite translate
+            mCustomTranslate.Add(new CustomTranslateItem(false, "1FDNdc-p0VJfv3ksoIAhl554jOdpecE6zw6io9tl5jPo", null));
+
             // funny subtitle
             mCustomTranslate.Add(new CustomTranslateItem(false, "19uVPHxzMBwCxpnjKqakNkBqxSOm2CH173L4wpwiUjS0", null));
-
-           
 
             return mCustomTranslate;
         }
