@@ -64,12 +64,6 @@
     <Compile Include="Screens\frmCredit.Designer.cs">
       <DependentUpon>frmCredit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Screens\frmCustomSubtitleSetting.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Screens\frmCustomSubtitleSetting.Designer.cs">
-      <DependentUpon>frmCustomSubtitleSetting.cs</DependentUpon>
-    </Compile>
     <Compile Include="Screens\frmCustomTranslateSetting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,9 +88,6 @@
     </Compile>
     <EmbeddedResource Include="Screens\frmCredit.resx">
       <DependentUpon>frmCredit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Screens\frmCustomSubtitleSetting.resx">
-      <DependentUpon>frmCustomSubtitleSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\frmCustomTranslateSetting.resx">
       <DependentUpon>frmCustomTranslateSetting.cs</DependentUpon>

@@ -204,8 +204,8 @@ namespace TheWitcher3Thai
 
         public List<CustomTranslateItem> GetCustomTranslate()
         {
-            if (mCustomTranslate != null)
-                return mCustomTranslate;
+            //if (mCustomTranslate != null)
+            //    return mCustomTranslate;
 
             mCustomTranslate = new List<CustomTranslateItem>();
 

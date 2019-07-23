@@ -34,15 +34,15 @@
             this.btnDown = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.gvSettingList = new System.Windows.Forms.DataGridView();
+            this.btnRemove = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnUpdateAll = new System.Windows.Forms.Button();
+            this.btnSelectAll = new System.Windows.Forms.Button();
             this.Enable = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Button = new System.Windows.Forms.DataGridViewButtonColumn();
             this.View = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.btnRemove = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnUpdateAll = new System.Windows.Forms.Button();
-            this.btnSelectAll = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvSettingList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,10 +50,9 @@
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.btnSave.Location = new System.Drawing.Point(623, 234);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSave.Location = new System.Drawing.Point(467, 190);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(129, 72);
+            this.btnSave.Size = new System.Drawing.Size(97, 58);
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "บันทึก";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -63,10 +62,9 @@
             // 
             this.btnUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.btnUp.Location = new System.Drawing.Point(623, 36);
-            this.btnUp.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUp.Location = new System.Drawing.Point(467, 29);
             this.btnUp.Name = "btnUp";
-            this.btnUp.Size = new System.Drawing.Size(129, 37);
+            this.btnUp.Size = new System.Drawing.Size(97, 30);
             this.btnUp.TabIndex = 1;
             this.btnUp.Text = "เลื่อนขึ้น";
             this.btnUp.UseVisualStyleBackColor = true;
@@ -76,10 +74,9 @@
             // 
             this.btnDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.btnDown.Location = new System.Drawing.Point(623, 80);
-            this.btnDown.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDown.Location = new System.Drawing.Point(467, 65);
             this.btnDown.Name = "btnDown";
-            this.btnDown.Size = new System.Drawing.Size(129, 37);
+            this.btnDown.Size = new System.Drawing.Size(97, 30);
             this.btnDown.TabIndex = 1;
             this.btnDown.Text = "เลื่อนลง";
             this.btnDown.UseVisualStyleBackColor = true;
@@ -89,10 +86,9 @@
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.btnAdd.Location = new System.Drawing.Point(16, 314);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAdd.Location = new System.Drawing.Point(12, 255);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(100, 37);
+            this.btnAdd.Size = new System.Drawing.Size(75, 30);
             this.btnAdd.TabIndex = 1;
             this.btnAdd.Text = "เพิ่ม";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -116,8 +112,7 @@
             this.Description,
             this.Button,
             this.View});
-            this.gvSettingList.Location = new System.Drawing.Point(16, 36);
-            this.gvSettingList.Margin = new System.Windows.Forms.Padding(4);
+            this.gvSettingList.Location = new System.Drawing.Point(12, 29);
             this.gvSettingList.MultiSelect = false;
             this.gvSettingList.Name = "gvSettingList";
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -132,10 +127,58 @@
             this.gvSettingList.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gvSettingList.RowTemplate.Height = 25;
             this.gvSettingList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gvSettingList.Size = new System.Drawing.Size(599, 270);
+            this.gvSettingList.Size = new System.Drawing.Size(449, 219);
             this.gvSettingList.TabIndex = 4;
             this.gvSettingList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvSettingList_CellClick);
             this.gvSettingList.Click += new System.EventHandler(this.gvSettingList_Click);
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.btnRemove.Location = new System.Drawing.Point(93, 255);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(75, 30);
+            this.btnRemove.TabIndex = 5;
+            this.btnRemove.Text = "ลบ";
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label1.Location = new System.Drawing.Point(9, 7);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(429, 17);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "* ถ้าข้อความซ้ำกัน ข้อความของไฟล์ข้างบนจะถูกทับด้วยข้อความจากไฟล์ข้างล่าง";
+            // 
+            // btnUpdateAll
+            // 
+            this.btnUpdateAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUpdateAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.btnUpdateAll.Location = new System.Drawing.Point(364, 255);
+            this.btnUpdateAll.Name = "btnUpdateAll";
+            this.btnUpdateAll.Size = new System.Drawing.Size(97, 30);
+            this.btnUpdateAll.TabIndex = 7;
+            this.btnUpdateAll.Text = "อัพเดททั้งหมด";
+            this.btnUpdateAll.UseVisualStyleBackColor = true;
+            this.btnUpdateAll.Click += new System.EventHandler(this.btnUpdateAll_Click);
+            // 
+            // btnSelectAll
+            // 
+            this.btnSelectAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSelectAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.btnSelectAll.Location = new System.Drawing.Point(262, 255);
+            this.btnSelectAll.Name = "btnSelectAll";
+            this.btnSelectAll.Size = new System.Drawing.Size(97, 30);
+            this.btnSelectAll.TabIndex = 8;
+            this.btnSelectAll.Text = "เลือกทั้งหมด";
+            this.btnSelectAll.UseVisualStyleBackColor = true;
+            this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
             // 
             // Enable
             // 
@@ -173,65 +216,15 @@
             this.View.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.View.HeaderText = "";
             this.View.Name = "View";
-            this.View.Text = "เปิด";
+            this.View.Text = "ดู";
             this.View.UseColumnTextForButtonValue = true;
             this.View.Width = 60;
             // 
-            // btnRemove
-            // 
-            this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.btnRemove.Location = new System.Drawing.Point(124, 314);
-            this.btnRemove.Margin = new System.Windows.Forms.Padding(4);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(100, 37);
-            this.btnRemove.TabIndex = 5;
-            this.btnRemove.Text = "ลบ";
-            this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(539, 20);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "* ถ้าข้อความซ้ำกัน ข้อความของไฟล์ข้างบนจะถูกทับด้วยข้อความจากไฟล์ข้างล่าง";
-            // 
-            // btnUpdateAll
-            // 
-            this.btnUpdateAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUpdateAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.btnUpdateAll.Location = new System.Drawing.Point(486, 314);
-            this.btnUpdateAll.Margin = new System.Windows.Forms.Padding(4);
-            this.btnUpdateAll.Name = "btnUpdateAll";
-            this.btnUpdateAll.Size = new System.Drawing.Size(129, 37);
-            this.btnUpdateAll.TabIndex = 7;
-            this.btnUpdateAll.Text = "อัพเดททั้งหมด";
-            this.btnUpdateAll.UseVisualStyleBackColor = true;
-            this.btnUpdateAll.Click += new System.EventHandler(this.btnUpdateAll_Click);
-            // 
-            // btnSelectAll
-            // 
-            this.btnSelectAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSelectAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.btnSelectAll.Location = new System.Drawing.Point(349, 314);
-            this.btnSelectAll.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSelectAll.Name = "btnSelectAll";
-            this.btnSelectAll.Size = new System.Drawing.Size(129, 37);
-            this.btnSelectAll.TabIndex = 8;
-            this.btnSelectAll.Text = "เลือกทั้งหมด";
-            this.btnSelectAll.UseVisualStyleBackColor = true;
-            this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
-            // 
             // frmCustomTranslateSetting
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(765, 366);
+            this.ClientSize = new System.Drawing.Size(574, 297);
             this.Controls.Add(this.btnSelectAll);
             this.Controls.Add(this.btnUpdateAll);
             this.Controls.Add(this.label1);
@@ -241,8 +234,7 @@
             this.Controls.Add(this.btnDown);
             this.Controls.Add(this.btnUp);
             this.Controls.Add(this.btnSave);
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(661, 235);
+            this.MinimumSize = new System.Drawing.Size(500, 198);
             this.Name = "frmCustomTranslateSetting";
             this.ShowIcon = false;
             this.Text = "ตั้งค่าการแปลแบบปรับแต่ง";
@@ -262,11 +254,11 @@
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnUpdateAll;
+        private System.Windows.Forms.Button btnSelectAll;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Enable;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
         private System.Windows.Forms.DataGridViewButtonColumn Button;
         private System.Windows.Forms.DataGridViewButtonColumn View;
-        private System.Windows.Forms.Button btnSelectAll;
     }
 }
