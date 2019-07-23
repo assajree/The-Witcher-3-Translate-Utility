@@ -45,7 +45,7 @@ namespace TranslateUtility
             InitialScreen();
             InitialTooTip();
             //ReadCustomTranslateDescription();
-            
+
 
             //DownloadRequireComponent();
 
@@ -114,7 +114,7 @@ namespace TranslateUtility
             // install
             txtGamePath.SetDefault(c.GetGameDirectory());
 
-            
+
             SetDownloadFrequencyRadio();
             SetFontRadio();
             LoadSetting();
@@ -125,7 +125,7 @@ namespace TranslateUtility
 
         private void RefreshCustomTranslateCount()
         {
-            var custom = new CustomTranslateSetting(Configs.CustomTranslateSettingPath,setting.GetCustomTranslate());
+            var custom = new CustomTranslateSetting(Configs.CustomTranslateSettingPath, setting.GetCustomTranslate());
             var count = custom.Value.Values.Where(v => v.Enable).ToList().Count;
             lblCustomTranslateCount.Text = $@"ไฟล์ปรับแต่งที่เปิดใช้งาน : {count:#,0}/{custom.Value.Count}";
         }
@@ -149,7 +149,7 @@ namespace TranslateUtility
             txtFontSizeCutScene.Value = mAppSetting.SizeCutscene;
             txtFontSizeSpeak.Value = mAppSetting.SizeDialog;
 
-            if(String.IsNullOrWhiteSpace(txtGamePath.Text))
+            if (String.IsNullOrWhiteSpace(txtGamePath.Text))
             {
                 txtGamePath.Text = mAppSetting.GamePath;
             }
@@ -228,7 +228,8 @@ namespace TranslateUtility
                 (int)txtFontSizeSpeak.Value
             );
 
-            c.ResetTextColor(Path.Combine(modPath, Configs.modThaiLanguage));
+            if (!chkChangeTextColor.Checked)
+                c.ResetTextColor(Path.Combine(modPath, Configs.modThaiLanguage));
 
             if (!chkOldMethod.Checked)
             {
@@ -258,7 +259,7 @@ namespace TranslateUtility
             {
                 c.ChangeLanguageSettingToEN();
             }
-                
+
         }
 
         //private void Backup(bool overwrite)
@@ -288,7 +289,7 @@ namespace TranslateUtility
                 btnRestore.Enabled = false;
             }
 
-            if(btnResult.Enabled && btnLegacyGenerate.Enabled)
+            if (btnResult.Enabled && btnLegacyGenerate.Enabled)
             {
                 btnInstallFont.Enabled = true;
             }
@@ -402,14 +403,14 @@ namespace TranslateUtility
         {
             bool oldMethod = chkOldMethod.Checked;
 
-            if(!oldMethod)
+            if (!oldMethod)
                 c.UpdateStorybook();
 
             c.UpdateTemplate();
 
             if (chkAltSub.Checked)
             {
-                c.Processing(DownloadAllCustomTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษาแบบปรับแต่ง...");                
+                c.Processing(DownloadAllCustomTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษาแบบปรับแต่ง...");
             }
 
             // download translate excel file
@@ -418,7 +419,7 @@ namespace TranslateUtility
                 return;
 
             // generate mod
-            if (translatePath==null)
+            if (translatePath == null)
                 return;
 
             var result = c.Processing(GenerateModAlt, false, "กำลังสร้างม็อด...");
@@ -463,7 +464,7 @@ namespace TranslateUtility
             {
                 pnAdvance.Visible = false;
                 mHeightExpand = this.Height;
-                
+
                 //this.Height -= pnAdvance.Height;
                 this.Height = mHeightCollapse;
 
@@ -471,7 +472,7 @@ namespace TranslateUtility
             else
             {
                 mHeightCollapse = this.Height;
-                
+
                 //this.Height += pnAdvance.Height;                
                 this.Height = mHeightExpand;
                 pnAdvance.Visible = true;
@@ -481,7 +482,7 @@ namespace TranslateUtility
 
             //Debug();
         }
-        
+
 
         private void btnResult_Click(object sender, EventArgs e)
         {
@@ -644,7 +645,7 @@ namespace TranslateUtility
         {
             this.Hide();
             frm.Closed += OnChildClosed;
-            var result= frm.ShowDialog();
+            var result = frm.ShowDialog();
             if (result != DialogResult.OK)
                 this.Close();
         }
@@ -698,7 +699,7 @@ namespace TranslateUtility
                     c.ShowMessage("สำเร็จ");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 c.ShowErrorMessage(ex);
             }
@@ -718,8 +719,7 @@ namespace TranslateUtility
         private void InstallFont()
         {
             var modPath = Path.Combine(txtGamePath.Text, "mods");
-            c.InstallFontMod(GetFontSetting(), modPath);
-            c.ResetTextColor(modPath);
+            c.InstallFontMod(GetFontSetting(), modPath);            
         }
 
         private void ChangeFontSize()
@@ -731,11 +731,14 @@ namespace TranslateUtility
                 (int)txtFontSizeCutScene.Value,
                 (int)txtFontSizeSpeak.Value
             );
+
+            if (!chkChangeTextColor.Checked)
+                c.ResetTextColor(Path.Combine(modPath, Configs.modThaiLanguage));
         }
 
         private void btnChangeFontSize_Click(object sender, EventArgs e)
         {
-            c.Processing(InstallFont, "กำลังปรับขนาดซับไตเติ้ล", "สำเร็จ");
+            c.Processing(ChangeFontSize, "กำลังปรับขนาดซับไตเติ้ล", "สำเร็จ");
         }
 
         private void btnSizeReset_Click(object sender, EventArgs e)
