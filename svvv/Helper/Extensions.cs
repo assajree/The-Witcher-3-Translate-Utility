@@ -89,5 +89,13 @@ namespace TheWitcher3Thai.Helper
 
             return val;
         }
+
+        public static string Right(this string str, int length)
+        {
+            if (length >= str.Length)
+                return str;
+
+            return str.Substring(str.Length - length);
+        }
     }
 }

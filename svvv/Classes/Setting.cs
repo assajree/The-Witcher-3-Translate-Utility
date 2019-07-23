@@ -209,11 +209,14 @@ namespace TheWitcher3Thai
 
             mCustomTranslate = new List<CustomTranslateItem>();
 
-            // english quest name
-            mCustomTranslate.Add(new CustomTranslateItem(true, "1X2VOm21x5ow_duSutaXV3AsCdz2YT1RVZZQoiPZHp14", null));
+            // missing message
+            mCustomTranslate.Add(new CustomTranslateItem(true, "16rgIGMmFzO1GsS-JdNXbkgTRaEma6LOuR_2EF76-TuQ", null));
 
             // message fix
-            mCustomTranslate.Add(new CustomTranslateItem(false, "1eDp6YF3kdx9FXc8dfMFhz72QbH9wYJfKRx2gwvD4Wcg", null));
+            mCustomTranslate.Add(new CustomTranslateItem(true, "1eDp6YF3kdx9FXc8dfMFhz72QbH9wYJfKRx2gwvD4Wcg", null));
+
+            // english quest name
+            mCustomTranslate.Add(new CustomTranslateItem(false, "1X2VOm21x5ow_duSutaXV3AsCdz2YT1RVZZQoiPZHp14", null));          
 
             // polite translate
             mCustomTranslate.Add(new CustomTranslateItem(false, "1FDNdc-p0VJfv3ksoIAhl554jOdpecE6zw6io9tl5jPo", null));

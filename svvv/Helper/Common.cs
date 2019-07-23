@@ -2439,9 +2439,12 @@ namespace TheWitcher3Thai
                     w3s.RowNumber = message.RowNumber;
                     if (!String.IsNullOrWhiteSpace(message.Text))
                         w3s.Text = message.Text;
-
-
-
+                }
+                else
+                {
+                    message.ID = String.Concat("          ", message.ID).Right(10);
+                    message.KeyHex = String.Concat("00000000", message.KeyHex).Right(8);
+                    contentDict.Add(message.IdKey, message);
                 }
             }
         }
