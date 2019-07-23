@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\AppSetting.cs" />
+    <Compile Include="Classes\Constant.cs" />
     <Compile Include="Classes\CustomTranslateSetting.cs" />
     <Compile Include="Classes\Excel.cs" />
     <Compile Include="Classes\KnowException.cs" />

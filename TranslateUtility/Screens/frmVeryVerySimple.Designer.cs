@@ -86,6 +86,7 @@
             this.miDebug = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.txtGamePath = new System.Windows.Forms.TextBox();
+            this.chkChangeTextColor = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -128,7 +129,7 @@
             this.rdoModTranslateFirst.Checked = true;
             this.rdoModTranslateFirst.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdoModTranslateFirst.Location = new System.Drawing.Point(26, 29);
-            this.rdoModTranslateFirst.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rdoModTranslateFirst.Margin = new System.Windows.Forms.Padding(2);
             this.rdoModTranslateFirst.Name = "rdoModTranslateFirst";
             this.rdoModTranslateFirst.Size = new System.Drawing.Size(101, 21);
             this.rdoModTranslateFirst.TabIndex = 35;
@@ -207,8 +208,8 @@
             // 
             this.rdoModOriginFirst.AutoSize = true;
             this.rdoModOriginFirst.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoModOriginFirst.Location = new System.Drawing.Point(162, 29);
-            this.rdoModOriginFirst.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rdoModOriginFirst.Location = new System.Drawing.Point(166, 29);
+            this.rdoModOriginFirst.Margin = new System.Windows.Forms.Padding(2);
             this.rdoModOriginFirst.Name = "rdoModOriginFirst";
             this.rdoModOriginFirst.Size = new System.Drawing.Size(117, 21);
             this.rdoModOriginFirst.TabIndex = 34;
@@ -345,7 +346,7 @@
             this.chkTranslateInfo.Checked = settings1._SimpleTranslateInfo;
             this.chkTranslateInfo.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_SimpleTranslateInfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.chkTranslateInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkTranslateInfo.Location = new System.Drawing.Point(162, 29);
+            this.chkTranslateInfo.Location = new System.Drawing.Point(166, 29);
             this.chkTranslateInfo.Name = "chkTranslateInfo";
             this.chkTranslateInfo.Size = new System.Drawing.Size(80, 21);
             this.chkTranslateInfo.TabIndex = 39;
@@ -384,7 +385,7 @@
             this.groupBox3.Controls.Add(this.btnResult);
             this.groupBox3.Controls.Add(this.btnRestore);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(3, 420);
+            this.groupBox3.Location = new System.Drawing.Point(3, 453);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(511, 60);
             this.groupBox3.TabIndex = 50;
@@ -438,7 +439,7 @@
             this.pnAdvance.Controls.Add(this.groupBox3);
             this.pnAdvance.Location = new System.Drawing.Point(16, 100);
             this.pnAdvance.Name = "pnAdvance";
-            this.pnAdvance.Size = new System.Drawing.Size(521, 481);
+            this.pnAdvance.Size = new System.Drawing.Size(521, 518);
             this.pnAdvance.TabIndex = 52;
             // 
             // groupBox7
@@ -449,7 +450,7 @@
             this.groupBox7.Controls.Add(this.btnAltSubSetting);
             this.groupBox7.Controls.Add(this.chkAltSub);
             this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox7.Location = new System.Drawing.Point(3, 354);
+            this.groupBox7.Location = new System.Drawing.Point(3, 387);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(511, 60);
             this.groupBox7.TabIndex = 52;
@@ -481,6 +482,7 @@
             // 
             this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox6.Controls.Add(this.chkChangeTextColor);
             this.groupBox6.Controls.Add(this.btnSizeRecommend);
             this.groupBox6.Controls.Add(this.btnChangeFontSize);
             this.groupBox6.Controls.Add(this.btnSizeReset);
@@ -491,41 +493,41 @@
             this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox6.Location = new System.Drawing.Point(3, 221);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(511, 60);
+            this.groupBox6.Size = new System.Drawing.Size(511, 93);
             this.groupBox6.TabIndex = 52;
             this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "ขนาดซับไตเติ้ล";
+            this.groupBox6.Text = "ขนาดและสีซับไตเติ้ล";
             // 
             // btnSizeRecommend
             // 
             this.btnSizeRecommend.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSizeRecommend.Location = new System.Drawing.Point(349, 23);
+            this.btnSizeRecommend.Location = new System.Drawing.Point(162, 56);
             this.btnSizeRecommend.Name = "btnSizeRecommend";
-            this.btnSizeRecommend.Size = new System.Drawing.Size(35, 24);
+            this.btnSizeRecommend.Size = new System.Drawing.Size(115, 24);
             this.btnSizeRecommend.TabIndex = 53;
-            this.btnSizeRecommend.Text = "34";
+            this.btnSizeRecommend.Text = "ขนาดแนะนำ";
             this.btnSizeRecommend.UseVisualStyleBackColor = true;
             this.btnSizeRecommend.Click += new System.EventHandler(this.btnSizeRecommend_Click);
             // 
             // btnChangeFontSize
             // 
             this.btnChangeFontSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChangeFontSize.Location = new System.Drawing.Point(390, 23);
+            this.btnChangeFontSize.Location = new System.Drawing.Point(307, 55);
             this.btnChangeFontSize.Name = "btnChangeFontSize";
-            this.btnChangeFontSize.Size = new System.Drawing.Size(89, 24);
+            this.btnChangeFontSize.Size = new System.Drawing.Size(115, 24);
             this.btnChangeFontSize.TabIndex = 52;
-            this.btnChangeFontSize.Text = "เปลี่ยนด่วน";
+            this.btnChangeFontSize.Text = "เปลี่ยนตอนนี้";
             this.btnChangeFontSize.UseVisualStyleBackColor = true;
             this.btnChangeFontSize.Click += new System.EventHandler(this.btnChangeFontSize_Click);
             // 
             // btnSizeReset
             // 
             this.btnSizeReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSizeReset.Location = new System.Drawing.Point(307, 23);
+            this.btnSizeReset.Location = new System.Drawing.Point(23, 56);
             this.btnSizeReset.Name = "btnSizeReset";
-            this.btnSizeReset.Size = new System.Drawing.Size(35, 24);
+            this.btnSizeReset.Size = new System.Drawing.Size(115, 24);
             this.btnSizeReset.TabIndex = 53;
-            this.btnSizeReset.Text = "28";
+            this.btnSizeReset.Text = "ขนาดเริ่มต้น";
             this.btnSizeReset.UseVisualStyleBackColor = true;
             this.btnSizeReset.Click += new System.EventHandler(this.btnSizeReset_Click);
             // 
@@ -591,7 +593,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(159, 27);
+            this.label2.Location = new System.Drawing.Point(159, 29);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 17);
             this.label2.TabIndex = 3;
@@ -606,7 +608,7 @@
             this.groupBox5.Controls.Add(this.rdoDownloadOnce);
             this.groupBox5.Controls.Add(this.rdoDownloadHourly);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(3, 287);
+            this.groupBox5.Location = new System.Drawing.Point(3, 320);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(511, 60);
             this.groupBox5.TabIndex = 52;
@@ -682,9 +684,9 @@
             this.btnInstallFont.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInstallFont.Location = new System.Drawing.Point(307, 47);
             this.btnInstallFont.Name = "btnInstallFont";
-            this.btnInstallFont.Size = new System.Drawing.Size(89, 24);
+            this.btnInstallFont.Size = new System.Drawing.Size(115, 24);
             this.btnInstallFont.TabIndex = 52;
-            this.btnInstallFont.Text = "เปลี่ยนด่วน";
+            this.btnInstallFont.Text = "เปลี่ยนตอนนี้";
             this.btnInstallFont.UseVisualStyleBackColor = true;
             this.btnInstallFont.Click += new System.EventHandler(this.btnInstallFont_Click);
             // 
@@ -692,7 +694,7 @@
             // 
             this.rdoFontDillenia.AutoSize = true;
             this.rdoFontDillenia.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoFontDillenia.Location = new System.Drawing.Point(162, 50);
+            this.rdoFontDillenia.Location = new System.Drawing.Point(166, 50);
             this.rdoFontDillenia.Name = "rdoFontDillenia";
             this.rdoFontDillenia.Size = new System.Drawing.Size(72, 21);
             this.rdoFontDillenia.TabIndex = 4;
@@ -738,7 +740,7 @@
             // 
             this.rdoFontKuntoon.AutoSize = true;
             this.rdoFontKuntoon.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoFontKuntoon.Location = new System.Drawing.Point(162, 24);
+            this.rdoFontKuntoon.Location = new System.Drawing.Point(166, 24);
             this.rdoFontKuntoon.Name = "rdoFontKuntoon";
             this.rdoFontKuntoon.Size = new System.Drawing.Size(62, 21);
             this.rdoFontKuntoon.TabIndex = 0;
@@ -778,21 +780,21 @@
             // miUpdate
             // 
             this.miUpdate.Name = "miUpdate";
-            this.miUpdate.Size = new System.Drawing.Size(176, 22);
+            this.miUpdate.Size = new System.Drawing.Size(180, 22);
             this.miUpdate.Text = "อัพเดทโปรแกรม";
             this.miUpdate.Click += new System.EventHandler(this.miUpdate_Click);
             // 
             // miTranslateProgress
             // 
             this.miTranslateProgress.Name = "miTranslateProgress";
-            this.miTranslateProgress.Size = new System.Drawing.Size(176, 22);
+            this.miTranslateProgress.Size = new System.Drawing.Size(180, 22);
             this.miTranslateProgress.Text = "ข้อมูลการแปล";
             this.miTranslateProgress.Click += new System.EventHandler(this.miTranslateProgress_Click);
             // 
             // miMessageFinder
             // 
             this.miMessageFinder.Name = "miMessageFinder";
-            this.miMessageFinder.Size = new System.Drawing.Size(176, 22);
+            this.miMessageFinder.Size = new System.Drawing.Size(180, 22);
             this.miMessageFinder.Text = "เครื่องมือค้นหาข้อความ";
             this.miMessageFinder.Click += new System.EventHandler(this.miMessageFinder_Click);
             // 
@@ -800,21 +802,21 @@
             // 
             this.miChangeLog.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.miChangeLog.Name = "miChangeLog";
-            this.miChangeLog.Size = new System.Drawing.Size(176, 22);
+            this.miChangeLog.Size = new System.Drawing.Size(180, 22);
             this.miChangeLog.Text = "การเปลี่ยนแปลง";
             this.miChangeLog.Click += new System.EventHandler(this.miChangeLog_Click);
             // 
             // miCredit
             // 
             this.miCredit.Name = "miCredit";
-            this.miCredit.Size = new System.Drawing.Size(176, 22);
+            this.miCredit.Size = new System.Drawing.Size(180, 22);
             this.miCredit.Text = "เครดิต";
             this.miCredit.Click += new System.EventHandler(this.miCredit_Click);
             // 
             // miDebug
             // 
             this.miDebug.Name = "miDebug";
-            this.miDebug.Size = new System.Drawing.Size(176, 22);
+            this.miDebug.Size = new System.Drawing.Size(180, 22);
             this.miDebug.Text = "สวัสดี ฉันชื่อสะหวีวี่วี";
             this.miDebug.Click += new System.EventHandler(this.miDebug_Click);
             // 
@@ -835,12 +837,23 @@
             this.txtGamePath.TextChanged += new System.EventHandler(this.txtGamePath_TextChanged);
             this.txtGamePath.DoubleClick += new System.EventHandler(this.txtGamePath_DoubleClick);
             // 
+            // chkChangeTextColor
+            // 
+            this.chkChangeTextColor.AutoSize = true;
+            this.chkChangeTextColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkChangeTextColor.Location = new System.Drawing.Point(307, 28);
+            this.chkChangeTextColor.Name = "chkChangeTextColor";
+            this.chkChangeTextColor.Size = new System.Drawing.Size(149, 21);
+            this.chkChangeTextColor.TabIndex = 41;
+            this.chkChangeTextColor.Text = "เปลี่ยนสีชื่อในซับไตเติ้ล";
+            this.chkChangeTextColor.UseVisualStyleBackColor = true;
+            // 
             // frmVeryVerySimple
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(549, 591);
+            this.ClientSize = new System.Drawing.Size(549, 620);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.btnLegacyGenerate);
             this.Controls.Add(this.pnAdvance);
@@ -938,5 +951,6 @@
         private System.Windows.Forms.Button btnSizeRecommend;
         private System.Windows.Forms.Button btnSizeReset;
         private System.Windows.Forms.ToolStripMenuItem miDebug;
+        private System.Windows.Forms.CheckBox chkChangeTextColor;
     }
 }

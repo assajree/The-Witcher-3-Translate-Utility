@@ -19,8 +19,8 @@ namespace TranslateUtility
         string translatePath = null;
         AppSetting mAppSetting = new AppSetting(Configs.SettingPath);
 
-        int mHeightCollapse = Configs.SIZE_DEFAULT_COLLASPE;
-        int mHeightExpand = Configs.SIZE_DEFAULT_EXPAND;
+        int mHeightCollapse = Constant.SIZE_DEFAULT_COLLASPE;
+        int mHeightExpand = Constant.SIZE_DEFAULT_EXPAND;
 
         bool ShowAdvance
         {
@@ -145,6 +145,7 @@ namespace TranslateUtility
             chkUntranslateInfo.Checked = mAppSetting.ShowNotTranslateRow;
             chkTranslateInfo.Checked = mAppSetting.ShowTranslateRow;
             chkUiInfo.Checked = mAppSetting.ShowUiRow;
+            chkChangeTextColor.Checked = mAppSetting.ChangeTextColor;
             txtFontSizeCutScene.Value = mAppSetting.SizeCutscene;
             txtFontSizeSpeak.Value = mAppSetting.SizeDialog;
 
@@ -153,8 +154,8 @@ namespace TranslateUtility
                 txtGamePath.Text = mAppSetting.GamePath;
             }
 
-            mHeightCollapse = mAppSetting.CollaspeHeight;
-            mHeightExpand = mAppSetting.ExpandHeight;
+            //mHeightCollapse = mAppSetting.CollaspeHeight;
+            //mHeightExpand = mAppSetting.ExpandHeight;
             this.Height = mHeightExpand;
         }
 
@@ -226,6 +227,8 @@ namespace TranslateUtility
                 (int)txtFontSizeCutScene.Value,
                 (int)txtFontSizeSpeak.Value
             );
+
+            c.ResetTextColor(Path.Combine(modPath, Configs.modThaiLanguage));
 
             if (!chkOldMethod.Checked)
             {
@@ -373,6 +376,7 @@ namespace TranslateUtility
             mAppSetting.ShowNotTranslateRow = chkUntranslateInfo.Checked;
             mAppSetting.ShowTranslateRow = chkTranslateInfo.Checked;
             mAppSetting.ShowUiRow = chkUiInfo.Checked;
+            mAppSetting.ChangeTextColor = chkChangeTextColor.Checked;
             mAppSetting.FontSetting = GetFontSetting();
             mAppSetting.SizeCutscene = (int)txtFontSizeCutScene.Value;
             mAppSetting.SizeDialog = (int)txtFontSizeSpeak.Value;
@@ -715,6 +719,7 @@ namespace TranslateUtility
         {
             var modPath = Path.Combine(txtGamePath.Text, "mods");
             c.InstallFontMod(GetFontSetting(), modPath);
+            c.ResetTextColor(modPath);
         }
 
         private void ChangeFontSize()
@@ -745,7 +750,7 @@ namespace TranslateUtility
 
         private void Debug()
         {
-            miDebug.Text = $@"{this.Height}";
+            miDebug.Text = $@"{this.Height} x {this.Width}";
         }
 
         private void miDebug_Click(object sender, EventArgs e)

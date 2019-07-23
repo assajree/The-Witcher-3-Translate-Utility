@@ -3081,6 +3081,40 @@ namespace TheWitcher3Thai
 
         }
 
+        public void ResetTextColor(string modPath)
+        {
+            string pathScript = @"content\scripts\game\gui\hud\modules";
+            string pathDialog = Path.Combine(modPath, pathScript, "hudModuleDialog.ws");
+            string pathSubtitle = Path.Combine(modPath, pathScript, "hudModuleSubtitles.ws");
+
+            ResetTexColorDialog(pathDialog);
+            ResetTexColorSubtitle(pathSubtitle);
+
+        }
+
+        private void ResetTexColorDialog(string path)
+        {
+            if (File.Exists(path))
+            {
+                string text = File.ReadAllText(path);
+                text = text.Replace(Constant.COLOR_ALTERNATIVE_NAME, Constant.COLOR_ALTERNATIVE_TEXT);
+                File.WriteAllText(path, text);
+            }
+        }
+
+        private void ResetTexColorSubtitle(string path)
+        {
+            if (File.Exists(path))
+            {
+                string text = File.ReadAllText(path);
+                text = text.Replace(Constant.COLOR_ALTERNATIVE_NAME, Constant.COLOR_ALTERNATIVE_TEXT);
+                text = text.Replace(Constant.COLOR_GERALT_NAME, Constant.COLOR_DEFAULT_NAME);
+                text = text.Replace(Constant.COLOR_CIRI_NAME, Constant.COLOR_DEFAULT_NAME);
+                text = text.Replace(Constant.COLOR_OTHER_NAME, Constant.COLOR_DEFAULT_NAME);
+                File.WriteAllText(path, text);
+            }
+        }
+
         public void UpgradeToFullTranslate(string targetPath)
         {
             // rename en to tr

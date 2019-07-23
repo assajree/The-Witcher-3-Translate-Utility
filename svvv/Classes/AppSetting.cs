@@ -11,7 +11,7 @@ namespace svvv.Classes
         const char SEPARATOR = '=';
         string mSettingPath;
 
-        public bool DoubleLanguage { get; set; } = true;
+        public bool DoubleLanguage { get; set; } = false;
         public bool EnglishUi { get; set; } = false;
         public bool OldMethod { get; set; } = false;
         public bool AlternativeSubtitle { get; set; } = true;
@@ -19,21 +19,21 @@ namespace svvv.Classes
         public bool ShowNotTranslateRow { get; set; } = false;
         public bool ShowTranslateRow { get; set; } = false;
         public bool ShowUiRow { get; set; } = false;
+        public bool ChangeTextColor { get; set; } = true;
         public eFontSetting FontSetting { get; set; } = eFontSetting.Sarabun;
         public int SizeCutscene { get; set; } = 34;
         public int SizeDialog { get; set; } = 34;
         public eDownloadFrequency DownloadFrequency { get; set; } = eDownloadFrequency.Hour;
         public string GamePath { get; set; } = "";
-        public int ExpandHeight { get; set; } = Configs.SIZE_DEFAULT_EXPAND;
-        public int CollaspeHeight { get; set; } = Configs.SIZE_DEFAULT_COLLASPE;
+        public int ExpandHeight { get; set; } = Constant.SIZE_DEFAULT_EXPAND;
+        public int CollaspeHeight { get; set; } = Constant.SIZE_DEFAULT_COLLASPE;
 
         public AppSetting(string settingPath)
         {
             mSettingPath = settingPath;
             LoadSetting();
-            SaveSetting();
+            SaveSetting();            
         }
-
 
         private void LoadSetting()
         {
@@ -68,6 +68,7 @@ namespace svvv.Classes
         public void SaveSetting()
         {
             File.WriteAllText(mSettingPath, ToString());
+            Configs.SetAppSetting(this);
         }
 
         public override string ToString()
@@ -82,12 +83,17 @@ namespace svvv.Classes
             sb.AppendLine($@"ShowNotTranslateRow={ShowNotTranslateRow}");
             sb.AppendLine($@"ShowTranslateRow={ShowTranslateRow}");
             sb.AppendLine($@"ShowUiRow={ShowUiRow}");
+            sb.AppendLine($@"ChangeTextColor={ChangeTextColor}");
             sb.AppendLine($@"FontSetting={FontSetting}");
             sb.AppendLine($@"SizeCutscene={SizeCutscene}");
             sb.AppendLine($@"SizeDialog={SizeDialog}");
             sb.AppendLine($@"DownloadFrequency={DownloadFrequency}");
-            sb.AppendLine($@"ExpandHeight={ExpandHeight}");
-            sb.AppendLine($@"CollaspeHeight={CollaspeHeight}");
+
+            if(ExpandHeight!= Constant.SIZE_DEFAULT_EXPAND)
+                sb.AppendLine($@"ExpandHeight={ExpandHeight}");
+
+            if (CollaspeHeight != Constant.SIZE_DEFAULT_COLLASPE)
+                sb.AppendLine($@"CollaspeHeight={CollaspeHeight}");
 
             return sb.ToString();
         }
@@ -104,7 +110,7 @@ namespace svvv.Classes
             switch (setting)
             {
                 case "DoubleLanguage":
-                    DoubleLanguage = value.ToBoolean(true);
+                    DoubleLanguage = value.ToBoolean(false);
                     break;
                 case "EnglishUi":
                     EnglishUi = value.ToBoolean(false);
@@ -127,6 +133,9 @@ namespace svvv.Classes
                 case "ShowUiRow":
                     ShowUiRow = value.ToBoolean(false);
                     break;
+                case "ChangeTextColor":
+                    ChangeTextColor = value.ToBoolean(true);
+                    break;
                 case "FontSetting":
                     FontSetting = value.ToFontSetting(eFontSetting.Sarabun);
                     break;
@@ -143,10 +152,10 @@ namespace svvv.Classes
                     GamePath = value;
                     break;
                 case "ExpandHeight":
-                    ExpandHeight = value.ToInt32(Configs.SIZE_DEFAULT_EXPAND);
+                    ExpandHeight = value.ToInt32(Constant.SIZE_DEFAULT_EXPAND);
                     break;
                 case "CollaspeHeight":
-                    CollaspeHeight = value.ToInt32(Configs.SIZE_DEFAULT_COLLASPE);
+                    CollaspeHeight = value.ToInt32(Constant.SIZE_DEFAULT_COLLASPE);
                     break;
             }
         }

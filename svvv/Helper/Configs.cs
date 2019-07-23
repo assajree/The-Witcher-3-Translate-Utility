@@ -1,4 +1,5 @@
-﻿using System;
+﻿using svvv.Classes;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,8 +11,16 @@ namespace svvv
 {
     public static class Configs
     {
-        public const int SIZE_DEFAULT_EXPAND = 635;
-        public const int SIZE_DEFAULT_COLLASPE = 150;
+        private static AppSetting mAppSetting = null;
+        public static AppSetting GetAppSetting()
+        {
+            return mAppSetting;
+        }
+
+        public static void SetAppSetting(AppSetting setting)
+        {
+            mAppSetting = setting;
+        }
 
         public const string modThaiStoryBook = "modThaiStoryBook";
         public const string modFontSarabun = "modFontSarabun";
@@ -21,6 +30,7 @@ namespace svvv
         public const string modDoubleSubtitle = "modDoubleSubtitle";
         public const string modThaiLanguage = "modThaiLanguage"; // translate
         public const string modKuntoonFont = "modKuntoonW3thai_mod";
+        
 
         public static string CUSTOM_TRANSLATE_LABEL = "การแปลภาษาแบบปรับแต่ง";
 
