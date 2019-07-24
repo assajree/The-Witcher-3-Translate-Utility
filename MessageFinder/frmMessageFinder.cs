@@ -78,8 +78,8 @@ namespace TranslateUtility.Screens
 
         private void SearchData()
         {
-            if (String.IsNullOrWhiteSpace(txtInput.Text))
-                return;
+            //if (String.IsNullOrWhiteSpace(txtInput.Text))
+            //    return;
 
             if (mData == null)
             {
@@ -119,7 +119,7 @@ namespace TranslateUtility.Screens
 
         private List<w3Strings> FilterData()
         {
-            string textToSearch = txtInput.Text.Trim().ToLower();
+            string textToSearch = txtInput.Text.ToLower();
             eSearchFild searchFild = GetSearchField();
 
             //textToSearch = textToSearch.ToLower();

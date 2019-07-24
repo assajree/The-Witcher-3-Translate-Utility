@@ -40,7 +40,6 @@
             this.chkExcludeUiText = new System.Windows.Forms.CheckBox();
             this.chkModDoubleLanguage = new System.Windows.Forms.CheckBox();
             this.rdoModOriginFirst = new System.Windows.Forms.RadioButton();
-            this.chkAltSub = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.chkUiInfo = new System.Windows.Forms.CheckBox();
             this.chkUntranslateInfo = new System.Windows.Forms.CheckBox();
@@ -56,6 +55,7 @@
             this.lblCustomTranslateCount = new System.Windows.Forms.Label();
             this.btnAltSubSetting = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.chkChangeTextColor = new System.Windows.Forms.CheckBox();
             this.btnSizeRecommend = new System.Windows.Forms.Button();
             this.btnChangeFontSize = new System.Windows.Forms.Button();
             this.btnSizeReset = new System.Windows.Forms.Button();
@@ -86,7 +86,6 @@
             this.miDebug = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.txtGamePath = new System.Windows.Forms.TextBox();
-            this.chkChangeTextColor = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -215,17 +214,6 @@
             this.rdoModOriginFirst.TabIndex = 34;
             this.rdoModOriginFirst.Text = "ภาษาอังกฤษก่อน";
             this.rdoModOriginFirst.UseVisualStyleBackColor = true;
-            // 
-            // chkAltSub
-            // 
-            this.chkAltSub.AutoSize = true;
-            this.chkAltSub.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkAltSub.Location = new System.Drawing.Point(6, 0);
-            this.chkAltSub.Name = "chkAltSub";
-            this.chkAltSub.Size = new System.Drawing.Size(155, 21);
-            this.chkAltSub.TabIndex = 38;
-            this.chkAltSub.Text = "การแปลแบบปรับแต่ง";
-            this.chkAltSub.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -448,13 +436,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox7.Controls.Add(this.lblCustomTranslateCount);
             this.groupBox7.Controls.Add(this.btnAltSubSetting);
-            this.groupBox7.Controls.Add(this.chkAltSub);
             this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox7.Location = new System.Drawing.Point(3, 387);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(511, 60);
             this.groupBox7.TabIndex = 52;
             this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "การแปลแบบปรับแต่ง";
             // 
             // lblCustomTranslateCount
             // 
@@ -497,6 +485,17 @@
             this.groupBox6.TabIndex = 52;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "ขนาดและสีซับไตเติ้ล";
+            // 
+            // chkChangeTextColor
+            // 
+            this.chkChangeTextColor.AutoSize = true;
+            this.chkChangeTextColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkChangeTextColor.Location = new System.Drawing.Point(307, 28);
+            this.chkChangeTextColor.Name = "chkChangeTextColor";
+            this.chkChangeTextColor.Size = new System.Drawing.Size(149, 21);
+            this.chkChangeTextColor.TabIndex = 41;
+            this.chkChangeTextColor.Text = "เปลี่ยนสีชื่อในซับไตเติ้ล";
+            this.chkChangeTextColor.UseVisualStyleBackColor = true;
             // 
             // btnSizeRecommend
             // 
@@ -780,21 +779,21 @@
             // miUpdate
             // 
             this.miUpdate.Name = "miUpdate";
-            this.miUpdate.Size = new System.Drawing.Size(180, 22);
+            this.miUpdate.Size = new System.Drawing.Size(176, 22);
             this.miUpdate.Text = "อัพเดทโปรแกรม";
             this.miUpdate.Click += new System.EventHandler(this.miUpdate_Click);
             // 
             // miTranslateProgress
             // 
             this.miTranslateProgress.Name = "miTranslateProgress";
-            this.miTranslateProgress.Size = new System.Drawing.Size(180, 22);
+            this.miTranslateProgress.Size = new System.Drawing.Size(176, 22);
             this.miTranslateProgress.Text = "ข้อมูลการแปล";
             this.miTranslateProgress.Click += new System.EventHandler(this.miTranslateProgress_Click);
             // 
             // miMessageFinder
             // 
             this.miMessageFinder.Name = "miMessageFinder";
-            this.miMessageFinder.Size = new System.Drawing.Size(180, 22);
+            this.miMessageFinder.Size = new System.Drawing.Size(176, 22);
             this.miMessageFinder.Text = "เครื่องมือค้นหาข้อความ";
             this.miMessageFinder.Click += new System.EventHandler(this.miMessageFinder_Click);
             // 
@@ -802,21 +801,21 @@
             // 
             this.miChangeLog.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.miChangeLog.Name = "miChangeLog";
-            this.miChangeLog.Size = new System.Drawing.Size(180, 22);
+            this.miChangeLog.Size = new System.Drawing.Size(176, 22);
             this.miChangeLog.Text = "การเปลี่ยนแปลง";
             this.miChangeLog.Click += new System.EventHandler(this.miChangeLog_Click);
             // 
             // miCredit
             // 
             this.miCredit.Name = "miCredit";
-            this.miCredit.Size = new System.Drawing.Size(180, 22);
+            this.miCredit.Size = new System.Drawing.Size(176, 22);
             this.miCredit.Text = "เครดิต";
             this.miCredit.Click += new System.EventHandler(this.miCredit_Click);
             // 
             // miDebug
             // 
             this.miDebug.Name = "miDebug";
-            this.miDebug.Size = new System.Drawing.Size(180, 22);
+            this.miDebug.Size = new System.Drawing.Size(176, 22);
             this.miDebug.Text = "สวัสดี ฉันชื่อสะหวีวี่วี";
             this.miDebug.Click += new System.EventHandler(this.miDebug_Click);
             // 
@@ -836,17 +835,6 @@
             this.txtGamePath.TabIndex = 6;
             this.txtGamePath.TextChanged += new System.EventHandler(this.txtGamePath_TextChanged);
             this.txtGamePath.DoubleClick += new System.EventHandler(this.txtGamePath_DoubleClick);
-            // 
-            // chkChangeTextColor
-            // 
-            this.chkChangeTextColor.AutoSize = true;
-            this.chkChangeTextColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkChangeTextColor.Location = new System.Drawing.Point(307, 28);
-            this.chkChangeTextColor.Name = "chkChangeTextColor";
-            this.chkChangeTextColor.Size = new System.Drawing.Size(149, 21);
-            this.chkChangeTextColor.TabIndex = 41;
-            this.chkChangeTextColor.Text = "เปลี่ยนสีชื่อในซับไตเติ้ล";
-            this.chkChangeTextColor.UseVisualStyleBackColor = true;
             // 
             // frmVeryVerySimple
             // 
@@ -935,7 +923,6 @@
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.NumericUpDown txtFontSizeSpeak;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox chkAltSub;
         private System.Windows.Forms.Button btnMessageFinder;
         private System.Windows.Forms.ToolStripMenuItem miTranslateProgress;
         private System.Windows.Forms.ToolStripMenuItem miMessageFinder;

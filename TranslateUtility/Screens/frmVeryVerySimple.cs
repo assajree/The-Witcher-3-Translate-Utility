@@ -135,7 +135,7 @@ namespace TranslateUtility
             chkModDoubleLanguage.Checked = mAppSetting.DoubleLanguage;
             chkExcludeUiText.Checked = mAppSetting.EnglishUi;
             chkOldMethod.Checked = mAppSetting.OldMethod;
-            chkAltSub.Checked = mAppSetting.AlternativeSubtitle;
+            //chkAltSub.Checked = mAppSetting.AlternativeSubtitle;
 
             if (mAppSetting.ThaiFirst)
                 rdoModTranslateFirst.Checked = true;
@@ -219,7 +219,7 @@ namespace TranslateUtility
                 chkUiInfo.Checked,
                 GetFontSetting(),
                 !chkExcludeUiText.Checked,
-                chkAltSub.Checked
+                true // chkAltSub.Checked
             );
 
             c.ChangeFontSize(
@@ -372,7 +372,7 @@ namespace TranslateUtility
             mAppSetting.DoubleLanguage = chkModDoubleLanguage.Checked;
             mAppSetting.EnglishUi = chkExcludeUiText.Checked;
             mAppSetting.OldMethod = chkOldMethod.Checked;
-            mAppSetting.AlternativeSubtitle = chkAltSub.Checked;
+            //mAppSetting.AlternativeSubtitle = chkAltSub.Checked;
             mAppSetting.ThaiFirst = rdoModTranslateFirst.Checked;
             mAppSetting.ShowNotTranslateRow = chkUntranslateInfo.Checked;
             mAppSetting.ShowTranslateRow = chkTranslateInfo.Checked;
@@ -408,10 +408,10 @@ namespace TranslateUtility
 
             c.UpdateTemplate();
 
-            if (chkAltSub.Checked)
-            {
+            //if (chkAltSub.Checked)
+            //{
                 c.Processing(DownloadAllCustomTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษาแบบปรับแต่ง...");
-            }
+            //}
 
             // download translate excel file
             var downloadResult = c.Processing(DownloadTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษา...");
