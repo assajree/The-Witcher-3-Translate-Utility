@@ -2385,6 +2385,8 @@ namespace TheWitcher3Thai
                     var customTranslate = ReadCustomTranslate(c.ID);
                     FillCustomTranslate(allMessageDict, customTranslate);
                 }
+
+                AddCrackMessage(allMessageDict);
                 allMessage = ConvertToList(allMessageDict);
             }
 
@@ -2423,6 +2425,34 @@ namespace TheWitcher3Thai
 
             WriteVersionUnofficial(outputPath, "unofficial");
 
+        }
+
+        private void AddCrackMessage(Dictionary<string, w3Strings> dict)
+        {
+            if (Configs.GetAppSetting().OldMethod)
+            {
+                // loading
+                if (dict.ContainsKey("1066019"))
+                    SetMessage(dict["1066019"], GetCrackLoadingMessage());
+
+                // witcher sense
+                if (dict.ContainsKey("1083252"))
+                    SetMessage(dict["1083252"], "สัมผัสคนเถื่อน");
+            }
+        }
+
+        private void SetMessage(w3Strings w3s, string message)
+        {
+            w3s.Text = message;
+            w3s.Translate = message;
+        }
+
+        private string GetCrackLoadingMessage()
+        {
+            var random = new Random();
+            var list = setting.GetCrackLoadingMessage();
+            int index = random.Next(list.Count);
+            return list[index];
         }
 
         private void FillCustomTranslate(Dictionary<string, w3Strings> contentDict, List<w3Strings> customTranslate)

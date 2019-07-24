@@ -401,6 +401,8 @@ namespace TranslateUtility
 
         private void StartAlt()
         {
+            SaveAppSetting();
+
             bool oldMethod = chkOldMethod.Checked;
 
             if (!oldMethod)

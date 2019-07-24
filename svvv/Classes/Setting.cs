@@ -11,6 +11,7 @@ namespace TheWitcher3Thai
         Dictionary<string, string> mStorybookMaping;
         Dictionary<string, string> mSheetName;
         List<CustomTranslateItem> mCustomTranslate;
+        List<string> mLoadingMessage;
 
         public Dictionary<string, string> GetSheetConfig()
         {
@@ -225,6 +226,22 @@ namespace TheWitcher3Thai
             mCustomTranslate.Add(new CustomTranslateItem(false, "19uVPHxzMBwCxpnjKqakNkBqxSOm2CH173L4wpwiUjS0", null));
 
             return mCustomTranslate;
+        }
+
+        public List<string> GetCrackLoadingMessage()
+        {
+            if (mLoadingMessage != null)
+                return mLoadingMessage;
+
+            mLoadingMessage = new List<string>();
+            mLoadingMessage.Add("เกมแท้ไม่แพงอย่างที่คิด...");
+            mLoadingMessage.Add("รอลดราคาค่อยซื้อก็ได้...");
+            mLoadingMessage.Add("เล่นเกมเถื่อนวันนี้อาจไม่มีเกมดีๆในวันหน้า");
+            mLoadingMessage.Add("เล่นเกมแท้วันนี้เพื่อเกมดีๆในวันหน้า");
+            mLoadingMessage.Add("ซื้อเกมแท้จะได้มีเกมภาษาไทยในอนาคต");
+            mLoadingMessage.Add("แก้ตัวตอนนี้ยังทันนะ...");
+
+            return mLoadingMessage;
         }
     }
 }
