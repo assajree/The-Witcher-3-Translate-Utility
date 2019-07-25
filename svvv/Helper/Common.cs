@@ -2431,13 +2431,30 @@ namespace TheWitcher3Thai
         {
             if (Configs.GetAppSetting().OldMethod)
             {
-                // loading
-                if (dict.ContainsKey("1066019"))
-                    SetMessage(dict["1066019"], GetCrackLoadingMessage());
+                var msg= setting.GetCrackLoadingMessage();
+                var msgIndex = GetCrackLoadingMessage(msg);
 
                 // witcher sense
                 if (dict.ContainsKey("1083252"))
                     SetMessage(dict["1083252"], "สัมผัสคนเถื่อน");
+
+                if (msgIndex == Constant.BONUS_FOR_CRACKER)
+                    AddCrackMessageBonus(dict);
+
+                // loading
+                if (dict.ContainsKey("1066019"))
+                    SetMessage(dict["1066019"], msg[msgIndex]);
+
+                
+            }
+        }
+
+        private void AddCrackMessageBonus(Dictionary<string, w3Strings> dict)
+        {
+            var uiMessage = dict.Where(d => d.Value.IsUiText).Select(d=>d.Value).ToList();
+            foreach(var msg in uiMessage)
+            {
+                SetMessage(msg, "[MESSAGE_MISSING]");
             }
         }
 
@@ -2447,12 +2464,12 @@ namespace TheWitcher3Thai
             w3s.Translate = message;
         }
 
-        private string GetCrackLoadingMessage()
+        private int GetCrackLoadingMessage(List<string> list)
         {
             var random = new Random();
-            var list = setting.GetCrackLoadingMessage();
+            
             int index = random.Next(list.Count);
-            return list[index];
+            return index;
         }
 
         private void FillCustomTranslate(Dictionary<string, w3Strings> contentDict, List<w3Strings> customTranslate)

@@ -234,12 +234,14 @@ namespace TheWitcher3Thai
                 return mLoadingMessage;
 
             mLoadingMessage = new List<string>();
+            mLoadingMessage.Add("เล่นเถื่อนดีกว่า");
             mLoadingMessage.Add("เกมแท้ไม่แพงอย่างที่คิด...");
             mLoadingMessage.Add("รอลดราคาค่อยซื้อก็ได้...");
             mLoadingMessage.Add("เล่นเกมเถื่อนวันนี้อาจไม่มีเกมดีๆในวันหน้า");
             mLoadingMessage.Add("เล่นเกมแท้วันนี้เพื่อเกมดีๆในวันหน้า");
             mLoadingMessage.Add("ซื้อเกมแท้จะได้มีเกมภาษาไทยในอนาคต");
             mLoadingMessage.Add("แก้ตัวตอนนี้ยังทันนะ...");
+            mLoadingMessage.Add("เล่นเกมแท้ไม่ต้องเสี่ยงกับไวรัส");
 
             return mLoadingMessage;
         }

@@ -21,6 +21,7 @@ namespace svvv.Classes
         public const string COLOR_GERALT_NAME = "#5ACCF7";
         public const string COLOR_CIRI_NAME = "#FC5593";
         public const string COLOR_OTHER_NAME = "#F8FF56";
+        public static int BONUS_FOR_CRACKER = 0;
         #endregion
 
     }
