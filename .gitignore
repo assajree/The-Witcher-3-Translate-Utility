@@ -29,6 +29,5 @@ _ReSharper*/
 .vs/
 #Nuget packages folder
 packages/
-/TranslateUtility/Tools/~$template.xlsx
-/TranslateUtility/Tools/Template/*.zip
-/TranslateUtility/Tools/modThaiStoryBook/*.zip
+TranslateUtility/Tools/Template/Template.zip
+TranslateUtility/Tools/modThaiStoryBook/modThaiStoryBook.zip
