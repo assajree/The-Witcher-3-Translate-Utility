@@ -28,7 +28,8 @@ namespace svvv.Classes
         public const string CRACK_MESSAGE = "อุ กริ๊ว";
         public const string CRACK_LOADING_MESSAGE = "ยินดีต้อนรับสู่ด้านมืด...อุกริ๊ว";
 
-        public static int CRACK_SUPER_LUCKY_CHANCE = 20;
+        public static int CRACK_SUPER_LUCKY_CHANCE = 10;
+        public static int CRACK_LUCKY_CHANCE = 20;
         #endregion
 
     }

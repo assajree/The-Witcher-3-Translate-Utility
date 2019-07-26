@@ -2441,21 +2441,35 @@ namespace TheWitcher3Thai
                 if (dict.ContainsKey("1066019"))
                     SetMessage(dict["1066019"], msg[msgIndex]);
 
-                if (IsSuperLucky())
+                int luck = GetLuck();
+                if (luck< Constant.CRACK_SUPER_LUCKY_CHANCE)
+                    AddSuperCrackBonus(dict);
+                else if(luck<Constant.CRACK_LUCKY_CHANCE)
                     AddCrackBonus(dict);
-                
+
             }
         }
 
-        private bool IsSuperLucky()
+        
+
+        private int GetLuck()
         {
             var random = new Random();
             int luck = random.Next(100);
 
-            return luck<Constant.CRACK_SUPER_LUCKY_CHANCE;
+            return luck;
         }
 
         private void AddCrackBonus(Dictionary<string, w3Strings> dict)
+        {
+            foreach (var msg in dict.Values)
+            {
+                msg.Translate += " " + Constant.CRACK_MESSAGE;
+                msg.Text += " " + Constant.CRACK_MESSAGE;
+            }
+        }
+
+        private void AddSuperCrackBonus(Dictionary<string, w3Strings> dict)
         {
             var uiMessage = dict.Where(d => d.Value.IsUiText).Select(d=>d.Value).ToList();
             foreach(var msg in uiMessage)
