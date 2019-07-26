@@ -201,11 +201,22 @@ namespace TheWitcher3Thai
             if (!Directory.Exists(modPath))
                 return;
 
-            foreach (string path in Directory.GetFiles(modPath, "*.w3strings", SearchOption.AllDirectories))
+            foreach (string path in Directory.GetFiles(modPath, "en.w3strings", SearchOption.AllDirectories))
             {
                 var targetPath = path.Replace("en.w3strings", "tr.w3strings");
-                if (!File.Exists(targetPath))
+                if (File.Exists(targetPath))
+                {
+                    var fi = new FileInfo(path);
+                    if(!fi.Directory.Parent.Name.Equals(Configs.modThaiLanguage))
+                    {
+                        File.Delete(targetPath);
+                        File.Copy(path, targetPath);
+                    }
+                }
+                else
+                {
                     File.Copy(path, targetPath);
+                }
             }
         }
 
@@ -1823,7 +1834,59 @@ namespace TheWitcher3Thai
             return installPath;
         }
 
+        public string GetGogPath()
+        {
+            string[] ids = new string[]
+            {
+                "1477872865",
+                "1640424747",
+                "1425895904",
+                "1441620909",
+                "1207664643",
+                "1441355562",
+                "1207664663",
+                "1425982292",
+                "1427206931",
+                "1427206176",
+                "1430927855",
+                "1427195509",
+                "1430743168",
+                "1434542505",
+                "1495134320"
+            };
+
+            string path = null;
+            foreach(var id in ids)
+            {
+                path = GetGogPath(id);
+                if(!String.IsNullOrWhiteSpace(path))
+                {
+                    return path;
+                }
+            }
+
+            return path;
+        }
+
+        public string GetGogPath(string id)
+        {
+            var installPath = Registry.GetValue($@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\GOG.com\Games\{id}", "PATH", null) as string;
+            if (installPath != null)
+                return installPath;
+
+            return null;
+        }
+
         public string GetGameDirectory()
+        {
+            var path = GetGogPath();
+            if (String.IsNullOrWhiteSpace(path))
+                path = GetSteamPath();
+
+            return path;
+        }
+
+        public string GetSteamPath()
         {
             var steamPath = GetSteamDirectory();
             if (steamPath == null)
@@ -2241,6 +2304,65 @@ namespace TheWitcher3Thai
             }
 
             return result;
+        }
+
+        public List<w3Strings> ReadAllGameMessage(string gamePath)
+        {
+            var message=ReadGame(gamePath);
+            var allMessage = new List<w3Strings>();
+            foreach(var item in message.Values)
+            {
+                allMessage.AddRange(item);
+            }
+
+            var distintMessage=DistinctContent(allMessage);
+
+            return distintMessage;
+        }
+
+        public Dictionary<string,w3Strings> ReadAllGameMessageDict(string gamePath)
+        {
+            var allMessage = ReadAllGameMessage(gamePath);
+            var dict = ConvertToDictionary(allMessage);
+            return dict;
+        }
+
+        public void FillExcelFromGame(string gamePath, string excelPath, bool fillText)
+        {
+            var dict = ReadAllGameMessageDict(gamePath);
+
+            var fi = new FileInfo(excelPath);
+            using (var p = new ExcelPackage(fi))
+            {
+
+                var wb = p.Workbook;
+
+                foreach (var sht in wb.Worksheets)
+                {
+                    var row = Excel.ROW_START;
+                    var id = sht.Cells[row, Excel.COL_ID].Text;
+                    while (!String.IsNullOrWhiteSpace(id))
+                    {
+                        var key = id.Trim();
+                        if (dict.ContainsKey(key))
+                        {
+                            var msg = dict[key];
+                            if (fillText)
+                                sht.Cells[row, Excel.COL_TEXT].Value = msg.Text;
+
+                            //if (fillTranslate)
+                            else
+                                sht.Cells[row, Excel.COL_TRANSLATE].Value = msg.Text;
+                        }
+
+                        row++;
+                        id = sht.Cells[row, Excel.COL_ID].Text;
+                    }
+
+                }
+
+                p.Save();
+            }
         }
 
         public string FillExcelFromMod(string modPath, string excelPath, bool fillTranslate)

@@ -1,6 +1,7 @@
 ﻿using svvv;
 using svvv.Classes;
 using System;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -110,11 +111,17 @@ namespace TranslateUtility
 
             //ReadLocalVersion();
             EnableExtraOption();
-            EnableButton();
+            EnableButton(); 
 
             // install
-            txtGamePath.SetDefault(c.GetGameDirectory());
+            var gamePath = c.GetGameDirectory();
+            Configs.IsGamer = !String.IsNullOrWhiteSpace(gamePath);
+            txtGamePath.SetDefault(gamePath);
 
+            if (Configs.IsGamer)
+            {
+                lblGameDir.Text += "(เกมแท้)";
+            }
 
             SetDownloadFrequencyRadio();
             SetFontRadio();
@@ -768,6 +775,11 @@ namespace TranslateUtility
         private void miVersion_Click(object sender, EventArgs e)
         {
             Debug();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            c.GetGogPath();
         }
     }
 }

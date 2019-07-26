@@ -22,6 +22,7 @@ namespace svvv
             mAppSetting = setting;
         }
 
+        public static bool IsGamer { get; set; } = false;
         public const string modThaiStoryBook = "modThaiStoryBook";
         public const string modFontSarabun = "modFontSarabun";
         public const string modFontCsParkas = "modFontCsPraKas";

@@ -117,7 +117,8 @@ namespace TranslateUtility
 
         private void btnModFill_Click(object sender, EventArgs e)
         {
-            c.ProcessingString(FillByMod, "Processing", "Fill Complete");
+            //c.ProcessingString(FillByMod, "Processing", "Fill Complete");
+            c.Processing(FillByGame, "Processing", "Fill Complete");
         }
 
         private string FillByMod()
@@ -125,6 +126,12 @@ namespace TranslateUtility
             var result = c.FillExcelFromMod(txtModFillSource.Text, txtModFillOutput.Text, rdoModFillTranslate.Checked);
             c.ShowMessage(result, "Fill Complete");
             return result;
+        }
+
+        private void FillByGame()
+        {
+            c.FillExcelFromGame(txtModFillSource.Text, txtModFillOutput.Text, rdoModFillTranslate.Checked);
+            c.ShowMessage("Fill Complete");
         }
 
         #endregion

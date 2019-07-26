@@ -246,6 +246,7 @@ namespace TheWitcher3Thai
             mLoadingMessage.Add("ยินดีด้วยคอมของคุณติดไวรัสแล้ว");
             mLoadingMessage.Add("คนจนต้องอดทน...");
             mLoadingMessage.Add("Hacked by svvv");
+            mLoadingMessage.Add("ติดตามเกมลดราคาได้ที่เกมถูกบอกด้วยv2");
 
             return mLoadingMessage;
         }
