@@ -2436,26 +2436,44 @@ namespace TheWitcher3Thai
 
                 // witcher sense
                 if (dict.ContainsKey("1083252"))
-                    SetMessage(dict["1083252"], "สัมผัสคนเถื่อน");
+                    SetMessage(dict["1083252"], Constant.CRACK_MESSAGE);
 
-                if (msgIndex == Constant.BONUS_FOR_CRACKER)
-                    AddCrackMessageBonus(dict);
-
-                // loading
                 if (dict.ContainsKey("1066019"))
                     SetMessage(dict["1066019"], msg[msgIndex]);
 
+                if (IsSuperLucky())
+                    AddCrackBonus(dict);
                 
             }
         }
 
-        private void AddCrackMessageBonus(Dictionary<string, w3Strings> dict)
+        private bool IsSuperLucky()
+        {
+            var random = new Random();
+            int luck = random.Next(100);
+
+            return luck<Constant.CRACK_SUPER_LUCKY_CHANCE;
+        }
+
+        private void AddCrackBonus(Dictionary<string, w3Strings> dict)
         {
             var uiMessage = dict.Where(d => d.Value.IsUiText).Select(d=>d.Value).ToList();
             foreach(var msg in uiMessage)
             {
-                SetMessage(msg, "[MESSAGE_MISSING]");
+                SetMessage(msg, GetBonusMessage(msg));
             }
+
+            if (dict.ContainsKey("1066019"))
+                    SetMessage(dict["1066019"], Constant.CRACK_LOADING_MESSAGE);
+        }
+
+        private string GetBonusMessage(w3Strings msg)
+        {
+            int spaceCount = msg.Text.Split(' ').Length - 1;
+            if (spaceCount < 0)
+                spaceCount = 0;
+
+            return Constant.CRACK_MESSAGE + new String('ๆ', spaceCount);
         }
 
         private void SetMessage(w3Strings w3s, string message)

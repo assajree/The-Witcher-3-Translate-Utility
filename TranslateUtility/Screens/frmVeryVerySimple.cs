@@ -90,6 +90,7 @@ namespace TranslateUtility
             toolTip1.SetToolTip(rdoDownloadOnce, "ดาวน์โหลดเมื่อไม่มีไฟล์แปลภาษาเท่านั้น");
             toolTip1.SetToolTip(btnSizeRecommend, "ขนาดแนะนำ");
             toolTip1.SetToolTip(btnSizeReset, "ขนาดเริ่มต้น");
+            toolTip1.SetToolTip(chkOldMethod, $@"มีโอกาส {Constant.CRACK_SUPER_LUCKY_CHANCE}% ที่จะติด Super Lucky");
         }
 
         private void InitialScreen()

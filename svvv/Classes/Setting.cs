@@ -234,7 +234,6 @@ namespace TheWitcher3Thai
                 return mLoadingMessage;
 
             mLoadingMessage = new List<string>();
-            mLoadingMessage.Add("เล่นเถื่อนดีกว่า");
             mLoadingMessage.Add("เกมแท้ไม่แพงอย่างที่คิด...");
             mLoadingMessage.Add("รอลดราคาค่อยซื้อก็ได้...");
             mLoadingMessage.Add("เล่นเกมเถื่อนวันนี้อาจไม่มีเกมดีๆในวันหน้า");
@@ -242,6 +241,11 @@ namespace TheWitcher3Thai
             mLoadingMessage.Add("ซื้อเกมแท้จะได้มีเกมภาษาไทยในอนาคต");
             mLoadingMessage.Add("แก้ตัวตอนนี้ยังทันนะ...");
             mLoadingMessage.Add("เล่นเกมแท้ไม่ต้องเสี่ยงกับไวรัส");
+            mLoadingMessage.Add("ซื้อเกมแท้เพื่อเป็นกำลังใจให้ผู้พัฒนา");
+            mLoadingMessage.Add("เกมจะทำลายตัวเองในอีกหนึ่งชั่วโมง");
+            mLoadingMessage.Add("ยินดีด้วยคอมของคุณติดไวรัสแล้ว");
+            mLoadingMessage.Add("คนจนต้องอดทน...");
+            mLoadingMessage.Add("Hacked by svvv");
 
             return mLoadingMessage;
         }

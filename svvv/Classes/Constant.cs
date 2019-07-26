@@ -24,5 +24,12 @@ namespace svvv.Classes
         public static int BONUS_FOR_CRACKER = 0;
         #endregion
 
+        #region crack
+        public const string CRACK_MESSAGE = "อุ กริ๊ว";
+        public const string CRACK_LOADING_MESSAGE = "ยินดีต้อนรับสู่ด้านมืด...อุกริ๊ว";
+
+        public static int CRACK_SUPER_LUCKY_CHANCE = 20;
+        #endregion
+
     }
 }
