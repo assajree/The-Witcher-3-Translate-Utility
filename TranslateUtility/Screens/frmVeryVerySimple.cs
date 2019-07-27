@@ -89,9 +89,8 @@ namespace TranslateUtility
             toolTip1.SetToolTip(rdoDownloadDialy, "ดาวน์โหลดเมื่อผ่านไป 1 วัน จากการดาวน์โหลดครั้งที่แล้วเท่านั้น");
             toolTip1.SetToolTip(rdoDownloadHourly, "ดาวน์โหลดเมื่อผ่านไป 1 ชั่วโมง จากการดาวน์โหลดครั้งที่แล้วเท่านั้น");
             toolTip1.SetToolTip(rdoDownloadOnce, "ดาวน์โหลดเมื่อไม่มีไฟล์แปลภาษาเท่านั้น");
-            toolTip1.SetToolTip(btnSizeRecommend, "ขนาดแนะนำ");
-            toolTip1.SetToolTip(btnSizeReset, "ขนาดเริ่มต้น");
-            toolTip1.SetToolTip(chkOldMethod, $@"มีโอกาส {Constant.CRACK_SUPER_LUCKY_CHANCE}% ที่จะติด Super Lucky");
+            toolTip1.SetToolTip(chkChangeTextColor, "เปลี่ยนสีชื่อในซับไตเติ้ล");
+            toolTip1.SetToolTip(chkOldMethod, $@"มีโอกาสติด Lucky {Constant.CRACK_LUCKY_CHANCE}%");
         }
 
         private void InitialScreen()
@@ -551,12 +550,25 @@ namespace TranslateUtility
         {
             if (rdoFontNone.Checked)
                 return Common.eFontSetting.None;
+
             else if (rdoFontKuntoon.Checked)
                 return Common.eFontSetting.KunToon;
-            else if (rdoFontDillenia.Checked)
-                return Common.eFontSetting.DilleniaUPC;
+
+            else if (rdoFontPrompt.Checked)
+                return Common.eFontSetting.Prompt;
+
             else if (rdoFontCsPrakas.Checked)
                 return Common.eFontSetting.CSPraKas;
+
+            else if (rdoFontMahaniyom.Checked)
+                return Common.eFontSetting.Mahaniyom;
+
+            else if (rdoFontSrisakdi.Checked)
+                return Common.eFontSetting.Srisakdi;
+
+            else if (rdoFontSuperMarket.Checked)
+                return Common.eFontSetting.SuperMarket;
+
             else
                 return Common.eFontSetting.Sarabun;
 
@@ -613,15 +625,31 @@ namespace TranslateUtility
                 case Common.eFontSetting.None:
                     rdoFontNone.Checked = true;
                     break;
+
                 case Common.eFontSetting.KunToon:
                     rdoFontKuntoon.Checked = true;
                     break;
+
                 case Common.eFontSetting.CSPraKas:
                     rdoFontCsPrakas.Checked = true;
                     break;
-                case Common.eFontSetting.DilleniaUPC:
-                    rdoFontDillenia.Checked = true;
+
+                case Common.eFontSetting.Prompt:
+                    rdoFontPrompt.Checked = true;
                     break;
+
+                case Common.eFontSetting.Mahaniyom:
+                    rdoFontMahaniyom.Checked = true;
+                    break;
+
+                case Common.eFontSetting.Srisakdi:
+                    rdoFontSrisakdi.Checked = true;
+                    break;
+
+                case Common.eFontSetting.SuperMarket:
+                    rdoFontSuperMarket.Checked = true;
+                    break;
+
                 default:
                     rdoFontSarabun.Checked = true;
                     break;

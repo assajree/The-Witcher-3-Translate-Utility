@@ -26,7 +26,12 @@ namespace svvv
         public const string modThaiStoryBook = "modThaiStoryBook";
         public const string modFontSarabun = "modFontSarabun";
         public const string modFontCsParkas = "modFontCsPraKas";
-        public const string modFontDilleniaUPC = "modFontDilleniaUPC";
+        public const string modFontPrompt = "modFontPrompt";
+
+        public const string modFontMahaniyom = "modFontMahaniyom";
+        public const string modFontSrisakdi = "modFontSrisakdi";
+        public const string modFontSuperMarket = "modFontSuperMarket";
+
         public const string modThaiFont = "modThaiFont";
         public const string modDoubleSubtitle = "modDoubleSubtitle";
         public const string modThaiLanguage = "modThaiLanguage"; // translate
@@ -64,7 +69,10 @@ namespace svvv
         public static string FontSarabunPath = Path.Combine(ToolsPath, modFontSarabun);
         public static string FontKunToonPath = Path.Combine(ToolsPath, modThaiFont);
         public static string FontCsPrakasPath = Path.Combine(ToolsPath, modFontCsParkas);
-        public static string FontDilleniaUPCPath = Path.Combine(ToolsPath, modFontDilleniaUPC);
+        public static string FontPromptPath = Path.Combine(ToolsPath, modFontPrompt);
+        public static string FontMahaniyomPath = Path.Combine(ToolsPath, modFontMahaniyom);
+        public static string FontSrisakdiPath = Path.Combine(ToolsPath, modFontSrisakdi);
+        public static string FontSuperMarketPath = Path.Combine(ToolsPath, modFontSuperMarket);
 
         public static string TemplatePath = Path.Combine(ToolsPath, "Template");
         public static string TemplateFilePath = Path.Combine(TemplatePath, "template.xlsx");

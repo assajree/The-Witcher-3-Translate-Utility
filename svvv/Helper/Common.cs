@@ -35,7 +35,10 @@ namespace TheWitcher3Thai
             KunToon,
             None,
             CSPraKas,
-            DilleniaUPC
+            Prompt,
+            Srisakdi,
+            SuperMarket,
+            Mahaniyom
         }
 
         private Setting setting = new Setting();
@@ -3150,14 +3153,29 @@ namespace TheWitcher3Thai
                 case eFontSetting.Sarabun:
                     modPath = Configs.FontSarabunPath;
                     break;
+
                 case eFontSetting.KunToon:
                     modPath = Configs.FontKunToonPath;
                     break;
+
                 case eFontSetting.CSPraKas:
                     modPath = Configs.FontCsPrakasPath;
                     break;
-                case eFontSetting.DilleniaUPC:
-                    modPath = Configs.FontDilleniaUPCPath;
+
+                case eFontSetting.Prompt:
+                    modPath = Configs.FontPromptPath;
+                    break;
+
+                case eFontSetting.Mahaniyom:
+                    modPath = Configs.FontMahaniyomPath;
+                    break;
+
+                case eFontSetting.Srisakdi:
+                    modPath = Configs.FontSrisakdiPath;
+                    break;
+
+                case eFontSetting.SuperMarket:
+                    modPath = Configs.FontSuperMarketPath;
                     break;
             }
 

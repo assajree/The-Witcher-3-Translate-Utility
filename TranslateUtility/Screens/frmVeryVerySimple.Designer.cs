@@ -56,9 +56,7 @@
             this.btnAltSubSetting = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.chkChangeTextColor = new System.Windows.Forms.CheckBox();
-            this.btnSizeRecommend = new System.Windows.Forms.Button();
             this.btnChangeFontSize = new System.Windows.Forms.Button();
-            this.btnSizeReset = new System.Windows.Forms.Button();
             this.txtFontSizeCutScene = new System.Windows.Forms.NumericUpDown();
             this.txtFontSizeSpeak = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
@@ -70,7 +68,7 @@
             this.rdoDownloadHourly = new System.Windows.Forms.RadioButton();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnInstallFont = new System.Windows.Forms.Button();
-            this.rdoFontDillenia = new System.Windows.Forms.RadioButton();
+            this.rdoFontPrompt = new System.Windows.Forms.RadioButton();
             this.rdoFontCsPrakas = new System.Windows.Forms.RadioButton();
             this.rdoFontSarabun = new System.Windows.Forms.RadioButton();
             this.rdoFontNone = new System.Windows.Forms.RadioButton();
@@ -86,6 +84,9 @@
             this.miDebug = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.txtGamePath = new System.Windows.Forms.TextBox();
+            this.rdoFontSrisakdi = new System.Windows.Forms.RadioButton();
+            this.rdoFontSuperMarket = new System.Windows.Forms.RadioButton();
+            this.rdoFontMahaniyom = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -495,19 +496,17 @@
             this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox6.Controls.Add(this.chkChangeTextColor);
-            this.groupBox6.Controls.Add(this.btnSizeRecommend);
             this.groupBox6.Controls.Add(this.btnChangeFontSize);
-            this.groupBox6.Controls.Add(this.btnSizeReset);
             this.groupBox6.Controls.Add(this.txtFontSizeCutScene);
             this.groupBox6.Controls.Add(this.txtFontSizeSpeak);
             this.groupBox6.Controls.Add(this.label1);
             this.groupBox6.Controls.Add(this.label2);
             this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox6.Location = new System.Drawing.Point(4, 276);
+            this.groupBox6.Location = new System.Drawing.Point(4, 321);
             this.groupBox6.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox6.Size = new System.Drawing.Size(639, 116);
+            this.groupBox6.Size = new System.Drawing.Size(639, 71);
             this.groupBox6.TabIndex = 52;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "ขนาดและสีซับไตเติ้ล";
@@ -519,46 +518,22 @@
             this.chkChangeTextColor.Location = new System.Drawing.Point(384, 35);
             this.chkChangeTextColor.Margin = new System.Windows.Forms.Padding(4);
             this.chkChangeTextColor.Name = "chkChangeTextColor";
-            this.chkChangeTextColor.Size = new System.Drawing.Size(184, 24);
+            this.chkChangeTextColor.Size = new System.Drawing.Size(103, 24);
             this.chkChangeTextColor.TabIndex = 41;
-            this.chkChangeTextColor.Text = "เปลี่ยนสีชื่อในซับไตเติ้ล";
+            this.chkChangeTextColor.Text = "เปลี่ยนสีชื่อ";
             this.chkChangeTextColor.UseVisualStyleBackColor = true;
-            // 
-            // btnSizeRecommend
-            // 
-            this.btnSizeRecommend.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSizeRecommend.Location = new System.Drawing.Point(202, 70);
-            this.btnSizeRecommend.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSizeRecommend.Name = "btnSizeRecommend";
-            this.btnSizeRecommend.Size = new System.Drawing.Size(144, 30);
-            this.btnSizeRecommend.TabIndex = 53;
-            this.btnSizeRecommend.Text = "ขนาดแนะนำ";
-            this.btnSizeRecommend.UseVisualStyleBackColor = true;
-            this.btnSizeRecommend.Click += new System.EventHandler(this.btnSizeRecommend_Click);
             // 
             // btnChangeFontSize
             // 
             this.btnChangeFontSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChangeFontSize.Location = new System.Drawing.Point(384, 69);
+            this.btnChangeFontSize.Location = new System.Drawing.Point(508, 29);
             this.btnChangeFontSize.Margin = new System.Windows.Forms.Padding(4);
             this.btnChangeFontSize.Name = "btnChangeFontSize";
-            this.btnChangeFontSize.Size = new System.Drawing.Size(186, 30);
+            this.btnChangeFontSize.Size = new System.Drawing.Size(113, 30);
             this.btnChangeFontSize.TabIndex = 52;
             this.btnChangeFontSize.Text = "เปลี่ยนตอนนี้";
             this.btnChangeFontSize.UseVisualStyleBackColor = true;
             this.btnChangeFontSize.Click += new System.EventHandler(this.btnChangeFontSize_Click);
-            // 
-            // btnSizeReset
-            // 
-            this.btnSizeReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSizeReset.Location = new System.Drawing.Point(32, 70);
-            this.btnSizeReset.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSizeReset.Name = "btnSizeReset";
-            this.btnSizeReset.Size = new System.Drawing.Size(126, 30);
-            this.btnSizeReset.TabIndex = 53;
-            this.btnSizeReset.Text = "ขนาดเริ่มต้น";
-            this.btnSizeReset.UseVisualStyleBackColor = true;
-            this.btnSizeReset.Click += new System.EventHandler(this.btnSizeReset_Click);
             // 
             // txtFontSizeCutScene
             // 
@@ -705,7 +680,10 @@
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.Controls.Add(this.btnInstallFont);
-            this.groupBox4.Controls.Add(this.rdoFontDillenia);
+            this.groupBox4.Controls.Add(this.rdoFontPrompt);
+            this.groupBox4.Controls.Add(this.rdoFontMahaniyom);
+            this.groupBox4.Controls.Add(this.rdoFontSuperMarket);
+            this.groupBox4.Controls.Add(this.rdoFontSrisakdi);
             this.groupBox4.Controls.Add(this.rdoFontCsPrakas);
             this.groupBox4.Controls.Add(this.rdoFontSarabun);
             this.groupBox4.Controls.Add(this.rdoFontNone);
@@ -715,7 +693,7 @@
             this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox4.Size = new System.Drawing.Size(639, 98);
+            this.groupBox4.Size = new System.Drawing.Size(639, 142);
             this.groupBox4.TabIndex = 51;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "ฟอนต์";
@@ -723,7 +701,7 @@
             // btnInstallFont
             // 
             this.btnInstallFont.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInstallFont.Location = new System.Drawing.Point(384, 59);
+            this.btnInstallFont.Location = new System.Drawing.Point(384, 93);
             this.btnInstallFont.Margin = new System.Windows.Forms.Padding(4);
             this.btnInstallFont.Name = "btnInstallFont";
             this.btnInstallFont.Size = new System.Drawing.Size(144, 30);
@@ -732,17 +710,17 @@
             this.btnInstallFont.UseVisualStyleBackColor = true;
             this.btnInstallFont.Click += new System.EventHandler(this.btnInstallFont_Click);
             // 
-            // rdoFontDillenia
+            // rdoFontPrompt
             // 
-            this.rdoFontDillenia.AutoSize = true;
-            this.rdoFontDillenia.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoFontDillenia.Location = new System.Drawing.Point(208, 62);
-            this.rdoFontDillenia.Margin = new System.Windows.Forms.Padding(4);
-            this.rdoFontDillenia.Name = "rdoFontDillenia";
-            this.rdoFontDillenia.Size = new System.Drawing.Size(86, 24);
-            this.rdoFontDillenia.TabIndex = 4;
-            this.rdoFontDillenia.Text = "Dillenia";
-            this.rdoFontDillenia.UseVisualStyleBackColor = true;
+            this.rdoFontPrompt.AutoSize = true;
+            this.rdoFontPrompt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdoFontPrompt.Location = new System.Drawing.Point(208, 94);
+            this.rdoFontPrompt.Margin = new System.Windows.Forms.Padding(4);
+            this.rdoFontPrompt.Name = "rdoFontPrompt";
+            this.rdoFontPrompt.Size = new System.Drawing.Size(84, 24);
+            this.rdoFontPrompt.TabIndex = 4;
+            this.rdoFontPrompt.Text = "Prompt";
+            this.rdoFontPrompt.UseVisualStyleBackColor = true;
             // 
             // rdoFontCsPrakas
             // 
@@ -751,9 +729,9 @@
             this.rdoFontCsPrakas.Location = new System.Drawing.Point(32, 62);
             this.rdoFontCsPrakas.Margin = new System.Windows.Forms.Padding(4);
             this.rdoFontCsPrakas.Name = "rdoFontCsPrakas";
-            this.rdoFontCsPrakas.Size = new System.Drawing.Size(113, 24);
+            this.rdoFontCsPrakas.Size = new System.Drawing.Size(84, 24);
             this.rdoFontCsPrakas.TabIndex = 3;
-            this.rdoFontCsPrakas.Text = "CS PraKas";
+            this.rdoFontCsPrakas.Text = "ประกาศ";
             this.rdoFontCsPrakas.UseVisualStyleBackColor = true;
             // 
             // rdoFontSarabun
@@ -828,21 +806,21 @@
             // miUpdate
             // 
             this.miUpdate.Name = "miUpdate";
-            this.miUpdate.Size = new System.Drawing.Size(216, 26);
+            this.miUpdate.Size = new System.Drawing.Size(215, 26);
             this.miUpdate.Text = "อัพเดทโปรแกรม";
             this.miUpdate.Click += new System.EventHandler(this.miUpdate_Click);
             // 
             // miTranslateProgress
             // 
             this.miTranslateProgress.Name = "miTranslateProgress";
-            this.miTranslateProgress.Size = new System.Drawing.Size(216, 26);
+            this.miTranslateProgress.Size = new System.Drawing.Size(215, 26);
             this.miTranslateProgress.Text = "ข้อมูลการแปล";
             this.miTranslateProgress.Click += new System.EventHandler(this.miTranslateProgress_Click);
             // 
             // miMessageFinder
             // 
             this.miMessageFinder.Name = "miMessageFinder";
-            this.miMessageFinder.Size = new System.Drawing.Size(216, 26);
+            this.miMessageFinder.Size = new System.Drawing.Size(215, 26);
             this.miMessageFinder.Text = "เครื่องมือค้นหาข้อความ";
             this.miMessageFinder.Click += new System.EventHandler(this.miMessageFinder_Click);
             // 
@@ -850,21 +828,21 @@
             // 
             this.miChangeLog.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.miChangeLog.Name = "miChangeLog";
-            this.miChangeLog.Size = new System.Drawing.Size(216, 26);
+            this.miChangeLog.Size = new System.Drawing.Size(215, 26);
             this.miChangeLog.Text = "การเปลี่ยนแปลง";
             this.miChangeLog.Click += new System.EventHandler(this.miChangeLog_Click);
             // 
             // miCredit
             // 
             this.miCredit.Name = "miCredit";
-            this.miCredit.Size = new System.Drawing.Size(216, 26);
+            this.miCredit.Size = new System.Drawing.Size(215, 26);
             this.miCredit.Text = "เครดิต";
             this.miCredit.Click += new System.EventHandler(this.miCredit_Click);
             // 
             // miDebug
             // 
             this.miDebug.Name = "miDebug";
-            this.miDebug.Size = new System.Drawing.Size(216, 26);
+            this.miDebug.Size = new System.Drawing.Size(215, 26);
             this.miDebug.Text = "สวัสดี ฉันชื่อสะหวีวี่วี";
             this.miDebug.Click += new System.EventHandler(this.miDebug_Click);
             // 
@@ -885,6 +863,42 @@
             this.txtGamePath.TabIndex = 6;
             this.txtGamePath.TextChanged += new System.EventHandler(this.txtGamePath_TextChanged);
             this.txtGamePath.DoubleClick += new System.EventHandler(this.txtGamePath_DoubleClick);
+            // 
+            // rdoFontSrisakdi
+            // 
+            this.rdoFontSrisakdi.AutoSize = true;
+            this.rdoFontSrisakdi.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdoFontSrisakdi.Location = new System.Drawing.Point(33, 94);
+            this.rdoFontSrisakdi.Margin = new System.Windows.Forms.Padding(4);
+            this.rdoFontSrisakdi.Name = "rdoFontSrisakdi";
+            this.rdoFontSrisakdi.Size = new System.Drawing.Size(90, 24);
+            this.rdoFontSrisakdi.TabIndex = 3;
+            this.rdoFontSrisakdi.Text = "Srisakdi";
+            this.rdoFontSrisakdi.UseVisualStyleBackColor = true;
+            // 
+            // rdoFontSuperMarket
+            // 
+            this.rdoFontSuperMarket.AutoSize = true;
+            this.rdoFontSuperMarket.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdoFontSuperMarket.Location = new System.Drawing.Point(208, 62);
+            this.rdoFontSuperMarket.Margin = new System.Windows.Forms.Padding(4);
+            this.rdoFontSuperMarket.Name = "rdoFontSuperMarket";
+            this.rdoFontSuperMarket.Size = new System.Drawing.Size(136, 24);
+            this.rdoFontSuperMarket.TabIndex = 3;
+            this.rdoFontSuperMarket.Text = "ซุปเปอร์มาร์เกต";
+            this.rdoFontSuperMarket.UseVisualStyleBackColor = true;
+            // 
+            // rdoFontMahaniyom
+            // 
+            this.rdoFontMahaniyom.AutoSize = true;
+            this.rdoFontMahaniyom.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdoFontMahaniyom.Location = new System.Drawing.Point(384, 62);
+            this.rdoFontMahaniyom.Margin = new System.Windows.Forms.Padding(4);
+            this.rdoFontMahaniyom.Name = "rdoFontMahaniyom";
+            this.rdoFontMahaniyom.Size = new System.Drawing.Size(89, 24);
+            this.rdoFontMahaniyom.TabIndex = 3;
+            this.rdoFontMahaniyom.Text = "มหานิยม";
+            this.rdoFontMahaniyom.UseVisualStyleBackColor = true;
             // 
             // frmVeryVerySimple
             // 
@@ -982,13 +996,14 @@
         private System.Windows.Forms.Button btnAltSubSetting;
         private System.Windows.Forms.CheckBox chkOldMethod;
         private System.Windows.Forms.Label lblCustomTranslateCount;
-        private System.Windows.Forms.RadioButton rdoFontDillenia;
+        private System.Windows.Forms.RadioButton rdoFontPrompt;
         private System.Windows.Forms.RadioButton rdoFontCsPrakas;
         private System.Windows.Forms.Button btnInstallFont;
         private System.Windows.Forms.Button btnChangeFontSize;
-        private System.Windows.Forms.Button btnSizeRecommend;
-        private System.Windows.Forms.Button btnSizeReset;
         private System.Windows.Forms.ToolStripMenuItem miDebug;
         private System.Windows.Forms.CheckBox chkChangeTextColor;
+        private System.Windows.Forms.RadioButton rdoFontMahaniyom;
+        private System.Windows.Forms.RadioButton rdoFontSuperMarket;
+        private System.Windows.Forms.RadioButton rdoFontSrisakdi;
     }
 }

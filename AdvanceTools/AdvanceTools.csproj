@@ -150,6 +150,9 @@
     <None Include="Tools\en.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Tools\Font\sfd\CSPraJad-bold.sfd" />
+    <None Include="Tools\Font\sfd\Prompt-Regular.sfd" />
+    <None Include="Tools\Font\sfd\THSarabunNew-Bold.sfd" />
     <None Include="Tools\icon.psd" />
     <None Include="Tools\ThaiStorybook\modThaiStoryBook.w3modproj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -241,6 +244,13 @@
       <Project>{62aa79b6-cd04-4622-ae05-4d415615b4ee}</Project>
       <Name>TranslateUtility</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Tools\Font\swf\original.swf" />
+    <Content Include="Tools\Font\swf\prajad.swf" />
+    <Content Include="Tools\Font\swf\promp.swf" />
+    <Content Include="Tools\Font\swf\sarabun.swf" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

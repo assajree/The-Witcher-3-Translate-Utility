@@ -127,16 +127,34 @@
     <None Include="Tools\modFontCsPraKas\content\metadata.store">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Tools\modFontDilleniaUPC\content\blob0.bundle">
+    <None Include="Tools\modFontMahaniyom\content\blob0.bundle">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Tools\modFontDilleniaUPC\content\metadata.store">
+    <None Include="Tools\modFontMahaniyom\content\metadata.store">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Tools\modFontPrompt\content\blob0.bundle">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Tools\modFontPrompt\content\metadata.store">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Tools\modFontSarabun\content\blob0.bundle">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Tools\modFontSarabun\content\metadata.store">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Tools\modFontSrisakdi\content\blob0.bundle">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Tools\modFontSrisakdi\content\metadata.store">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Tools\modFontSuperMarket\content\blob0.bundle">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Tools\modFontSuperMarket\content\metadata.store">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Tools\modThaiFont\content\blob0.bundle">
