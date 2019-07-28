@@ -51,7 +51,7 @@ namespace TranslateUtility
             //DownloadRequireComponent();
 
             //CheckForUpdate(false, false, false);
-            CheckForUpdate(false);
+            
         }
 
         private void frmVeryVerySimple_Shown(object sender, EventArgs e)
@@ -59,6 +59,8 @@ namespace TranslateUtility
             //mExpandHeight = this.Height;
             if (!ShowAdvance)
                 ToggleAdvance();
+
+            CheckForUpdate(false);
         }
 
         //private void ReadCustomTranslateDescription()
@@ -117,10 +119,10 @@ namespace TranslateUtility
             Configs.IsGamer = !String.IsNullOrWhiteSpace(gamePath);
             txtGamePath.SetDefault(gamePath);
 
-            if (Configs.IsGamer)
-            {
-                lblGameDir.Text += "(เกมแท้)";
-            }
+            //if (Configs.IsGamer)
+            //{
+            //    lblGameDir.Text += "(เกมแท้)";
+            //}
 
             SetDownloadFrequencyRadio();
             SetFontRadio();
