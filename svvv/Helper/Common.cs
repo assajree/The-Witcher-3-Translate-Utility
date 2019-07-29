@@ -210,7 +210,7 @@ namespace TheWitcher3Thai
                 if (File.Exists(targetPath))
                 {
                     var fi = new FileInfo(path);
-                    if(!fi.Directory.Parent.Name.Equals(Configs.modThaiLanguage))
+                    if (!fi.Directory.Parent.Name.Equals(Configs.modThaiLanguage))
                     {
                         File.Delete(targetPath);
                         File.Copy(path, targetPath);
@@ -1859,10 +1859,10 @@ namespace TheWitcher3Thai
             };
 
             string path = null;
-            foreach(var id in ids)
+            foreach (var id in ids)
             {
                 path = GetGogPath(id);
-                if(!String.IsNullOrWhiteSpace(path))
+                if (!String.IsNullOrWhiteSpace(path))
                 {
                     return path;
                 }
@@ -1954,7 +1954,7 @@ namespace TheWitcher3Thai
             //return fi?.FullName;
         }
 
-        public void PrepareFile(string modPath, string tempPath, Dictionary<string, string> fileList, string langCode="en")
+        public void PrepareFile(string modPath, string tempPath, Dictionary<string, string> fileList, string langCode = "en")
         {
             // for test
             //return;
@@ -1966,7 +1966,7 @@ namespace TheWitcher3Thai
             DecodeDirectory(tempOriginalPath);
         }
 
-        public void GenerateExcelFromMod(string modPath, string excelPath = null, string langCode="en")
+        public void GenerateExcelFromMod(string modPath, string excelPath = null, string langCode = "en")
         {
             var files = setting.GetSheetConfig();
             var tempPath = Path.Combine(Application.StartupPath, "temp");
@@ -2311,19 +2311,19 @@ namespace TheWitcher3Thai
 
         public List<w3Strings> ReadAllGameMessage(string gamePath)
         {
-            var message=ReadGame(gamePath);
+            var message = ReadGame(gamePath);
             var allMessage = new List<w3Strings>();
-            foreach(var item in message.Values)
+            foreach (var item in message.Values)
             {
                 allMessage.AddRange(item);
             }
 
-            var distintMessage=DistinctContent(allMessage);
+            var distintMessage = DistinctContent(allMessage);
 
             return distintMessage;
         }
 
-        public Dictionary<string,w3Strings> ReadAllGameMessageDict(string gamePath)
+        public Dictionary<string, w3Strings> ReadAllGameMessageDict(string gamePath)
         {
             var allMessage = ReadAllGameMessage(gamePath);
             var dict = ConvertToDictionary(allMessage);
@@ -2556,7 +2556,7 @@ namespace TheWitcher3Thai
         {
             if (Configs.GetAppSetting().OldMethod || !Configs.IsGamer)
             {
-                var msg= setting.GetCrackLoadingMessage();
+                var msg = setting.GetCrackLoadingMessage();
                 var msgIndex = GetCrackLoadingMessage(msg);
 
                 // witcher sense
@@ -2567,15 +2567,15 @@ namespace TheWitcher3Thai
                     SetMessage(dict["1066019"], msg[msgIndex]);
 
                 int luck = GetLuck();
-                if (luck< Constant.CRACK_SUPER_LUCKY_CHANCE)
+                if (luck < Constant.CRACK_SUPER_LUCKY_CHANCE)
                     AddSuperCrackBonus(dict);
-                else if(luck<Constant.CRACK_LUCKY_CHANCE)
+                else if (luck < Constant.CRACK_LUCKY_CHANCE)
                     AddCrackBonus(dict);
 
             }
         }
 
-        
+
 
         private int GetLuck()
         {
@@ -2596,14 +2596,14 @@ namespace TheWitcher3Thai
 
         private void AddSuperCrackBonus(Dictionary<string, w3Strings> dict)
         {
-            var uiMessage = dict.Where(d => d.Value.IsUiText).Select(d=>d.Value).ToList();
-            foreach(var msg in uiMessage)
+            var uiMessage = dict.Where(d => d.Value.IsUiText).Select(d => d.Value).ToList();
+            foreach (var msg in uiMessage)
             {
                 SetMessage(msg, GetBonusMessage(msg));
             }
 
             if (dict.ContainsKey("1066019"))
-                    SetMessage(dict["1066019"], Constant.CRACK_LOADING_MESSAGE);
+                SetMessage(dict["1066019"], Constant.CRACK_LOADING_MESSAGE);
         }
 
         private string GetBonusMessage(w3Strings msg)
@@ -2624,7 +2624,7 @@ namespace TheWitcher3Thai
         private int GetCrackLoadingMessage(List<string> list)
         {
             var random = new Random();
-            
+
             int index = random.Next(list.Count);
             return index;
         }
@@ -3913,7 +3913,10 @@ namespace TheWitcher3Thai
                 return;
 
             // backup old setting
-            fi.CopyTo(settingPath + $@".{DateTime.Now:yyyyMMddHHmmssffff}.bak");
+            CopyFile(
+                settingPath,
+                settingPath + $@".{DateTime.Now.ToString("yyyyMMddHHmmssffff", CultureInfo.InvariantCulture)}.bak"
+            );
 
             content = content.Replace($@"RequestedTextLanguage={fromLangCode}", $@"RequestedTextLanguage={toLangCode}");
             content = content.Replace($@"TextLanguage={fromLangCode}", $@"TextLanguage={toLangCode}");
