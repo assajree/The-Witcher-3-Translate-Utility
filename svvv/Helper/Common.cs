@@ -3913,10 +3913,13 @@ namespace TheWitcher3Thai
                 return;
 
             // backup old setting
-            CopyFile(
-                settingPath,
-                settingPath + $@".{DateTime.Now.ToString("yyyyMMddHHmmssffff", CultureInfo.InvariantCulture)}.bak"
-            );
+            if (Configs.GetAppSetting().BackupSetting) 
+            {
+                CopyFile(
+                    settingPath,
+                    settingPath + $@".{DateTime.Now.ToString("yyyyMMddHHmmssffff", CultureInfo.InvariantCulture)}.bak"
+                );
+            }
 
             content = content.Replace($@"RequestedTextLanguage={fromLangCode}", $@"RequestedTextLanguage={toLangCode}");
             content = content.Replace($@"TextLanguage={fromLangCode}", $@"TextLanguage={toLangCode}");

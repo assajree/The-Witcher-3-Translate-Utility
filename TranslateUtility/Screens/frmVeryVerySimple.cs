@@ -92,7 +92,9 @@ namespace TranslateUtility
             toolTip1.SetToolTip(rdoDownloadHourly, "ดาวน์โหลดเมื่อผ่านไป 1 ชั่วโมง จากการดาวน์โหลดครั้งที่แล้วเท่านั้น");
             toolTip1.SetToolTip(rdoDownloadOnce, "ดาวน์โหลดเมื่อไม่มีไฟล์แปลภาษาเท่านั้น");
             toolTip1.SetToolTip(chkChangeTextColor, "เปลี่ยนสีชื่อในซับไตเติ้ล");
-            toolTip1.SetToolTip(chkOldMethod, $@"มีโอกาสติด Lucky {Constant.CRACK_LUCKY_CHANCE}%");
+            //toolTip1.SetToolTip(chkOldMethod, $@"มีโอกาสติด Lucky {Constant.CRACK_LUCKY_CHANCE}%");
+            toolTip1.SetToolTip(chkOldMethod, "ติดตั้งม็อดสำหรับเกมเวอร์ชั่นเก่า ใช้เมื่อติดตั้งแบบปกติเกมแล้วไม่แสดงภาษาไทย");
+            toolTip1.SetToolTip(chkBackupSetting, "สำรองการตั้งค่าของเกมก่อนติดตั้งม็อด");
         }
 
         private void InitialScreen()
@@ -144,6 +146,7 @@ namespace TranslateUtility
             chkModDoubleLanguage.Checked = mAppSetting.DoubleLanguage;
             chkExcludeUiText.Checked = mAppSetting.EnglishUi;
             chkOldMethod.Checked = mAppSetting.OldMethod;
+            chkBackupSetting.Checked = mAppSetting.BackupSetting;
             //chkAltSub.Checked = mAppSetting.AlternativeSubtitle;
 
             if (mAppSetting.ThaiFirst)
@@ -349,6 +352,7 @@ namespace TranslateUtility
 
         private void RemoveMod()
         {
+            SaveAppSetting();
             //c.Backup(Configs.BackupPath, txtGamePath.Text, true, false);
             c.RemoveMod(txtGamePath.Text);
             c.ChangeLanguageSettingToEN();
@@ -381,6 +385,7 @@ namespace TranslateUtility
             mAppSetting.DoubleLanguage = chkModDoubleLanguage.Checked;
             mAppSetting.EnglishUi = chkExcludeUiText.Checked;
             mAppSetting.OldMethod = chkOldMethod.Checked;
+            mAppSetting.BackupSetting = chkBackupSetting.Checked;
             //mAppSetting.AlternativeSubtitle = chkAltSub.Checked;
             mAppSetting.ThaiFirst = rdoModTranslateFirst.Checked;
             mAppSetting.ShowNotTranslateRow = chkUntranslateInfo.Checked;

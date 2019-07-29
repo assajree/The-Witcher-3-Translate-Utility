@@ -14,7 +14,7 @@ namespace svvv.Classes
         public bool DoubleLanguage { get; set; } = false;
         public bool EnglishUi { get; set; } = false;
         public bool OldMethod { get; set; } = false;
-        //public bool AlternativeSubtitle { get; set; } = true;
+        public bool BackupSetting { get; set; } = true;
         public bool ThaiFirst { get; set; } = true;
         public bool ShowNotTranslateRow { get; set; } = false;
         public bool ShowTranslateRow { get; set; } = false;
@@ -48,23 +48,6 @@ namespace svvv.Classes
             }
         }
 
-        //private void InitialValue()
-        //{
-        //    DoubleLanguage = true;
-        //    EnglishUi = false;
-        //    OldMethod = false;
-        //    AlternativeSubtitle = false;
-        //    ThaiFirst = true;
-        //    ShowNotTranslateRow = false;
-        //    ShowTranslateRow = false;
-        //    ShowUiRow = false;
-        //    FontSetting = eFontSetting.Sarabun;
-        //    SizeCutscene = 34;
-        //    SizeDialog = 34;
-        //    DownloadFrequency = eDownloadFrequency.Hour;
-        //    GamePath = "";
-        //}
-
         public void SaveSetting()
         {
             File.WriteAllText(mSettingPath, ToString());
@@ -78,7 +61,7 @@ namespace svvv.Classes
             sb.AppendLine($@"DoubleLanguage={DoubleLanguage}");
             sb.AppendLine($@"EnglishUi={EnglishUi}");
             sb.AppendLine($@"OldMethod={OldMethod}");
-            //sb.AppendLine($@"AlternativeSubtitle={AlternativeSubtitle}");
+            sb.AppendLine($@"BackupSetting={BackupSetting}");
             sb.AppendLine($@"ThaiFirst={ThaiFirst}");
             sb.AppendLine($@"ShowNotTranslateRow={ShowNotTranslateRow}");
             sb.AppendLine($@"ShowTranslateRow={ShowTranslateRow}");
@@ -118,9 +101,9 @@ namespace svvv.Classes
                 case "OldMethod":
                     OldMethod = value.ToBoolean(false);
                     break;
-                //case "AlternativeSubtitle":
-                //    AlternativeSubtitle = value.ToBoolean(true);
-                //    break;
+                case "BackupSetting":
+                    BackupSetting = value.ToBoolean(true);
+                    break;
                 case "ThaiFirst":
                     ThaiFirst = value.ToBoolean(true);
                     break;
