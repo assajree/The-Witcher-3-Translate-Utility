@@ -2554,7 +2554,8 @@ namespace TheWitcher3Thai
 
         private void AddCrackMessage(Dictionary<string, w3Strings> dict)
         {
-            if (Configs.GetAppSetting().OldMethod || !Configs.IsGamer)
+            //if (Configs.GetAppSetting().OldMethod || !Configs.IsGamer)
+            if (!Configs.IsGamer)
             {
                 var msg = setting.GetCrackLoadingMessage();
                 var msgIndex = GetCrackLoadingMessage(msg);

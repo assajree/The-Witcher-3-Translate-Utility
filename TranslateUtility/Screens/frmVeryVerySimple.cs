@@ -121,10 +121,10 @@ namespace TranslateUtility
             Configs.IsGamer = !String.IsNullOrWhiteSpace(gamePath);
             txtGamePath.SetDefault(gamePath);
 
-            //if (Configs.IsGamer)
-            //{
-            //    lblGameDir.Text += "(เกมแท้)";
-            //}
+            if (!Configs.IsGamer)
+            {
+                this.Text += "v";
+            }
 
             SetDownloadFrequencyRadio();
             SetFontRadio();
