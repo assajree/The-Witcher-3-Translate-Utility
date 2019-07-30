@@ -478,13 +478,13 @@ namespace TheWitcher3Thai
             return template;
         }
 
-        public Dictionary<string, List<w3Strings>> ReadGame(String gamePath)
+        public Dictionary<string, List<w3Strings>> ReadGame(String gamePath, string langCode)
         {
             var files = setting.GetSheetConfig();
             var tempPath = Path.Combine(Application.StartupPath, "temp");
             string tempOriginalPath = Path.Combine(tempPath, "original");
 
-            PrepareFile(gamePath, tempPath, files);
+            PrepareFile(gamePath, tempPath, files, langCode);
 
             var result = new Dictionary<string, List<w3Strings>>();
             foreach (var sht in files)
@@ -536,7 +536,7 @@ namespace TheWitcher3Thai
             //read
 
             var templateContent = GetAllContent(ReadTemplate());
-            var gameContent = GetAllContent(ReadGame(inputPath));
+            var gameContent = GetAllContent(ReadGame(inputPath, "en"));
 
             var fi = new FileInfo(outputPath);
             if (!fi.Directory.Exists)
@@ -2309,9 +2309,9 @@ namespace TheWitcher3Thai
             return result;
         }
 
-        public List<w3Strings> ReadAllGameMessage(string gamePath)
+        public List<w3Strings> ReadAllGameMessage(string gamePath, string langCode)
         {
-            var message = ReadGame(gamePath);
+            var message = ReadGame(gamePath, langCode);
             var allMessage = new List<w3Strings>();
             foreach (var item in message.Values)
             {
@@ -2323,16 +2323,16 @@ namespace TheWitcher3Thai
             return distintMessage;
         }
 
-        public Dictionary<string, w3Strings> ReadAllGameMessageDict(string gamePath)
+        public Dictionary<string, w3Strings> ReadAllGameMessageDict(string gamePath, string langCode)
         {
-            var allMessage = ReadAllGameMessage(gamePath);
+            var allMessage = ReadAllGameMessage(gamePath, langCode);
             var dict = ConvertToDictionary(allMessage);
             return dict;
         }
 
-        public void FillExcelFromGame(string gamePath, string excelPath, bool fillText)
+        public void FillExcelFromGame(string gamePath, string excelPath, bool fillText, string langCode)
         {
-            var dict = ReadAllGameMessageDict(gamePath);
+            var dict = ReadAllGameMessageDict(gamePath, langCode);
 
             var fi = new FileInfo(excelPath);
             using (var p = new ExcelPackage(fi))
@@ -3914,7 +3914,7 @@ namespace TheWitcher3Thai
                 return;
 
             // backup old setting
-            if (Configs.GetAppSetting().BackupSetting) 
+            if (Configs.GetAppSetting().BackupSetting)
             {
                 CopyFile(
                     settingPath,

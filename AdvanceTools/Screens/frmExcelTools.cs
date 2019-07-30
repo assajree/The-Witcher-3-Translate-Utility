@@ -61,6 +61,9 @@ namespace TranslateUtility
             txtMissingSource.SetDefault(gamePath);
             txtMissingOutput.SetDefault(Path.Combine(Application.StartupPath, "output", "missing.xlsx"));
 
+            // fill by mod
+            txtModFillSource.Text = gamePath;
+
         }
 
         private void frmExcelTools_FormClosed(object sender, FormClosedEventArgs e)
@@ -130,8 +133,7 @@ namespace TranslateUtility
 
         private void FillByGame()
         {
-            c.FillExcelFromGame(txtModFillSource.Text, txtModFillOutput.Text, rdoModFillTranslate.Checked);
-            c.ShowMessage("Fill Complete");
+            c.FillExcelFromGame(txtModFillSource.Text, txtModFillOutput.Text, rdoModFillText.Checked,txtModFillLang.Text);
         }
 
         #endregion
