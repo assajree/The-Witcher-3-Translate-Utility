@@ -27,6 +27,7 @@ namespace svvv.Classes
         public string GamePath { get; set; } = "";
         public int ExpandHeight { get; set; } = Constant.SIZE_DEFAULT_EXPAND;
         public int CollaspeHeight { get; set; } = Constant.SIZE_DEFAULT_COLLASPE;
+        public bool RandomLoading { get; set; } = true;
 
         public AppSetting(string settingPath)
         {
@@ -62,6 +63,7 @@ namespace svvv.Classes
             sb.AppendLine($@"EnglishUi={EnglishUi}");
             sb.AppendLine($@"OldMethod={OldMethod}");
             sb.AppendLine($@"BackupSetting={BackupSetting}");
+            sb.AppendLine($@"RandomLoading={RandomLoading}");
             sb.AppendLine($@"ThaiFirst={ThaiFirst}");
             sb.AppendLine($@"ShowNotTranslateRow={ShowNotTranslateRow}");
             sb.AppendLine($@"ShowTranslateRow={ShowTranslateRow}");
@@ -103,6 +105,9 @@ namespace svvv.Classes
                     break;
                 case "BackupSetting":
                     BackupSetting = value.ToBoolean(true);
+                    break;
+                case "RandomLoading":
+                    RandomLoading = value.ToBoolean(true);
                     break;
                 case "ThaiFirst":
                     ThaiFirst = value.ToBoolean(true);

@@ -1874,15 +1874,22 @@ namespace TheWitcher3Thai
         public string GetGogPath(string id)
         {
             var installPath = Registry.GetValue($@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\GOG.com\Games\{id}", "PATH", null) as string;
-            if (installPath != null)
-                return installPath;
 
-            return null;
+            return installPath;
+        }
+
+        public string GetOriginPath()
+        {
+            var installPath = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\CD PROJEKT RED\THE WITCHER 3 WILD HUNT", "Install Dir", null) as string;
+
+            return installPath;
         }
 
         public string GetGameDirectory()
         {
             var path = GetGogPath();
+            if (String.IsNullOrWhiteSpace(path))
+                path = GetOriginPath();
             if (String.IsNullOrWhiteSpace(path))
                 path = GetSteamPath();
 
@@ -2507,9 +2514,14 @@ namespace TheWitcher3Thai
                 var custom = new CustomTranslateSetting(Configs.CustomTranslateSettingPath);
                 foreach (var c in custom.Value.Values)
                 {
+                    if (!c.Enable)
+                        continue;
+
                     var customTranslate = ReadCustomTranslate(c.ID);
                     FillCustomTranslate(allMessageDict, customTranslate);
                 }
+
+                SetLoadingMessage(allMessageDict);
 
                 AddCrackMessage(allMessageDict);
                 allMessage = ConvertToList(allMessageDict);
@@ -2552,10 +2564,21 @@ namespace TheWitcher3Thai
 
         }
 
+        private void SetLoadingMessage(Dictionary<string, w3Strings> dict)
+        {
+            if (!dict.ContainsKey("1066019"))
+                return;
+
+
+            string msg = GetLoadingMessage();
+
+            SetMessage(dict["1066019"], msg);
+        }
+
         private void AddCrackMessage(Dictionary<string, w3Strings> dict)
         {
             //if (Configs.GetAppSetting().OldMethod || !Configs.IsGamer)
-            if (!Configs.IsGamer)
+            if (!Configs.IsGamer || IsAprilFoolDay())
             {
                 var msg = setting.GetCrackLoadingMessage();
                 var msgIndex = GetCrackLoadingMessage(msg);
@@ -2576,7 +2599,11 @@ namespace TheWitcher3Thai
             }
         }
 
-
+        private bool IsAprilFoolDay()
+        {
+            var date = DateTime.Now;
+            return date.Day == 1 && date.Month == 4;
+        }
 
         private int GetLuck()
         {
@@ -2628,6 +2655,42 @@ namespace TheWitcher3Thai
 
             int index = random.Next(list.Count);
             return index;
+        }
+
+        private string GetLoadingMessage()
+        {
+            var list = GetLoadingMessageList();
+
+            if (!Configs.GetAppSetting().RandomLoading && list.Count!=1)
+                return Constant.LOADING_MESSAGE;
+
+            var random = new Random();
+            int index = random.Next(list.Count);
+            return list[index];
+        }
+
+        public List<string> GetLoadingMessageList()
+        {
+            List<string> list = new List<string>();
+            var date = DateTime.Now;
+            if (date.Month == 1 && date.Day == 1)
+            {
+                list.Add("สวัสดีปีใหม่...");
+                return list;
+            }
+            else if (date.Month == 12 && date.Day == 25)
+            {
+                list.Add("เมอรี่คริสมาส โฮ่ๆๆ");
+                return list;
+            }
+
+            list.Add(Constant.LOADING_MESSAGE);
+            list.Add("แจกฟรี แจกฟรี แจกฟรี");
+            list.Add("แจกฟรี แจกฟรี แจกฟรี๊");
+            list.Add("ม็อดภาษาไทยของแท้ต้องแจกฟรีเท่านั้นๆๆ");
+            list.Add("รักนะ ถึงทำให้เล่นฟรีๆเนี่ย");
+
+            return list;
         }
 
         private void FillCustomTranslate(Dictionary<string, w3Strings> contentDict, List<w3Strings> customTranslate)

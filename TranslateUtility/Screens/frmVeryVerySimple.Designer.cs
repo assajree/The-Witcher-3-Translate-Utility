@@ -66,6 +66,8 @@
             this.rdoDownloadDialy = new System.Windows.Forms.RadioButton();
             this.rdoDownloadOnce = new System.Windows.Forms.RadioButton();
             this.rdoDownloadHourly = new System.Windows.Forms.RadioButton();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.chkBackupSetting = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnInstallFont = new System.Windows.Forms.Button();
             this.rdoFontPrompt = new System.Windows.Forms.RadioButton();
@@ -76,8 +78,6 @@
             this.rdoFontSarabun = new System.Windows.Forms.RadioButton();
             this.rdoFontNone = new System.Windows.Forms.RadioButton();
             this.rdoFontKuntoon = new System.Windows.Forms.RadioButton();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.chkBackupSetting = new System.Windows.Forms.CheckBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.miVersion = new System.Windows.Forms.ToolStripMenuItem();
@@ -89,6 +89,7 @@
             this.miDebug = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.txtGamePath = new System.Windows.Forms.TextBox();
+            this.chkRandomLoading = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -98,8 +99,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtFontSizeCutScene)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFontSizeSpeak)).BeginInit();
             this.groupBox5.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.groupBox8.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -223,7 +224,7 @@
             this.chkOldMethod.Name = "chkOldMethod";
             this.chkOldMethod.Size = new System.Drawing.Size(133, 24);
             this.chkOldMethod.TabIndex = 38;
-            this.chkOldMethod.Text = "เกมเวอร์ชั่นเก่า";
+            this.chkOldMethod.Text = "ลงม็อดแบบเก่า";
             this.chkOldMethod.UseVisualStyleBackColor = true;
             // 
             // groupBox2
@@ -678,6 +679,36 @@
             this.rdoDownloadHourly.Text = "ทุกชั่วโมง";
             this.rdoDownloadHourly.UseVisualStyleBackColor = true;
             // 
+            // groupBox8
+            // 
+            this.groupBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox8.Controls.Add(this.chkRandomLoading);
+            this.groupBox8.Controls.Add(this.chkBackupSetting);
+            this.groupBox8.Controls.Add(this.chkOldMethod);
+            this.groupBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox8.Location = new System.Drawing.Point(4, 399);
+            this.groupBox8.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox8.Size = new System.Drawing.Size(639, 64);
+            this.groupBox8.TabIndex = 46;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "อื่นๆ";
+            // 
+            // chkBackupSetting
+            // 
+            this.chkBackupSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkBackupSetting.AutoSize = true;
+            this.chkBackupSetting.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkBackupSetting.Location = new System.Drawing.Point(208, 27);
+            this.chkBackupSetting.Margin = new System.Windows.Forms.Padding(4);
+            this.chkBackupSetting.Name = "chkBackupSetting";
+            this.chkBackupSetting.Size = new System.Drawing.Size(155, 24);
+            this.chkBackupSetting.TabIndex = 38;
+            this.chkBackupSetting.Text = "สำรองไฟล์ setting";
+            this.chkBackupSetting.UseVisualStyleBackColor = true;
+            // 
             // groupBox4
             // 
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -811,35 +842,6 @@
             this.rdoFontKuntoon.Text = "คุณตูน";
             this.rdoFontKuntoon.UseVisualStyleBackColor = true;
             // 
-            // groupBox8
-            // 
-            this.groupBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox8.Controls.Add(this.chkBackupSetting);
-            this.groupBox8.Controls.Add(this.chkOldMethod);
-            this.groupBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox8.Location = new System.Drawing.Point(4, 399);
-            this.groupBox8.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox8.Size = new System.Drawing.Size(639, 64);
-            this.groupBox8.TabIndex = 46;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "อื่นๆ";
-            // 
-            // chkBackupSetting
-            // 
-            this.chkBackupSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkBackupSetting.AutoSize = true;
-            this.chkBackupSetting.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkBackupSetting.Location = new System.Drawing.Point(208, 27);
-            this.chkBackupSetting.Margin = new System.Windows.Forms.Padding(4);
-            this.chkBackupSetting.Name = "chkBackupSetting";
-            this.chkBackupSetting.Size = new System.Drawing.Size(155, 24);
-            this.chkBackupSetting.TabIndex = 38;
-            this.chkBackupSetting.Text = "สำรองไฟล์ setting";
-            this.chkBackupSetting.UseVisualStyleBackColor = true;
-            // 
             // menuStrip1
             // 
             this.menuStrip1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -932,6 +934,19 @@
             this.txtGamePath.TextChanged += new System.EventHandler(this.txtGamePath_TextChanged);
             this.txtGamePath.DoubleClick += new System.EventHandler(this.txtGamePath_DoubleClick);
             // 
+            // chkRandomLoading
+            // 
+            this.chkRandomLoading.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkRandomLoading.AutoSize = true;
+            this.chkRandomLoading.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkRandomLoading.Location = new System.Drawing.Point(422, 27);
+            this.chkRandomLoading.Margin = new System.Windows.Forms.Padding(4);
+            this.chkRandomLoading.Name = "chkRandomLoading";
+            this.chkRandomLoading.Size = new System.Drawing.Size(199, 24);
+            this.chkRandomLoading.TabIndex = 39;
+            this.chkRandomLoading.Text = "สุ่มข้อความหน้าโหลดเกม";
+            this.chkRandomLoading.UseVisualStyleBackColor = true;
+            // 
             // frmVeryVerySimple
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -970,10 +985,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtFontSizeSpeak)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -1041,5 +1056,6 @@
         private System.Windows.Forms.RadioButton rdoFontSrisakdi;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.CheckBox chkBackupSetting;
+        private System.Windows.Forms.CheckBox chkRandomLoading;
     }
 }
