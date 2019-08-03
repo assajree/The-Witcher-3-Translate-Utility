@@ -67,6 +67,7 @@
             this.rdoDownloadOnce = new System.Windows.Forms.RadioButton();
             this.rdoDownloadHourly = new System.Windows.Forms.RadioButton();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.chkRandomLoading = new System.Windows.Forms.CheckBox();
             this.chkBackupSetting = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnInstallFont = new System.Windows.Forms.Button();
@@ -89,7 +90,6 @@
             this.miDebug = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.txtGamePath = new System.Windows.Forms.TextBox();
-            this.chkRandomLoading = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -154,7 +154,7 @@
             this.btnLegacyGenerate.Name = "btnLegacyGenerate";
             this.btnLegacyGenerate.Size = new System.Drawing.Size(156, 42);
             this.btnLegacyGenerate.TabIndex = 33;
-            this.btnLegacyGenerate.Text = "สร้าง && ติดตั้ง";
+            this.btnLegacyGenerate.Text = "ติดตั้ง";
             this.btnLegacyGenerate.UseVisualStyleBackColor = true;
             this.btnLegacyGenerate.Click += new System.EventHandler(this.btnLegacyGenerate_Click);
             // 
@@ -696,6 +696,19 @@
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "อื่นๆ";
             // 
+            // chkRandomLoading
+            // 
+            this.chkRandomLoading.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkRandomLoading.AutoSize = true;
+            this.chkRandomLoading.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkRandomLoading.Location = new System.Drawing.Point(422, 27);
+            this.chkRandomLoading.Margin = new System.Windows.Forms.Padding(4);
+            this.chkRandomLoading.Name = "chkRandomLoading";
+            this.chkRandomLoading.Size = new System.Drawing.Size(199, 24);
+            this.chkRandomLoading.TabIndex = 39;
+            this.chkRandomLoading.Text = "สุ่มข้อความหน้าโหลดเกม";
+            this.chkRandomLoading.UseVisualStyleBackColor = true;
+            // 
             // chkBackupSetting
             // 
             this.chkBackupSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -933,19 +946,6 @@
             this.txtGamePath.TabIndex = 6;
             this.txtGamePath.TextChanged += new System.EventHandler(this.txtGamePath_TextChanged);
             this.txtGamePath.DoubleClick += new System.EventHandler(this.txtGamePath_DoubleClick);
-            // 
-            // chkRandomLoading
-            // 
-            this.chkRandomLoading.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkRandomLoading.AutoSize = true;
-            this.chkRandomLoading.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkRandomLoading.Location = new System.Drawing.Point(422, 27);
-            this.chkRandomLoading.Margin = new System.Windows.Forms.Padding(4);
-            this.chkRandomLoading.Name = "chkRandomLoading";
-            this.chkRandomLoading.Size = new System.Drawing.Size(199, 24);
-            this.chkRandomLoading.TabIndex = 39;
-            this.chkRandomLoading.Text = "สุ่มข้อความหน้าโหลดเกม";
-            this.chkRandomLoading.UseVisualStyleBackColor = true;
             // 
             // frmVeryVerySimple
             // 

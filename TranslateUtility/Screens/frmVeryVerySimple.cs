@@ -286,6 +286,10 @@ namespace TranslateUtility
             // result button
             btnResult.Enabled = File.Exists(resultPath);
             btnMessageFinder.Enabled = btnResult.Enabled;
+            if (btnResult.Enabled)
+            {
+                btnLegacyGenerate.Text=@"อัพเดท";
+            }
 
             // install button && restore button
             if (c.IsValidGamePath(txtGamePath.Text))
