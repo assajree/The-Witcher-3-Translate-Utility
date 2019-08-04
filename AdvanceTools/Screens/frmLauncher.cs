@@ -1,4 +1,5 @@
-﻿using System;
+﻿using svvv.Dialog;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -86,7 +87,9 @@ namespace TranslateUtility
 
         private void btnTest_Click(object sender, EventArgs e)
         {
-            OpenForm(new frmCustomTranslateSetting());
+            //OpenForm(new frmCustomTranslateSetting());
+            var dlg = new ErrorDialog();
+            dlg.ShowDialog();
         }
     }
 }
