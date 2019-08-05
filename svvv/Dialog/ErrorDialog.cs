@@ -1,48 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
+using TheWitcher3Thai;
 
 namespace svvv.Dialog
 {
     public partial class ErrorDialog : Form
     {
+        static Common c = new Common();
         public ErrorDialog()
         {
             InitializeComponent();
         }
 
-        private void ErrorDialog_Load(object sender, EventArgs e)
+        public ErrorDialog(Exception ex) : this()
         {
-            //ToggleDeteil();
+            lblMessage.Text = ex.GetBaseException().Message;
+            txtDetail.Text = ex.StackTrace;
         }
 
-        private void ToggleDeteil()
+        private void ToggleDetail()
         {
-            if(pnDetail.Visible)
+            if (txtDetail.Height == 0)
             {
-                this.AutoSize = false;
-                this.Height -= pnDetail.Height;
-                pnDetail.Visible = false;
-
+                lblCopy.Visible = true;
+                txtDetail.Height = 100;
             }
             else
             {
-                this.AutoSize = true;
-                pnDetail.Visible = true;
-                this.Height += pnDetail.Height;
-
+                lblCopy.Visible = false;
+                txtDetail.Height = 0;
             }
-        }
-
-        private void lblDetail_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            ToggleDeteil();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -50,14 +38,28 @@ namespace svvv.Dialog
             this.Close();
         }
 
-        private void lblDetail_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
+        private void ErrorDialog2_Load(object sender, EventArgs e)
         {
-            ToggleDeteil();
+            ToggleDetail();
         }
 
-        private void lblLog_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void btnDetail_Click(object sender, EventArgs e)
         {
-            lblMessage.Text = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+            ToggleDetail();
+        }
+
+        private void lblCopy_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Clipboard.SetText(txtDetail.Text);
+        }
+
+        private void lblLog_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var logPath = Logger.GetLogPath();
+            if (File.Exists(logPath))
+                c.Open(logPath);
+            else
+                c.ShowMessage("ไม่พบไฟล์ Log");
         }
     }
 }

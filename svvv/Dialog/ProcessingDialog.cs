@@ -18,6 +18,7 @@ namespace Svvv.Common
 
         private Action Worker { get; set; }
         private Func<string> WorkerString { get; set; }
+        public Exception Error { get; private set; }
 
         public string Message { get; private set; }
 
@@ -82,7 +83,7 @@ namespace Svvv.Common
                     if(ShowError)
                         Message = ex.GetBaseException().Message;
 
-                    Logger.Log(ex);
+                    Error = ex;
                 }
             }
         }

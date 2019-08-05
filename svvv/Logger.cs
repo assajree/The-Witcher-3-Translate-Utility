@@ -12,7 +12,7 @@ namespace svvv
     {
         static string logPath = Path.Combine(Application.StartupPath, "log.log");
         const string TAG_INFO = "INFO";
-        const string TAG_ERROR = "ERR";
+        const string TAG_ERROR = "ERRR";
 
         public static string GetLogPath()
         {

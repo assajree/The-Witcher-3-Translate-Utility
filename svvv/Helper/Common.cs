@@ -4,6 +4,7 @@ using Microsoft.WindowsAPICodePack.Dialogs;
 using OfficeOpenXml;
 using svvv;
 using svvv.Classes;
+using svvv.Dialog;
 using Svvv.Common;
 using System;
 using System.Collections.Generic;
@@ -388,13 +389,16 @@ namespace TheWitcher3Thai
         public void ShowErrorMessage(Exception ex, string caption = "Error")
         {
             Logger.Log(ex);
-            var b = ex.GetBaseException();
-            var message = b.Message;
+            var dlg = new ErrorDialog(ex);
+            dlg.ShowDialog();
 
-            if (!(ex is KnowException))
-                message += "\n\n" + b.StackTrace.Trim();
+            //var b = ex.GetBaseException();
+            //var message = b.Message;
 
-            MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //if (!(ex is KnowException))
+            //    message += "\n\n" + b.StackTrace.Trim();
+
+            //MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         public string DownloadLegacyExcel(string initialPath, bool showSaveDialog, eDownloadFrequency frequency = eDownloadFrequency.Hour)
@@ -2886,7 +2890,7 @@ namespace TheWitcher3Thai
                 }
                 else
                 {
-                    ShowErrorMessage(dlg.Message);
+                    ShowErrorMessage(dlg.Error);
                 }
 
                 return dlg.DialogResult;

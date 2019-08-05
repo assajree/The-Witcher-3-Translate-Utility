@@ -63,9 +63,9 @@ namespace svvv.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon {
+        internal static System.Drawing.Bitmap icon_64 {
             get {
-                object obj = ResourceManager.GetObject("icon", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
