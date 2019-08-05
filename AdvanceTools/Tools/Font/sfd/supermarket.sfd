@@ -22,7 +22,7 @@ OS2Version: 3
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 0
 CreationTime: 1174588740
-ModificationTime: 1564245968
+ModificationTime: 1564996682
 PfmFamily: 17
 TTFWeight: 400
 TTFWidth: 5
@@ -5096,7 +5096,7 @@ NameList: AGL For New Fonts
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 31 31 10
+WinInfo: 0 27 10
 BeginPrivate: 0
 EndPrivate
 Grid
@@ -5171,9 +5171,9 @@ EndChar
 
 StartChar: exclam
 Encoding: 33 33 4
-Width: 504
-VWidth: 2048
-Flags: W
+Width: 564
+VWidth: 2380
+Flags: WO
 TtInstrs:
 PUSHW_1
  10
@@ -5193,20 +5193,20 @@ EndTTInstrs
 LayerCount: 2
 Fore
 SplineSet
-374 -205 m 0,0,1
- 374 -257 374 -257 340 -292 c 0,2,3
- 305 -327 305 -327 255 -327 c 0,4,5
- 204 -327 204 -327 169 -292 c 0,6,7
- 135 -257 135 -257 135 -205 c 0,8,9
- 135 -154 135 -154 169 -120 c 0,10,11
- 204 -85 204 -85 255 -85 c 0,12,13
- 302 -85 302 -85 339 -120 c 0,14,15
- 374 -155 374 -155 374 -205 c 0,0,1
-324 0 m 1,16,-1
- 189 0 l 1,17,-1
- 133 1261 l 1,18,-1
- 380 1261 l 1,19,-1
- 324 0 l 1,16,-1
+380.658203125 100.01953125 m 0,0,1
+ 380.658203125 57.900390625 380.658203125 57.900390625 351.506835938 29.5498046875 c 0,2,3
+ 321.5 1.2001953125 321.5 1.2001953125 278.630859375 1.2001953125 c 0,4,5
+ 234.904296875 1.2001953125 234.904296875 1.2001953125 204.896484375 29.5498046875 c 0,6,7
+ 175.74609375 57.900390625 175.74609375 57.900390625 175.74609375 100.01953125 c 0,8,9
+ 175.74609375 141.330078125 175.74609375 141.330078125 204.896484375 168.870117188 c 0,10,11
+ 234.904296875 197.219726562 234.904296875 197.219726562 278.630859375 197.219726562 c 0,12,13
+ 318.927734375 197.219726562 318.927734375 197.219726562 350.650390625 168.870117188 c 0,14,15
+ 380.658203125 140.51953125 380.658203125 140.51953125 380.658203125 100.01953125 c 0,0,1
+337.790039062 266.0703125 m 1,16,-1
+ 222.043945312 266.0703125 l 1,17,-1
+ 174.030273438 1287.48046875 l 1,18,-1
+ 385.802734375 1287.48046875 l 1,19,-1
+ 337.790039062 266.0703125 l 1,16,-1
 EndSplineSet
 EndChar
 
@@ -14026,7 +14026,7 @@ EndChar
 
 StartChar: thothannobasethai
 Encoding: 128 128 98
-AltUni2: 00f700.ffffffff.0 0020ac.ffffffff.0
+AltUni2: 0020ac.ffffffff.0 00f700.ffffffff.0
 Width: 1110
 VWidth: 2048
 Flags: W
@@ -14178,7 +14178,7 @@ EndChar
 
 StartChar: saraiileftthai
 Encoding: 130 130 100
-AltUni2: 00f702.ffffffff.0 00201a.ffffffff.0
+AltUni2: 00201a.ffffffff.0 00f702.ffffffff.0
 Width: 0
 VWidth: 2048
 Flags: W
@@ -14216,7 +14216,7 @@ EndChar
 
 StartChar: saraueleftthai
 Encoding: 131 131 101
-AltUni2: 00f703.ffffffff.0 000192.ffffffff.0
+AltUni2: 000192.ffffffff.0 00f703.ffffffff.0
 Width: 0
 VWidth: 2048
 Flags: W
@@ -14385,7 +14385,7 @@ EndChar
 
 StartChar: saraueeleftthai
 Encoding: 132 132 102
-AltUni2: 00f704.ffffffff.0 00201e.ffffffff.0
+AltUni2: 00201e.ffffffff.0 00f704.ffffffff.0
 Width: 0
 VWidth: 2048
 Flags: W
@@ -14644,7 +14644,7 @@ EndChar
 
 StartChar: maieklowleftthai
 Encoding: 134 134 104
-AltUni2: 00f705.ffffffff.0 002020.ffffffff.0
+AltUni2: 002020.ffffffff.0 00f705.ffffffff.0
 Width: 0
 VWidth: 2048
 Flags: W
@@ -14680,7 +14680,7 @@ EndChar
 
 StartChar: maitholowleftthai
 Encoding: 135 135 105
-AltUni2: 00f706.ffffffff.0 002021.ffffffff.0
+AltUni2: 002021.ffffffff.0 00f706.ffffffff.0
 Width: 0
 VWidth: 2048
 Flags: W
@@ -14738,7 +14738,7 @@ EndChar
 
 StartChar: maitrilowleftthai
 Encoding: 136 136 106
-AltUni2: 00f707.ffffffff.0 0002c6.ffffffff.0
+AltUni2: 0002c6.ffffffff.0 00f707.ffffffff.0
 Width: 0
 VWidth: 2048
 Flags: W
@@ -14811,7 +14811,7 @@ EndChar
 
 StartChar: maichattawalowleftthai
 Encoding: 137 137 107
-AltUni2: 00f708.ffffffff.0 002030.ffffffff.0
+AltUni2: 002030.ffffffff.0 00f708.ffffffff.0
 Width: 0
 VWidth: 2048
 Flags: W
@@ -14897,7 +14897,7 @@ EndChar
 
 StartChar: thanthakhatlowleftthai
 Encoding: 138 138 108
-AltUni2: 00f709.ffffffff.0 000160.ffffffff.0
+AltUni2: 000160.ffffffff.0 00f709.ffffffff.0
 Width: 0
 VWidth: 2048
 Flags: W
@@ -14944,7 +14944,7 @@ EndChar
 
 StartChar: maieklowrightthai
 Encoding: 139 139 109
-AltUni2: 00f70a.ffffffff.0 002039.ffffffff.0
+AltUni2: 002039.ffffffff.0 00f70a.ffffffff.0
 Width: 0
 VWidth: 2048
 Flags: W
@@ -14993,7 +14993,7 @@ EndChar
 
 StartChar: maitholowrightthai
 Encoding: 140 140 110
-AltUni2: 00f70b.ffffffff.0 000152.ffffffff.0
+AltUni2: 000152.ffffffff.0 00f70b.ffffffff.0
 Width: 0
 VWidth: 2048
 Flags: W
@@ -15150,7 +15150,7 @@ EndChar
 
 StartChar: maichattawalowrightthai
 Encoding: 142 142 112
-AltUni2: 00f70d.ffffffff.0 00017d.ffffffff.0
+AltUni2: 00017d.ffffffff.0 00f70d.ffffffff.0
 Width: 0
 VWidth: 2048
 Flags: W
@@ -16321,7 +16321,7 @@ EndChar
 
 StartChar: maihanakatleftthai
 Encoding: 152 152 122
-AltUni2: 00f710.ffffffff.0 0002dc.ffffffff.0
+AltUni2: 0002dc.ffffffff.0 00f710.ffffffff.0
 Width: 0
 VWidth: 2048
 Flags: W
@@ -16362,7 +16362,7 @@ EndChar
 
 StartChar: nikhahitleftthai
 Encoding: 153 153 123
-AltUni2: 00f711.ffffffff.0 002122.ffffffff.0
+AltUni2: 002122.ffffffff.0 00f711.ffffffff.0
 Width: 0
 VWidth: 2048
 Flags: W
@@ -16515,7 +16515,7 @@ EndChar
 
 StartChar: maitaikhuleftthai
 Encoding: 154 154 124
-AltUni2: 00f712.ffffffff.0 000161.ffffffff.0
+AltUni2: 000161.ffffffff.0 00f712.ffffffff.0
 Width: 0
 VWidth: 2048
 Flags: W
@@ -16659,7 +16659,7 @@ EndChar
 
 StartChar: maiekupperleftthai
 Encoding: 155 155 125
-AltUni2: 00f713.ffffffff.0 00203a.ffffffff.0
+AltUni2: 00203a.ffffffff.0 00f713.ffffffff.0
 Width: 0
 VWidth: 2048
 Flags: W
@@ -16694,7 +16694,7 @@ EndChar
 
 StartChar: maithoupperleftthai
 Encoding: 156 156 126
-AltUni2: 00f714.ffffffff.0 000153.ffffffff.0
+AltUni2: 000153.ffffffff.0 00f714.ffffffff.0
 Width: 0
 VWidth: 2048
 Flags: W
@@ -16811,7 +16811,7 @@ EndChar
 
 StartChar: maichattawaupperleftthai
 Encoding: 158 158 128
-AltUni2: 00f716.ffffffff.0 00017e.ffffffff.0
+AltUni2: 00017e.ffffffff.0 00f716.ffffffff.0
 Width: 0
 VWidth: 2048
 Flags: W
@@ -16896,7 +16896,7 @@ EndChar
 
 StartChar: thanthakhatupperleftthai
 Encoding: 159 159 129
-AltUni2: 00f717.ffffffff.0 000178.ffffffff.0
+AltUni2: 000178.ffffffff.0 00f717.ffffffff.0
 Width: 0
 VWidth: 2048
 Flags: W
@@ -18724,7 +18724,7 @@ EndChar
 
 StartChar: yoyingthai.002
 Encoding: 173 173 143
-AltUni2: 000e0d.ffffffff.0 0000de.ffffffff.0
+AltUni2: 0000de.ffffffff.0 000e0d.ffffffff.0
 Width: 1712
 VWidth: 2048
 Flags: W
@@ -20029,7 +20029,7 @@ EndChar
 
 StartChar: thothahanthai
 Encoding: 183 183 153
-AltUni2: 002219.ffffffff.0 000e17.ffffffff.0
+AltUni2: 000e17.ffffffff.0 002219.ffffffff.0
 Width: 1039
 VWidth: 2048
 Flags: W
