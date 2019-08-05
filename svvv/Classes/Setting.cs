@@ -71,24 +71,24 @@ namespace TheWitcher3Thai
 
             mSheetName = new Dictionary<string, string>();
 
-            mSheetName.Add("content0", "content0");
-            mSheetName.Add("content1", "content1");
-            mSheetName.Add("content2", "content2");
-            mSheetName.Add("content3", "content3");
-            mSheetName.Add("content4", "content4");
-            mSheetName.Add("content5", "content5");
-            mSheetName.Add("content6", "content6");
-            mSheetName.Add("content7", "content7");
-            mSheetName.Add("content8", "content8");
-            mSheetName.Add("content9", "content9");
-            mSheetName.Add("content10", "content10");
-            mSheetName.Add("content11", "content11");
-            mSheetName.Add("content12", "content12");
+            mSheetName.Add("content0",  "content0   \n(ทุกอย่างบนโลกใบนี้)");
+            mSheetName.Add("content1",  "content1   \n(ไม่มีอะไรเป็นพิเศษ)");
+            mSheetName.Add("content2",  "content2   \n(ไม่มีอะไรเป็นพิเศษ)");
+            mSheetName.Add("content3",  "content3   \n(ไม่มีอะไรเป็นพิเศษ)");
+            mSheetName.Add("content4",  "content4   \n(ไม่มีอะไรเป็นพิเศษ)");
+            mSheetName.Add("content5",  "content5   \n(ไม่มีอะไรเป็นพิเศษ)");
+            mSheetName.Add("content6",  "content6   \n(ไม่มีอะไรเป็นพิเศษ)");
+            mSheetName.Add("content7",  "content7   \n(ไม่มีอะไรเป็นพิเศษ)");
+            mSheetName.Add("content8",  "content8   \n(ไม่มีอะไรเป็นพิเศษ)");
+            mSheetName.Add("content9",  "content9   \n(ไม่มีอะไรเป็นพิเศษ)");
+            mSheetName.Add("content10", "content10 \n(ไม่มีอะไรเป็นพิเศษ)");
+            mSheetName.Add("content11", "content11 \n(ไม่มีอะไรเป็นพิเศษ)");
+            mSheetName.Add("content12", "content12 \n(ไม่มีอะไรเป็นพิเศษ)");
 
-            mSheetName.Add("DLCEP1content", "DLCEP1content (Heart of Stone)");
-            mSheetName.Add("DLCbobcontent", "DLCbobcontent (Blood and Wine)");
+            mSheetName.Add("DLCEP1content", "DLCEP1content \n(Heart of Stone)");
+            mSheetName.Add("DLCbobcontent", "DLCbobcontent \n(Blood and Wine)");
 
-            mSheetName.Add("DLCall", "DLCall (Other DLC)");
+            mSheetName.Add("DLCall", "DLCall \n(DLC อื่นๆ)");
             //d.Add("MISSING", "MISSING");
 
             return mSheetName;

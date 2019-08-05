@@ -201,23 +201,26 @@ namespace TheWitcher3Thai
 
         public void MigrateOtherModToTr(string modPath)
         {
+            Logger.Log("Migrate other mod");
             if (!Directory.Exists(modPath))
                 return;
 
             foreach (string path in Directory.GetFiles(modPath, "en.w3strings", SearchOption.AllDirectories))
-            {
+            {                
                 var targetPath = path.Replace("en.w3strings", "tr.w3strings");
                 if (File.Exists(targetPath))
                 {
                     var fi = new FileInfo(path);
                     if (!fi.Directory.Parent.Name.Equals(Configs.modThaiLanguage))
                     {
+                        Logger.Log($@"    Migrate {targetPath}");
                         File.Delete(targetPath);
                         File.Copy(path, targetPath);
                     }
                 }
                 else
                 {
+                    Logger.Log($@"    Migrate {targetPath}");
                     File.Copy(path, targetPath);
                 }
             }
@@ -338,6 +341,7 @@ namespace TheWitcher3Thai
 
         public bool UpdateStorybook()
         {
+            Logger.Log("Update storybook");
             // check version
             if (!CheckUpdateStorybook(true))
                 return false;
@@ -360,6 +364,7 @@ namespace TheWitcher3Thai
 
         public bool UpdateTemplate()
         {
+            Logger.Log("Update template");
             // check version
             if (!CheckUpdateTemplate(true))
                 return false;
@@ -382,6 +387,7 @@ namespace TheWitcher3Thai
 
         public void ShowErrorMessage(Exception ex, string caption = "Error")
         {
+            Logger.Log(ex);
             var b = ex.GetBaseException();
             var message = b.Message;
 
@@ -2113,7 +2119,7 @@ namespace TheWitcher3Thai
             float totalTranslate = 0;
 
             // column width
-            sht.Column(1).Width = 30;
+            sht.Column(1).Width = 38;
 
             // summary text
             sht.Row(1).Style.Font.Bold = true;
@@ -3366,6 +3372,7 @@ namespace TheWitcher3Thai
 
         public void ResetTextColor(string modPath)
         {
+            Logger.Log("Reset text color");
             string pathScript = @"content\scripts\game\gui\hud\modules";
             string pathDialog = Path.Combine(modPath, pathScript, "hudModuleDialog.ws");
             string pathSubtitle = Path.Combine(modPath, pathScript, "hudModuleSubtitles.ws");
@@ -3400,6 +3407,7 @@ namespace TheWitcher3Thai
 
         public void UpgradeToFullTranslate(string targetPath)
         {
+            Logger.Log("Upgrade to new method");
             // rename en to tr
             var w3stringPath = Path.Combine(targetPath, "content", "en.w3strings");
             var fi = new FileInfo(w3stringPath);
@@ -3410,6 +3418,7 @@ namespace TheWitcher3Thai
 
         public void InstallModStoryBook(string modPath, string targetPath)
         {
+            Logger.Log("Install storybook");
             if (!Directory.Exists(modPath))
                 return;
 
@@ -3957,6 +3966,7 @@ namespace TheWitcher3Thai
 
         private void ChangeLanguageSetting(string fromLangCode, string toLangCode)
         {
+            Logger.Log("Start change user setting");
             var settingPath = Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                 "The Witcher 3",
@@ -3979,15 +3989,18 @@ namespace TheWitcher3Thai
             // backup old setting
             if (Configs.GetAppSetting().BackupSetting)
             {
+                Logger.Log("Backup user setting");
                 CopyFile(
                     settingPath,
                     settingPath + $@".{DateTime.Now.ToString("yyyyMMddHHmmssffff", CultureInfo.InvariantCulture)}.bak"
                 );
             }
 
+            Logger.Log($@"Change language setting from {fromLangCode} to {toLangCode}");
             content = content.Replace($@"RequestedTextLanguage={fromLangCode}", $@"RequestedTextLanguage={toLangCode}");
             content = content.Replace($@"TextLanguage={fromLangCode}", $@"TextLanguage={toLangCode}");
 
+            Logger.Log("Write user setting");
             File.WriteAllText(settingPath, content);
 
         }

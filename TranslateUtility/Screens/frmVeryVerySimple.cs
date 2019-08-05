@@ -181,6 +181,7 @@ namespace TranslateUtility
         private void btnLegacyGenerate_Click(object sender, EventArgs e)
         {
             //SaveAppSetting();
+            Logger.SrartNewLog();
             StartAlt();
         }
 
@@ -223,6 +224,7 @@ namespace TranslateUtility
 
         private void GenerateModAlt()
         {
+            Logger.Log("Generate mod");
             c.GenerateLegacyModAlt(
                 translatePath,
                 modPath,
@@ -236,6 +238,7 @@ namespace TranslateUtility
                 true // chkAltSub.Checked
             );
 
+            Logger.Log("Change font size");
             c.ChangeFontSize(
                 Path.Combine(modPath, Configs.modThaiLanguage),
                 (int)txtFontSizeCutScene.Value,
@@ -257,6 +260,7 @@ namespace TranslateUtility
 
         private void InstallMod()
         {
+            Logger.Log("Install mod");
             c.InstallMod(
                 modPath,
                 txtGamePath.Text,
@@ -286,10 +290,7 @@ namespace TranslateUtility
             // result button
             btnResult.Enabled = File.Exists(resultPath);
             btnMessageFinder.Enabled = btnResult.Enabled;
-            if (btnResult.Enabled)
-            {
-                btnLegacyGenerate.Text=@"อัพเดท";
-            }
+            SetButtonText();
 
             // install button && restore button
             if (c.IsValidGamePath(txtGamePath.Text))
@@ -314,6 +315,18 @@ namespace TranslateUtility
             else
             {
                 btnInstallFont.Enabled = false;
+            }
+        }
+
+        private void SetButtonText()
+        {
+            if (Directory.Exists(Path.Combine(txtGamePath.Text,"mods",Configs.modThaiLanguage)))
+            {
+                btnLegacyGenerate.Text = "อัพเดท";
+            }
+            else
+            {
+                btnLegacyGenerate.Text = "ติดตั้ง";
             }
         }
 
@@ -387,7 +400,7 @@ namespace TranslateUtility
         }
 
         private void SaveAppSetting()
-        {
+        {            
             mAppSetting.DoubleLanguage = chkModDoubleLanguage.Checked;
             mAppSetting.EnglishUi = chkExcludeUiText.Checked;
             mAppSetting.OldMethod = chkOldMethod.Checked;
@@ -408,6 +421,7 @@ namespace TranslateUtility
             mAppSetting.CollaspeHeight = mHeightCollapse;
 
             mAppSetting.SaveSetting();
+            Logger.Log($@"Save setting.{Environment.NewLine}{mAppSetting.ToString()}");
         }
 
         private void txtGamePath_TextChanged(object sender, EventArgs e)
@@ -433,10 +447,12 @@ namespace TranslateUtility
 
             //if (chkAltSub.Checked)
             //{
-                c.Processing(DownloadAllCustomTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษาแบบปรับแต่ง...");
+            Logger.Log("Download custom translate");
+            c.Processing(DownloadAllCustomTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษาแบบปรับแต่ง...");
             //}
 
             // download translate excel file
+            Logger.Log("Download main translate");
             var downloadResult = c.Processing(DownloadTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษา...");
             if (downloadResult != DialogResult.OK)
                 return;
@@ -445,16 +461,19 @@ namespace TranslateUtility
             if (translatePath == null)
                 return;
 
+            Logger.Log("Start generate mod");
             var result = c.Processing(GenerateModAlt, false, "กำลังสร้างม็อด...");
             if (result != DialogResult.OK)
                 return;
 
             // install mod
+            Logger.Log("Start install mod");
             result = c.Processing(InstallMod, false, "กำลังติดตั้ง");
             if (result != DialogResult.OK)
                 return;
 
 
+            Logger.Log("Finish");
             c.ShowMessage("ติดตั้งสำเร็จ");
             EnableButton();
         }
@@ -822,6 +841,18 @@ namespace TranslateUtility
         private void button1_Click(object sender, EventArgs e)
         {
             c.GetGogPath();
+        }
+
+        private void miLog_Click(object sender, EventArgs e)
+        {
+            c.Open(Logger.GetLogPath());
+        }
+
+        private void lblGameDir_MouseClick(object sender, MouseEventArgs e)
+        {
+            if(e.Button==MouseButtons.Right)
+                c.Open(Configs.StartupPath);
+
         }
     }
 }

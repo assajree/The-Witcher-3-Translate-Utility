@@ -1,4 +1,5 @@
-﻿using System;
+﻿using svvv;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -80,6 +81,8 @@ namespace Svvv.Common
                 {
                     if(ShowError)
                         Message = ex.GetBaseException().Message;
+
+                    Logger.Log(ex);
                 }
             }
         }
