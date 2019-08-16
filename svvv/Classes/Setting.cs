@@ -1,4 +1,5 @@
-﻿using svvv.Classes;
+﻿using svvv;
+using svvv.Classes;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -225,6 +226,9 @@ namespace TheWitcher3Thai
             // funny subtitle
             mCustomTranslate.Add(new CustomTranslateItem(false, "19uVPHxzMBwCxpnjKqakNkBqxSOm2CH173L4wpwiUjS0", null));
 
+            // w3ee
+            mCustomTranslate.Add(new CustomTranslateItem(false, Configs.W3eeFileId, null));
+
             return mCustomTranslate;
         }
 
@@ -249,6 +253,18 @@ namespace TheWitcher3Thai
             mLoadingMessage.Add("ติดตามเกมลดราคาได้ที่เกมถูกบอกด้วยv2");
 
             return mLoadingMessage;
+        }
+
+        public List<string> GetW3eeDirectory()
+        {
+            var result = new List<string>();
+            result.Add("modW3EELocalization1");
+            result.Add("modW3EELocalization2");
+            result.Add("modW3EELocalization3");
+            result.Add("modW3EELocalization4");
+            result.Add("modW3EEMain");
+
+            return result;
         }
     }
 }

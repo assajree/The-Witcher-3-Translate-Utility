@@ -278,6 +278,8 @@ namespace TranslateUtility
                 c.ChangeLanguageSettingToEN();
             }
 
+            c.MigrateW3ee(txtGamePath.Text);
+
         }
 
         //private void Backup(bool overwrite)
@@ -767,6 +769,7 @@ namespace TranslateUtility
                 if (c.ShowConfirm("มีม็อดที่แสดงข้อความไม่ถูกต้องหรือข้อความหายใช่หรือไม่?"))
                 {
                     c.MigrateOtherModToTr(Path.Combine(txtGamePath.Text, "mods"));
+                    c.MigrateW3ee(txtGamePath.Text);
                     c.ShowMessage("สำเร็จ");
                 }
             }
@@ -854,5 +857,7 @@ namespace TranslateUtility
                 c.Open(Configs.StartupPath);
 
         }
+
+        
     }
 }

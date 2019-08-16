@@ -207,7 +207,7 @@ namespace TheWitcher3Thai
                 return;
 
             foreach (string path in Directory.GetFiles(modPath, "en.w3strings", SearchOption.AllDirectories))
-            {                
+            {
                 var targetPath = path.Replace("en.w3strings", "tr.w3strings");
                 if (File.Exists(targetPath))
                 {
@@ -1983,47 +1983,47 @@ namespace TheWitcher3Thai
             DecodeDirectory(tempOriginalPath);
         }
 
-        public void GenerateExcelFromMod(string modPath, string excelPath = null, string langCode = "en")
+        public List<w3Strings> ReadDirectoryMessage(string path, string langCode=null)
         {
-            var files = setting.GetSheetConfig();
-            var tempPath = Path.Combine(Application.StartupPath, "temp");
-            string tempOriginalPath = Path.Combine(tempPath, "original");
+            var result= new List<w3Strings>();
 
-            if (String.IsNullOrWhiteSpace(excelPath))
-                excelPath = Path.Combine(Application.StartupPath, "output", "translate.xlsx");
+            var filter = $@"*{langCode}.w3strings";
+            foreach (string filePath in Directory.EnumerateFiles(path, filter,SearchOption.AllDirectories))
+            {
+                result.AddRange(ReadMessage(filePath));
+            }
 
-            PrepareFile(modPath, tempPath, files, langCode);
+            return result;
+        }
 
+        public List<w3Strings> ReadMessage(string w3stringsPath)
+        {
+            if (!File.Exists(w3stringsPath))
+                return new List<w3Strings>();
+
+            string tempFilePath = Path.Combine(Configs.TempPath, "temp.w3strings");
+            CopyFile(w3stringsPath,tempFilePath);
+            DecodeW3String(tempFilePath);
+
+            var csvPath = $@"{tempFilePath}.csv";
+            var content = ReadOriginalCsv(csvPath, true);
+            return content;
+        }
+
+        public void GenerateExcelFromMod(string modPath, string excelPath = null, string langCode = null)
+        {
             var fi = new FileInfo(excelPath);
             if (!fi.Directory.Exists)
                 fi.Directory.Create();
 
-            List<w3Strings> all = new List<w3Strings>();
+            var all = ReadDirectoryMessage(modPath, langCode);
             using (var p = new ExcelPackage(fi))
             {
                 var wb = p.Workbook;
-                foreach (var f in files)
-                {
-                    if (wb.Worksheets[f.Key] != null)
-                        wb.Worksheets.Delete(f.Key);
+                while (wb.Worksheets.Count > 0)
+                    wb.Worksheets.Delete(1);
 
-
-                    var sourcePath = Path.Combine(tempOriginalPath, f.Key + ".w3strings.csv");
-                    var content = ReadOriginalCsv(sourcePath, true);
-                    all.AddRange(content);
-
-                    if (content.Count == 0)
-                        continue;
-
-                    var sht = wb.Worksheets.Add(f.Key);
-                    WriteSheetContent(sht, content, false);
-                }
-
-                var shtAll = wb.Worksheets["all"];
-                if (shtAll != null)
-                    wb.Worksheets.Delete(shtAll);
-
-                shtAll = wb.Worksheets.Add("all");
+                var shtAll = wb.Worksheets.Add("all");
                 WriteSheetContent(shtAll, all.OrderBy(a => a.ID).ToList(), false);
 
                 p.Save();
@@ -2671,7 +2671,7 @@ namespace TheWitcher3Thai
         {
             var list = GetLoadingMessageList();
 
-            if (!Configs.GetAppSetting().RandomLoading && list.Count!=1)
+            if (!Configs.GetAppSetting().RandomLoading && list.Count != 1)
                 return Constant.LOADING_MESSAGE;
 
             var random = new Random();
@@ -4149,6 +4149,40 @@ namespace TheWitcher3Thai
                 fi.Directory.Create();
 
             File.Copy(sourcePath, targetPath);
+        }
+
+        public void MigrateW3ee(string gamePath)
+        {
+            var custom = new CustomTranslateSetting(Configs.CustomTranslateSettingPath, setting.GetCustomTranslate());
+            if (!custom.Value.ContainsKey(Configs.W3eeFileId))
+                return;
+
+            var w3ee = custom.Value[Configs.W3eeFileId];
+            if (!w3ee.Enable)
+                return;
+
+            var directories = setting.GetW3eeDirectory();
+            foreach(var d in directories)
+            {
+                var dir = Path.Combine(gamePath, "mods", d);
+                foreach (string path in Directory.GetFiles(dir, "en.w3strings", SearchOption.AllDirectories))
+                {
+                    File.Delete(path);
+                }
+
+                foreach (string path in Directory.GetFiles(dir, "tr.w3strings", SearchOption.AllDirectories))
+                {
+                    File.Delete(path);
+                }
+            }
+
+            // remove conflict script
+            var modThaiLanguagePath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage);
+            foreach (string path in Directory.GetFiles(modThaiLanguagePath, "hudModuleOneliners.ws", SearchOption.AllDirectories))
+            {
+                File.Delete(path);
+            }
+
         }
 
     }
