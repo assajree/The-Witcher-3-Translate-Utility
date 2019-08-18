@@ -1,6 +1,9 @@
 Change Log
 ==========
 
+2019.08.18.XXXX
+- แก้ error เมื่อเปิดใช้ไฟล์ปรับแต่ง Enhanced Edition โดยที่ไม่มีม็อด
+
 2019.08.16.XXXX
 - ปรับให้ใช้ม็อดได้กับม็อด Witcher 3 - Enhanced Edition
 - เพิ่ม custom ไฟล์ของ Witcher 3 - Enhanced Edition

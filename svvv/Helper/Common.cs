@@ -4164,7 +4164,11 @@ namespace TheWitcher3Thai
             var directories = setting.GetW3eeDirectory();
             foreach(var d in directories)
             {
+                
                 var dir = Path.Combine(gamePath, "mods", d);
+                if (!Directory.Exists(dir))
+                    return;
+
                 foreach (string path in Directory.GetFiles(dir, "en.w3strings", SearchOption.AllDirectories))
                 {
                     File.Delete(path);
