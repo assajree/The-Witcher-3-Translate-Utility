@@ -23,7 +23,7 @@ namespace svvv.Classes
         public eFontSetting FontSetting { get; set; } = eFontSetting.Sarabun;
         public int SizeCutscene { get; set; } = 34;
         public int SizeDialog { get; set; } = 34;
-        public eDownloadFrequency DownloadFrequency { get; set; } = eDownloadFrequency.Hour;
+        public eDownloadFrequency DownloadFrequency { get; set; } = eDownloadFrequency.Always;
         public string GamePath { get; set; } = "";
         public int ExpandHeight { get; set; } = Constant.SIZE_DEFAULT_EXPAND;
         public int CollaspeHeight { get; set; } = Constant.SIZE_DEFAULT_COLLASPE;
@@ -134,7 +134,7 @@ namespace svvv.Classes
                     SizeDialog = value.ToInt32(34);
                     break;
                 case "DownloadFrequency":
-                    DownloadFrequency = value.ToDownloadFrequency(eDownloadFrequency.Hour);
+                    DownloadFrequency = value.ToDownloadFrequency(eDownloadFrequency.Always);
                     break;
                 case "GamePath":
                     GamePath = value;

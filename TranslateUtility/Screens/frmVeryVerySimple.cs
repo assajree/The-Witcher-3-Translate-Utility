@@ -111,7 +111,7 @@ namespace TranslateUtility
             //    Directory.CreateDirectory(modPath);
 
             var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-            miVersion.Text = $@"Version : {c.GetVersionText(version)}";
+            miVersion.Text = $@"V. {c.GetVersionText(version)}";
 
             //ReadLocalVersion();
             EnableExtraOption();
@@ -181,7 +181,7 @@ namespace TranslateUtility
         private void btnLegacyGenerate_Click(object sender, EventArgs e)
         {
             //SaveAppSetting();
-            Logger.SrartNewLog();
+            Logger.StartNewLog();
             StartAlt();
         }
 
@@ -468,6 +468,11 @@ namespace TranslateUtility
             if (result != DialogResult.OK)
                 return;
 
+            if(chkModDoubleLanguage.Checked==false)
+            {
+                c.RemoveDoubleLanguage(modPath);
+            }
+
             // install mod
             Logger.Log("Start install mod");
             result = c.Processing(InstallMod, false, "กำลังติดตั้ง");
@@ -586,9 +591,6 @@ namespace TranslateUtility
             if (rdoFontNone.Checked)
                 return Common.eFontSetting.None;
 
-            else if (rdoFontKuntoon.Checked)
-                return Common.eFontSetting.KunToon;
-
             else if (rdoFontPrompt.Checked)
                 return Common.eFontSetting.Prompt;
 
@@ -659,10 +661,6 @@ namespace TranslateUtility
             {
                 case Common.eFontSetting.None:
                     rdoFontNone.Checked = true;
-                    break;
-
-                case Common.eFontSetting.KunToon:
-                    rdoFontKuntoon.Checked = true;
                     break;
 
                 case Common.eFontSetting.CSPraKas:
@@ -858,6 +856,9 @@ namespace TranslateUtility
 
         }
 
-        
+        private void chkCompatibleMode_CheckedChanged(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

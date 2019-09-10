@@ -33,7 +33,6 @@ namespace TheWitcher3Thai
         public enum eFontSetting
         {
             Sarabun,
-            KunToon,
             None,
             CSPraKas,
             Prompt,
@@ -507,6 +506,19 @@ namespace TheWitcher3Thai
 
             return result;
 
+        }
+
+        public void RemoveDoubleLanguage(string modPath)
+        {
+            var scriptPath = Path.Combine(modPath, "content", "scripts", "game", "gui", "hud", "modules");
+            DeleteFile(Path.Combine(scriptPath, "hudModuleOneliners.ws"));
+            DeleteFile(Path.Combine(scriptPath, "hudModuleQuests.ws"));
+        }
+
+        public void DeleteFile(string filePath)
+        {
+            if (File.Exists(filePath))
+                File.Delete(filePath);
         }
 
         public Dictionary<string, w3Strings> ReadAllExcel(string excelPath)
@@ -3226,10 +3238,6 @@ namespace TheWitcher3Thai
             {
                 case eFontSetting.Sarabun:
                     modPath = Configs.FontSarabunPath;
-                    break;
-
-                case eFontSetting.KunToon:
-                    modPath = Configs.FontKunToonPath;
                     break;
 
                 case eFontSetting.CSPraKas:

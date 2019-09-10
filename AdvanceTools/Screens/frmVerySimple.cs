@@ -102,7 +102,7 @@ namespace TranslateUtility
                 chkUntranslateInfo.Checked,
                 chkUiInfo.Checked,
                 chkTranslateInfo.Checked,
-                Common.eFontSetting.KunToon,
+                Common.eFontSetting.Sarabun,
                 true,
                 true
             );

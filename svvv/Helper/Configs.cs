@@ -68,7 +68,6 @@ namespace svvv
         public static string StorybookVersionPath = Path.Combine(StorybookPath, "version_storybook.ini");
 
         public static string FontSarabunPath = Path.Combine(ToolsPath, modFontSarabun);
-        public static string FontKunToonPath = Path.Combine(ToolsPath, modThaiFont);
         public static string FontCsPrakasPath = Path.Combine(ToolsPath, modFontCsParkas);
         public static string FontPromptPath = Path.Combine(ToolsPath, modFontPrompt);
         public static string FontMahaniyomPath = Path.Combine(ToolsPath, modFontMahaniyom);

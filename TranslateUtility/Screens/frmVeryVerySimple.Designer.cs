@@ -78,10 +78,10 @@
             this.rdoFontCsPrakas = new System.Windows.Forms.RadioButton();
             this.rdoFontSarabun = new System.Windows.Forms.RadioButton();
             this.rdoFontNone = new System.Windows.Forms.RadioButton();
-            this.rdoFontKuntoon = new System.Windows.Forms.RadioButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.miVersion = new System.Windows.Forms.ToolStripMenuItem();
+            this.miLog = new System.Windows.Forms.ToolStripMenuItem();
             this.miUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.miTranslateProgress = new System.Windows.Forms.ToolStripMenuItem();
             this.miMessageFinder = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,7 +90,7 @@
             this.miDebug = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.txtGamePath = new System.Windows.Forms.TextBox();
-            this.miLog = new System.Windows.Forms.ToolStripMenuItem();
+            this.chkCompatibleMode = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -109,7 +109,7 @@
             // 
             this.btnGamePath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGamePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGamePath.Location = new System.Drawing.Point(503, 28);
+            this.btnGamePath.Location = new System.Drawing.Point(504, 27);
             this.btnGamePath.Name = "btnGamePath";
             this.btnGamePath.Size = new System.Drawing.Size(34, 26);
             this.btnGamePath.TabIndex = 7;
@@ -149,9 +149,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLegacyGenerate.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnLegacyGenerate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.btnLegacyGenerate.Location = new System.Drawing.Point(205, 62);
+            this.btnLegacyGenerate.Location = new System.Drawing.Point(426, 58);
             this.btnLegacyGenerate.Name = "btnLegacyGenerate";
-            this.btnLegacyGenerate.Size = new System.Drawing.Size(125, 34);
+            this.btnLegacyGenerate.Size = new System.Drawing.Size(112, 36);
             this.btnLegacyGenerate.TabIndex = 33;
             this.btnLegacyGenerate.Text = "ติดตั้ง";
             this.btnLegacyGenerate.UseVisualStyleBackColor = true;
@@ -167,7 +167,7 @@
             this.groupBox1.Controls.Add(this.rdoModOriginFirst);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(511, 60);
+            this.groupBox1.Size = new System.Drawing.Size(520, 60);
             this.groupBox1.TabIndex = 45;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "สองภาษา";
@@ -211,10 +211,9 @@
             // 
             // chkOldMethod
             // 
-            this.chkOldMethod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkOldMethod.AutoSize = true;
             this.chkOldMethod.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkOldMethod.Location = new System.Drawing.Point(27, 22);
+            this.chkOldMethod.Location = new System.Drawing.Point(26, 22);
             this.chkOldMethod.Name = "chkOldMethod";
             this.chkOldMethod.Size = new System.Drawing.Size(105, 21);
             this.chkOldMethod.TabIndex = 38;
@@ -229,9 +228,9 @@
             this.groupBox2.Controls.Add(this.chkUntranslateInfo);
             this.groupBox2.Controls.Add(this.chkTranslateInfo);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(3, 377);
+            this.groupBox2.Location = new System.Drawing.Point(3, 345);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(511, 60);
+            this.groupBox2.Size = new System.Drawing.Size(520, 60);
             this.groupBox2.TabIndex = 46;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "แสดงเลขบรรทัด";
@@ -314,11 +313,11 @@
             this.chkUiInfo.Checked = settings1._SimpleUiInfo;
             this.chkUiInfo.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_SimpleUiInfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.chkUiInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkUiInfo.Location = new System.Drawing.Point(307, 29);
+            this.chkUiInfo.Location = new System.Drawing.Point(26, 24);
             this.chkUiInfo.Name = "chkUiInfo";
-            this.chkUiInfo.Size = new System.Drawing.Size(40, 21);
+            this.chkUiInfo.Size = new System.Drawing.Size(100, 21);
             this.chkUiInfo.TabIndex = 40;
-            this.chkUiInfo.Text = "UI";
+            this.chkUiInfo.Text = "ข้อความระบบ";
             this.chkUiInfo.UseVisualStyleBackColor = true;
             // 
             // chkUntranslateInfo
@@ -327,11 +326,11 @@
             this.chkUntranslateInfo.Checked = settings1._SimpleUntranslateInfo;
             this.chkUntranslateInfo.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_SimpleUntranslateInfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.chkUntranslateInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkUntranslateInfo.Location = new System.Drawing.Point(26, 29);
+            this.chkUntranslateInfo.Location = new System.Drawing.Point(291, 24);
             this.chkUntranslateInfo.Name = "chkUntranslateInfo";
-            this.chkUntranslateInfo.Size = new System.Drawing.Size(101, 21);
+            this.chkUntranslateInfo.Size = new System.Drawing.Size(145, 21);
             this.chkUntranslateInfo.TabIndex = 37;
-            this.chkUntranslateInfo.Text = "ที่ยังไม่ได้แปล";
+            this.chkUntranslateInfo.Text = "ข้อความที่ยังไม่ได้แปล";
             this.chkUntranslateInfo.UseVisualStyleBackColor = true;
             // 
             // chkTranslateInfo
@@ -340,11 +339,11 @@
             this.chkTranslateInfo.Checked = settings1._SimpleTranslateInfo;
             this.chkTranslateInfo.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_SimpleTranslateInfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.chkTranslateInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkTranslateInfo.Location = new System.Drawing.Point(166, 29);
+            this.chkTranslateInfo.Location = new System.Drawing.Point(150, 24);
             this.chkTranslateInfo.Name = "chkTranslateInfo";
-            this.chkTranslateInfo.Size = new System.Drawing.Size(80, 21);
+            this.chkTranslateInfo.Size = new System.Drawing.Size(124, 21);
             this.chkTranslateInfo.TabIndex = 39;
-            this.chkTranslateInfo.Text = "ที่แปลแล้ว";
+            this.chkTranslateInfo.Text = "ข้อความที่แปลแล้ว";
             this.chkTranslateInfo.UseVisualStyleBackColor = true;
             // 
             // btnResult
@@ -362,7 +361,7 @@
             // 
             this.btnRestore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRestore.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRestore.Location = new System.Drawing.Point(406, 18);
+            this.btnRestore.Location = new System.Drawing.Point(415, 18);
             this.btnRestore.Name = "btnRestore";
             this.btnRestore.Size = new System.Drawing.Size(98, 31);
             this.btnRestore.TabIndex = 49;
@@ -379,9 +378,9 @@
             this.groupBox3.Controls.Add(this.btnResult);
             this.groupBox3.Controls.Add(this.btnRestore);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(3, 510);
+            this.groupBox3.Location = new System.Drawing.Point(3, 478);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(511, 60);
+            this.groupBox3.Size = new System.Drawing.Size(520, 60);
             this.groupBox3.TabIndex = 50;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "เครื่องมือ";
@@ -412,12 +411,13 @@
             // 
             this.lblAdvance.AutoSize = true;
             this.lblAdvance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAdvance.Location = new System.Drawing.Point(16, 77);
+            this.lblAdvance.Location = new System.Drawing.Point(382, 70);
             this.lblAdvance.Name = "lblAdvance";
             this.lblAdvance.Size = new System.Drawing.Size(38, 17);
             this.lblAdvance.TabIndex = 51;
             this.lblAdvance.TabStop = true;
             this.lblAdvance.Text = "ขั้นสูง";
+            this.lblAdvance.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblAdvance.Click += new System.EventHandler(this.lblAdvance_Click);
             // 
             // pnAdvance
@@ -432,9 +432,9 @@
             this.pnAdvance.Controls.Add(this.groupBox1);
             this.pnAdvance.Controls.Add(this.groupBox2);
             this.pnAdvance.Controls.Add(this.groupBox3);
-            this.pnAdvance.Location = new System.Drawing.Point(16, 100);
+            this.pnAdvance.Location = new System.Drawing.Point(12, 100);
             this.pnAdvance.Name = "pnAdvance";
-            this.pnAdvance.Size = new System.Drawing.Size(521, 576);
+            this.pnAdvance.Size = new System.Drawing.Size(526, 542);
             this.pnAdvance.TabIndex = 52;
             // 
             // groupBox7
@@ -444,9 +444,9 @@
             this.groupBox7.Controls.Add(this.lblCustomTranslateCount);
             this.groupBox7.Controls.Add(this.btnAltSubSetting);
             this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox7.Location = new System.Drawing.Point(3, 443);
+            this.groupBox7.Location = new System.Drawing.Point(3, 411);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(511, 60);
+            this.groupBox7.Size = new System.Drawing.Size(520, 60);
             this.groupBox7.TabIndex = 52;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "การแปลแบบปรับแต่ง";
@@ -484,9 +484,9 @@
             this.groupBox6.Controls.Add(this.label1);
             this.groupBox6.Controls.Add(this.label2);
             this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox6.Location = new System.Drawing.Point(3, 190);
+            this.groupBox6.Location = new System.Drawing.Point(3, 158);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(511, 57);
+            this.groupBox6.Size = new System.Drawing.Size(520, 57);
             this.groupBox6.TabIndex = 52;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "ขนาดและสีซับไตเติ้ล";
@@ -495,7 +495,7 @@
             // 
             this.chkChangeTextColor.AutoSize = true;
             this.chkChangeTextColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkChangeTextColor.Location = new System.Drawing.Point(307, 28);
+            this.chkChangeTextColor.Location = new System.Drawing.Point(291, 28);
             this.chkChangeTextColor.Name = "chkChangeTextColor";
             this.chkChangeTextColor.Size = new System.Drawing.Size(84, 21);
             this.chkChangeTextColor.TabIndex = 41;
@@ -505,9 +505,9 @@
             // btnChangeFontSize
             // 
             this.btnChangeFontSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChangeFontSize.Location = new System.Drawing.Point(406, 23);
+            this.btnChangeFontSize.Location = new System.Drawing.Point(406, 25);
             this.btnChangeFontSize.Name = "btnChangeFontSize";
-            this.btnChangeFontSize.Size = new System.Drawing.Size(90, 24);
+            this.btnChangeFontSize.Size = new System.Drawing.Size(98, 24);
             this.btnChangeFontSize.TabIndex = 52;
             this.btnChangeFontSize.Text = "เปลี่ยนตอนนี้";
             this.btnChangeFontSize.UseVisualStyleBackColor = true;
@@ -521,7 +521,7 @@
             0,
             0,
             0});
-            this.txtFontSizeCutScene.Location = new System.Drawing.Point(75, 27);
+            this.txtFontSizeCutScene.Location = new System.Drawing.Point(70, 26);
             this.txtFontSizeCutScene.Minimum = new decimal(new int[] {
             10,
             0,
@@ -545,7 +545,7 @@
             0,
             0,
             0});
-            this.txtFontSizeSpeak.Location = new System.Drawing.Point(230, 26);
+            this.txtFontSizeSpeak.Location = new System.Drawing.Point(218, 26);
             this.txtFontSizeSpeak.Minimum = new decimal(new int[] {
             10,
             0,
@@ -575,7 +575,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(159, 29);
+            this.label2.Location = new System.Drawing.Point(147, 29);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 17);
             this.label2.TabIndex = 3;
@@ -590,9 +590,9 @@
             this.groupBox5.Controls.Add(this.rdoDownloadOnce);
             this.groupBox5.Controls.Add(this.rdoDownloadHourly);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(3, 253);
+            this.groupBox5.Location = new System.Drawing.Point(3, 221);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(511, 60);
+            this.groupBox5.Size = new System.Drawing.Size(520, 60);
             this.groupBox5.TabIndex = 52;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "ความถี่การดาวน์โหลดไฟล์แปลภาษา";
@@ -612,7 +612,7 @@
             // 
             this.rdoDownloadDialy.AutoSize = true;
             this.rdoDownloadDialy.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoDownloadDialy.Location = new System.Drawing.Point(228, 26);
+            this.rdoDownloadDialy.Location = new System.Drawing.Point(291, 26);
             this.rdoDownloadDialy.Name = "rdoDownloadDialy";
             this.rdoDownloadDialy.Size = new System.Drawing.Size(76, 21);
             this.rdoDownloadDialy.TabIndex = 0;
@@ -623,7 +623,7 @@
             // 
             this.rdoDownloadOnce.AutoSize = true;
             this.rdoDownloadOnce.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoDownloadOnce.Location = new System.Drawing.Point(338, 26);
+            this.rdoDownloadOnce.Location = new System.Drawing.Point(406, 26);
             this.rdoDownloadOnce.Name = "rdoDownloadOnce";
             this.rdoDownloadOnce.Size = new System.Drawing.Size(73, 21);
             this.rdoDownloadOnce.TabIndex = 0;
@@ -635,7 +635,7 @@
             this.rdoDownloadHourly.AutoSize = true;
             this.rdoDownloadHourly.Checked = true;
             this.rdoDownloadHourly.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoDownloadHourly.Location = new System.Drawing.Point(124, 26);
+            this.rdoDownloadHourly.Location = new System.Drawing.Point(150, 26);
             this.rdoDownloadHourly.Name = "rdoDownloadHourly";
             this.rdoDownloadHourly.Size = new System.Drawing.Size(77, 21);
             this.rdoDownloadHourly.TabIndex = 0;
@@ -651,19 +651,18 @@
             this.groupBox8.Controls.Add(this.chkBackupSetting);
             this.groupBox8.Controls.Add(this.chkOldMethod);
             this.groupBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox8.Location = new System.Drawing.Point(3, 319);
+            this.groupBox8.Location = new System.Drawing.Point(3, 287);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(511, 51);
+            this.groupBox8.Size = new System.Drawing.Size(520, 51);
             this.groupBox8.TabIndex = 46;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "อื่นๆ";
             // 
             // chkRandomLoading
             // 
-            this.chkRandomLoading.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkRandomLoading.AutoSize = true;
             this.chkRandomLoading.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkRandomLoading.Location = new System.Drawing.Point(337, 22);
+            this.chkRandomLoading.Location = new System.Drawing.Point(290, 22);
             this.chkRandomLoading.Name = "chkRandomLoading";
             this.chkRandomLoading.Size = new System.Drawing.Size(160, 21);
             this.chkRandomLoading.TabIndex = 39;
@@ -672,10 +671,9 @@
             // 
             // chkBackupSetting
             // 
-            this.chkBackupSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkBackupSetting.AutoSize = true;
             this.chkBackupSetting.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkBackupSetting.Location = new System.Drawing.Point(161, 22);
+            this.chkBackupSetting.Location = new System.Drawing.Point(149, 22);
             this.chkBackupSetting.Name = "chkBackupSetting";
             this.chkBackupSetting.Size = new System.Drawing.Size(129, 21);
             this.chkBackupSetting.TabIndex = 38;
@@ -694,11 +692,10 @@
             this.groupBox4.Controls.Add(this.rdoFontCsPrakas);
             this.groupBox4.Controls.Add(this.rdoFontSarabun);
             this.groupBox4.Controls.Add(this.rdoFontNone);
-            this.groupBox4.Controls.Add(this.rdoFontKuntoon);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(3, 70);
+            this.groupBox4.Location = new System.Drawing.Point(3, 69);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(511, 114);
+            this.groupBox4.Size = new System.Drawing.Size(520, 83);
             this.groupBox4.TabIndex = 51;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "ฟอนต์";
@@ -706,9 +703,9 @@
             // btnInstallFont
             // 
             this.btnInstallFont.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInstallFont.Location = new System.Drawing.Point(307, 74);
+            this.btnInstallFont.Location = new System.Drawing.Point(406, 48);
             this.btnInstallFont.Name = "btnInstallFont";
-            this.btnInstallFont.Size = new System.Drawing.Size(115, 24);
+            this.btnInstallFont.Size = new System.Drawing.Size(98, 24);
             this.btnInstallFont.TabIndex = 52;
             this.btnInstallFont.Text = "เปลี่ยนตอนนี้";
             this.btnInstallFont.UseVisualStyleBackColor = true;
@@ -718,7 +715,7 @@
             // 
             this.rdoFontPrompt.AutoSize = true;
             this.rdoFontPrompt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoFontPrompt.Location = new System.Drawing.Point(166, 75);
+            this.rdoFontPrompt.Location = new System.Drawing.Point(291, 50);
             this.rdoFontPrompt.Name = "rdoFontPrompt";
             this.rdoFontPrompt.Size = new System.Drawing.Size(71, 21);
             this.rdoFontPrompt.TabIndex = 4;
@@ -729,7 +726,7 @@
             // 
             this.rdoFontMahaniyom.AutoSize = true;
             this.rdoFontMahaniyom.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoFontMahaniyom.Location = new System.Drawing.Point(307, 50);
+            this.rdoFontMahaniyom.Location = new System.Drawing.Point(150, 24);
             this.rdoFontMahaniyom.Name = "rdoFontMahaniyom";
             this.rdoFontMahaniyom.Size = new System.Drawing.Size(73, 21);
             this.rdoFontMahaniyom.TabIndex = 3;
@@ -740,7 +737,7 @@
             // 
             this.rdoFontSuperMarket.AutoSize = true;
             this.rdoFontSuperMarket.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoFontSuperMarket.Location = new System.Drawing.Point(166, 50);
+            this.rdoFontSuperMarket.Location = new System.Drawing.Point(150, 50);
             this.rdoFontSuperMarket.Name = "rdoFontSuperMarket";
             this.rdoFontSuperMarket.Size = new System.Drawing.Size(109, 21);
             this.rdoFontSuperMarket.TabIndex = 3;
@@ -751,7 +748,7 @@
             // 
             this.rdoFontSrisakdi.AutoSize = true;
             this.rdoFontSrisakdi.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoFontSrisakdi.Location = new System.Drawing.Point(26, 75);
+            this.rdoFontSrisakdi.Location = new System.Drawing.Point(291, 24);
             this.rdoFontSrisakdi.Name = "rdoFontSrisakdi";
             this.rdoFontSrisakdi.Size = new System.Drawing.Size(76, 21);
             this.rdoFontSrisakdi.TabIndex = 3;
@@ -786,23 +783,12 @@
             // 
             this.rdoFontNone.AutoSize = true;
             this.rdoFontNone.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoFontNone.Location = new System.Drawing.Point(307, 24);
+            this.rdoFontNone.Location = new System.Drawing.Point(406, 24);
             this.rdoFontNone.Name = "rdoFontNone";
             this.rdoFontNone.Size = new System.Drawing.Size(91, 21);
             this.rdoFontNone.TabIndex = 1;
             this.rdoFontNone.Text = "ไม่เอาฟอนต์";
             this.rdoFontNone.UseVisualStyleBackColor = true;
-            // 
-            // rdoFontKuntoon
-            // 
-            this.rdoFontKuntoon.AutoSize = true;
-            this.rdoFontKuntoon.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoFontKuntoon.Location = new System.Drawing.Point(166, 24);
-            this.rdoFontKuntoon.Name = "rdoFontKuntoon";
-            this.rdoFontKuntoon.Size = new System.Drawing.Size(62, 21);
-            this.rdoFontKuntoon.TabIndex = 0;
-            this.rdoFontKuntoon.Text = "คุณตูน";
-            this.rdoFontKuntoon.UseVisualStyleBackColor = true;
             // 
             // menuStrip1
             // 
@@ -814,9 +800,9 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miVersion,
             this.toolStripMenuItem1});
-            this.menuStrip1.Location = new System.Drawing.Point(388, 76);
+            this.menuStrip1.Location = new System.Drawing.Point(426, 2);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(164, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(125, 24);
             this.menuStrip1.TabIndex = 54;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -831,21 +817,28 @@
             this.miCredit,
             this.miDebug});
             this.miVersion.Name = "miVersion";
-            this.miVersion.Size = new System.Drawing.Size(147, 20);
-            this.miVersion.Text = "Version : 9999.99.99.9999";
+            this.miVersion.Size = new System.Drawing.Size(113, 20);
+            this.miVersion.Text = "V. 9999.99.99.9999";
             this.miVersion.Click += new System.EventHandler(this.miVersion_Click);
+            // 
+            // miLog
+            // 
+            this.miLog.Name = "miLog";
+            this.miLog.Size = new System.Drawing.Size(176, 22);
+            this.miLog.Text = "Log";
+            this.miLog.Click += new System.EventHandler(this.miLog_Click);
             // 
             // miUpdate
             // 
             this.miUpdate.Name = "miUpdate";
-            this.miUpdate.Size = new System.Drawing.Size(180, 22);
+            this.miUpdate.Size = new System.Drawing.Size(176, 22);
             this.miUpdate.Text = "อัพเดทโปรแกรม";
             this.miUpdate.Click += new System.EventHandler(this.miUpdate_Click);
             // 
             // miTranslateProgress
             // 
             this.miTranslateProgress.Name = "miTranslateProgress";
-            this.miTranslateProgress.Size = new System.Drawing.Size(180, 22);
+            this.miTranslateProgress.Size = new System.Drawing.Size(176, 22);
             this.miTranslateProgress.Text = "ข้อมูลการแปล";
             this.miTranslateProgress.Visible = false;
             this.miTranslateProgress.Click += new System.EventHandler(this.miTranslateProgress_Click);
@@ -853,7 +846,7 @@
             // miMessageFinder
             // 
             this.miMessageFinder.Name = "miMessageFinder";
-            this.miMessageFinder.Size = new System.Drawing.Size(180, 22);
+            this.miMessageFinder.Size = new System.Drawing.Size(176, 22);
             this.miMessageFinder.Text = "เครื่องมือค้นหาข้อความ";
             this.miMessageFinder.Visible = false;
             this.miMessageFinder.Click += new System.EventHandler(this.miMessageFinder_Click);
@@ -862,23 +855,22 @@
             // 
             this.miChangeLog.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.miChangeLog.Name = "miChangeLog";
-            this.miChangeLog.Size = new System.Drawing.Size(180, 22);
+            this.miChangeLog.Size = new System.Drawing.Size(176, 22);
             this.miChangeLog.Text = "การเปลี่ยนแปลง";
             this.miChangeLog.Click += new System.EventHandler(this.miChangeLog_Click);
             // 
             // miCredit
             // 
             this.miCredit.Name = "miCredit";
-            this.miCredit.Size = new System.Drawing.Size(180, 22);
+            this.miCredit.Size = new System.Drawing.Size(176, 22);
             this.miCredit.Text = "เครดิต";
             this.miCredit.Click += new System.EventHandler(this.miCredit_Click);
             // 
             // miDebug
             // 
             this.miDebug.Name = "miDebug";
-            this.miDebug.Size = new System.Drawing.Size(180, 22);
+            this.miDebug.Size = new System.Drawing.Size(176, 22);
             this.miDebug.Text = "สวัสดี ฉันชื่อสะหวีวี่วี";
-            this.miDebug.Visible = false;
             this.miDebug.Click += new System.EventHandler(this.miDebug_Click);
             // 
             // toolStripMenuItem1
@@ -898,26 +890,32 @@
             this.txtGamePath.TextChanged += new System.EventHandler(this.txtGamePath_TextChanged);
             this.txtGamePath.DoubleClick += new System.EventHandler(this.txtGamePath_DoubleClick);
             // 
-            // miLog
+            // chkCompatibleMode
             // 
-            this.miLog.Name = "miLog";
-            this.miLog.Size = new System.Drawing.Size(180, 22);
-            this.miLog.Text = "Log";
-            this.miLog.Click += new System.EventHandler(this.miLog_Click);
+            this.chkCompatibleMode.AutoSize = true;
+            this.chkCompatibleMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkCompatibleMode.Location = new System.Drawing.Point(19, 69);
+            this.chkCompatibleMode.Name = "chkCompatibleMode";
+            this.chkCompatibleMode.Size = new System.Drawing.Size(150, 21);
+            this.chkCompatibleMode.TabIndex = 38;
+            this.chkCompatibleMode.Text = "โหมดความเข้ากันได้สูง";
+            this.chkCompatibleMode.UseVisualStyleBackColor = true;
+            this.chkCompatibleMode.CheckedChanged += new System.EventHandler(this.chkCompatibleMode_CheckedChanged);
             // 
             // frmVeryVerySimple
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(549, 679);
-            this.Controls.Add(this.menuStrip1);
+            this.ClientSize = new System.Drawing.Size(550, 642);
+            this.Controls.Add(this.chkCompatibleMode);
             this.Controls.Add(this.btnLegacyGenerate);
-            this.Controls.Add(this.pnAdvance);
-            this.Controls.Add(this.lblAdvance);
-            this.Controls.Add(this.lblGameDir);
             this.Controls.Add(this.btnGamePath);
             this.Controls.Add(this.txtGamePath);
+            this.Controls.Add(this.lblAdvance);
+            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.pnAdvance);
+            this.Controls.Add(this.lblGameDir);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
@@ -976,7 +974,6 @@
         private System.Windows.Forms.RadioButton rdoDownloadAlways;
         private System.Windows.Forms.RadioButton rdoDownloadHourly;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.RadioButton rdoFontKuntoon;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem miVersion;
@@ -1015,5 +1012,6 @@
         private System.Windows.Forms.CheckBox chkBackupSetting;
         private System.Windows.Forms.CheckBox chkRandomLoading;
         private System.Windows.Forms.ToolStripMenuItem miLog;
+        private System.Windows.Forms.CheckBox chkCompatibleMode;
     }
 }

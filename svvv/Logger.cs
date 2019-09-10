@@ -19,7 +19,7 @@ namespace svvv
             return logPath;
         }
 
-        public static void SrartNewLog()
+        public static void StartNewLog()
         {
             if (File.Exists(logPath))
                 File.Delete(logPath);
