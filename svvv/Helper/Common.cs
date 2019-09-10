@@ -30,6 +30,13 @@ namespace TheWitcher3Thai
             Once
         }
 
+        public enum eCompatibilityLevel
+        {
+            Normal,
+            Medium,
+            High,
+        }
+
         public enum eFontSetting
         {
             Sarabun,
@@ -508,11 +515,21 @@ namespace TheWitcher3Thai
 
         }
 
-        public void RemoveDoubleLanguage(string modPath)
+        public void ChangeCompatibilityLevel(string modPath,eCompatibilityLevel compatibilityLevel)
         {
-            var scriptPath = Path.Combine(modPath, "content", "scripts", "game", "gui", "hud", "modules");
-            DeleteFile(Path.Combine(scriptPath, "hudModuleOneliners.ws"));
-            DeleteFile(Path.Combine(scriptPath, "hudModuleQuests.ws"));
+            var scriptPath = Path.Combine(modPath,Configs.modThaiLanguage, "content", "scripts", "game", "gui", "hud", "modules");           
+
+            if (compatibilityLevel>=eCompatibilityLevel.High)
+            {
+                DeleteFile(Path.Combine(scriptPath, "hudModuleDialog.ws"));
+                DeleteFile(Path.Combine(scriptPath, "hudModuleSubtitles.ws"));
+            }
+
+            if (compatibilityLevel >= eCompatibilityLevel.Medium)
+            {
+                DeleteFile(Path.Combine(scriptPath, "hudModuleOneliners.ws"));
+                DeleteFile(Path.Combine(scriptPath, "hudModuleQuests.ws"));
+            }
         }
 
         public void DeleteFile(string filePath)
@@ -2581,6 +2598,11 @@ namespace TheWitcher3Thai
 
             // subtitle
             InstallSubtitleMod(outputPath);
+
+            if (!combine)
+            {
+                ChangeCompatibilityLevel(outputPath, eCompatibilityLevel.Medium);
+            }
 
             WriteVersionUnofficial(outputPath, "unofficial");
 

@@ -1,7 +1,6 @@
 ﻿using svvv;
 using svvv.Classes;
 using System;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -23,7 +22,7 @@ namespace TranslateUtility
         int mHeightCollapse = Constant.SIZE_DEFAULT_COLLASPE;
         int mHeightExpand = Constant.SIZE_DEFAULT_EXPAND;
 
-        bool ShowAdvance
+        bool AdvanceMode
         {
             get
             {
@@ -51,14 +50,12 @@ namespace TranslateUtility
             //DownloadRequireComponent();
 
             //CheckForUpdate(false, false, false);
-            
+
         }
 
         private void frmVeryVerySimple_Shown(object sender, EventArgs e)
         {
-            //mExpandHeight = this.Height;
-            if (!ShowAdvance)
-                ToggleAdvance();
+            //mExpandHeight = this.Height;           
 
             CheckForUpdate(false);
         }
@@ -96,6 +93,10 @@ namespace TranslateUtility
             toolTip1.SetToolTip(chkOldMethod, "ติดตั้งม็อดบนภาษาอังกฤษ ไม่มีการแปลคัทซีน");
             toolTip1.SetToolTip(chkBackupSetting, "สำรองการตั้งค่าของเกมก่อนติดตั้งม็อด");
             toolTip1.SetToolTip(chkRandomLoading, $@"จาก {c.GetLoadingMessageList().Count} ข้อความ");
+
+            toolTip1.SetToolTip(rdoNormalCompatibility, "อาจเข้ากับม็อดบางอย่างไม่ได้ แต่ใช้ฟังก์ชัันของม็อดภาษาไทยได้เต็มที่");
+            toolTip1.SetToolTip(rdoMediumCompatibility, "เพิ่มความเข้ากันได้กับม็อดอื่น แต่ไม่เหมาะกับออปชั่นสองภาษา \nไฟล์ที่ตัดออก \n-hudModuleOneliners.ws \n-hudModuleQuests.ws");
+            toolTip1.SetToolTip(rdoHighCompatibility, "เข้ากันได้กับทุกม็อด แต่ไม่เหมาะกับออปชั่นสองภาษาและปรับขนาดฟอนต์ไม่ได้ \nไฟล์ที่ตัดออก \n-hudModuleOneliners.ws \n-hudModuleQuests.ws \n-hudModuleDialog.ws \n-hudModuleSubtitles.ws");
         }
 
         private void InitialScreen()
@@ -115,7 +116,7 @@ namespace TranslateUtility
 
             //ReadLocalVersion();
             EnableExtraOption();
-            EnableButton(); 
+            EnableButton();
 
             // install
             var gamePath = c.GetGameDirectory();
@@ -126,10 +127,12 @@ namespace TranslateUtility
             {
                 this.Text += "v";
             }
-
-            SetDownloadFrequencyRadio();
-            SetFontRadio();
+                        
             LoadSetting();
+
+            if (!AdvanceMode)
+                ToggleAdvance();
+
             SaveAppSetting();
             RefreshCustomTranslateCount();
 
@@ -144,6 +147,7 @@ namespace TranslateUtility
 
         private void LoadSetting()
         {
+            AdvanceMode = mAppSetting.AdvanceMode;
             chkModDoubleLanguage.Checked = mAppSetting.DoubleLanguage;
             chkExcludeUiText.Checked = mAppSetting.EnglishUi;
             chkOldMethod.Checked = mAppSetting.OldMethod;
@@ -171,6 +175,10 @@ namespace TranslateUtility
             //mHeightCollapse = mAppSetting.CollaspeHeight;
             //mHeightExpand = mAppSetting.ExpandHeight;
             this.Height = mHeightExpand;
+
+            SetDownloadFrequencyRadio();
+            SetFontRadio();
+            SetCompatibilityLevel();
         }
 
         private void lblModVersion_DoubleClick(object sender, EventArgs e)
@@ -313,16 +321,18 @@ namespace TranslateUtility
             if (btnResult.Enabled && btnLegacyGenerate.Enabled)
             {
                 btnInstallFont.Enabled = true;
+                btnChangeFontSize.Enabled = true;
             }
             else
             {
                 btnInstallFont.Enabled = false;
+                btnChangeFontSize.Enabled = false;
             }
         }
 
         private void SetButtonText()
         {
-            if (Directory.Exists(Path.Combine(txtGamePath.Text,"mods",Configs.modThaiLanguage)))
+            if (Directory.Exists(Path.Combine(txtGamePath.Text, "mods", Configs.modThaiLanguage)))
             {
                 btnLegacyGenerate.Text = "อัพเดท";
             }
@@ -337,6 +347,9 @@ namespace TranslateUtility
             var enable = chkModDoubleLanguage.Checked;
             rdoModOriginFirst.Enabled = enable;
             rdoModTranslateFirst.Enabled = enable;
+
+            if (!enable)
+                rdoModTranslateFirst.Checked = true;
 
             rdoModTranslateFirst.Checked = !rdoModOriginFirst.Checked;
         }
@@ -402,7 +415,8 @@ namespace TranslateUtility
         }
 
         private void SaveAppSetting()
-        {            
+        {
+            mAppSetting.AdvanceMode = AdvanceMode;
             mAppSetting.DoubleLanguage = chkModDoubleLanguage.Checked;
             mAppSetting.EnglishUi = chkExcludeUiText.Checked;
             mAppSetting.OldMethod = chkOldMethod.Checked;
@@ -421,6 +435,7 @@ namespace TranslateUtility
             mAppSetting.GamePath = txtGamePath.Text;
             mAppSetting.ExpandHeight = mHeightExpand;
             mAppSetting.CollaspeHeight = mHeightCollapse;
+            mAppSetting.CompatibilityLevel = GetCompatibilityLevel();
 
             mAppSetting.SaveSetting();
             Logger.Log($@"Save setting.{Environment.NewLine}{mAppSetting.ToString()}");
@@ -468,10 +483,7 @@ namespace TranslateUtility
             if (result != DialogResult.OK)
                 return;
 
-            if(chkModDoubleLanguage.Checked==false)
-            {
-                c.RemoveDoubleLanguage(modPath);
-            }
+            c.ChangeCompatibilityLevel(modPath, GetCompatibilityLevel());
 
             // install mod
             Logger.Log("Start install mod");
@@ -526,6 +538,8 @@ namespace TranslateUtility
                 this.Height = mHeightExpand;
                 pnAdvance.Visible = true;
             }
+
+            AdvanceMode = pnAdvance.Visible;
 
             //ShowAdvance = pnAdvance.Visible;
 
@@ -616,12 +630,27 @@ namespace TranslateUtility
         {
             if (rdoDownloadAlways.Checked)
                 return Common.eDownloadFrequency.Always;
+
             else if (rdoDownloadHourly.Checked)
                 return Common.eDownloadFrequency.Hour;
+
             else if (rdoDownloadDialy.Checked)
                 return Common.eDownloadFrequency.Day;
+
             else
                 return Common.eDownloadFrequency.Once;
+        }
+
+        private Common.eCompatibilityLevel GetCompatibilityLevel()
+        {
+            if (rdoMediumCompatibility.Checked)
+                return Common.eCompatibilityLevel.Medium;
+
+            else if (rdoHighCompatibility.Checked)
+                return Common.eCompatibilityLevel.High;
+
+            else
+                return Common.eCompatibilityLevel.Normal;
         }
 
         private void SetDownloadFrequencyRadio()
@@ -644,6 +673,23 @@ namespace TranslateUtility
                     break;
                 case Common.eDownloadFrequency.Once:
                     rdoDownloadOnce.Checked = true;
+                    break;
+            }
+        }
+
+        private void SetCompatibilityLevel()
+        {
+            var val = mAppSetting.CompatibilityLevel;
+            switch (val)
+            {
+                case Common.eCompatibilityLevel.Normal:
+                    rdoNormalCompatibility.Checked = true;
+                    break;
+                case Common.eCompatibilityLevel.Medium:
+                    rdoMediumCompatibility.Checked = true;
+                    break;
+                case Common.eCompatibilityLevel.High:
+                    rdoHighCompatibility.Checked = true;
                     break;
             }
         }
@@ -791,7 +837,7 @@ namespace TranslateUtility
         private void InstallFont()
         {
             var modPath = Path.Combine(txtGamePath.Text, "mods");
-            c.InstallFontMod(GetFontSetting(), modPath);            
+            c.InstallFontMod(GetFontSetting(), modPath);
         }
 
         private void ChangeFontSize()
@@ -851,14 +897,37 @@ namespace TranslateUtility
 
         private void lblGameDir_MouseClick(object sender, MouseEventArgs e)
         {
-            if(e.Button==MouseButtons.Right)
+            if (e.Button == MouseButtons.Right)
                 c.Open(Configs.StartupPath);
 
         }
 
-        private void chkCompatibleMode_CheckedChanged(object sender, EventArgs e)
+        private void rdoNormalCompatibility_CheckedChanged(object sender, EventArgs e)
         {
-            
+            ChangeCompatibilityLevel();
+        }
+
+        private void rdoMediumCompatibility_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeCompatibilityLevel();
+        }
+
+        private void rdoHighCompatibility_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeCompatibilityLevel();
+        }
+
+        private void ChangeCompatibilityLevel()
+        {
+            var level = GetCompatibilityLevel();
+
+            if (level >= Common.eCompatibilityLevel.Medium)
+            {
+                chkModDoubleLanguage.Checked = false;
+            }
+
+            btnChangeFontSize.Enabled = level < Common.eCompatibilityLevel.High;
+
         }
     }
 }

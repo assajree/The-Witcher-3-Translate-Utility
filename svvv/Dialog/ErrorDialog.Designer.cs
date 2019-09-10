@@ -45,9 +45,10 @@
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.btnClose.Location = new System.Drawing.Point(397, 3);
+            this.btnClose.Location = new System.Drawing.Point(529, 4);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 29);
+            this.btnClose.Size = new System.Drawing.Size(100, 36);
             this.btnClose.TabIndex = 0;
             this.btnClose.Text = "ปิด";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -61,9 +62,10 @@
             this.panel1.Controls.Add(this.lblCopy);
             this.panel1.Controls.Add(this.btnClose);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 153);
+            this.panel1.Location = new System.Drawing.Point(0, 188);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(484, 35);
+            this.panel1.Size = new System.Drawing.Size(645, 43);
             this.panel1.TabIndex = 1;
             // 
             // lblLog
@@ -71,10 +73,9 @@
             this.lblLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblLog.AutoSize = true;
             this.lblLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLog.Location = new System.Drawing.Point(11, 10);
-            this.lblLog.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblLog.Location = new System.Drawing.Point(15, 12);
             this.lblLog.Name = "lblLog";
-            this.lblLog.Size = new System.Drawing.Size(33, 15);
+            this.lblLog.Size = new System.Drawing.Size(39, 18);
             this.lblLog.TabIndex = 13;
             this.lblLog.TabStop = true;
             this.lblLog.Text = "ดูล็อก";
@@ -84,9 +85,10 @@
             // 
             this.btnDetail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDetail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.btnDetail.Location = new System.Drawing.Point(316, 3);
+            this.btnDetail.Location = new System.Drawing.Point(370, 4);
+            this.btnDetail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDetail.Name = "btnDetail";
-            this.btnDetail.Size = new System.Drawing.Size(75, 29);
+            this.btnDetail.Size = new System.Drawing.Size(151, 36);
             this.btnDetail.TabIndex = 12;
             this.btnDetail.Text = "รายละเอียด";
             this.btnDetail.UseVisualStyleBackColor = true;
@@ -97,10 +99,9 @@
             this.lblCopy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCopy.AutoSize = true;
             this.lblCopy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCopy.Location = new System.Drawing.Point(48, 10);
-            this.lblCopy.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblCopy.Location = new System.Drawing.Point(64, 12);
             this.lblCopy.Name = "lblCopy";
-            this.lblCopy.Size = new System.Drawing.Size(40, 15);
+            this.lblCopy.Size = new System.Drawing.Size(47, 18);
             this.lblCopy.TabIndex = 11;
             this.lblCopy.TabStop = true;
             this.lblCopy.Text = "คัดลอก";
@@ -113,11 +114,12 @@
             this.lblMessage.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblMessage.ForeColor = System.Drawing.Color.Red;
             this.lblMessage.Location = new System.Drawing.Point(0, 0);
-            this.lblMessage.MaximumSize = new System.Drawing.Size(480, 0);
-            this.lblMessage.MinimumSize = new System.Drawing.Size(480, 52);
+            this.lblMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMessage.MaximumSize = new System.Drawing.Size(640, 0);
+            this.lblMessage.MinimumSize = new System.Drawing.Size(640, 64);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Padding = new System.Windows.Forms.Padding(60, 0, 0, 0);
-            this.lblMessage.Size = new System.Drawing.Size(480, 52);
+            this.lblMessage.Padding = new System.Windows.Forms.Padding(80, 0, 0, 0);
+            this.lblMessage.Size = new System.Drawing.Size(640, 64);
             this.lblMessage.TabIndex = 2;
             this.lblMessage.Text = "Error message here";
             this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -127,21 +129,23 @@
             this.txtDetail.BackColor = System.Drawing.Color.White;
             this.txtDetail.Dock = System.Windows.Forms.DockStyle.Top;
             this.txtDetail.ForeColor = System.Drawing.Color.Gray;
-            this.txtDetail.Location = new System.Drawing.Point(0, 52);
+            this.txtDetail.Location = new System.Drawing.Point(0, 64);
+            this.txtDetail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtDetail.Multiline = true;
             this.txtDetail.Name = "txtDetail";
             this.txtDetail.ReadOnly = true;
             this.txtDetail.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtDetail.Size = new System.Drawing.Size(484, 100);
+            this.txtDetail.Size = new System.Drawing.Size(645, 122);
             this.txtDetail.TabIndex = 3;
             this.txtDetail.Text = resources.GetString("txtDetail.Text");
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::svvv.Properties.Resources.icon_64;
-            this.pictureBox1.Location = new System.Drawing.Point(4, 2);
+            this.pictureBox1.Location = new System.Drawing.Point(5, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(57, 50);
+            this.pictureBox1.Size = new System.Drawing.Size(76, 62);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
@@ -149,20 +153,21 @@
             // ErrorDialog
             // 
             this.AcceptButton = this.btnClose;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(484, 188);
+            this.ClientSize = new System.Drawing.Size(645, 231);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txtDetail);
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(500, 125);
+            this.MinimumSize = new System.Drawing.Size(661, 143);
             this.Name = "ErrorDialog";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

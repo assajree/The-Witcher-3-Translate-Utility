@@ -80,7 +80,17 @@ namespace TheWitcher3Thai.Helper
                 frequency = defaultValue;
 
             return frequency;
+
         }
+
+        public static eCompatibilityLevel ToCompatibilityLevel(this string str, eCompatibilityLevel defaultValue)
+        {
+            if (!Enum.TryParse(str, true, out eCompatibilityLevel level))
+                level = defaultValue;
+
+            return level;
+        }
+
 
         public static eFontSetting ToFontSetting(this string str, eFontSetting defaultValue)
         {

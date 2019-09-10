@@ -11,6 +11,7 @@ namespace svvv.Classes
         const char SEPARATOR = '=';
         string mSettingPath;
 
+        public bool AdvanceMode { get; set; } = false;
         public bool DoubleLanguage { get; set; } = false;
         public bool EnglishUi { get; set; } = false;
         public bool OldMethod { get; set; } = false;
@@ -24,6 +25,7 @@ namespace svvv.Classes
         public int SizeCutscene { get; set; } = 34;
         public int SizeDialog { get; set; } = 34;
         public eDownloadFrequency DownloadFrequency { get; set; } = eDownloadFrequency.Always;
+        public eCompatibilityLevel CompatibilityLevel { get; set; } = eCompatibilityLevel.Normal;
         public string GamePath { get; set; } = "";
         public int ExpandHeight { get; set; } = Constant.SIZE_DEFAULT_EXPAND;
         public int CollaspeHeight { get; set; } = Constant.SIZE_DEFAULT_COLLASPE;
@@ -59,6 +61,7 @@ namespace svvv.Classes
         {
             var sb = new StringBuilder();
             sb.AppendLine($@"GamePath={GamePath}");
+            sb.AppendLine($@"AdvanceMode={AdvanceMode}");
             sb.AppendLine($@"DoubleLanguage={DoubleLanguage}");
             sb.AppendLine($@"EnglishUi={EnglishUi}");
             sb.AppendLine($@"OldMethod={OldMethod}");
@@ -73,6 +76,7 @@ namespace svvv.Classes
             sb.AppendLine($@"SizeCutscene={SizeCutscene}");
             sb.AppendLine($@"SizeDialog={SizeDialog}");
             sb.AppendLine($@"DownloadFrequency={DownloadFrequency}");
+            sb.AppendLine($@"CompatibilityLevel={CompatibilityLevel}");
 
             if(ExpandHeight!= Constant.SIZE_DEFAULT_EXPAND)
                 sb.AppendLine($@"ExpandHeight={ExpandHeight}");
@@ -94,6 +98,9 @@ namespace svvv.Classes
 
             switch (setting)
             {
+                case "AdvanceMode":
+                    AdvanceMode = value.ToBoolean(false);
+                    break;
                 case "DoubleLanguage":
                     DoubleLanguage = value.ToBoolean(false);
                     break;
@@ -135,6 +142,9 @@ namespace svvv.Classes
                     break;
                 case "DownloadFrequency":
                     DownloadFrequency = value.ToDownloadFrequency(eDownloadFrequency.Always);
+                    break;
+                case "CompatibilityLevel":
+                    CompatibilityLevel = value.ToCompatibilityLevel(eCompatibilityLevel.Normal);
                     break;
                 case "GamePath":
                     GamePath = value;
