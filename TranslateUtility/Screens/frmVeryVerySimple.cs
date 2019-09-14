@@ -26,12 +26,13 @@ namespace TranslateUtility
         {
             get
             {
-                return Properties.Settings.Default._SimpleShowAdvance;
+                return pnAdvance.Visible;
+                //return Properties.Settings.Default._SimpleShowAdvance;
             }
-            set
-            {
-                Properties.Settings.Default._SimpleShowAdvance = value;
-            }
+            //set
+            //{
+            //    Properties.Settings.Default._SimpleShowAdvance = value;
+            //}
 
         }
 
@@ -127,11 +128,8 @@ namespace TranslateUtility
             {
                 this.Text += "v";
             }
-                        
-            LoadSetting();
 
-            if (!AdvanceMode)
-                ToggleAdvance();
+            LoadSetting();
 
             SaveAppSetting();
             RefreshCustomTranslateCount();
@@ -147,7 +145,11 @@ namespace TranslateUtility
 
         private void LoadSetting()
         {
-            AdvanceMode = mAppSetting.AdvanceMode;
+            if (!mAppSetting.AdvanceMode)
+                HideAdvance();
+            else
+                ShowAdvance();
+
             chkModDoubleLanguage.Checked = mAppSetting.DoubleLanguage;
             chkExcludeUiText.Checked = mAppSetting.EnglishUi;
             chkOldMethod.Checked = mAppSetting.OldMethod;
@@ -174,7 +176,7 @@ namespace TranslateUtility
 
             //mHeightCollapse = mAppSetting.CollaspeHeight;
             //mHeightExpand = mAppSetting.ExpandHeight;
-            this.Height = mHeightExpand;
+
 
             SetDownloadFrequencyRadio();
             SetFontRadio();
@@ -523,29 +525,51 @@ namespace TranslateUtility
         {
             if (pnAdvance.Visible)
             {
-                pnAdvance.Visible = false;
-                mHeightExpand = this.Height;
-
-                //this.Height -= pnAdvance.Height;
-                this.Height = mHeightCollapse;
+                HideAdvance();
 
             }
             else
             {
-                mHeightCollapse = this.Height;
-
-                //this.Height += pnAdvance.Height;                
-                this.Height = mHeightExpand;
-                pnAdvance.Visible = true;
+                ShowAdvance();
             }
 
-            AdvanceMode = pnAdvance.Visible;
+            //AdvanceMode = pnAdvance.Visible;
 
             //ShowAdvance = pnAdvance.Visible;
 
             //Debug();
         }
 
+        private void ShowAdvance()
+        {
+            //mHeightCollapse = this.Height;
+
+            this.Height = Math.Min(Screen.PrimaryScreen.Bounds.Height, mHeightExpand);
+
+            //if (Screen.PrimaryScreen.Bounds.Height < mHeightExpand)
+            //{
+            //    this.WindowState = FormWindowState.Maximized;
+            //}
+            //else
+            //{
+            //    this.Height = mHeightExpand;
+            //}
+
+            pnAdvance.Visible = true;
+        }
+
+        private void HideAdvance()
+        {
+            // un-maximize
+            this.WindowState = FormWindowState.Normal;
+            //this.Width = this.DefaultMinimumSize.Width;
+
+            pnAdvance.Visible = false;
+            //mHeightExpand = this.Height;
+
+            //this.Height -= pnAdvance.Height;
+            this.Height = mHeightCollapse;
+        }
 
         private void btnResult_Click(object sender, EventArgs e)
         {
@@ -928,6 +952,30 @@ namespace TranslateUtility
 
             btnChangeFontSize.Enabled = level < Common.eCompatibilityLevel.High;
 
+        }
+
+        /// <summary>
+        /// handle maximize state
+        /// </summary>
+        /// <param name="m"></param>
+        protected override void WndProc(ref Message m)
+        {
+            if (m.Msg == 0x0112) // WM_SYSCOMMAND
+            {
+                // window un-maximize
+                if (m.WParam == new IntPtr(0xF030)) // Maximize event - SC_MAXIMIZE from Winuser.h
+                {
+                    ShowAdvance();
+                }
+
+                // window un-maximize
+                else if (m.WParam == new IntPtr(0xF120))
+                {
+
+                    HideAdvance();
+                }
+            }
+            base.WndProc(ref m);
         }
     }
 }

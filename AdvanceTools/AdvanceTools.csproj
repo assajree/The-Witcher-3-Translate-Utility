@@ -102,6 +102,12 @@
     <Compile Include="Screens\frmVerySimple.Designer.cs">
       <DependentUpon>frmVerySimple.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\Test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\Test.Designer.cs">
+      <DependentUpon>Test.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -137,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\frmVerySimple.resx">
       <DependentUpon>frmVerySimple.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\Test.resx">
+      <DependentUpon>Test.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
