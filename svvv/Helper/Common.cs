@@ -447,7 +447,8 @@ namespace TheWitcher3Thai
                     File.Delete(tempDownloadPath);
 
                 // start download
-                var downloadComplete = DownloadFile("https://docs.google.com/spreadsheets/d/1XLM0VzU0RFiTw8NIQSZ2NBPlL_i1yzBYarrMWGb5lDA/export?format=xlsx", tempDownloadPath);
+                //var downloadComplete = DownloadFile("https://docs.google.com/spreadsheets/d/1XLM0VzU0RFiTw8NIQSZ2NBPlL_i1yzBYarrMWGb5lDA/export?format=xlsx", tempDownloadPath);
+                var downloadComplete = DownloadFile("https://docs.google.com/spreadsheets/d/1h7S2DPtmhl0sE_fX17POhOWs6H10U0VhFRK40oYHDGg/export?format=xlsx", tempDownloadPath);
 
                 var fi = new FileInfo(excelPath);
                 if (downloadComplete == DialogResult.Cancel)
