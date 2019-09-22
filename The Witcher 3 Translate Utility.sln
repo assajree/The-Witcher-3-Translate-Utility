@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvanceTools", "AdvanceTool
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageFinder", "MessageFinder\MessageFinder.csproj", "{B428FB56-5E23-4883-B31A-79E74F24878E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StorybookTools", "StorybookTools\StorybookTools.csproj", "{9576C6FF-CDF9-46B8-92F0-895193903494}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{B428FB56-5E23-4883-B31A-79E74F24878E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B428FB56-5E23-4883-B31A-79E74F24878E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B428FB56-5E23-4883-B31A-79E74F24878E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9576C6FF-CDF9-46B8-92F0-895193903494}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9576C6FF-CDF9-46B8-92F0-895193903494}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9576C6FF-CDF9-46B8-92F0-895193903494}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9576C6FF-CDF9-46B8-92F0-895193903494}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

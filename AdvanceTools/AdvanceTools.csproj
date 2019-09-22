@@ -254,7 +254,6 @@
       <Name>TranslateUtility</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Tools\Font\swf\original.swf" />
     <Content Include="Tools\Font\swf\prajad.swf" />
