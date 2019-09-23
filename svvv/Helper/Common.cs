@@ -1515,6 +1515,7 @@ namespace TheWitcher3Thai
             return localVersion != lastVersion;
         }
 
+        
         public bool CheckUpdateTemplate(bool silenceMode = false)
         {
             string lastVersion;
@@ -1530,6 +1531,35 @@ namespace TheWitcher3Thai
             var localVersion = ReadVersion(Configs.TemplateVersionPath);
 
             return localVersion != lastVersion;
+        }
+
+        /// <summary>
+        /// return true when need update
+        /// </summary>
+        /// <param name="versionPath"></param>
+        /// <param name="versionFileId"></param>
+        /// <returns></returns>
+        public bool CheckVersion(string versionPath, string versionFileId)
+        {
+            string lastVersion;
+
+            lastVersion = ReadGoogleFileContent(versionFileId);
+
+            if (lastVersion == null)
+                return false;
+
+            var localVersion = ReadVersion(versionPath);
+
+            return localVersion != lastVersion;
+        }
+
+        public void WriteVersion(string versionPath, string versionFileId)
+        {
+            string lastVersion;
+
+            lastVersion = ReadGoogleFileContent(versionFileId);
+
+            File.WriteAllText(versionPath, lastVersion);
         }
 
         public string GetLastVersion()
@@ -1655,12 +1685,20 @@ namespace TheWitcher3Thai
         public bool DownloadGoogleSheetFile(string id, string saveToPath)
         {
             string url = GetGoogleSheetDownloadUrl(id);
-            using (var dlg = new DownloadDialog(url, saveToPath))
+            var tmpPath = Path.Combine(Configs.TempPath, id+".xlsx");
+            using (var dlg = new DownloadDialog(url, tmpPath))
             {
                 var result = dlg.ShowDialog();
 
                 if (result == DialogResult.OK)
+                {
+                    if (!File.Exists(tmpPath))
+                        return false;
+
+                    CopyFile(tmpPath, saveToPath);
+
                     return true;
+                }
                 else
                     return false;
             }
@@ -3502,6 +3540,8 @@ namespace TheWitcher3Thai
         public void GenerateLegacyModAlt(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool includeUiMessageId, eFontSetting font, bool translateUI, bool alternativeTranslate)
         {
             string templatePath = Configs.TemplateFilePath;
+
+
             if (!File.Exists(templatePath))
                 throw new Exception("ไม่พบ Template กรุณาต่ออินเตอร์เน็ตและเปิดโปรแกรมใหม่เพิ่อดาวน์โหลดไฟล์ Template");
 
@@ -4128,14 +4168,20 @@ namespace TheWitcher3Thai
             if (!IsNeedToDownload(translatePath, frequency))
                 return;
 
-            var tmpPath = Path.Combine(Configs.TempPath, fileName);
-            if (!DownloadGoogleSheetFile(id, tmpPath))
-                return;
 
-            if (!File.Exists(tmpPath))
-                return;
 
-            CopyFile(tmpPath, translatePath);
+            //var tmpPath = Path.Combine(Configs.TempPath, fileName);
+            //if (!DownloadGoogleSheetFile(id, tmpPath))
+            //    return;
+
+            //if (!File.Exists(tmpPath))
+            //    return;
+
+            //CopyFile(tmpPath, translatePath);
+
+            // change download behavior
+            if (!DownloadGoogleSheetFile(id, translatePath))
+                return;
 
         }
 

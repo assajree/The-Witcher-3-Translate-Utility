@@ -4,6 +4,7 @@ RD /S /Q "Tools/ThaiStorybook"
 RD /S /Q "temp"
 DEL setting.ini
 DEL custom.ini
+DEL alt_version.ini
 DEL w3tu.zip
 DEL MessageFinder.exe.config
 DEL MessageFinder.pdb

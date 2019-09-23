@@ -52,6 +52,8 @@ namespace svvv
         public const string TemplateFileId = "1QPvUzSLTJ4GRy552BLH1l4hZOPcWq8wb";
         public const string TemplateVersionFileId = "1bZwJvkY1APBNTSS5Y3kmzt8n9_2P8guj";
         public const string DefaultCustomTranslateFileId = "1X2VOm21x5ow_duSutaXV3AsCdz2YT1RVZZQoiPZHp14";
+        public const string AltTranslateFileId = "1zSuaHmVYN0lTPhf79iBLHp1J2pLsrmrrU1qtMIgKAqY";
+        public const string AltTranslateVersionFileId = "1hkD9fyAHdmk4J43tNGxAeCfptUwEwLmy";
 
         public static string StartupPath = Application.StartupPath;
 
@@ -62,6 +64,7 @@ namespace svvv
         public static string LogPath = Path.Combine(StartupPath, "changelog.txt");
         public static string SettingPath = Path.Combine(StartupPath, "setting.ini");
         public static string CustomTranslateSettingPath = Path.Combine(StartupPath, "custom.ini");
+        public static string AltTranslateVersion = Path.Combine(StartupPath, "alt_version.ini");
 
         public static string TranslatePath = Path.Combine(DownloadPath, "translate.xlsx");
 

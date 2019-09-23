@@ -30,6 +30,8 @@ namespace svvv.Classes
         public int ExpandHeight { get; set; } = Constant.SIZE_DEFAULT_EXPAND;
         public int CollaspeHeight { get; set; } = Constant.SIZE_DEFAULT_COLLASPE;
         public bool RandomLoading { get; set; } = true;
+        public bool AlternativeDownload { get; set; } = false;
+
 
         public AppSetting(string settingPath)
         {
@@ -67,6 +69,9 @@ namespace svvv.Classes
             sb.AppendLine($@"OldMethod={OldMethod}");
             sb.AppendLine($@"BackupSetting={BackupSetting}");
             sb.AppendLine($@"RandomLoading={RandomLoading}");
+            sb.AppendLine($@"AlternativeDownload={AlternativeDownload}");
+
+            
             sb.AppendLine($@"ThaiFirst={ThaiFirst}");
             sb.AppendLine($@"ShowNotTranslateRow={ShowNotTranslateRow}");
             sb.AppendLine($@"ShowTranslateRow={ShowTranslateRow}");
@@ -115,6 +120,9 @@ namespace svvv.Classes
                     break;
                 case "RandomLoading":
                     RandomLoading = value.ToBoolean(true);
+                    break;
+                case "AlternativeDownload":
+                    AlternativeDownload = value.ToBoolean(false);
                     break;
                 case "ThaiFirst":
                     ThaiFirst = value.ToBoolean(true);

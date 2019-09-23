@@ -87,7 +87,9 @@ namespace TranslateUtility
         {
             toolTip1.SetToolTip(rdoDownloadAlways, "ดาวน์โหลดทุกครั้ง");
             toolTip1.SetToolTip(rdoDownloadDialy, "ดาวน์โหลดเมื่อผ่านไป 1 วัน จากการดาวน์โหลดครั้งที่แล้วเท่านั้น");
-            toolTip1.SetToolTip(rdoDownloadHourly, "ดาวน์โหลดเมื่อผ่านไป 1 ชั่วโมง จากการดาวน์โหลดครั้งที่แล้วเท่านั้น");
+            //toolTip1.SetToolTip(rdoDownloadAlt, "ดาวน์โหลดเมื่อผ่านไป 1 ชั่วโมง จากการดาวน์โหลดครั้งที่แล้วเท่านั้น");
+            toolTip1.SetToolTip(rdoDownloadAlt, "ใช้ไฟล์แปลภาษาทางเลือก สำหรับคนที่ติดตั้งม็อดแล้วไม่เป็นภาษาไทย");
+
             toolTip1.SetToolTip(rdoDownloadOnce, "ดาวน์โหลดเมื่อไม่มีไฟล์แปลภาษาเท่านั้น");
             toolTip1.SetToolTip(chkChangeTextColor, "เปลี่ยนสีชื่อในซับไตเติ้ล");
             //toolTip1.SetToolTip(chkOldMethod, $@"มีโอกาสติด Lucky {Constant.CRACK_LUCKY_CHANCE}%");
@@ -438,6 +440,7 @@ namespace TranslateUtility
             mAppSetting.ExpandHeight = mHeightExpand;
             mAppSetting.CollaspeHeight = mHeightCollapse;
             mAppSetting.CompatibilityLevel = GetCompatibilityLevel();
+            mAppSetting.AlternativeDownload = rdoDownloadAlt.Checked;
 
             mAppSetting.SaveSetting();
             Logger.Log($@"Save setting.{Environment.NewLine}{mAppSetting.ToString()}");
@@ -512,8 +515,20 @@ namespace TranslateUtility
 
         private void DownloadTranslateFile()
         {
-            translatePath = Path.Combine(Configs.DownloadPath, "translate.xlsx");
-            translatePath = c.DownloadLegacyExcel(translatePath, false, GetDownloadFrequency());
+            if (rdoDownloadAlt.Checked)
+            {
+                if (c.CheckVersion(Configs.AltTranslateVersion, Configs.AltTranslateVersionFileId))
+                {
+                    translatePath = Path.Combine(Configs.DownloadPath, "translate_alt.xlsx");
+                    if (c.DownloadGoogleSheetFile(Configs.AltTranslateFileId, translatePath))
+                        c.WriteVersion(Configs.AltTranslateVersion, Configs.AltTranslateVersionFileId);
+                }
+            }
+            else
+            {
+                translatePath = Path.Combine(Configs.DownloadPath, "translate.xlsx");
+                translatePath = c.DownloadLegacyExcel(translatePath, false, GetDownloadFrequency());
+            }
         }
 
         private void lblAdvance_Click(object sender, EventArgs e)
@@ -655,14 +670,17 @@ namespace TranslateUtility
             if (rdoDownloadAlways.Checked)
                 return Common.eDownloadFrequency.Always;
 
-            else if (rdoDownloadHourly.Checked)
-                return Common.eDownloadFrequency.Hour;
+            //else if (rdoDownloadAlt.Checked)
+            //    return Common.eDownloadFrequency.Hour;
+
+            else if (rdoDownloadOnce.Checked)
+                return Common.eDownloadFrequency.Once;
 
             else if (rdoDownloadDialy.Checked)
                 return Common.eDownloadFrequency.Day;
 
             else
-                return Common.eDownloadFrequency.Once;
+                return Common.eDownloadFrequency.Day;
         }
 
         private Common.eCompatibilityLevel GetCompatibilityLevel()
@@ -692,13 +710,16 @@ namespace TranslateUtility
                 case Common.eDownloadFrequency.Day:
                     rdoDownloadDialy.Checked = true;
                     break;
-                case Common.eDownloadFrequency.Hour:
-                    rdoDownloadHourly.Checked = true;
-                    break;
+                //case Common.eDownloadFrequency.Hour:
+                //    rdoDownloadAlt.Checked = true;
+                //    break;
                 case Common.eDownloadFrequency.Once:
                     rdoDownloadOnce.Checked = true;
                     break;
             }
+
+            if (mAppSetting.AlternativeDownload)
+                rdoDownloadAlt.Checked = true;
         }
 
         private void SetCompatibilityLevel()
