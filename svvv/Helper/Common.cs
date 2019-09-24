@@ -218,7 +218,7 @@ namespace TheWitcher3Thai
                 if (File.Exists(targetPath))
                 {
                     var fi = new FileInfo(path);
-                    if (!fi.Directory.Parent.Name.Equals(Configs.modThaiLanguage))
+                    if (!setting.GetMigrateException().Contains(fi.Directory.Parent.Name))
                     {
                         Logger.Log($@"    Migrate {targetPath}");
                         File.Delete(targetPath);

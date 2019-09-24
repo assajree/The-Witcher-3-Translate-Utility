@@ -13,6 +13,7 @@ namespace TheWitcher3Thai
         Dictionary<string, string> mSheetName;
         List<CustomTranslateItem> mCustomTranslate;
         List<string> mLoadingMessage;
+        List<string> mMigrateExceptions;
 
         public Dictionary<string, string> GetSheetConfig()
         {
@@ -230,6 +231,34 @@ namespace TheWitcher3Thai
             mCustomTranslate.Add(new CustomTranslateItem(false, Configs.W3eeFileId, null));
 
             return mCustomTranslate;
+        }
+
+        public List<string> GetMigrateException()
+        {
+            if (mMigrateExceptions != null)
+                return mMigrateExceptions;
+
+            mMigrateExceptions = new List<string>();
+            mMigrateExceptions.Add("bob");
+            mMigrateExceptions.Add("ep1");
+            mMigrateExceptions.Add("DLC1");
+            mMigrateExceptions.Add("DLC2");
+            mMigrateExceptions.Add("DLC3");
+            mMigrateExceptions.Add("DLC4");
+            mMigrateExceptions.Add("DLC5");
+            mMigrateExceptions.Add("DLC6");
+            mMigrateExceptions.Add("DLC7");
+            mMigrateExceptions.Add("DLC8");
+            mMigrateExceptions.Add("DLC9");
+            mMigrateExceptions.Add("DLC10");
+            mMigrateExceptions.Add("DLC11");
+            mMigrateExceptions.Add("DLC12");
+            mMigrateExceptions.Add("DLC13");
+            mMigrateExceptions.Add("DLC14");
+            mMigrateExceptions.Add("DLC15");
+            mMigrateExceptions.Add("DLC16");
+
+            return mMigrateExceptions;
         }
 
         public List<string> GetCrackLoadingMessage()

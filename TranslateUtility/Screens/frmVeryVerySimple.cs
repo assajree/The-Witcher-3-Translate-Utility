@@ -283,6 +283,7 @@ namespace TranslateUtility
             if (File.Exists(trPath))
             {
                 c.MigrateOtherModToTr(Path.Combine(txtGamePath.Text, "mods"));
+                c.MigrateOtherModToTr(Path.Combine(txtGamePath.Text, "dlc"));
                 c.ChangeLanguageSettingToTR();
             }
             else
@@ -517,9 +518,9 @@ namespace TranslateUtility
         {
             if (rdoDownloadAlt.Checked)
             {
+                translatePath = Path.Combine(Configs.DownloadPath, "translate_alt.xlsx");
                 if (c.CheckVersion(Configs.AltTranslateVersion, Configs.AltTranslateVersionFileId))
-                {
-                    translatePath = Path.Combine(Configs.DownloadPath, "translate_alt.xlsx");
+                {                    
                     if (c.DownloadGoogleSheetFile(Configs.AltTranslateFileId, translatePath))
                         c.WriteVersion(Configs.AltTranslateVersion, Configs.AltTranslateVersionFileId);
                 }
@@ -858,6 +859,7 @@ namespace TranslateUtility
                 if (c.ShowConfirm("มีม็อดที่แสดงข้อความไม่ถูกต้องหรือข้อความหายใช่หรือไม่?"))
                 {
                     c.MigrateOtherModToTr(Path.Combine(txtGamePath.Text, "mods"));
+                    c.MigrateOtherModToTr(Path.Combine(txtGamePath.Text, "dlc"));
                     c.MigrateW3ee(txtGamePath.Text);
                     c.ShowMessage("สำเร็จ");
                 }
