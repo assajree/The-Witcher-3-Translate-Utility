@@ -456,7 +456,7 @@
             this.pnAdvance.Controls.Add(this.groupBox3);
             this.pnAdvance.Location = new System.Drawing.Point(12, 100);
             this.pnAdvance.Name = "pnAdvance";
-            this.pnAdvance.Size = new System.Drawing.Size(539, 637);
+            this.pnAdvance.Size = new System.Drawing.Size(539, 626);
             this.pnAdvance.TabIndex = 52;
             // 
             // groupBox9
@@ -734,6 +734,7 @@
             this.rdoDownloadAlt.TabIndex = 0;
             this.rdoDownloadAlt.Text = "แล้วแต่ปุ๊";
             this.rdoDownloadAlt.UseVisualStyleBackColor = true;
+            this.rdoDownloadAlt.Visible = false;
             // 
             // groupBox8
             // 
@@ -1020,7 +1021,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(563, 749);
+            this.ClientSize = new System.Drawing.Size(563, 736);
             this.Controls.Add(this.btnGamePath);
             this.Controls.Add(this.txtGamePath);
             this.Controls.Add(this.lblAdvance);
@@ -1030,7 +1031,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(579, 39);
+            this.MinimumSize = new System.Drawing.Size(578, 45);
             this.Name = "frmVeryVerySimple";
             this.ShowIcon = false;
             this.Text = "The Witcher 3 Translate Utility by svvv";

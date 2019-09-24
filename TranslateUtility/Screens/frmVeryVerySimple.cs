@@ -1,6 +1,7 @@
 ﻿using svvv;
 using svvv.Classes;
 using System;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -18,6 +19,7 @@ namespace TranslateUtility
         string resultPath = null;
         string translatePath = null;
         AppSetting mAppSetting = new AppSetting(Configs.SettingPath);
+        readonly Color mDefaultButtonColor = Color.FromArgb(255, 0, 120, 215);
 
         int mHeightCollapse = Constant.SIZE_DEFAULT_COLLASPE;
         int mHeightExpand = Constant.SIZE_DEFAULT_EXPAND;
@@ -57,7 +59,6 @@ namespace TranslateUtility
         private void frmVeryVerySimple_Shown(object sender, EventArgs e)
         {
             //mExpandHeight = this.Height;           
-
             CheckForUpdate(false);
         }
 
@@ -333,6 +334,12 @@ namespace TranslateUtility
                 btnInstallFont.Enabled = false;
                 btnChangeFontSize.Enabled = false;
             }
+
+            // set button color
+            if (btnLegacyGenerate.Enabled)
+                btnLegacyGenerate.BackColor = mDefaultButtonColor;
+            else
+                btnLegacyGenerate.BackColor = Color.LightGray;
         }
 
         private void SetButtonText()
@@ -500,6 +507,7 @@ namespace TranslateUtility
 
             Logger.Log("Finish");
             c.ShowMessage("ติดตั้งสำเร็จ");
+            c.AddCounter();
             EnableButton();
         }
 
@@ -559,8 +567,10 @@ namespace TranslateUtility
         private void ShowAdvance()
         {
             //mHeightCollapse = this.Height;
-
-            this.Height = Math.Min(Screen.PrimaryScreen.Bounds.Height, mHeightExpand);
+            if (Screen.PrimaryScreen.Bounds.Height < mHeightExpand)
+                this.Height = Math.Min(Constant.SIZE_MINI_EXPAND, Screen.PrimaryScreen.Bounds.Height);
+            else
+                this.Height = mHeightExpand;
 
             //if (Screen.PrimaryScreen.Bounds.Height < mHeightExpand)
             //{

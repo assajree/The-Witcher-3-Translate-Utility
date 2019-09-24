@@ -447,8 +447,15 @@ namespace TheWitcher3Thai
                     File.Delete(tempDownloadPath);
 
                 // start download
+
+                // original
                 //var downloadComplete = DownloadFile("https://docs.google.com/spreadsheets/d/1XLM0VzU0RFiTw8NIQSZ2NBPlL_i1yzBYarrMWGb5lDA/export?format=xlsx", tempDownloadPath);
-                var downloadComplete = DownloadFile("https://docs.google.com/spreadsheets/d/1h7S2DPtmhl0sE_fX17POhOWs6H10U0VhFRK40oYHDGg/export?format=xlsx", tempDownloadPath);
+
+                // linked content with original
+                //var downloadComplete = DownloadFile("https://docs.google.com/spreadsheets/d/1h7S2DPtmhl0sE_fX17POhOWs6H10U0VhFRK40oYHDGg/export?format=xlsx", tempDownloadPath);
+
+                // new file
+                var downloadComplete = DownloadFile("https://docs.google.com/spreadsheets/d/1zSuaHmVYN0lTPhf79iBLHp1J2pLsrmrrU1qtMIgKAqY/export?format=xlsx", tempDownloadPath);
 
                 var fi = new FileInfo(excelPath);
                 if (downloadComplete == DialogResult.Cancel)
@@ -516,11 +523,11 @@ namespace TheWitcher3Thai
 
         }
 
-        public void ChangeCompatibilityLevel(string modPath,eCompatibilityLevel compatibilityLevel)
+        public void ChangeCompatibilityLevel(string modPath, eCompatibilityLevel compatibilityLevel)
         {
-            var scriptPath = Path.Combine(modPath,Configs.modThaiLanguage, "content", "scripts", "game", "gui", "hud", "modules");           
+            var scriptPath = Path.Combine(modPath, Configs.modThaiLanguage, "content", "scripts", "game", "gui", "hud", "modules");
 
-            if (compatibilityLevel>=eCompatibilityLevel.High)
+            if (compatibilityLevel >= eCompatibilityLevel.High)
             {
                 DeleteFile(Path.Combine(scriptPath, "hudModuleDialog.ws"));
                 DeleteFile(Path.Combine(scriptPath, "hudModuleSubtitles.ws"));
@@ -537,6 +544,22 @@ namespace TheWitcher3Thai
         {
             if (File.Exists(filePath))
                 File.Delete(filePath);
+        }
+
+        public void AddCounter()
+        {
+            try
+            {
+                //var client = new WebClient();
+                //var content = client.DownloadString("http://bit.ly/2mKblcu");
+
+                var req = WebRequest.Create("http://bit.ly/2mKblcu") as HttpWebRequest;
+                req.GetResponseAsync();
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         public Dictionary<string, w3Strings> ReadAllExcel(string excelPath)
@@ -1515,7 +1538,7 @@ namespace TheWitcher3Thai
             return localVersion != lastVersion;
         }
 
-        
+
         public bool CheckUpdateTemplate(bool silenceMode = false)
         {
             string lastVersion;
@@ -1685,7 +1708,7 @@ namespace TheWitcher3Thai
         public bool DownloadGoogleSheetFile(string id, string saveToPath)
         {
             string url = GetGoogleSheetDownloadUrl(id);
-            var tmpPath = Path.Combine(Configs.TempPath, id+".xlsx");
+            var tmpPath = Path.Combine(Configs.TempPath, id + ".xlsx");
             using (var dlg = new DownloadDialog(url, tmpPath))
             {
                 var result = dlg.ShowDialog();
@@ -2051,12 +2074,12 @@ namespace TheWitcher3Thai
             DecodeDirectory(tempOriginalPath);
         }
 
-        public List<w3Strings> ReadDirectoryMessage(string path, string langCode=null)
+        public List<w3Strings> ReadDirectoryMessage(string path, string langCode = null)
         {
-            var result= new List<w3Strings>();
+            var result = new List<w3Strings>();
 
             var filter = $@"*{langCode}.w3strings";
-            foreach (string filePath in Directory.EnumerateFiles(path, filter,SearchOption.AllDirectories))
+            foreach (string filePath in Directory.EnumerateFiles(path, filter, SearchOption.AllDirectories))
             {
                 result.AddRange(ReadMessage(filePath));
             }
@@ -2070,7 +2093,7 @@ namespace TheWitcher3Thai
                 return new List<w3Strings>();
 
             string tempFilePath = Path.Combine(Configs.TempPath, "temp.w3strings");
-            CopyFile(w3stringsPath,tempFilePath);
+            CopyFile(w3stringsPath, tempFilePath);
             DecodeW3String(tempFilePath);
 
             var csvPath = $@"{tempFilePath}.csv";
@@ -3497,6 +3520,7 @@ namespace TheWitcher3Thai
 
             var skips = new List<string>();
             skips.Add(Path.Combine(modPath, "version_storybook.ini"));
+            skips.Add(Path.Combine(modPath, "content", "tr.w3strings"));
 
             // copy mod
             CopyDirectory(modPath, targetPath, skips);
@@ -4239,9 +4263,9 @@ namespace TheWitcher3Thai
                 return;
 
             var directories = setting.GetW3eeDirectory();
-            foreach(var d in directories)
+            foreach (var d in directories)
             {
-                
+
                 var dir = Path.Combine(gamePath, "mods", d);
                 if (!Directory.Exists(dir))
                     return;
