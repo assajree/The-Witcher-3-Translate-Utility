@@ -239,6 +239,7 @@ namespace TheWitcher3Thai
                 return mMigrateExceptions;
 
             mMigrateExceptions = new List<string>();
+            mMigrateExceptions.Add(Configs.modThaiLanguage);
             mMigrateExceptions.Add("bob");
             mMigrateExceptions.Add("ep1");
             mMigrateExceptions.Add("DLC1");
