@@ -71,7 +71,6 @@
             this.rdoDownloadOnce = new System.Windows.Forms.RadioButton();
             this.rdoDownloadAlt = new System.Windows.Forms.RadioButton();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.chkRandomLoading = new System.Windows.Forms.CheckBox();
             this.chkBackupSetting = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnInstallFont = new System.Windows.Forms.Button();
@@ -95,6 +94,8 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.txtGamePath = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.chkRandomLoading = new System.Windows.Forms.CheckBox();
+            this.chkStorybook = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -342,7 +343,7 @@
             this.chkUntranslateInfo.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "_SimpleUntranslateInfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.chkUntranslateInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkUntranslateInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.chkUntranslateInfo.Location = new System.Drawing.Point(291, 24);
+            this.chkUntranslateInfo.Location = new System.Drawing.Point(290, 22);
             this.chkUntranslateInfo.Name = "chkUntranslateInfo";
             this.chkUntranslateInfo.Size = new System.Drawing.Size(145, 21);
             this.chkUntranslateInfo.TabIndex = 37;
@@ -740,6 +741,7 @@
             // 
             this.groupBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox8.Controls.Add(this.chkStorybook);
             this.groupBox8.Controls.Add(this.chkRandomLoading);
             this.groupBox8.Controls.Add(this.chkBackupSetting);
             this.groupBox8.Controls.Add(this.chkOldMethod);
@@ -751,18 +753,6 @@
             this.groupBox8.TabIndex = 46;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "อื่นๆ";
-            // 
-            // chkRandomLoading
-            // 
-            this.chkRandomLoading.AutoSize = true;
-            this.chkRandomLoading.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkRandomLoading.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.chkRandomLoading.Location = new System.Drawing.Point(290, 22);
-            this.chkRandomLoading.Name = "chkRandomLoading";
-            this.chkRandomLoading.Size = new System.Drawing.Size(160, 21);
-            this.chkRandomLoading.TabIndex = 39;
-            this.chkRandomLoading.Text = "สุ่มข้อความหน้าโหลดเกม";
-            this.chkRandomLoading.UseVisualStyleBackColor = true;
             // 
             // chkBackupSetting
             // 
@@ -1015,6 +1005,31 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(537, 45);
             this.tableLayoutPanel1.TabIndex = 57;
             // 
+            // chkRandomLoading
+            // 
+            this.chkRandomLoading.AutoSize = true;
+            this.chkRandomLoading.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkRandomLoading.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.chkRandomLoading.Location = new System.Drawing.Point(410, 22);
+            this.chkRandomLoading.Name = "chkRandomLoading";
+            this.chkRandomLoading.Size = new System.Drawing.Size(160, 21);
+            this.chkRandomLoading.TabIndex = 40;
+            this.chkRandomLoading.Text = "สุ่มข้อความหน้าโหลดเกม";
+            this.chkRandomLoading.UseVisualStyleBackColor = true;
+            this.chkRandomLoading.Visible = false;
+            // 
+            // chkStorybook
+            // 
+            this.chkStorybook.AutoSize = true;
+            this.chkStorybook.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkStorybook.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.chkStorybook.Location = new System.Drawing.Point(290, 22);
+            this.chkStorybook.Name = "chkStorybook";
+            this.chkStorybook.Size = new System.Drawing.Size(118, 21);
+            this.chkStorybook.TabIndex = 41;
+            this.chkStorybook.Text = "แปล Storybook";
+            this.chkStorybook.UseVisualStyleBackColor = true;
+            // 
             // frmVeryVerySimple
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -1125,12 +1140,13 @@
         private System.Windows.Forms.RadioButton rdoFontSrisakdi;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.CheckBox chkBackupSetting;
-        private System.Windows.Forms.CheckBox chkRandomLoading;
         private System.Windows.Forms.ToolStripMenuItem miLog;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.RadioButton rdoNormalCompatibility;
         private System.Windows.Forms.RadioButton rdoHighCompatibility;
         private System.Windows.Forms.RadioButton rdoMediumCompatibility;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.CheckBox chkStorybook;
+        private System.Windows.Forms.CheckBox chkRandomLoading;
     }
 }

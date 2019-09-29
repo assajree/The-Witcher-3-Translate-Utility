@@ -96,7 +96,7 @@ namespace TranslateUtility
             //toolTip1.SetToolTip(chkOldMethod, $@"มีโอกาสติด Lucky {Constant.CRACK_LUCKY_CHANCE}%");
             toolTip1.SetToolTip(chkOldMethod, "ติดตั้งม็อดบนภาษาอังกฤษ ไม่มีการแปลคัทซีน");
             toolTip1.SetToolTip(chkBackupSetting, "สำรองการตั้งค่าของเกมก่อนติดตั้งม็อด");
-            toolTip1.SetToolTip(chkRandomLoading, $@"จาก {c.GetLoadingMessageList().Count} ข้อความ");
+            //toolTip1.SetToolTip(chkRandomLoading, $@"จาก {c.GetLoadingMessageList().Count} ข้อความ");
 
             toolTip1.SetToolTip(rdoNormalCompatibility, "อาจเข้ากับม็อดบางอย่างไม่ได้ แต่ใช้ฟังก์ชัันของม็อดภาษาไทยได้เต็มที่");
             toolTip1.SetToolTip(rdoMediumCompatibility, "เพิ่มความเข้ากันได้กับม็อดอื่น แต่ไม่เหมาะกับออปชั่นสองภาษา \nไฟล์ที่ตัดออก \n-hudModuleOneliners.ws \n-hudModuleQuests.ws");
@@ -157,7 +157,8 @@ namespace TranslateUtility
             chkExcludeUiText.Checked = mAppSetting.EnglishUi;
             chkOldMethod.Checked = mAppSetting.OldMethod;
             chkBackupSetting.Checked = mAppSetting.BackupSetting;
-            chkRandomLoading.Checked = mAppSetting.RandomLoading;
+            //chkRandomLoading.Checked = mAppSetting.RandomLoading;
+            chkStorybook.Checked = mAppSetting.TranslateStorybook;
             //chkAltSub.Checked = mAppSetting.AlternativeSubtitle;
 
             if (mAppSetting.ThaiFirst)
@@ -267,7 +268,8 @@ namespace TranslateUtility
                 c.UpgradeToFullTranslate(Path.Combine(modPath, Configs.modThaiLanguage));
 
                 // install storybook
-                c.InstallModStoryBook(Configs.StorybookPath, Path.Combine(modPath, Configs.modThaiLanguage));
+                if(chkStorybook.Checked)
+                    c.InstallModStoryBook(Configs.StorybookPath, Path.Combine(modPath, Configs.modThaiLanguage));
             }
         }
 
@@ -433,7 +435,8 @@ namespace TranslateUtility
             mAppSetting.EnglishUi = chkExcludeUiText.Checked;
             mAppSetting.OldMethod = chkOldMethod.Checked;
             mAppSetting.BackupSetting = chkBackupSetting.Checked;
-            mAppSetting.RandomLoading = chkRandomLoading.Checked;
+            //mAppSetting.RandomLoading = chkRandomLoading.Checked;
+            mAppSetting.TranslateStorybook = chkStorybook.Checked;
             //mAppSetting.AlternativeSubtitle = chkAltSub.Checked;
             mAppSetting.ThaiFirst = rdoModTranslateFirst.Checked;
             mAppSetting.ShowNotTranslateRow = chkUntranslateInfo.Checked;

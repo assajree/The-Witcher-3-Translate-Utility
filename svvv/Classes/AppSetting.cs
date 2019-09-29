@@ -30,6 +30,7 @@ namespace svvv.Classes
         public int ExpandHeight { get; set; } = Constant.SIZE_DEFAULT_EXPAND;
         public int CollaspeHeight { get; set; } = Constant.SIZE_DEFAULT_COLLASPE;
         public bool RandomLoading { get; set; } = true;
+        public bool TranslateStorybook { get; set; } = true;
         public bool AlternativeDownload { get; set; } = false;
 
 
@@ -69,6 +70,7 @@ namespace svvv.Classes
             sb.AppendLine($@"OldMethod={OldMethod}");
             sb.AppendLine($@"BackupSetting={BackupSetting}");
             sb.AppendLine($@"RandomLoading={RandomLoading}");
+            sb.AppendLine($@"TranslateStorybook={TranslateStorybook}");
             sb.AppendLine($@"AlternativeDownload={AlternativeDownload}");
 
             
@@ -120,6 +122,9 @@ namespace svvv.Classes
                     break;
                 case "RandomLoading":
                     RandomLoading = value.ToBoolean(true);
+                    break;
+                case "TranslateStorybook":
+                    TranslateStorybook = value.ToBoolean(true);
                     break;
                 case "AlternativeDownload":
                     AlternativeDownload = value.ToBoolean(false);

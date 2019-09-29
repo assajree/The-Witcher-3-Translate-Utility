@@ -455,7 +455,9 @@ namespace TheWitcher3Thai
                 //var downloadComplete = DownloadFile("https://docs.google.com/spreadsheets/d/1h7S2DPtmhl0sE_fX17POhOWs6H10U0VhFRK40oYHDGg/export?format=xlsx", tempDownloadPath);
 
                 // new file
-                var downloadComplete = DownloadFile("https://docs.google.com/spreadsheets/d/1zSuaHmVYN0lTPhf79iBLHp1J2pLsrmrrU1qtMIgKAqY/export?format=xlsx", tempDownloadPath);
+                //var downloadComplete = DownloadFile("https://docs.google.com/spreadsheets/d/1zSuaHmVYN0lTPhf79iBLHp1J2pLsrmrrU1qtMIgKAqY/export?format=xlsx", tempDownloadPath);
+
+                var downloadComplete = DownloadFile("https://docs.google.com/spreadsheets/d/1Ar5MVSc4Mdr7YAFssOmTJcJ9IyHrtxUZxt649-DhnA4/export?format=xlsx", tempDownloadPath);
 
                 var fi = new FileInfo(excelPath);
                 if (downloadComplete == DialogResult.Cancel)
@@ -2794,7 +2796,7 @@ namespace TheWitcher3Thai
             list.Add("แจกฟรี แจกฟรี แจกฟรี");
             list.Add("แจกฟรี แจกฟรี แจกฟรี๊");
             list.Add("ม็อดภาษาไทยของแท้ต้องแจกฟรีเท่านั้นๆๆ");
-            list.Add("รักนะ ถึงทำให้เล่นฟรีๆเนี่ย");
+            //list.Add("รักนะ ถึงทำให้เล่นฟรีๆเนี่ย");
 
             return list;
         }
