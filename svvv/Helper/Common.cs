@@ -4093,7 +4093,7 @@ namespace TheWitcher3Thai
                 Logger.Log("Backup user setting");
                 CopyFile(
                     settingPath,
-                    settingPath + $@".{DateTime.Now.ToString("yyyyMMddHHmmssffff", CultureInfo.InvariantCulture)}.bak"
+                    settingPath + $@".{DateTime.Now.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture)}.bak"
                 );
             }
 
