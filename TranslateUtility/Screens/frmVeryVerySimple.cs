@@ -348,7 +348,7 @@ namespace TranslateUtility
         {
             if (Directory.Exists(Path.Combine(txtGamePath.Text, "mods", Configs.modThaiLanguage)))
             {
-                btnLegacyGenerate.Text = "อัพเดท";
+                btnLegacyGenerate.Text = "อัปเดต";
             }
             else
             {
