@@ -24,7 +24,7 @@ namespace svvv.Classes
         public eFontSetting FontSetting { get; set; } = eFontSetting.Sarabun;
         public int SizeCutscene { get; set; } = 34;
         public int SizeDialog { get; set; } = 34;
-        public eDownloadFrequency DownloadFrequency { get; set; } = eDownloadFrequency.Always;
+        public eDownloadFrequency DownloadFrequency { get; set; } = eDownloadFrequency.Day;
         public eCompatibilityLevel CompatibilityLevel { get; set; } = eCompatibilityLevel.Normal;
         public string GamePath { get; set; } = "";
         public int ExpandHeight { get; set; } = Constant.SIZE_DEFAULT_EXPAND;
@@ -82,7 +82,7 @@ namespace svvv.Classes
             sb.AppendLine($@"FontSetting={FontSetting}");
             sb.AppendLine($@"SizeCutscene={SizeCutscene}");
             sb.AppendLine($@"SizeDialog={SizeDialog}");
-            sb.AppendLine($@"DownloadFrequency={DownloadFrequency}");
+            //sb.AppendLine($@"DownloadFrequency={DownloadFrequency}");
             sb.AppendLine($@"CompatibilityLevel={CompatibilityLevel}");
 
             if(ExpandHeight!= Constant.SIZE_DEFAULT_EXPAND)
@@ -154,7 +154,7 @@ namespace svvv.Classes
                     SizeDialog = value.ToInt32(34);
                     break;
                 case "DownloadFrequency":
-                    DownloadFrequency = value.ToDownloadFrequency(eDownloadFrequency.Always);
+                    DownloadFrequency = value.ToDownloadFrequency(eDownloadFrequency.Day);
                     break;
                 case "CompatibilityLevel":
                     CompatibilityLevel = value.ToCompatibilityLevel(eCompatibilityLevel.Normal);
