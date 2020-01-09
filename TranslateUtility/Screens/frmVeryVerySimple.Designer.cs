@@ -71,6 +71,8 @@
             this.rdoDownloadOnce = new System.Windows.Forms.RadioButton();
             this.rdoDownloadAlt = new System.Windows.Forms.RadioButton();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.chkStorybook = new System.Windows.Forms.CheckBox();
+            this.chkRandomLoading = new System.Windows.Forms.CheckBox();
             this.chkBackupSetting = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnInstallFont = new System.Windows.Forms.Button();
@@ -94,8 +96,6 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.txtGamePath = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.chkRandomLoading = new System.Windows.Forms.CheckBox();
-            this.chkStorybook = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -249,6 +249,7 @@
             this.groupBox2.TabIndex = 46;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "แสดงเลขบรรทัด";
+            this.groupBox2.Visible = false;
             // 
             // chkUiInfo
             // 
@@ -399,7 +400,7 @@
             this.groupBox3.Controls.Add(this.btnResult);
             this.groupBox3.Controls.Add(this.btnRestore);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(5, 561);
+            this.groupBox3.Location = new System.Drawing.Point(4, 495);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(534, 60);
             this.groupBox3.TabIndex = 50;
@@ -457,7 +458,7 @@
             this.pnAdvance.Controls.Add(this.groupBox3);
             this.pnAdvance.Location = new System.Drawing.Point(12, 100);
             this.pnAdvance.Name = "pnAdvance";
-            this.pnAdvance.Size = new System.Drawing.Size(539, 626);
+            this.pnAdvance.Size = new System.Drawing.Size(539, 560);
             this.pnAdvance.TabIndex = 52;
             // 
             // groupBox9
@@ -525,7 +526,7 @@
             this.groupBox7.Controls.Add(this.btnAltSubSetting);
             this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.groupBox7.Location = new System.Drawing.Point(5, 493);
+            this.groupBox7.Location = new System.Drawing.Point(4, 427);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(534, 60);
             this.groupBox7.TabIndex = 52;
@@ -753,6 +754,31 @@
             this.groupBox8.TabIndex = 46;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "อื่นๆ";
+            // 
+            // chkStorybook
+            // 
+            this.chkStorybook.AutoSize = true;
+            this.chkStorybook.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkStorybook.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.chkStorybook.Location = new System.Drawing.Point(290, 22);
+            this.chkStorybook.Name = "chkStorybook";
+            this.chkStorybook.Size = new System.Drawing.Size(118, 21);
+            this.chkStorybook.TabIndex = 41;
+            this.chkStorybook.Text = "แปล Storybook";
+            this.chkStorybook.UseVisualStyleBackColor = true;
+            // 
+            // chkRandomLoading
+            // 
+            this.chkRandomLoading.AutoSize = true;
+            this.chkRandomLoading.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkRandomLoading.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.chkRandomLoading.Location = new System.Drawing.Point(410, 22);
+            this.chkRandomLoading.Name = "chkRandomLoading";
+            this.chkRandomLoading.Size = new System.Drawing.Size(160, 21);
+            this.chkRandomLoading.TabIndex = 40;
+            this.chkRandomLoading.Text = "สุ่มข้อความหน้าโหลดเกม";
+            this.chkRandomLoading.UseVisualStyleBackColor = true;
+            this.chkRandomLoading.Visible = false;
             // 
             // chkBackupSetting
             // 
@@ -1005,38 +1031,13 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(537, 45);
             this.tableLayoutPanel1.TabIndex = 57;
             // 
-            // chkRandomLoading
-            // 
-            this.chkRandomLoading.AutoSize = true;
-            this.chkRandomLoading.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkRandomLoading.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.chkRandomLoading.Location = new System.Drawing.Point(410, 22);
-            this.chkRandomLoading.Name = "chkRandomLoading";
-            this.chkRandomLoading.Size = new System.Drawing.Size(160, 21);
-            this.chkRandomLoading.TabIndex = 40;
-            this.chkRandomLoading.Text = "สุ่มข้อความหน้าโหลดเกม";
-            this.chkRandomLoading.UseVisualStyleBackColor = true;
-            this.chkRandomLoading.Visible = false;
-            // 
-            // chkStorybook
-            // 
-            this.chkStorybook.AutoSize = true;
-            this.chkStorybook.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkStorybook.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.chkStorybook.Location = new System.Drawing.Point(290, 22);
-            this.chkStorybook.Name = "chkStorybook";
-            this.chkStorybook.Size = new System.Drawing.Size(118, 21);
-            this.chkStorybook.TabIndex = 41;
-            this.chkStorybook.Text = "แปล Storybook";
-            this.chkStorybook.UseVisualStyleBackColor = true;
-            // 
             // frmVeryVerySimple
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(563, 736);
+            this.ClientSize = new System.Drawing.Size(563, 664);
             this.Controls.Add(this.btnGamePath);
             this.Controls.Add(this.txtGamePath);
             this.Controls.Add(this.lblAdvance);

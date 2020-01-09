@@ -82,7 +82,7 @@ namespace svvv.Classes
             sb.AppendLine($@"FontSetting={FontSetting}");
             sb.AppendLine($@"SizeCutscene={SizeCutscene}");
             sb.AppendLine($@"SizeDialog={SizeDialog}");
-            //sb.AppendLine($@"DownloadFrequency={DownloadFrequency}");
+            sb.AppendLine($@"DownloadFrequency={DownloadFrequency}");
             sb.AppendLine($@"CompatibilityLevel={CompatibilityLevel}");
 
             if(ExpandHeight!= Constant.SIZE_DEFAULT_EXPAND)
@@ -132,15 +132,15 @@ namespace svvv.Classes
                 case "ThaiFirst":
                     ThaiFirst = value.ToBoolean(true);
                     break;
-                case "ShowNotTranslateRow":
-                    ShowNotTranslateRow = value.ToBoolean(false);
-                    break;
-                case "ShowTranslateRow":
-                    ShowTranslateRow = value.ToBoolean(false);
-                    break;
-                case "ShowUiRow":
-                    ShowUiRow = value.ToBoolean(false);
-                    break;
+                //case "ShowNotTranslateRow":
+                //    ShowNotTranslateRow = value.ToBoolean(false);
+                //    break;
+                //case "ShowTranslateRow":
+                //    ShowTranslateRow = value.ToBoolean(false);
+                //    break;
+                //case "ShowUiRow":
+                //    ShowUiRow = value.ToBoolean(false);
+                //    break;
                 case "ChangeTextColor":
                     ChangeTextColor = value.ToBoolean(true);
                     break;
