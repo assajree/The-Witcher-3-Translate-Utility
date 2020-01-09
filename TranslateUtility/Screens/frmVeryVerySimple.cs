@@ -510,6 +510,11 @@ namespace TranslateUtility
 
             Logger.Log("Finish");
             c.ShowMessage("ติดตั้งสำเร็จ");
+
+            // reset download frequency
+            if(rdoDownloadAlways.Checked)
+                rdoDownloadDialy.Checked = true;
+
             c.AddCounter();
             EnableButton();
         }
