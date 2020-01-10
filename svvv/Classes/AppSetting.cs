@@ -70,14 +70,14 @@ namespace svvv.Classes
             sb.AppendLine($@"OldMethod={OldMethod}");
             sb.AppendLine($@"BackupSetting={BackupSetting}");
             sb.AppendLine($@"RandomLoading={RandomLoading}");
-            sb.AppendLine($@"TranslateStorybook={TranslateStorybook}");
+            //sb.AppendLine($@"TranslateStorybook={TranslateStorybook}");
             sb.AppendLine($@"AlternativeDownload={AlternativeDownload}");
 
             
             sb.AppendLine($@"ThaiFirst={ThaiFirst}");
-            sb.AppendLine($@"ShowNotTranslateRow={ShowNotTranslateRow}");
-            sb.AppendLine($@"ShowTranslateRow={ShowTranslateRow}");
-            sb.AppendLine($@"ShowUiRow={ShowUiRow}");
+            //sb.AppendLine($@"ShowNotTranslateRow={ShowNotTranslateRow}");
+            //sb.AppendLine($@"ShowTranslateRow={ShowTranslateRow}");
+            //sb.AppendLine($@"ShowUiRow={ShowUiRow}");
             sb.AppendLine($@"ChangeTextColor={ChangeTextColor}");
             sb.AppendLine($@"FontSetting={FontSetting}");
             sb.AppendLine($@"SizeCutscene={SizeCutscene}");
@@ -132,15 +132,15 @@ namespace svvv.Classes
                 case "ThaiFirst":
                     ThaiFirst = value.ToBoolean(true);
                     break;
-                //case "ShowNotTranslateRow":
-                //    ShowNotTranslateRow = value.ToBoolean(false);
-                //    break;
-                //case "ShowTranslateRow":
-                //    ShowTranslateRow = value.ToBoolean(false);
-                //    break;
-                //case "ShowUiRow":
-                //    ShowUiRow = value.ToBoolean(false);
-                //    break;
+                case "ShowNotTranslateRow":
+                    ShowNotTranslateRow = value.ToBoolean(false);
+                    break;
+                case "ShowTranslateRow":
+                    ShowTranslateRow = value.ToBoolean(false);
+                    break;
+                case "ShowUiRow":
+                    ShowUiRow = value.ToBoolean(false);
+                    break;
                 case "ChangeTextColor":
                     ChangeTextColor = value.ToBoolean(true);
                     break;

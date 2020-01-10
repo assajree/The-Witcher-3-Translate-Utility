@@ -690,26 +690,27 @@
             // rdoDownloadAlways
             // 
             this.rdoDownloadAlways.AutoSize = true;
-            this.rdoDownloadAlways.Checked = true;
             this.rdoDownloadAlways.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdoDownloadAlways.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.rdoDownloadAlways.Location = new System.Drawing.Point(26, 26);
+            this.rdoDownloadAlways.Location = new System.Drawing.Point(361, 25);
             this.rdoDownloadAlways.Name = "rdoDownloadAlways";
             this.rdoDownloadAlways.Size = new System.Drawing.Size(63, 21);
             this.rdoDownloadAlways.TabIndex = 0;
-            this.rdoDownloadAlways.TabStop = true;
             this.rdoDownloadAlways.Text = "ทุกครั้ง";
             this.rdoDownloadAlways.UseVisualStyleBackColor = true;
+            this.rdoDownloadAlways.Visible = false;
             // 
             // rdoDownloadDialy
             // 
             this.rdoDownloadDialy.AutoSize = true;
+            this.rdoDownloadDialy.Checked = true;
             this.rdoDownloadDialy.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdoDownloadDialy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.rdoDownloadDialy.Location = new System.Drawing.Point(150, 26);
+            this.rdoDownloadDialy.Location = new System.Drawing.Point(24, 25);
             this.rdoDownloadDialy.Name = "rdoDownloadDialy";
             this.rdoDownloadDialy.Size = new System.Drawing.Size(76, 21);
             this.rdoDownloadDialy.TabIndex = 0;
+            this.rdoDownloadDialy.TabStop = true;
             this.rdoDownloadDialy.Text = "วันละครั้ง";
             this.rdoDownloadDialy.UseVisualStyleBackColor = true;
             // 
@@ -718,7 +719,7 @@
             this.rdoDownloadOnce.AutoSize = true;
             this.rdoDownloadOnce.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdoDownloadOnce.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.rdoDownloadOnce.Location = new System.Drawing.Point(288, 26);
+            this.rdoDownloadOnce.Location = new System.Drawing.Point(162, 25);
             this.rdoDownloadOnce.Name = "rdoDownloadOnce";
             this.rdoDownloadOnce.Size = new System.Drawing.Size(73, 21);
             this.rdoDownloadOnce.TabIndex = 0;
@@ -730,7 +731,7 @@
             this.rdoDownloadAlt.AutoSize = true;
             this.rdoDownloadAlt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdoDownloadAlt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.rdoDownloadAlt.Location = new System.Drawing.Point(409, 26);
+            this.rdoDownloadAlt.Location = new System.Drawing.Point(283, 25);
             this.rdoDownloadAlt.Name = "rdoDownloadAlt";
             this.rdoDownloadAlt.Size = new System.Drawing.Size(72, 21);
             this.rdoDownloadAlt.TabIndex = 0;
@@ -766,6 +767,7 @@
             this.chkStorybook.TabIndex = 41;
             this.chkStorybook.Text = "แปล Storybook";
             this.chkStorybook.UseVisualStyleBackColor = true;
+            this.chkStorybook.Visible = false;
             // 
             // chkRandomLoading
             // 
