@@ -442,6 +442,8 @@ namespace TheWitcher3Thai
                     }
                 }
 
+                this.AddDownloadCounter();
+
                 var tempDownloadPath = Path.Combine(Configs.TempPath, "legacy.xlsx");
                 if (File.Exists(tempDownloadPath))
                     File.Delete(tempDownloadPath);
@@ -485,7 +487,7 @@ namespace TheWitcher3Thai
                     else if (!fi.Directory.Exists)
                         fi.Directory.Create();
 
-                    File.Move(tempDownloadPath, excelPath);
+                    File.Move(tempDownloadPath, excelPath);                    
                 }
             }
 
@@ -548,7 +550,7 @@ namespace TheWitcher3Thai
                 File.Delete(filePath);
         }
 
-        public void AddCounter()
+        public void AddGenerateCounter()
         {
             try
             {
@@ -556,6 +558,18 @@ namespace TheWitcher3Thai
                 //var content = client.DownloadString("http://bit.ly/2mKblcu");
 
                 var req = WebRequest.Create("http://bit.ly/2mKblcu") as HttpWebRequest;
+                req.GetResponseAsync();
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+        public void AddDownloadCounter()
+        {
+            try
+            {
+                var req = WebRequest.Create("http://bit.ly/2NbQ4CW") as HttpWebRequest;
                 req.GetResponseAsync();
             }
             catch (Exception)
