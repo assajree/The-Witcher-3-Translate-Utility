@@ -3541,10 +3541,10 @@ namespace TheWitcher3Thai
         private void ReplaceScript(string path)
         {
             var setting = Configs.GetAppSetting();
-            ReplaceAll(path, @"'COLOR_1'", $@"'{setting.FontColor1}'");
-            ReplaceAll(path, @"'COLOR_2'", $@"'{setting.FontColor2}'");
-            ReplaceAll(path, @"'SIZE_1'", $@"'{setting.FontSize1}'");
-            ReplaceAll(path, @"'SIZE_2'", $@"'{setting.FontSize2}'");
+            ReplaceAll(path, @"'COLOR_1'", $@"""{setting.FontColor1}""");
+            ReplaceAll(path, @"'COLOR_2'", $@"""{setting.FontColor2}""");
+            ReplaceAll(path, @"'SIZE_1'", $@"""{setting.FontSize1}""");
+            ReplaceAll(path, @"'SIZE_2'", $@"""{setting.FontSize2}""");
 
         }
 
