@@ -1942,6 +1942,7 @@ namespace TheWitcher3Thai
 
         public string GetGogPath()
         {
+            int pathCount = 0;
             string[] ids = new string[]
             {
                 "1477872865",
@@ -1967,8 +1968,23 @@ namespace TheWitcher3Thai
                 path = GetGogPath(id);
                 if (!String.IsNullOrWhiteSpace(path))
                 {
-                    return path;
+                    //return path;
+
+                    if (Directory.Exists(path))
+                    {
+                        pathCount += 1;
+                        if (pathCount > 1)
+                        {
+                            throw new Exception("Found too many game path.");
+                        }
+                        else
+                        {
+                            path = null;
+                        }
+                    }
+                    
                 }
+                
             }
 
             return path;
@@ -1990,13 +2006,40 @@ namespace TheWitcher3Thai
 
         public string GetGameDirectory()
         {
-            var path = GetGogPath();
-            if (String.IsNullOrWhiteSpace(path))
-                path = GetOriginPath();
-            if (String.IsNullOrWhiteSpace(path))
-                path = GetSteamPath();
+            try
+            {
+                //var path = GetGogPath();
+                //if (String.IsNullOrWhiteSpace(path))
+                //    path = GetOriginPath();
+                //if (String.IsNullOrWhiteSpace(path))
+                //    path = GetSteamPath();
 
-            return path;
+                //return path;
+
+                int pathCount = 0;
+
+                var gogPath = GetGogPath();
+                var originPath = GetOriginPath();
+                var steamPath = GetSteamPath();
+
+                if (String.IsNullOrWhiteSpace(gogPath))
+                    pathCount += 1;
+
+                if (String.IsNullOrWhiteSpace(originPath))
+                    pathCount += 1;
+
+                if (String.IsNullOrWhiteSpace(steamPath))
+                    pathCount += 1;
+
+                if (pathCount > 1)
+                    return null;
+                else
+                    return gogPath ?? originPath ?? steamPath;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public string GetSteamPath()
@@ -2006,6 +2049,8 @@ namespace TheWitcher3Thai
                 return null;
             else
             {
+                string result = null;
+                int pathCount = 0;
                 string gamePath = @"steamapps\common\The Witcher 3";
                 var path = Path.Combine(steamPath, gamePath, "content");
                 if (!Directory.Exists(path))
@@ -2014,26 +2059,34 @@ namespace TheWitcher3Thai
                     if (File.Exists(libraryFoldersFile))
                     {
                         var vdf = VdfConvert.Deserialize(File.ReadAllText(libraryFoldersFile));
-                        try
+                        //try
+                        //{
+                        for (var i = 1; i <= vdf.Value.Count() - 2; i++)
                         {
-                            for (var i = 1; i <= vdf.Value.Count() - 2; i++)
+                            var libraryPath = vdf.Value[i.ToString()].ToString();
+                            path = Path.Combine(libraryPath, gamePath, "content");
+                            if (Directory.Exists(path))
                             {
-                                var libraryPath = vdf.Value[i.ToString()].ToString();
-                                path = Path.Combine(libraryPath, gamePath, "content");
-                                if (Directory.Exists(path))
-                                    return Directory.GetParent(path).FullName;
+                                pathCount += 1;
+                                result = Directory.GetParent(path).FullName; 
+                                if(pathCount>1)
+                                    throw new Exception("Found too many game path.");
+                                //return Directory.GetParent(path).FullName;
                             }
+                        }
 
-                        }
-                        catch
-                        {
-                            return null;
-                        }
+                        //}
+                        //catch
+                        //{
+                        //    return null;
+                        //}
                     }
-                    return null;
+                    return result;
                 }
                 else
+                {
                     return Directory.GetParent(path).FullName;
+                }
             }
 
         }

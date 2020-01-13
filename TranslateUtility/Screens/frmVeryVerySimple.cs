@@ -123,14 +123,15 @@ namespace TranslateUtility
             EnableButton();
 
             // install
-            var gamePath = c.GetGameDirectory();
-            Configs.IsGamer = !String.IsNullOrWhiteSpace(gamePath);
-            txtGamePath.SetDefault(gamePath);
+            Configs.IsGamer = true;
+            //var gamePath = c.GetGameDirectory();
+            //Configs.IsGamer = !String.IsNullOrWhiteSpace(gamePath);
+            //txtGamePath.SetDefault(gamePath);
 
-            if (!Configs.IsGamer)
-            {
-                this.Text += "v";
-            }
+            //if (!Configs.IsGamer)
+            //{
+            //    this.Text += "v";
+            //}
 
             LoadSetting();
 
@@ -173,9 +174,15 @@ namespace TranslateUtility
             txtFontSizeCutScene.Value = mAppSetting.SizeCutscene;
             txtFontSizeSpeak.Value = mAppSetting.SizeDialog;
 
+            //if (String.IsNullOrWhiteSpace(txtGamePath.Text))
+            //{
+                txtGamePath.Text = mAppSetting.GamePath;
+            //}
+
             if (String.IsNullOrWhiteSpace(txtGamePath.Text))
             {
-                txtGamePath.Text = mAppSetting.GamePath;
+                var gamePath = c.GetGameDirectory();
+                txtGamePath.SetDefault(gamePath);
             }
 
             //mHeightCollapse = mAppSetting.CollaspeHeight;
