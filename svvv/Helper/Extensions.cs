@@ -114,5 +114,15 @@ namespace TheWitcher3Thai.Helper
 
             return str.Substring(str.Length - length);
         }
+
+        public static String ToHexCode(this Color c)
+        {
+            return "#" + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");
+        }
+
+        public static String ToRGB(this Color c)
+        {
+            return "RGB(" + c.R.ToString() + "," + c.G.ToString() + "," + c.B.ToString() + ")";
+        }
     }
 }

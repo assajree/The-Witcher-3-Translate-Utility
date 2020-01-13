@@ -469,8 +469,8 @@ namespace TranslateUtility
 
             mAppSetting.FontSize1 = (int)txtFontSize1.Value;
             mAppSetting.FontSize2 = (int)txtFontSize2.Value;
-            mAppSetting.FontColor1 = ColorTranslator.ToHtml(pbColor1.BackColor);
-            mAppSetting.FontColor2 = ColorTranslator.ToHtml(pbColor2.BackColor);
+            mAppSetting.FontColor1 = pbColor1.BackColor.ToHexCode();
+            mAppSetting.FontColor2 = pbColor2.BackColor.ToHexCode();
 
             mAppSetting.SaveSetting();
             Logger.Log($@"Save setting.{Environment.NewLine}{mAppSetting.ToString()}");
@@ -1060,10 +1060,10 @@ namespace TranslateUtility
 
         private void btnResetFont_Click(object sender, EventArgs e)
         {
-            pbColor1.BackColor = Color.White;
-            pbColor2.BackColor = Color.White;
-            txtFontSize1.Value = 34;
-            txtFontSize2.Value = 34;
+            pbColor1.BackColor = "#FFFFFF".ToColor();
+            pbColor2.BackColor = "#808080".ToColor();
+            txtFontSize1.Value = 40;
+            txtFontSize2.Value = 28;
         }
     }
 }
