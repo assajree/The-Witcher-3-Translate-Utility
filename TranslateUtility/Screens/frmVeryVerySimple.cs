@@ -522,7 +522,7 @@ namespace TranslateUtility
             if(rdoDownloadAlways.Checked)
                 rdoDownloadDialy.Checked = true;
 
-            c.AddCounter();
+            c.AddGenerateCounter();
             EnableButton();
         }
 
