@@ -3525,7 +3525,7 @@ namespace TheWitcher3Thai
             CopyDirectory(sourcePath, targetPath);
         }
 
-        public void ChangeFontSize(string modPath, int sizeCutScene, int sizeSpeak)
+        public void ChangeFontSizeAndColor(string modPath)
         {
             string pathScript = @"content\scripts\game\gui\hud\modules";
             string pathDialog = Path.Combine(modPath, pathScript, "hudModuleDialog.ws");
@@ -3533,16 +3533,18 @@ namespace TheWitcher3Thai
 
             //ReplaceAll(pathDialog, @"<FONT SIZE='28'>", $@"<FONT SIZE='{sizeCutScene}'>");
             //ReplaceAll(pathSubtitle, @"<FONT SIZE='28'>", $@"<FONT SIZE='{sizeSpeak}'>");
-            ReplaceScript(pathDialog, sizeCutScene, ""):
+            ReplaceScript(pathDialog);
+            ReplaceScript(pathSubtitle);
 
         }
 
-        private void ReplaceScript(string path, int fontSize1, int fontSize2, string fontColor1, , string fontColor2)
+        private void ReplaceScript(string path)
         {
-            ReplaceAll(path, @"'COLOR_1'", $@"'{fontColor1}'");
-            ReplaceAll(path, @"'COLOR_2'", $@"'{fontColor2}'");
-            ReplaceAll(path, @"'SIZE_1'", $@"'{fontSize1}'");
-            ReplaceAll(path, @"'SIZE_2'", $@"'{fontSize2}'");
+            var setting = Configs.GetAppSetting();
+            ReplaceAll(path, @"'COLOR_1'", $@"'{setting.FontColor1}'");
+            ReplaceAll(path, @"'COLOR_2'", $@"'{setting.FontColor2}'");
+            ReplaceAll(path, @"'SIZE_1'", $@"'{setting.FontSize1}'");
+            ReplaceAll(path, @"'SIZE_2'", $@"'{setting.FontSize2}'");
 
         }
 

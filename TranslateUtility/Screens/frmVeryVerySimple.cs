@@ -170,9 +170,14 @@ namespace TranslateUtility
             chkUntranslateInfo.Checked = mAppSetting.ShowNotTranslateRow;
             chkTranslateInfo.Checked = mAppSetting.ShowTranslateRow;
             chkUiInfo.Checked = mAppSetting.ShowUiRow;
-            chkChangeTextColor.Checked = mAppSetting.ChangeTextColor;
-            txtFontSizeCutScene.Value = mAppSetting.SizeCutscene;
-            txtFontSizeSpeak.Value = mAppSetting.SizeDialog;
+            //chkChangeTextColor.Checked = mAppSetting.ChangeTextColor;
+            //txtFontSizeCutScene.Value = mAppSetting.SizeCutscene;
+            //txtFontSizeSpeak.Value = mAppSetting.SizeDialog;
+
+            txtFontSize1.Value = mAppSetting.FontSize1;
+            txtFontSize2.Value = mAppSetting.FontSize2;
+            pbColor1.BackColor = mAppSetting.FontColor1.ToColor();
+            pbColor2.BackColor = mAppSetting.FontColor2.ToColor();
 
             //if (String.IsNullOrWhiteSpace(txtGamePath.Text))
             //{
@@ -260,14 +265,15 @@ namespace TranslateUtility
             );
 
             Logger.Log("Change font size");
-            c.ChangeFontSize(
-                Path.Combine(modPath, Configs.modThaiLanguage),
-                (int)txtFontSizeCutScene.Value,
-                (int)txtFontSizeSpeak.Value
-            );
+            //c.ChangeFontSize(
+            //    Path.Combine(modPath, Configs.modThaiLanguage),
+            //    (int)txtFontSizeCutScene.Value,
+            //    (int)txtFontSizeSpeak.Value
+            //);
+            c.ChangeFontSizeAndColor(Path.Combine(modPath, Configs.modThaiLanguage));
 
-            if (!chkChangeTextColor.Checked)
-                c.ResetTextColor(Path.Combine(modPath, Configs.modThaiLanguage));
+            //if (!chkChangeTextColor.Checked)
+            //    c.ResetTextColor(Path.Combine(modPath, Configs.modThaiLanguage));
 
             if (!chkOldMethod.Checked)
             {
@@ -368,6 +374,7 @@ namespace TranslateUtility
             var enable = chkModDoubleLanguage.Checked;
             rdoModOriginFirst.Enabled = enable;
             rdoModTranslateFirst.Enabled = enable;
+            pnSubtitle2.Enabled = enable;
 
             if (!enable)
                 rdoModTranslateFirst.Checked = true;
@@ -449,16 +456,21 @@ namespace TranslateUtility
             mAppSetting.ShowNotTranslateRow = chkUntranslateInfo.Checked;
             mAppSetting.ShowTranslateRow = chkTranslateInfo.Checked;
             mAppSetting.ShowUiRow = chkUiInfo.Checked;
-            mAppSetting.ChangeTextColor = chkChangeTextColor.Checked;
             mAppSetting.FontSetting = GetFontSetting();
-            mAppSetting.SizeCutscene = (int)txtFontSizeCutScene.Value;
-            mAppSetting.SizeDialog = (int)txtFontSizeSpeak.Value;
+            //mAppSetting.ChangeTextColor = chkChangeTextColor.Checked;
+            //mAppSetting.SizeCutscene = (int)txtFontSizeCutScene.Value;
+            //mAppSetting.SizeDialog = (int)txtFontSizeSpeak.Value;
             mAppSetting.DownloadFrequency = GetDownloadFrequency();
             mAppSetting.GamePath = txtGamePath.Text;
             mAppSetting.ExpandHeight = mHeightExpand;
             mAppSetting.CollaspeHeight = mHeightCollapse;
             mAppSetting.CompatibilityLevel = GetCompatibilityLevel();
             mAppSetting.AlternativeDownload = rdoDownloadAlt.Checked;
+
+            mAppSetting.FontSize1 = (int)txtFontSize1.Value;
+            mAppSetting.FontSize2 = (int)txtFontSize2.Value;
+            mAppSetting.FontColor1 = ColorTranslator.ToHtml(pbColor1.BackColor);
+            mAppSetting.FontColor2 = ColorTranslator.ToHtml(pbColor2.BackColor);
 
             mAppSetting.SaveSetting();
             Logger.Log($@"Save setting.{Environment.NewLine}{mAppSetting.ToString()}");
@@ -916,18 +928,21 @@ namespace TranslateUtility
         {
             var modPath = Path.Combine(txtGamePath.Text, "mods");
             c.InstallSubtitleMod(modPath);
-            c.ChangeFontSize(
-                Path.Combine(modPath, Configs.modThaiLanguage),
-                (int)txtFontSizeCutScene.Value,
-                (int)txtFontSizeSpeak.Value
-            );
 
-            if (!chkChangeTextColor.Checked)
-                c.ResetTextColor(Path.Combine(modPath, Configs.modThaiLanguage));
+            //c.ChangeFontSize(
+            //    Path.Combine(modPath, Configs.modThaiLanguage),
+            //    (int)txtFontSizeCutScene.Value,
+            //    (int)txtFontSizeSpeak.Value
+            //);
+            c.ChangeFontSizeAndColor(Path.Combine(modPath, Configs.modThaiLanguage));
+
+            //if (!chkChangeTextColor.Checked)
+            //    c.ResetTextColor(Path.Combine(modPath, Configs.modThaiLanguage));
         }
 
         private void btnChangeFontSize_Click(object sender, EventArgs e)
         {
+            SaveAppSetting();
             c.Processing(ChangeFontSize, "กำลังปรับขนาดซับไตเติ้ล", "สำเร็จ");
         }
 
@@ -1024,6 +1039,31 @@ namespace TranslateUtility
                 }
             }
             base.WndProc(ref m);
+        }
+
+        private void Picturebox_Click(object sender, EventArgs e)
+        {
+            ChangeColor(sender as PictureBox);
+        }
+
+        private void ChangeColor(PictureBox pb)
+        {
+            DialogResult result = colorDialog1.ShowDialog();
+
+            // See if user pressed ok.
+            if (result == DialogResult.OK)
+            {
+                // Set form background to the selected color.
+                pb.BackColor = colorDialog1.Color;
+            }
+        }
+
+        private void btnResetFont_Click(object sender, EventArgs e)
+        {
+            pbColor1.BackColor = Color.White;
+            pbColor2.BackColor = Color.White;
+            txtFontSize1.Value = 34;
+            txtFontSize2.Value = 34;
         }
     }
 }

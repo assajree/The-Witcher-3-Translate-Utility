@@ -20,10 +20,10 @@ namespace svvv.Classes
         public bool ShowNotTranslateRow { get; set; } = false;
         public bool ShowTranslateRow { get; set; } = false;
         public bool ShowUiRow { get; set; } = false;
-        public bool ChangeTextColor { get; set; } = true;
-        public eFontSetting FontSetting { get; set; } = eFontSetting.Sarabun;
-        public int SizeCutscene { get; set; } = 34;
-        public int SizeDialog { get; set; } = 34;
+        //public bool ChangeTextColor { get; set; } = true;
+        //public int SizeCutscene { get; set; } = 34;
+        //public int SizeDialog { get; set; } = 34;
+        public eFontSetting FontSetting { get; set; } = eFontSetting.Sarabun;        
         public eDownloadFrequency DownloadFrequency { get; set; } = eDownloadFrequency.Day;
         public eCompatibilityLevel CompatibilityLevel { get; set; } = eCompatibilityLevel.Normal;
         public string GamePath { get; set; } = "";
@@ -32,6 +32,11 @@ namespace svvv.Classes
         public bool RandomLoading { get; set; } = true;
         public bool TranslateStorybook { get; set; } = true;
         public bool AlternativeDownload { get; set; } = false;
+
+        public int FontSize1 { get; set; } = 34;
+        public int FontSize2 { get; set; } = 34;
+        public string FontColor1 { get; set; } = "#FFFFFF";
+        public string FontColor2 { get; set; } = "#FFFFFF";
 
 
         public AppSetting(string settingPath)
@@ -78,12 +83,17 @@ namespace svvv.Classes
             //sb.AppendLine($@"ShowNotTranslateRow={ShowNotTranslateRow}");
             //sb.AppendLine($@"ShowTranslateRow={ShowTranslateRow}");
             //sb.AppendLine($@"ShowUiRow={ShowUiRow}");
-            sb.AppendLine($@"ChangeTextColor={ChangeTextColor}");
-            sb.AppendLine($@"FontSetting={FontSetting}");
-            sb.AppendLine($@"SizeCutscene={SizeCutscene}");
-            sb.AppendLine($@"SizeDialog={SizeDialog}");
+            //sb.AppendLine($@"ChangeTextColor={ChangeTextColor}");
+            //sb.AppendLine($@"SizeCutscene={SizeCutscene}");
+            //sb.AppendLine($@"SizeDialog={SizeDialog}");
+            sb.AppendLine($@"FontSetting={FontSetting}");           
             sb.AppendLine($@"DownloadFrequency={DownloadFrequency}");
             sb.AppendLine($@"CompatibilityLevel={CompatibilityLevel}");
+
+            sb.AppendLine($@"FontSize1={FontSize1}");
+            sb.AppendLine($@"FontSize2={FontSize2}");
+            sb.AppendLine($@"FontColor1={FontColor1}");
+            sb.AppendLine($@"FontColor2={FontColor2}");
 
             if(ExpandHeight!= Constant.SIZE_DEFAULT_EXPAND)
                 sb.AppendLine($@"ExpandHeight={ExpandHeight}");
@@ -140,19 +150,19 @@ namespace svvv.Classes
                     break;
                 case "ShowUiRow":
                     ShowUiRow = value.ToBoolean(false);
-                    break;
-                case "ChangeTextColor":
-                    ChangeTextColor = value.ToBoolean(true);
-                    break;
+                    break;               
                 case "FontSetting":
                     FontSetting = value.ToFontSetting(eFontSetting.Sarabun);
                     break;
-                case "SizeCutscene":
-                    SizeCutscene = value.ToInt32(34);
-                    break;
-                case "SizeDialog":
-                    SizeDialog = value.ToInt32(34);
-                    break;
+                //case "ChangeTextColor":
+                //    ChangeTextColor = value.ToBoolean(true);
+                //    break;
+                //case "SizeCutscene":
+                //    SizeCutscene = value.ToInt32(34);
+                //    break;
+                //case "SizeDialog":
+                //    SizeDialog = value.ToInt32(34);
+                //    break;
                 case "DownloadFrequency":
                     DownloadFrequency = value.ToDownloadFrequency(eDownloadFrequency.Day);
                     break;
@@ -167,6 +177,19 @@ namespace svvv.Classes
                     break;
                 case "CollaspeHeight":
                     CollaspeHeight = value.ToInt32(Constant.SIZE_DEFAULT_COLLASPE);
+                    break;
+
+                case "FontSize1":
+                    FontSize1 = value.ToInt32(34);
+                    break;
+                case "FontSize2":
+                    FontSize2 = value.ToInt32(34);
+                    break;
+                case "FontColor1":
+                    FontColor1 = value.ToStringOrNull()??"#FFFFFF";
+                    break;
+                case "FontColor2":
+                    FontColor2 = value.ToStringOrNull()??"#FFFFFF";
                     break;
             }
         }
