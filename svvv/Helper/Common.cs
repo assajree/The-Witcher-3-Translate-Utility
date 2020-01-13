@@ -3531,8 +3531,18 @@ namespace TheWitcher3Thai
             string pathDialog = Path.Combine(modPath, pathScript, "hudModuleDialog.ws");
             string pathSubtitle = Path.Combine(modPath, pathScript, "hudModuleSubtitles.ws");
 
-            ReplaceAll(pathDialog, @"<FONT SIZE='28'>", $@"<FONT SIZE='{sizeCutScene}'>");
-            ReplaceAll(pathSubtitle, @"<FONT SIZE='28'>", $@"<FONT SIZE='{sizeSpeak}'>");
+            //ReplaceAll(pathDialog, @"<FONT SIZE='28'>", $@"<FONT SIZE='{sizeCutScene}'>");
+            //ReplaceAll(pathSubtitle, @"<FONT SIZE='28'>", $@"<FONT SIZE='{sizeSpeak}'>");
+            ReplaceScript(pathDialog, sizeCutScene, ""):
+
+        }
+
+        private void ReplaceScript(string path, int fontSize1, int fontSize2, string fontColor1, , string fontColor2)
+        {
+            ReplaceAll(path, @"'COLOR_1'", $@"'{fontColor1}'");
+            ReplaceAll(path, @"'COLOR_2'", $@"'{fontColor2}'");
+            ReplaceAll(path, @"'SIZE_1'", $@"'{fontSize1}'");
+            ReplaceAll(path, @"'SIZE_2'", $@"'{fontSize2}'");
 
         }
 
