@@ -501,7 +501,7 @@
             this.rdoNormalCompatibility.AutoSize = true;
             this.rdoNormalCompatibility.Checked = true;
             this.rdoNormalCompatibility.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoNormalCompatibility.ForeColor = System.Drawing.Color.DarkOrange;
+            this.rdoNormalCompatibility.ForeColor = System.Drawing.Color.ForestGreen;
             this.rdoNormalCompatibility.Location = new System.Drawing.Point(26, 26);
             this.rdoNormalCompatibility.Name = "rdoNormalCompatibility";
             this.rdoNormalCompatibility.Size = new System.Drawing.Size(53, 21);
@@ -515,7 +515,7 @@
             // 
             this.rdoHighCompatibility.AutoSize = true;
             this.rdoHighCompatibility.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoHighCompatibility.ForeColor = System.Drawing.Color.ForestGreen;
+            this.rdoHighCompatibility.ForeColor = System.Drawing.Color.DarkOrange;
             this.rdoHighCompatibility.Location = new System.Drawing.Point(291, 26);
             this.rdoHighCompatibility.Name = "rdoHighCompatibility";
             this.rdoHighCompatibility.Size = new System.Drawing.Size(41, 21);
