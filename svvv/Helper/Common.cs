@@ -3530,21 +3530,23 @@ namespace TheWitcher3Thai
             string pathScript = @"content\scripts\game\gui\hud\modules";
             string pathDialog = Path.Combine(modPath, pathScript, "hudModuleDialog.ws");
             string pathSubtitle = Path.Combine(modPath, pathScript, "hudModuleSubtitles.ws");
+            string pathOneliner = Path.Combine(modPath, pathScript, "hudModuleOneliners.ws");
 
             //ReplaceAll(pathDialog, @"<FONT SIZE='28'>", $@"<FONT SIZE='{sizeCutScene}'>");
             //ReplaceAll(pathSubtitle, @"<FONT SIZE='28'>", $@"<FONT SIZE='{sizeSpeak}'>");
             ReplaceScript(pathDialog);
             ReplaceScript(pathSubtitle);
+            ReplaceScript(pathOneliner);
 
         }
 
         private void ReplaceScript(string path)
         {
             var setting = Configs.GetAppSetting();
-            ReplaceAll(path, @"'COLOR_1'", $@"""{setting.FontColor1}""");
-            ReplaceAll(path, @"'COLOR_2'", $@"""{setting.FontColor2}""");
-            ReplaceAll(path, @"'SIZE_1'", $@"""{setting.FontSize1}""");
-            ReplaceAll(path, @"'SIZE_2'", $@"""{setting.FontSize2}""");
+            ReplaceAll(path, @"SVVV_FONT_COLOR_1", $@"{setting.FontColor1}");
+            ReplaceAll(path, @"SVVV_FONT_COLOR_2", $@"{setting.FontColor2}");
+            ReplaceAll(path, @"SVVV_FONT_SIZE_1", $@"{setting.FontSize1}");
+            ReplaceAll(path, @"SVVV_FONT_SIZE_2", $@"{setting.FontSize2}");
 
         }
 
