@@ -2036,13 +2036,13 @@ namespace TheWitcher3Thai
                 var originPath = GetOriginPath();
                 var steamPath = GetSteamPath();
 
-                if (String.IsNullOrWhiteSpace(gogPath))
+                if (!String.IsNullOrWhiteSpace(gogPath))
                     pathCount += 1;
 
-                if (String.IsNullOrWhiteSpace(originPath))
+                if (!String.IsNullOrWhiteSpace(originPath))
                     pathCount += 1;
 
-                if (String.IsNullOrWhiteSpace(steamPath))
+                if (!String.IsNullOrWhiteSpace(steamPath))
                     pathCount += 1;
 
                 if (pathCount > 1)
