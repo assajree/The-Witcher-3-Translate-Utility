@@ -385,7 +385,7 @@ namespace TheWitcher3Thai
             }
 
             // extract
-            string targetPath = Path.Combine(Application.StartupPath, "Tools", Configs.TemplatePath);
+            string targetPath = Configs.TemplatePath;
             ExtractFile(downloadPath, targetPath);
 
             return true;
