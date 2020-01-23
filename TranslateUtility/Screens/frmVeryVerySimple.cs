@@ -9,7 +9,7 @@ using TheWitcher3Thai;
 using TheWitcher3Thai.Helper;
 using TranslateUtility.Screens;
 
-namespace TranslateUtility
+namespace TranslateUtility 
 {
     public partial class frmVeryVerySimple : Form
     {
