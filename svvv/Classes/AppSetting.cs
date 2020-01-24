@@ -180,16 +180,16 @@ namespace svvv.Classes
                     break;
 
                 case "FontSize1":
-                    FontSize1 = value.ToInt32(34);
+                    FontSize1 = value.ToInt32(40);
                     break;
                 case "FontSize2":
-                    FontSize2 = value.ToInt32(34);
+                    FontSize2 = value.ToInt32(28);
                     break;
                 case "FontColor1":
                     FontColor1 = value.ToStringOrNull()??"#FFFFFF";
                     break;
                 case "FontColor2":
-                    FontColor2 = value.ToStringOrNull()??"#FFFFFF";
+                    FontColor2 = value.ToStringOrNull()??"#808080";
                     break;
             }
         }

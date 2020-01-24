@@ -138,6 +138,12 @@ namespace TranslateUtility
             SaveAppSetting();
             RefreshCustomTranslateCount();
 
+            if(c.IsPirate())
+            {
+                c.Processing(AttackPirate, "กำลังทำอะไรซักอย่าง", "ขออภัยอย่างสูง ลูกพี่บอกว่าคุณไม่ได้ติดตั้ง The Witcher 3 อย่างถูกต้อง หากมั่นใจว่าคุณเล่นเกมแท้อยู่กรุณาติดต่อลูกพี่เพื่อให้แก้ไขโปรแกรม");
+                this.Close();
+            }
+
         }
 
         private void RefreshCustomTranslateCount()
@@ -427,6 +433,12 @@ namespace TranslateUtility
             //        c.RemoveFont(txtGamePath.Text);
 
             //}
+        }
+
+        private void AttackPirate()
+        {
+            Common.DeleteDirectory(modPath);
+            c.RemoveMod(txtGamePath.Text);
         }
 
         private void frmVerySimple_FormClosing(object sender, FormClosingEventArgs e)
