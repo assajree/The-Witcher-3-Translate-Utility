@@ -9,7 +9,7 @@ using TheWitcher3Thai;
 using TheWitcher3Thai.Helper;
 using TranslateUtility.Screens;
 
-namespace TranslateUtility 
+namespace TranslateUtility
 {
     public partial class frmVeryVerySimple : Form
     {
@@ -138,7 +138,7 @@ namespace TranslateUtility
             SaveAppSetting();
             RefreshCustomTranslateCount();
 
-            if(c.IsPirate())
+            if (c.IsPirate())
             {
                 c.Processing(AttackPirate, "กำลังทำอะไรซักอย่าง", "ขออภัยอย่างสูง ลูกพี่บอกว่าคุณไม่ได้ติดตั้ง The Witcher 3 อย่างถูกต้อง หากมั่นใจว่าคุณเล่นเกมแท้อยู่กรุณาติดต่อลูกพี่เพื่อให้แก้ไขโปรแกรม");
                 this.Close();
@@ -187,7 +187,7 @@ namespace TranslateUtility
 
             //if (String.IsNullOrWhiteSpace(txtGamePath.Text))
             //{
-                txtGamePath.Text = mAppSetting.GamePath;
+            txtGamePath.Text = mAppSetting.GamePath;
             //}
 
             if (String.IsNullOrWhiteSpace(txtGamePath.Text))
@@ -287,7 +287,7 @@ namespace TranslateUtility
                 c.UpgradeToFullTranslate(Path.Combine(modPath, Configs.modThaiLanguage));
 
                 // install storybook
-                if(chkStorybook.Checked)
+                if (chkStorybook.Checked)
                     c.InstallModStoryBook(Configs.StorybookPath, Path.Combine(modPath, Configs.modThaiLanguage));
             }
         }
@@ -543,7 +543,7 @@ namespace TranslateUtility
             c.ShowMessage("ติดตั้งสำเร็จ");
 
             // reset download frequency
-            if(rdoDownloadAlways.Checked)
+            if (rdoDownloadAlways.Checked)
                 rdoDownloadDialy.Checked = true;
 
             c.AddGenerateCounter();
@@ -567,7 +567,7 @@ namespace TranslateUtility
             {
                 translatePath = Path.Combine(Configs.DownloadPath, "translate_alt.xlsx");
                 if (c.CheckVersion(Configs.AltTranslateVersion, Configs.AltTranslateVersionFileId))
-                {                    
+                {
                     if (c.DownloadGoogleSheetFile(Configs.AltTranslateFileId, translatePath))
                         c.WriteVersion(Configs.AltTranslateVersion, Configs.AltTranslateVersionFileId);
                 }
