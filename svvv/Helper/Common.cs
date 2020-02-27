@@ -552,13 +552,16 @@ namespace TheWitcher3Thai
 
         public void AddGenerateCounter()
         {
+
             try
             {
                 //var client = new WebClient();
                 //var content = client.DownloadString("http://bit.ly/2mKblcu");
 
-                var req = WebRequest.Create("http://bit.ly/2mKblcu") as HttpWebRequest;
-                req.GetResponseAsync();
+
+
+                var req = WebRequest.Create("https://witcher-3-translate-utility.firebaseapp.com/#/addcounter/generate") as HttpWebRequest;
+                req.GetResponse();
             }
             catch (Exception)
             {
@@ -569,7 +572,7 @@ namespace TheWitcher3Thai
         {
             try
             {
-                var req = WebRequest.Create("http://bit.ly/2NbQ4CW") as HttpWebRequest;
+                var req = WebRequest.Create("https://witcher-3-translate-utility.firebaseapp.com/#/addcounter/download") as HttpWebRequest;
                 req.GetResponseAsync();
             }
             catch (Exception)
