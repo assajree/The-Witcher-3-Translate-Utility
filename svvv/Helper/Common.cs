@@ -459,7 +459,8 @@ namespace TheWitcher3Thai
                 // new file
                 //var downloadComplete = DownloadFile("https://docs.google.com/spreadsheets/d/1zSuaHmVYN0lTPhf79iBLHp1J2pLsrmrrU1qtMIgKAqY/export?format=xlsx", tempDownloadPath);
 
-                var downloadComplete = DownloadFile("https://docs.google.com/spreadsheets/d/1Ar5MVSc4Mdr7YAFssOmTJcJ9IyHrtxUZxt649-DhnA4/export?format=xlsx", tempDownloadPath);
+                //var downloadComplete = DownloadFile("https://docs.google.com/spreadsheets/d/18-dkYtaFb4CDnZrBa9kmo5xP1IO3qpTcjucFXrcTkvc/export?format=xlsx", tempDownloadPath);
+                var downloadComplete = DownloadFile("https://docs.google.com/spreadsheets/d/19Ny3PfzWtuOsfbi6G-QoogFnGSHx1Jke9gTgac17PfI/export?format=xlsx", tempDownloadPath);
 
                 var fi = new FileInfo(excelPath);
                 if (downloadComplete == DialogResult.Cancel)
@@ -3684,6 +3685,7 @@ namespace TheWitcher3Thai
             var sheetConfig = setting.GetSheetConfig();
             var template = ReadExcel(templatePath, sheetConfig, alternativeTranslate);
             var translate = ReadExcelLegacy(excelPath, sheetConfig);
+            //var translate = ReadExcel(excelPath, sheetConfig, alternativeTranslate);
 
             var content = MergeLegacy(template, translate);
 
