@@ -28,61 +28,59 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnLegacyGenerate = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // webBrowser1
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.btnLegacyGenerate, 1, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(66, 199);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(669, 53);
-            this.tableLayoutPanel1.TabIndex = 56;
+            this.webBrowser1.Location = new System.Drawing.Point(82, 77);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(250, 250);
+            this.webBrowser1.TabIndex = 0;
             // 
-            // btnLegacyGenerate
+            // button1
             // 
-            this.btnLegacyGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLegacyGenerate.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnLegacyGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLegacyGenerate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.btnLegacyGenerate.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnLegacyGenerate.Location = new System.Drawing.Point(257, 4);
-            this.btnLegacyGenerate.Margin = new System.Windows.Forms.Padding(4);
-            this.btnLegacyGenerate.MaximumSize = new System.Drawing.Size(154, 45);
-            this.btnLegacyGenerate.MinimumSize = new System.Drawing.Size(154, 45);
-            this.btnLegacyGenerate.Name = "btnLegacyGenerate";
-            this.btnLegacyGenerate.Size = new System.Drawing.Size(154, 45);
-            this.btnLegacyGenerate.TabIndex = 33;
-            this.btnLegacyGenerate.Text = "ติดตั้ง";
-            this.btnLegacyGenerate.UseVisualStyleBackColor = false;
+            this.button1.Location = new System.Drawing.Point(414, 62);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "go";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(414, 91);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "refresh";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Test
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.ClientSize = new System.Drawing.Size(600, 366);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.webBrowser1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Test";
             this.Text = "Test";
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.Load += new System.EventHandler(this.Test_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button btnLegacyGenerate;
+        private System.Windows.Forms.WebBrowser webBrowser1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
