@@ -1954,7 +1954,7 @@ namespace TheWitcher3Thai
             return installPath;
         }
 
-        public string GetGogPath()
+        public string GetGogPath(bool firstPathOnly=false)
         {
             int pathCount = 0;
             string[] ids = new string[]
@@ -1977,6 +1977,7 @@ namespace TheWitcher3Thai
             };
 
             string path = null;
+            string result = null;
             foreach (var id in ids)
             {
                 path = GetGogPath(id);
@@ -1986,14 +1987,16 @@ namespace TheWitcher3Thai
 
                     if (Directory.Exists(path))
                     {
+                        
+                        if (firstPathOnly)
+                            return path;
+
+                        result = path;
                         pathCount += 1;
                         if (pathCount > 1)
                         {
-                            throw new Exception("Found too many game path.");
-                        }
-                        else
-                        {
                             path = null;
+                            throw new Exception("Found too many game path.");
                         }
                     }
                     
@@ -2001,7 +2004,7 @@ namespace TheWitcher3Thai
                 
             }
 
-            return path;
+            return result;
         }
 
         public string GetGogPath(string id)
@@ -2018,6 +2021,23 @@ namespace TheWitcher3Thai
             return installPath;
         }
 
+        public bool IsPirate()
+        {
+            var path = GetSteamPath(true);
+            if (!String.IsNullOrWhiteSpace(path))
+                return false;
+
+            path = GetGogPath(true);
+            if (!String.IsNullOrWhiteSpace(path))
+                return false;
+
+            path = GetOriginPath();
+            if (!String.IsNullOrWhiteSpace(path))
+                return false;
+
+            return true;
+        }
+
         public string GetGameDirectory()
         {
             try
@@ -2032,9 +2052,10 @@ namespace TheWitcher3Thai
 
                 int pathCount = 0;
 
+                var steamPath = GetSteamPath();
                 var gogPath = GetGogPath();
                 var originPath = GetOriginPath();
-                var steamPath = GetSteamPath();
+                
 
                 if (!String.IsNullOrWhiteSpace(gogPath))
                     pathCount += 1;
@@ -2056,7 +2077,7 @@ namespace TheWitcher3Thai
             }
         }
 
-        public string GetSteamPath()
+        public string GetSteamPath(bool firstPathOnly=false)
         {
             var steamPath = GetSteamDirectory();
             if (steamPath == null)
@@ -2082,8 +2103,12 @@ namespace TheWitcher3Thai
                             if (Directory.Exists(path))
                             {
                                 pathCount += 1;
-                                result = Directory.GetParent(path).FullName; 
-                                if(pathCount>1)
+                                result = Directory.GetParent(path).FullName;
+
+                                if (firstPathOnly)
+                                    return result;
+
+                                if (pathCount>1)
                                     throw new Exception("Found too many game path.");
                                 //return Directory.GetParent(path).FullName;
                             }
