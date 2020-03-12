@@ -1,4 +1,5 @@
-﻿using System;
+﻿using svvv.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace TheWitcher3Thai
         public string Translate { get; set; }
         public int? RowNumber { get; set; }
         public string SheetName { get; set; }
+        public string GoogleTranslate { get; set; }
         //public bool Locked { get; set; } = false;
 
         public w3Strings()
@@ -29,7 +31,7 @@ namespace TheWitcher3Thai
 
         }
 
-        public w3Strings(string id,string keyHex,string keyString, string text, string translate,string sheetName=null, int? rowNumber=null)
+        public w3Strings(string id, string keyHex, string keyString, string text, string translate, string sheetName = null, int? rowNumber = null, string googlsTranslate = null)
         {
             this.ID = id;
             this.KeyHex = keyHex;
@@ -38,6 +40,8 @@ namespace TheWitcher3Thai
             this.Translate = translate?.Trim();
             this.RowNumber = rowNumber;
             this.SheetName = sheetName;
+            this.GoogleTranslate = googlsTranslate;
+
         }
 
         public w3Strings(string text, string translate)
@@ -46,7 +50,7 @@ namespace TheWitcher3Thai
             this.Translate = translate;
         }
 
-        public w3Strings(string[] arr,bool w3s)
+        public w3Strings(string[] arr, bool w3s)
         {
             //this.Key = arr[0];
             //this.Text = arr[1].Replace("[[CSV_EXPORT_PIPE]]", "|");
@@ -84,7 +88,7 @@ namespace TheWitcher3Thai
             get
             {
                 // not have key hex
-                if(this.KeyHex == "00000000")
+                if (this.KeyHex == "00000000")
                 {
                     return true;
                 }
@@ -130,6 +134,22 @@ namespace TheWitcher3Thai
             {
                 return String.IsNullOrWhiteSpace(this.Translate);
             }
+        }
+
+        public W2Strings ToW2Strings()
+        {
+            return new W2Strings()
+            {
+                Key = this.IdKey,
+                //KeyHex = this.KeyHex,
+                //KeyString = this.KeyString,
+                //Row= this.RowNumber ?? 0,
+                //SheetName = this.SheetName,
+                Text = this.Text,
+                Translate = this.Translate,
+                GoogleTranslate = this.GoogleTranslate,
+                Index = 0,
+            };
         }
     }
 }

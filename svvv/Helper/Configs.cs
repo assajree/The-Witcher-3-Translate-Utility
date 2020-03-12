@@ -56,6 +56,7 @@ namespace svvv
         public const string AltTranslateVersionFileId = "1hkD9fyAHdmk4J43tNGxAeCfptUwEwLmy";
 
         public static string StartupPath = Application.StartupPath;
+        public static string OutputPath = Path.Combine(StartupPath, "output");
 
         public static string ToolsPath = Path.Combine(StartupPath,"Tools");
         public static string TempPath = Path.Combine(StartupPath, "temp");

@@ -13,6 +13,7 @@
         public const int COL_ROW = 6;
         public const int COL_EMPTY = 7;
         public const int COL_SHEETNAME = 8;
+        public const int COL_GOOGLE = 9;
 
     }
 }

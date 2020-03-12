@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -65,6 +68,12 @@
     </Compile>
     <Compile Include="Screens\frmExcelTools.Designer.cs">
       <DependentUpon>frmExcelTools.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\frmFirebase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\frmFirebase.Designer.cs">
+      <DependentUpon>frmFirebase.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\frmGameTools.cs">
       <SubType>Form</SubType>
@@ -126,6 +135,9 @@
     <EmbeddedResource Include="Screens\frmExcelTools.resx">
       <DependentUpon>frmExcelTools.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Screens\frmFirebase.resx">
+      <DependentUpon>frmFirebase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Screens\frmGameTools.resx">
       <DependentUpon>frmGameTools.cs</DependentUpon>
     </EmbeddedResource>
@@ -147,6 +159,7 @@
     <EmbeddedResource Include="Screens\Test.resx">
       <DependentUpon>Test.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

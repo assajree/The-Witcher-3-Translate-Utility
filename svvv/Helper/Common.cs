@@ -1,6 +1,7 @@
 ﻿using Gameloop.Vdf;
 using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using Newtonsoft.Json;
 using OfficeOpenXml;
 using svvv;
 using svvv.Classes;
@@ -46,6 +47,29 @@ namespace TheWitcher3Thai
             Srisakdi,
             SuperMarket,
             Mahaniyom
+        }
+
+        public List<W2Strings> ConvertToW2String(Dictionary<string, List<w3Strings>> data)
+        {
+            List<W2Strings> result = new List<W2Strings>();
+            foreach(var list in data.Values)
+            {
+                foreach(var item in list)
+                {
+                    result.Add(item.ToW2Strings());
+                }
+            }
+
+            result = result.OrderBy(r => r.Key).ToList();
+
+            int index = 1;
+            foreach(var item in result)
+            {
+                item.Index = index++;
+            }
+
+            return result;
+
         }
 
         private Setting setting = new Setting();
@@ -2402,6 +2426,7 @@ namespace TheWitcher3Thai
 
                         , sht.Name
                         , sht.Cells[row, Excel.COL_ROW].Text.ToIntOrNull() ?? row
+                        , sht.Cells[row, Excel.COL_GOOGLE].Text.NullIfEmpty()
                 ));
 
                 row++;
@@ -3689,6 +3714,10 @@ namespace TheWitcher3Thai
 
             var content = MergeLegacy(template, translate);
 
+            var generateJson = false;
+            if(generateJson)
+                GenerateJsonData(content);
+
             GenerateModAlt(content, outputPath, doubleLanguage, originalFirst, sheetConfig, includeNotTranslateMessageId, includeTranslateMessageId, includeUiMessageId, font, translateUI, alternativeTranslate);
 
             // write all text excel file for later use
@@ -3699,6 +3728,51 @@ namespace TheWitcher3Thai
             string legacyExcel = Path.Combine(outputPath, "result.xlsx");
             WriteNotTranslateExcel(legacyExcel, content, false);
 
+        }
+
+        private void GenerateJsonData(Dictionary<string, List<w3Strings>> data)
+        {
+            var result = new Dictionary<string, w3Strings>();
+
+            // merge all message
+            foreach(var list in data.Values)
+            {
+                // remove duplicate data
+                foreach(var item in list)
+                {
+                    if (result.ContainsKey(item.IdKey))
+                        result[item.IdKey] = item;
+                    else
+                    {
+                        result.Add(item.IdKey, item);
+                    }
+                }                
+            }
+
+            // make new list
+            int index = 1;
+            var w2List = new List<W2Strings>();
+            var onlyNotTranslate = true;
+            if (onlyNotTranslate)
+            {
+                foreach (var item in result.Values.Where(d=>d.TranslateStatus==w3Strings.eTranslateStatus.NotTranslate).OrderBy(d => d.IdKey.ToIntOrNull() ?? 0))
+                {
+                    var w2 = item.ToW2Strings();
+                    w2.Index = index++;
+                    w2List.Add(w2);
+                }
+            }
+            else
+            {
+                foreach (var item in result.Values.OrderBy(d => d.IdKey.ToIntOrNull() ?? 0))
+                {
+                    var w2 = item.ToW2Strings();
+                    w2.Index = index++;
+                    w2List.Add(w2);
+                }
+            }
+
+            WriteJson(ToJson(w2List), Path.Combine(Configs.OutputPath, "data.json"));
         }
 
         public Dictionary<string, List<w3Strings>> MergeLegacy(Dictionary<string, List<w3Strings>> template, Dictionary<string, List<w3Strings>> translate)
@@ -4403,6 +4477,78 @@ namespace TheWitcher3Thai
             }
 
         }
+
+        #region json
+        
+
+        public void WriteJson(string json, string path)
+        {
+            var dir = Path.GetDirectoryName(path);
+            if (!Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
+
+            File.WriteAllText(path, json);
+        }
+
+        public string ToJson(object obj)
+        {
+            var setting = new JsonSerializerSettings()
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                MissingMemberHandling = MissingMemberHandling.Ignore
+            };
+            var json = JsonConvert.SerializeObject(obj, setting);
+            return json;
+        }
+
+        public void WriteJson(Dictionary<string, W2Strings> data, string jsonPath)
+        {
+            var mainPath = Path.GetDirectoryName(jsonPath);
+
+            var json = JsonConvert.SerializeObject(data);
+            WriteJson(json, jsonPath);
+
+            var translateData = data.Values.ToDictionary(d => d.Index, d => d.IsTranslate);
+            var extraJson = JsonConvert.SerializeObject(translateData);
+            WriteJson(extraJson, Path.Combine(mainPath, Path.GetFileNameWithoutExtension(jsonPath) + "_translate.json"));
+
+            var key = data.Values.ToDictionary(d => d.Key, d => d.Index);
+            extraJson = JsonConvert.SerializeObject(key);
+            WriteJson(extraJson, Path.Combine(mainPath, Path.GetFileNameWithoutExtension(jsonPath) + "_key.json"));
+
+            var row = data.Values.ToDictionary(d => d.Index, d => d.Index);
+            extraJson = JsonConvert.SerializeObject(row);
+            WriteJson(extraJson, Path.Combine(mainPath, Path.GetFileNameWithoutExtension(jsonPath) + "_row.json"));
+
+            // data for list component
+            MakeData(data, Path.Combine(mainPath, Path.GetFileNameWithoutExtension(jsonPath) + "_data.json"));
+
+
+
+        }
+
+        public Dictionary<string, W2Strings> ReadServerJson(string jsonPath)
+        {
+            var json = File.ReadAllText(jsonPath);
+            var result = JsonConvert.DeserializeObject<List<W2Strings>>(json);
+            return result.Where(r => r != null).ToDictionary(r => r.Index.ToString(), r => r);
+        }
+
+        public Dictionary<string, W2Strings> ReadJson(string jsonPath)
+        {
+            var json = File.ReadAllText(jsonPath);
+            var result = JsonConvert.DeserializeObject<Dictionary<string, W2Strings>>(json);
+            return result;
+        }
+
+        public void MakeData(Dictionary<string, W2Strings> data, string outputPath)
+        {
+            var result = data.Values.ToDictionary(d => d.Index, d => new { d.Key, d.Text, d.Index, d.Length });
+            var json = JsonConvert.SerializeObject(result);
+            WriteJson(json, outputPath);
+        }
+
+        #endregion
 
     }
 }
