@@ -23,6 +23,12 @@ namespace svvv
         }
 
         public static bool IsGamer { get; set; } = false;
+
+        public const string WebTranslateUrl = "https://firebasestorage.googleapis.com/v0/b/w3tu-svvv.appspot.com/o/translate.json?alt=media";
+        public const string WebTranslateVersionUrl = "https://firebasestorage.googleapis.com/v0/b/w3tu-svvv.appspot.com/o/version.ini?alt=media";
+        public const string WebUrl = "https://w3tu-svvv.web.app";
+        public const string GoogleSheetUrl = "https://docs.google.com/spreadsheets/d/1AZLkTTaUbRUnnx6tFeTD3YBLt4AIBgeGquRZP5oJVAE";
+
         public const string modThaiStoryBook = "modThaiStoryBook";
         public const string modFontSarabun = "modFontSarabun";
         public const string modFontCsParkas = "modFontCsPraKas";
@@ -68,6 +74,9 @@ namespace svvv
         public static string AltTranslateVersion = Path.Combine(StartupPath, "alt_version.ini");
 
         public static string TranslatePath = Path.Combine(DownloadPath, "translate.xlsx");
+        public static string WebTranslatePath = Path.Combine(DownloadPath, "translate.json");
+        public static string WebTranslateVersionPath = Path.Combine(DownloadPath, "version_web.ini");
+
 
         public static string StorybookPath = Path.Combine(ToolsPath, modThaiStoryBook);
         public static string StorybookExcelPath = Path.Combine(ToolsPath, "storybook.xlsx");
@@ -87,6 +96,7 @@ namespace svvv
         public static string UpdaterZipPath = Path.Combine(StartupPath, "Tools", "updater.zip");
         public static string UpdaterDir = Path.Combine(StartupPath, "temp", "updater");
         public static string UpdaterPath = Path.Combine(UpdaterDir, "Updater.exe");
+       
 
         //public static string CustomTranslateFileId { get; private set; }        
         //public static string CustomTranslateFileName { get; private set; }        

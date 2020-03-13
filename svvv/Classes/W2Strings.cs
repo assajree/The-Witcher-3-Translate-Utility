@@ -21,7 +21,7 @@ namespace svvv.Classes
         //public string SheetName { get; set; }
 
 
-        public bool? IsTranslate
+        public bool IsTranslate
         {
             get
             {

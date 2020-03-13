@@ -59,22 +59,25 @@
             this.lblCustomTranslateCount = new System.Windows.Forms.Label();
             this.btnAltSubSetting = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.txtFontSize2 = new System.Windows.Forms.NumericUpDown();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtFontSize1 = new System.Windows.Forms.NumericUpDown();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.pnSubtitle2 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.txtFontSize2 = new System.Windows.Forms.NumericUpDown();
             this.pbColor2 = new System.Windows.Forms.PictureBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.pbColor1 = new System.Windows.Forms.PictureBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.chkChangeTextColor = new System.Windows.Forms.CheckBox();
-            this.btnChangeFontSize = new System.Windows.Forms.Button();
-            this.txtFontSizeCutScene = new System.Windows.Forms.NumericUpDown();
-            this.txtFontSizeSpeak = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtFontSizeSpeak = new System.Windows.Forms.NumericUpDown();
+            this.txtFontSizeCutScene = new System.Windows.Forms.NumericUpDown();
+            this.txtFontSize1 = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.pbColor1 = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnResetFont = new System.Windows.Forms.Button();
+            this.btnChangeFontSize = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.rdoDownloadAlways = new System.Windows.Forms.RadioButton();
             this.rdoDownloadDialy = new System.Windows.Forms.RadioButton();
@@ -107,9 +110,8 @@
             this.txtGamePath = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnResetFont = new System.Windows.Forms.Button();
-            this.pnSubtitle2 = new System.Windows.Forms.Panel();
+            this.btnTranslateOnWeb = new System.Windows.Forms.Button();
+            this.btnTranslateOnGoogleSheet = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -117,19 +119,19 @@
             this.groupBox9.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.pnSubtitle2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtFontSize2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFontSize1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbColor2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbColor1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFontSizeCutScene)).BeginInit();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtFontSizeSpeak)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFontSizeCutScene)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFontSize1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbColor1)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.pnSubtitle2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnGamePath
@@ -598,6 +600,29 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "ซับไตเติ้ล";
             // 
+            // pnSubtitle2
+            // 
+            this.pnSubtitle2.Controls.Add(this.label6);
+            this.pnSubtitle2.Controls.Add(this.txtFontSize2);
+            this.pnSubtitle2.Controls.Add(this.pbColor2);
+            this.pnSubtitle2.Controls.Add(this.label8);
+            this.pnSubtitle2.Controls.Add(this.label7);
+            this.pnSubtitle2.Location = new System.Drawing.Point(26, 48);
+            this.pnSubtitle2.Name = "pnSubtitle2";
+            this.pnSubtitle2.Size = new System.Drawing.Size(329, 30);
+            this.pnSubtitle2.TabIndex = 38;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label6.Location = new System.Drawing.Point(-3, 6);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(78, 17);
+            this.label6.TabIndex = 53;
+            this.label6.Text = "ซับไตเติ้ล 2 :";
+            // 
             // txtFontSize2
             // 
             this.txtFontSize2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -623,6 +648,16 @@
             0,
             0});
             // 
+            // pbColor2
+            // 
+            this.pbColor2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbColor2.Location = new System.Drawing.Point(286, 1);
+            this.pbColor2.Name = "pbColor2";
+            this.pbColor2.Size = new System.Drawing.Size(24, 24);
+            this.pbColor2.TabIndex = 38;
+            this.pbColor2.TabStop = false;
+            this.pbColor2.Click += new System.EventHandler(this.Picturebox_Click);
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -633,31 +668,6 @@
             this.label8.Size = new System.Drawing.Size(39, 17);
             this.label8.TabIndex = 55;
             this.label8.Text = "ขนาด";
-            // 
-            // txtFontSize1
-            // 
-            this.txtFontSize1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFontSize1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtFontSize1.Increment = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.txtFontSize1.Location = new System.Drawing.Point(194, 21);
-            this.txtFontSize1.Minimum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.txtFontSize1.Name = "txtFontSize1";
-            this.txtFontSize1.Size = new System.Drawing.Size(47, 23);
-            this.txtFontSize1.TabIndex = 56;
-            this.txtFontSize1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtFontSize1.Value = new decimal(new int[] {
-            28,
-            0,
-            0,
-            0});
             // 
             // label7
             // 
@@ -670,69 +680,18 @@
             this.label7.TabIndex = 54;
             this.label7.Text = "สี";
             // 
-            // label5
+            // panel1
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label5.Location = new System.Drawing.Point(147, 24);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(39, 17);
-            this.label5.TabIndex = 55;
-            this.label5.Text = "ขนาด";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label6.Location = new System.Drawing.Point(-3, 6);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(78, 17);
-            this.label6.TabIndex = 53;
-            this.label6.Text = "ซับไตเติ้ล 2 :";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label4.Location = new System.Drawing.Point(288, 24);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(15, 17);
-            this.label4.TabIndex = 54;
-            this.label4.Text = "สี";
-            // 
-            // pbColor2
-            // 
-            this.pbColor2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbColor2.Location = new System.Drawing.Point(286, 1);
-            this.pbColor2.Name = "pbColor2";
-            this.pbColor2.Size = new System.Drawing.Size(24, 24);
-            this.pbColor2.TabIndex = 38;
-            this.pbColor2.TabStop = false;
-            this.pbColor2.Click += new System.EventHandler(this.Picturebox_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label3.Location = new System.Drawing.Point(23, 24);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 17);
-            this.label3.TabIndex = 53;
-            this.label3.Text = "ซับไตเติ้ล 1 :";
-            // 
-            // pbColor1
-            // 
-            this.pbColor1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbColor1.Location = new System.Drawing.Point(312, 19);
-            this.pbColor1.Name = "pbColor1";
-            this.pbColor1.Size = new System.Drawing.Size(24, 24);
-            this.pbColor1.TabIndex = 38;
-            this.pbColor1.TabStop = false;
-            this.pbColor1.Click += new System.EventHandler(this.Picturebox_Click);
+            this.panel1.Controls.Add(this.chkChangeTextColor);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.txtFontSizeSpeak);
+            this.panel1.Controls.Add(this.txtFontSizeCutScene);
+            this.panel1.Location = new System.Drawing.Point(474, 49);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 100);
+            this.panel1.TabIndex = 57;
+            this.panel1.Visible = false;
             // 
             // chkChangeTextColor
             // 
@@ -746,41 +705,27 @@
             this.chkChangeTextColor.Text = "เปลี่ยนสีชื่อ";
             this.chkChangeTextColor.UseVisualStyleBackColor = true;
             // 
-            // btnChangeFontSize
+            // label2
             // 
-            this.btnChangeFontSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChangeFontSize.Location = new System.Drawing.Point(406, 19);
-            this.btnChangeFontSize.Name = "btnChangeFontSize";
-            this.btnChangeFontSize.Size = new System.Drawing.Size(98, 24);
-            this.btnChangeFontSize.TabIndex = 52;
-            this.btnChangeFontSize.Text = "เปลี่ยนตอนนี้";
-            this.btnChangeFontSize.UseVisualStyleBackColor = true;
-            this.btnChangeFontSize.Click += new System.EventHandler(this.btnChangeFontSize_Click);
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label2.Location = new System.Drawing.Point(110, 38);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 17);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "นอกคัทซีน";
             // 
-            // txtFontSizeCutScene
+            // label1
             // 
-            this.txtFontSizeCutScene.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFontSizeCutScene.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtFontSizeCutScene.Increment = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.txtFontSizeCutScene.Location = new System.Drawing.Point(42, 36);
-            this.txtFontSizeCutScene.Minimum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.txtFontSizeCutScene.Name = "txtFontSizeCutScene";
-            this.txtFontSizeCutScene.Size = new System.Drawing.Size(47, 23);
-            this.txtFontSizeCutScene.TabIndex = 4;
-            this.txtFontSizeCutScene.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtFontSizeCutScene.Value = new decimal(new int[] {
-            28,
-            0,
-            0,
-            0});
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label1.Location = new System.Drawing.Point(-5, 39);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 17);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "คัทซีน";
             // 
             // txtFontSizeSpeak
             // 
@@ -807,27 +752,120 @@
             0,
             0});
             // 
-            // label1
+            // txtFontSizeCutScene
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(-5, 39);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 17);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "คัทซีน";
+            this.txtFontSizeCutScene.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFontSizeCutScene.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtFontSizeCutScene.Increment = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.txtFontSizeCutScene.Location = new System.Drawing.Point(42, 36);
+            this.txtFontSizeCutScene.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.txtFontSizeCutScene.Name = "txtFontSizeCutScene";
+            this.txtFontSizeCutScene.Size = new System.Drawing.Size(47, 23);
+            this.txtFontSizeCutScene.TabIndex = 4;
+            this.txtFontSizeCutScene.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtFontSizeCutScene.Value = new decimal(new int[] {
+            28,
+            0,
+            0,
+            0});
             // 
-            // label2
+            // txtFontSize1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(110, 38);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 17);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "นอกคัทซีน";
+            this.txtFontSize1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFontSize1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtFontSize1.Increment = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.txtFontSize1.Location = new System.Drawing.Point(194, 21);
+            this.txtFontSize1.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.txtFontSize1.Name = "txtFontSize1";
+            this.txtFontSize1.Size = new System.Drawing.Size(47, 23);
+            this.txtFontSize1.TabIndex = 56;
+            this.txtFontSize1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtFontSize1.Value = new decimal(new int[] {
+            28,
+            0,
+            0,
+            0});
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label5.Location = new System.Drawing.Point(147, 24);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(39, 17);
+            this.label5.TabIndex = 55;
+            this.label5.Text = "ขนาด";
+            // 
+            // pbColor1
+            // 
+            this.pbColor1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbColor1.Location = new System.Drawing.Point(312, 19);
+            this.pbColor1.Name = "pbColor1";
+            this.pbColor1.Size = new System.Drawing.Size(24, 24);
+            this.pbColor1.TabIndex = 38;
+            this.pbColor1.TabStop = false;
+            this.pbColor1.Click += new System.EventHandler(this.Picturebox_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label4.Location = new System.Drawing.Point(288, 24);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(15, 17);
+            this.label4.TabIndex = 54;
+            this.label4.Text = "สี";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label3.Location = new System.Drawing.Point(23, 24);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(78, 17);
+            this.label3.TabIndex = 53;
+            this.label3.Text = "ซับไตเติ้ล 1 :";
+            // 
+            // btnResetFont
+            // 
+            this.btnResetFont.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnResetFont.Location = new System.Drawing.Point(406, 48);
+            this.btnResetFont.Name = "btnResetFont";
+            this.btnResetFont.Size = new System.Drawing.Size(50, 24);
+            this.btnResetFont.TabIndex = 52;
+            this.btnResetFont.Text = "รีเซ็ต";
+            this.btnResetFont.UseVisualStyleBackColor = true;
+            this.btnResetFont.Click += new System.EventHandler(this.btnResetFont_Click);
+            // 
+            // btnChangeFontSize
+            // 
+            this.btnChangeFontSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChangeFontSize.Location = new System.Drawing.Point(406, 19);
+            this.btnChangeFontSize.Name = "btnChangeFontSize";
+            this.btnChangeFontSize.Size = new System.Drawing.Size(98, 24);
+            this.btnChangeFontSize.TabIndex = 52;
+            this.btnChangeFontSize.Text = "เปลี่ยนตอนนี้";
+            this.btnChangeFontSize.UseVisualStyleBackColor = true;
+            this.btnChangeFontSize.Click += new System.EventHandler(this.btnChangeFontSize_Click);
             // 
             // groupBox5
             // 
@@ -902,6 +940,8 @@
             // 
             this.groupBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox8.Controls.Add(this.btnTranslateOnGoogleSheet);
+            this.groupBox8.Controls.Add(this.btnTranslateOnWeb);
             this.groupBox8.Controls.Add(this.chkStorybook);
             this.groupBox8.Controls.Add(this.chkRandomLoading);
             this.groupBox8.Controls.Add(this.chkBackupSetting);
@@ -1192,41 +1232,27 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(537, 45);
             this.tableLayoutPanel1.TabIndex = 57;
             // 
-            // panel1
+            // btnTranslateOnWeb
             // 
-            this.panel1.Controls.Add(this.chkChangeTextColor);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.txtFontSizeSpeak);
-            this.panel1.Controls.Add(this.txtFontSizeCutScene);
-            this.panel1.Location = new System.Drawing.Point(474, 49);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 100);
-            this.panel1.TabIndex = 57;
-            this.panel1.Visible = false;
+            this.btnTranslateOnWeb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTranslateOnWeb.Location = new System.Drawing.Point(323, 13);
+            this.btnTranslateOnWeb.Name = "btnTranslateOnWeb";
+            this.btnTranslateOnWeb.Size = new System.Drawing.Size(98, 33);
+            this.btnTranslateOnWeb.TabIndex = 53;
+            this.btnTranslateOnWeb.Text = "แปลบนเว็บ";
+            this.btnTranslateOnWeb.UseVisualStyleBackColor = true;
+            this.btnTranslateOnWeb.Click += new System.EventHandler(this.btnTranslateOnWeb_Click);
             // 
-            // btnResetFont
+            // btnTranslateOnGoogleSheet
             // 
-            this.btnResetFont.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnResetFont.Location = new System.Drawing.Point(406, 48);
-            this.btnResetFont.Name = "btnResetFont";
-            this.btnResetFont.Size = new System.Drawing.Size(50, 24);
-            this.btnResetFont.TabIndex = 52;
-            this.btnResetFont.Text = "รีเซ็ต";
-            this.btnResetFont.UseVisualStyleBackColor = true;
-            this.btnResetFont.Click += new System.EventHandler(this.btnResetFont_Click);
-            // 
-            // pnSubtitle2
-            // 
-            this.pnSubtitle2.Controls.Add(this.label6);
-            this.pnSubtitle2.Controls.Add(this.txtFontSize2);
-            this.pnSubtitle2.Controls.Add(this.pbColor2);
-            this.pnSubtitle2.Controls.Add(this.label8);
-            this.pnSubtitle2.Controls.Add(this.label7);
-            this.pnSubtitle2.Location = new System.Drawing.Point(26, 48);
-            this.pnSubtitle2.Name = "pnSubtitle2";
-            this.pnSubtitle2.Size = new System.Drawing.Size(329, 30);
-            this.pnSubtitle2.TabIndex = 38;
+            this.btnTranslateOnGoogleSheet.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTranslateOnGoogleSheet.Location = new System.Drawing.Point(427, 13);
+            this.btnTranslateOnGoogleSheet.Name = "btnTranslateOnGoogleSheet";
+            this.btnTranslateOnGoogleSheet.Size = new System.Drawing.Size(98, 33);
+            this.btnTranslateOnGoogleSheet.TabIndex = 54;
+            this.btnTranslateOnGoogleSheet.Text = "แปลบน Sheet";
+            this.btnTranslateOnGoogleSheet.UseVisualStyleBackColor = true;
+            this.btnTranslateOnGoogleSheet.Click += new System.EventHandler(this.btnTranslateOnGoogleSheet_Click);
             // 
             // frmVeryVerySimple
             // 
@@ -1263,12 +1289,16 @@
             this.groupBox7.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            this.pnSubtitle2.ResumeLayout(false);
+            this.pnSubtitle2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtFontSize2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFontSize1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbColor2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbColor1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFontSizeCutScene)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtFontSizeSpeak)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFontSizeCutScene)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFontSize1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbColor1)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox8.ResumeLayout(false);
@@ -1278,10 +1308,6 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.pnSubtitle2.ResumeLayout(false);
-            this.pnSubtitle2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1368,5 +1394,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnResetFont;
         private System.Windows.Forms.Panel pnSubtitle2;
+        private System.Windows.Forms.Button btnTranslateOnGoogleSheet;
+        private System.Windows.Forms.Button btnTranslateOnWeb;
     }
 }

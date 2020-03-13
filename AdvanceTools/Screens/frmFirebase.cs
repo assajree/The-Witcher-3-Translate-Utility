@@ -55,7 +55,7 @@ namespace AdvanceTools.Screens
         private void btnMakeData_Click(object sender, EventArgs e)
         {
             var path = Path.Combine(Configs.OutputPath, "data.json");
-            var data = c.ReadServerJson(path);            
+            var data = c.ReadWebJson(path);            
             c.WriteJson(data, Path.Combine(Configs.OutputPath, $@"data_{DateTime.Now.ToString("yyyyMMdd_HHmmssfff")}.json"));
             MessageBox.Show("finish");
 

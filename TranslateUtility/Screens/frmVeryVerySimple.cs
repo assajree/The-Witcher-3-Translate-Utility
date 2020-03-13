@@ -515,6 +515,9 @@ namespace TranslateUtility
             c.Processing(DownloadAllCustomTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษาแบบปรับแต่ง...");
             //}
 
+            //download web translate
+            c.Processing(DownloadWebTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษาแบบ..."); 
+
             // download translate excel file
             Logger.Log("Download main translate");
             var downloadResult = c.Processing(DownloadTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษา...");
@@ -548,6 +551,15 @@ namespace TranslateUtility
 
             c.AddGenerateCounter();
             EnableButton();
+        }
+
+        private void DownloadWebTranslateFile()
+        {
+            var newVersion = c.GetNewVersion(GetDownloadFrequency());
+            if (newVersion != null)
+            {
+                c.DownloadWebTranslateFile(newVersion);
+            }
         }
 
         private void DownloadAllCustomTranslateFile()
@@ -1076,6 +1088,16 @@ namespace TranslateUtility
             pbColor2.BackColor = "#808080".ToColor();
             txtFontSize1.Value = 40;
             txtFontSize2.Value = 28;
+        }
+
+        private void btnTranslateOnWeb_Click(object sender, EventArgs e)
+        {
+            c.Open(Configs.WebUrl);
+        }
+
+        private void btnTranslateOnGoogleSheet_Click(object sender, EventArgs e)
+        {
+            c.Open(Configs.GoogleSheetUrl);
         }
     }
 }

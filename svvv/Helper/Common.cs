@@ -485,7 +485,7 @@ namespace TheWitcher3Thai
 
                 //var downloadComplete = DownloadFile("https://docs.google.com/spreadsheets/d/18-dkYtaFb4CDnZrBa9kmo5xP1IO3qpTcjucFXrcTkvc/export?format=xlsx", tempDownloadPath);
                 //var downloadComplete = DownloadFile("https://docs.google.com/spreadsheets/d/19Ny3PfzWtuOsfbi6G-QoogFnGSHx1Jke9gTgac17PfI/export?format=xlsx", tempDownloadPath);
-                var downloadComplete = DownloadFile("https://docs.google.com/spreadsheets/d/1AZLkTTaUbRUnnx6tFeTD3YBLt4AIBgeGquRZP5oJVAE/export?format=xlsx", tempDownloadPath);
+                var downloadComplete = DownloadFile( Configs.GoogleSheetUrl + "/export?format=xlsx", tempDownloadPath);
 
                 var fi = new FileInfo(excelPath);
                 if (downloadComplete == DialogResult.Cancel)
@@ -2752,6 +2752,8 @@ namespace TheWitcher3Thai
                 allMessage = ConvertToList(allMessageDict);
             }
 
+            allMessage=MergeWebTranslate(allMessage);
+
 
             // write duplicate sheet
             // WriteDupplicate(allMessage, outputPath);
@@ -2792,6 +2794,23 @@ namespace TheWitcher3Thai
 
             WriteVersionUnofficial(outputPath, "unofficial");
 
+        }
+
+        private List<w3Strings> MergeWebTranslate(List<w3Strings> list)
+        {
+            var dict = ConvertToDictionary(list);
+            var webTranslate = ReadWebJson(Configs.WebTranslatePath);
+            foreach(var item in webTranslate.Values)
+            {
+                if (item.IsTranslate && dict.ContainsKey(item.Key))
+                    dict[item.Key].Translate = item.Translate;
+            }
+
+            var generateJson = false;
+            if (generateJson)
+                GenerateJsonData(dict);
+
+            return ConvertToList(dict);
         }
 
         private void SetLoadingMessage(Dictionary<string, w3Strings> dict)
@@ -3715,10 +3734,6 @@ namespace TheWitcher3Thai
 
             var content = MergeLegacy(template, translate);
 
-            var generateJson = false;
-            if(generateJson)
-                GenerateJsonData(content);
-
             GenerateModAlt(content, outputPath, doubleLanguage, originalFirst, sheetConfig, includeNotTranslateMessageId, includeTranslateMessageId, includeUiMessageId, font, translateUI, alternativeTranslate);
 
             // write all text excel file for later use
@@ -3731,24 +3746,27 @@ namespace TheWitcher3Thai
 
         }
 
-        private void GenerateJsonData(Dictionary<string, List<w3Strings>> data)
+        //private void GenerateJsonData(Dictionary<string, List<w3Strings>> data)
+        private void GenerateJsonData(Dictionary<string, w3Strings> data)
         {
-            var result = new Dictionary<string, w3Strings>();
+            //var result = new Dictionary<string, w3Strings>();
 
-            // merge all message
-            foreach(var list in data.Values)
-            {
-                // remove duplicate data
-                foreach(var item in list)
-                {
-                    if (result.ContainsKey(item.IdKey))
-                        result[item.IdKey] = item;
-                    else
-                    {
-                        result.Add(item.IdKey, item);
-                    }
-                }                
-            }
+            //// merge all message
+            //foreach(var list in data.Values)
+            //{
+            //    // remove duplicate data
+            //    foreach(var item in list)
+            //    {
+            //        if (result.ContainsKey(item.IdKey))
+            //            result[item.IdKey] = item;
+            //        else
+            //        {
+            //            result.Add(item.IdKey, item);
+            //        }
+            //    }                
+            //}
+
+            var result = data;
 
             // make new list
             int index = 1;
@@ -4528,11 +4546,18 @@ namespace TheWitcher3Thai
 
         }
 
-        public Dictionary<string, W2Strings> ReadServerJson(string jsonPath)
+        public Dictionary<string, W2Strings> ReadWebJson(string jsonPath)
         {
-            var json = File.ReadAllText(jsonPath);
-            var result = JsonConvert.DeserializeObject<List<W2Strings>>(json);
-            return result.Where(r => r != null).ToDictionary(r => r.Index.ToString(), r => r);
+            try
+            {
+                var json = File.ReadAllText(jsonPath);
+                var result = JsonConvert.DeserializeObject<List<W2Strings>>(json);
+                return result.Where(r => r != null).ToDictionary(r => r.Index.ToString(), r => r);
+            }
+            catch(Exception)
+            {
+                return new Dictionary<string, W2Strings>();
+            }
         }
 
         public Dictionary<string, W2Strings> ReadJson(string jsonPath)
@@ -4549,6 +4574,84 @@ namespace TheWitcher3Thai
             WriteJson(json, outputPath);
         }
 
+        #endregion
+
+        #region web translate
+        public string GetNewVersion(eDownloadFrequency frequency)
+        {
+            if (!File.Exists(Configs.WebTranslateVersionPath))
+                return "UNKNOW";
+
+            //if (frequency == eDownloadFrequency.Once)
+            //    return null;
+
+            var currentVersion = ReadAllText(Configs.WebTranslateVersionPath)?.Trim();
+            var lastestVersion = ReadUrl(Configs.WebTranslateVersionUrl, 0)?.Trim();
+            if (lastestVersion == null)
+            {
+                return null;
+            }
+            else
+            {
+                if (currentVersion == lastestVersion)
+                    return null;
+                else
+                    return lastestVersion;
+            }
+
+        }
+
+        public string ReadAllText(string path)
+        {
+            try
+            {
+                return File.ReadAllText(path);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public string ReadUrl(string url, int tryCount)
+        {
+            try
+            {
+                var client = new WebClient();
+                var data = client.DownloadData(url);
+                var stream = new StreamReader(new MemoryStream(data));
+
+                var result = stream.ReadToEnd().ToString();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                tryCount++;
+                if (tryCount > 2)
+                    return null;
+                else
+                    return ReadUrl(url, tryCount);
+            }
+        }
+
+        public void DownloadWebTranslateFile(string newVersion)
+        {
+            //return Common.DownloadGoogleSheetFile(
+            //    Configs.W2TranslateFileId,
+            //    Configs.TranslatePath,
+            //    "กำลังดาวน์โหลดไฟล์แปลภาษา..."
+            //);
+
+            var result = DownloadFile(
+                Configs.WebTranslateUrl,
+                Configs.WebTranslatePath
+            );
+
+            if (result == DialogResult.OK)
+            {
+                File.WriteAllText(Configs.WebTranslateVersionPath, newVersion);
+            }
+        }
         #endregion
 
     }
