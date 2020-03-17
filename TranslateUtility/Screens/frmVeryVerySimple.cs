@@ -516,11 +516,11 @@ namespace TranslateUtility
             //}
 
             //download web translate
-            c.Processing(DownloadWebTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษาแบบ..."); 
+            c.Processing(DownloadWebTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษาจากเว็บ..."); 
 
             // download translate excel file
             Logger.Log("Download main translate");
-            var downloadResult = c.Processing(DownloadTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษา...");
+            var downloadResult = c.Processing(DownloadTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษา..."); 
             if (downloadResult != DialogResult.OK)
                 return;
 
