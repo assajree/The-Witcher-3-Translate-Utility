@@ -52,9 +52,9 @@ namespace TheWitcher3Thai
         public List<W2Strings> ConvertToW2String(Dictionary<string, List<w3Strings>> data)
         {
             List<W2Strings> result = new List<W2Strings>();
-            foreach(var list in data.Values)
+            foreach (var list in data.Values)
             {
-                foreach(var item in list)
+                foreach (var item in list)
                 {
                     result.Add(item.ToW2Strings());
                 }
@@ -63,7 +63,7 @@ namespace TheWitcher3Thai
             result = result.OrderBy(r => r.Key).ToList();
 
             int index = 1;
-            foreach(var item in result)
+            foreach (var item in result)
             {
                 item.Index = index++;
             }
@@ -485,7 +485,7 @@ namespace TheWitcher3Thai
 
                 //var downloadComplete = DownloadFile("https://docs.google.com/spreadsheets/d/18-dkYtaFb4CDnZrBa9kmo5xP1IO3qpTcjucFXrcTkvc/export?format=xlsx", tempDownloadPath);
                 //var downloadComplete = DownloadFile("https://docs.google.com/spreadsheets/d/19Ny3PfzWtuOsfbi6G-QoogFnGSHx1Jke9gTgac17PfI/export?format=xlsx", tempDownloadPath);
-                var downloadComplete = DownloadFile( Configs.GoogleSheetUrl + "/export?format=xlsx", tempDownloadPath);
+                var downloadComplete = DownloadFile(Configs.GoogleSheetUrl + "/export?format=xlsx", tempDownloadPath);
 
                 var fi = new FileInfo(excelPath);
                 if (downloadComplete == DialogResult.Cancel)
@@ -513,7 +513,7 @@ namespace TheWitcher3Thai
                     else if (!fi.Directory.Exists)
                         fi.Directory.Create();
 
-                    File.Move(tempDownloadPath, excelPath);                    
+                    File.Move(tempDownloadPath, excelPath);
                 }
             }
 
@@ -1983,7 +1983,7 @@ namespace TheWitcher3Thai
             return installPath;
         }
 
-        public string GetGogPath(bool firstPathOnly=false)
+        public string GetGogPath(bool firstPathOnly = false)
         {
             int pathCount = 0;
             string[] ids = new string[]
@@ -2016,7 +2016,7 @@ namespace TheWitcher3Thai
 
                     if (Directory.Exists(path))
                     {
-                        
+
                         if (firstPathOnly)
                             return path;
 
@@ -2028,9 +2028,9 @@ namespace TheWitcher3Thai
                             throw new Exception("Found too many game path.");
                         }
                     }
-                    
+
                 }
-                
+
             }
 
             return result;
@@ -2084,7 +2084,7 @@ namespace TheWitcher3Thai
                 var steamPath = GetSteamPath();
                 var gogPath = GetGogPath();
                 var originPath = GetOriginPath();
-                
+
 
                 if (!String.IsNullOrWhiteSpace(gogPath))
                     pathCount += 1;
@@ -2106,7 +2106,7 @@ namespace TheWitcher3Thai
             }
         }
 
-        public string GetSteamPath(bool firstPathOnly=false)
+        public string GetSteamPath(bool firstPathOnly = false)
         {
             var steamPath = GetSteamDirectory();
             if (steamPath == null)
@@ -2137,7 +2137,7 @@ namespace TheWitcher3Thai
                                 if (firstPathOnly)
                                     return result;
 
-                                if (pathCount>1)
+                                if (pathCount > 1)
                                     throw new Exception("Found too many game path.");
                                 //return Directory.GetParent(path).FullName;
                             }
@@ -2752,7 +2752,7 @@ namespace TheWitcher3Thai
                 allMessage = ConvertToList(allMessageDict);
             }
 
-            allMessage=MergeWebTranslate(allMessage);
+            allMessage = MergeWebTranslate(allMessage);
 
 
             // write duplicate sheet
@@ -2800,7 +2800,7 @@ namespace TheWitcher3Thai
         {
             var dict = ConvertToDictionary(list);
             var webTranslate = ReadWebJson(Configs.WebTranslatePath);
-            foreach(var item in webTranslate.Values)
+            foreach (var item in webTranslate.Values)
             {
                 if (item.IsTranslate && dict.ContainsKey(item.Key))
                     dict[item.Key].Translate = item.Translate;
@@ -3774,7 +3774,7 @@ namespace TheWitcher3Thai
             var onlyNotTranslate = true;
             if (onlyNotTranslate)
             {
-                foreach (var item in result.Values.Where(d=>d.TranslateStatus==w3Strings.eTranslateStatus.NotTranslate).OrderBy(d => d.IdKey.ToIntOrNull() ?? 0))
+                foreach (var item in result.Values.Where(d => d.TranslateStatus == w3Strings.eTranslateStatus.NotTranslate).OrderBy(d => d.IdKey.ToIntOrNull() ?? 0))
                 {
                     var w2 = item.ToW2Strings();
                     w2.Index = index++;
@@ -4498,7 +4498,7 @@ namespace TheWitcher3Thai
         }
 
         #region json
-        
+
 
         public void WriteJson(string json, string path)
         {
@@ -4554,7 +4554,7 @@ namespace TheWitcher3Thai
                 var result = JsonConvert.DeserializeObject<List<W2Strings>>(json);
                 return result.Where(r => r != null).ToDictionary(r => r.Index.ToString(), r => r);
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return new Dictionary<string, W2Strings>();
             }
@@ -4652,7 +4652,45 @@ namespace TheWitcher3Thai
                 File.WriteAllText(Configs.WebTranslateVersionPath, newVersion);
             }
         }
-        #endregion
 
+        public Dictionary<string, w3Strings> ReadFirstSheet(string excelPath, bool isReadTranslate)
+        {
+            var fi = new FileInfo(excelPath);
+            using (var p = new ExcelPackage(fi))
+            {
+                var sht = p.Workbook.Worksheets.First();
+                var content = ReadExcelSheet(sht, isReadTranslate);
+                content = DistinctContent(content);
+                return content.ToDictionary(c => c.IdKey, c => c);
+            }
+        }
+
+        public void makeExtraLanguage(string excelPath)
+        {
+            var path = Path.Combine(Configs.OutputPath, "data.json");
+            var data = ReadWebJson(path);
+
+            var raw = ReadFirstSheet(excelPath, false);
+            foreach (var item in data)
+            {
+                var key = item.Value.Key.Trim();
+                if (raw.ContainsKey(key))
+                {
+                    var msg = raw[key];
+                    item.Value.Text = msg.Text;
+                }
+                else
+                {
+                    item.Value.Text = null;
+                }
+            }
+
+            var extraData = data.Values.Where(d => d.Text != null).ToList();
+
+            var extraJson = JsonConvert.SerializeObject(extraData.ToDictionary(d => d.Index, d => d.Text));
+            WriteJson(extraJson, Path.Combine(Configs.OutputPath, "extra_language_" + DateTime.Now.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture) + ".json"));
+        }
     }
+    #endregion
+
 }

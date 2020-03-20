@@ -60,5 +60,11 @@ namespace AdvanceTools.Screens
             MessageBox.Show("finish");
 
         }
+
+        private void btnGenerateExtraLanguage_Click(object sender, EventArgs e)
+        {
+            c.makeExtraLanguage(txtExcelPath.Text);
+            MessageBox.Show("finish");
+        }
     }
 }

@@ -35,6 +35,7 @@
             this.btnExcelToJson = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnMakeData = new System.Windows.Forms.Button();
+            this.btnGenerateExtraLanguage = new System.Windows.Forms.Button();
             this.pnFont.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -43,6 +44,7 @@
             // 
             this.pnFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnFont.Controls.Add(this.btnGenerateExtraLanguage);
             this.pnFont.Controls.Add(this.btnSelectExcel);
             this.pnFont.Controls.Add(this.label5);
             this.pnFont.Controls.Add(this.txtExcelPath);
@@ -117,6 +119,16 @@
             this.btnMakeData.UseVisualStyleBackColor = true;
             this.btnMakeData.Click += new System.EventHandler(this.btnMakeData_Click);
             // 
+            // btnGenerateExtraLanguage
+            // 
+            this.btnGenerateExtraLanguage.Location = new System.Drawing.Point(193, 43);
+            this.btnGenerateExtraLanguage.Name = "btnGenerateExtraLanguage";
+            this.btnGenerateExtraLanguage.Size = new System.Drawing.Size(117, 23);
+            this.btnGenerateExtraLanguage.TabIndex = 6;
+            this.btnGenerateExtraLanguage.Text = "to extra language";
+            this.btnGenerateExtraLanguage.UseVisualStyleBackColor = true;
+            this.btnGenerateExtraLanguage.Click += new System.EventHandler(this.btnGenerateExtraLanguage_Click);
+            // 
             // frmFirebase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -143,5 +155,6 @@
         private System.Windows.Forms.Button btnExcelToJson;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnMakeData;
+        private System.Windows.Forms.Button btnGenerateExtraLanguage;
     }
 }
