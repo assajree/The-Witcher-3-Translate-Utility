@@ -4720,7 +4720,7 @@ namespace TheWitcher3Thai
         public void makeExtraLanguageJson(string excelPath)
         {
             var raw = ReadFirstSheet(excelPath, true);
-            var extraJson = JsonConvert.SerializeObject(raw.Values.ToDictionary(d => d.Index, d => d.Translate));
+            var extraJson = JsonConvert.SerializeObject(raw.Values.ToDictionary(d => d.Index, d => new { d.Text, d.Translate} ));
             WriteJson(extraJson, Path.Combine(Configs.OutputPath, "extra_language_" + DateTime.Now.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture) + ".json"));
         }
 
