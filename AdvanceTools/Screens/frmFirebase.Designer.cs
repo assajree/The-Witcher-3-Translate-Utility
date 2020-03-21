@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.pnFont = new System.Windows.Forms.GroupBox();
+            this.btnGenerateExtraLanguage = new System.Windows.Forms.Button();
             this.btnSelectExcel = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.txtExcelPath = new System.Windows.Forms.TextBox();
             this.btnExcelToJson = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnMakeData = new System.Windows.Forms.Button();
-            this.btnGenerateExtraLanguage = new System.Windows.Forms.Button();
+            this.btnExtraJson = new System.Windows.Forms.Button();
             this.pnFont.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -44,6 +45,7 @@
             // 
             this.pnFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnFont.Controls.Add(this.btnExtraJson);
             this.pnFont.Controls.Add(this.btnGenerateExtraLanguage);
             this.pnFont.Controls.Add(this.btnSelectExcel);
             this.pnFont.Controls.Add(this.label5);
@@ -55,6 +57,16 @@
             this.pnFont.TabIndex = 11;
             this.pnFont.TabStop = false;
             this.pnFont.Text = "Excel Tool";
+            // 
+            // btnGenerateExtraLanguage
+            // 
+            this.btnGenerateExtraLanguage.Location = new System.Drawing.Point(193, 43);
+            this.btnGenerateExtraLanguage.Name = "btnGenerateExtraLanguage";
+            this.btnGenerateExtraLanguage.Size = new System.Drawing.Size(117, 23);
+            this.btnGenerateExtraLanguage.TabIndex = 6;
+            this.btnGenerateExtraLanguage.Text = "to extra language";
+            this.btnGenerateExtraLanguage.UseVisualStyleBackColor = true;
+            this.btnGenerateExtraLanguage.Click += new System.EventHandler(this.btnGenerateExtraLanguage_Click);
             // 
             // btnSelectExcel
             // 
@@ -119,15 +131,15 @@
             this.btnMakeData.UseVisualStyleBackColor = true;
             this.btnMakeData.Click += new System.EventHandler(this.btnMakeData_Click);
             // 
-            // btnGenerateExtraLanguage
+            // btnExtraJson
             // 
-            this.btnGenerateExtraLanguage.Location = new System.Drawing.Point(193, 43);
-            this.btnGenerateExtraLanguage.Name = "btnGenerateExtraLanguage";
-            this.btnGenerateExtraLanguage.Size = new System.Drawing.Size(117, 23);
-            this.btnGenerateExtraLanguage.TabIndex = 6;
-            this.btnGenerateExtraLanguage.Text = "to extra language";
-            this.btnGenerateExtraLanguage.UseVisualStyleBackColor = true;
-            this.btnGenerateExtraLanguage.Click += new System.EventHandler(this.btnGenerateExtraLanguage_Click);
+            this.btnExtraJson.Location = new System.Drawing.Point(316, 43);
+            this.btnExtraJson.Name = "btnExtraJson";
+            this.btnExtraJson.Size = new System.Drawing.Size(117, 23);
+            this.btnExtraJson.TabIndex = 7;
+            this.btnExtraJson.Text = "to extra json";
+            this.btnExtraJson.UseVisualStyleBackColor = true;
+            this.btnExtraJson.Click += new System.EventHandler(this.btnExtraJson_Click);
             // 
             // frmFirebase
             // 
@@ -156,5 +168,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnMakeData;
         private System.Windows.Forms.Button btnGenerateExtraLanguage;
+        private System.Windows.Forms.Button btnExtraJson;
     }
 }

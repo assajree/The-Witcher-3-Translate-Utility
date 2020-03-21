@@ -28,6 +28,7 @@ namespace svvv
         public const string WebTranslateVersionUrl = "https://firebasestorage.googleapis.com/v0/b/w3tu-svvv.appspot.com/o/version.ini?alt=media";
         public const string WebUrl = "https://w3tu-svvv.web.app";
         public const string GoogleSheetUrl = "https://docs.google.com/spreadsheets/d/1AZLkTTaUbRUnnx6tFeTD3YBLt4AIBgeGquRZP5oJVAE";
+        public const string ApiKey = "AIzaSyDg03c_bkBM2Tw3TahE3Gei-vx0m--OeWU";
 
         public const string modThaiStoryBook = "modThaiStoryBook";
         public const string modFontSarabun = "modFontSarabun";

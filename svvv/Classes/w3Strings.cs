@@ -1,9 +1,5 @@
 ﻿using svvv.Classes;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TheWitcher3Thai
 {
@@ -24,6 +20,7 @@ namespace TheWitcher3Thai
         public int? RowNumber { get; set; }
         public string SheetName { get; set; }
         public string GoogleTranslate { get; set; }
+        public int? Index { get; set; }
         //public bool Locked { get; set; } = false;
 
         public w3Strings()
@@ -31,7 +28,7 @@ namespace TheWitcher3Thai
 
         }
 
-        public w3Strings(string id, string keyHex, string keyString, string text, string translate, string sheetName = null, int? rowNumber = null, string googlsTranslate = null)
+        public w3Strings(string id, string keyHex, string keyString, string text, string translate, string sheetName = null, int? rowNumber = null, string googlsTranslate = null, int? index = null)
         {
             this.ID = id;
             this.KeyHex = keyHex;
@@ -41,6 +38,7 @@ namespace TheWitcher3Thai
             this.RowNumber = rowNumber;
             this.SheetName = sheetName;
             this.GoogleTranslate = googlsTranslate;
+            this.Index = index;
 
         }
 
@@ -148,7 +146,7 @@ namespace TheWitcher3Thai
                 Text = this.Text,
                 Translate = this.Translate,
                 GoogleTranslate = this.GoogleTranslate,
-                Index = 0,
+                Index = this.Index ?? 0,
             };
         }
     }

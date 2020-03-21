@@ -62,7 +62,8 @@ namespace svvv.Classes
                 //RowNumber = this.Row,
                 //SheetName = this.SheetName,
                 Text = this.Text,
-                Translate = this.Translate
+                Translate = this.Translate,
+                Index=this.Index
             };
 
         }

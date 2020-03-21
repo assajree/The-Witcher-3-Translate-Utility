@@ -14,6 +14,7 @@
         public const int COL_EMPTY = 7;
         public const int COL_SHEETNAME = 8;
         public const int COL_GOOGLE = 9;
+        public const int COL_INDEX = 10;
 
     }
 }

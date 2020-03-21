@@ -8,6 +8,7 @@ using svvv.Classes;
 using svvv.Dialog;
 using Svvv.Common;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
@@ -15,7 +16,9 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
+using System.Web;
 using System.Windows.Forms;
 using TheWitcher3Thai.Helper;
 
@@ -2428,6 +2431,7 @@ namespace TheWitcher3Thai
                         , sht.Name
                         , sht.Cells[row, Excel.COL_ROW].Text.ToIntOrNull() ?? row
                         , sht.Cells[row, Excel.COL_GOOGLE].Text.NullIfEmpty()
+                        , sht.Cells[row, Excel.COL_INDEX].Text.ToIntOrNull()
                 ));
 
                 row++;
@@ -2456,6 +2460,7 @@ namespace TheWitcher3Thai
             sht.Cells[Excel.ROW_START - 1, Excel.COL_ROW].Value = "ROW";
             //sht.Cells[Excel.ROW_START - 1, Excel.COL_EMPTY].Value = "EMPTY";
             sht.Cells[Excel.ROW_START - 1, Excel.COL_SHEETNAME].Value = "SHEET";
+            sht.Cells[Excel.ROW_START - 1, Excel.COL_INDEX].Value = "INDEX";
 
 
             for (int i = 0; i < content.Count; i++)
@@ -2475,6 +2480,7 @@ namespace TheWitcher3Thai
                 sht.Cells[Excel.ROW_START + i, Excel.COL_ROW].Value = content[i].RowNumber;
                 //sht.Cells[Excel.ROW_START + i, Excel.COL_EMPTY].Value = content[i].EmptyTranslate;
                 sht.Cells[Excel.ROW_START + i, Excel.COL_SHEETNAME].Value = content[i].SheetName;
+                sht.Cells[Excel.ROW_START + i, Excel.COL_INDEX].Value = content[i].Index;
 
             }
         }
@@ -4665,7 +4671,7 @@ namespace TheWitcher3Thai
             }
         }
 
-        public void makeExtraLanguage(string excelPath)
+        public void makeExtraLanguageExcel(string excelPath)
         {
             var path = Path.Combine(Configs.OutputPath, "data.json");
             var data = ReadWebJson(path);
@@ -4687,8 +4693,80 @@ namespace TheWitcher3Thai
 
             var extraData = data.Values.Where(d => d.Text != null).ToList();
 
-            var extraJson = JsonConvert.SerializeObject(extraData.ToDictionary(d => d.Index, d => d.Text));
+            var w3Data = extraData.Select(d => d.ToW3Strings()).ToList();
+            var excelContent = new Dictionary<string, List<w3Strings>>();
+            excelContent.Add("all", w3Data);
+
+            WriteExcel(
+                Path.Combine(Configs.OutputPath, "extra_language_" + DateTime.Now.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture) + ".xlsx"),
+                excelContent,
+                false
+                );
+            return;
+
+            //var allMessage = extraData.Count;
+            //for (int i=0; i<extraData.Count;i++)
+            //{
+            //    Debug.WriteLine($@"translate {i + 1}/{allMessage}");
+            //    var item = extraData[i];
+            //    item.Translate = GoogleTranslate(item.Text, "auto", "th");
+            //    System.Threading.Thread.Sleep(500);
+            //}
+
+            //var extraJson = JsonConvert.SerializeObject(extraData.ToDictionary(d => d.Index, d => d.Text));
+            //WriteJson(extraJson, Path.Combine(Configs.OutputPath, "extra_language_" + DateTime.Now.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture) + ".json"));
+        }
+
+        public void makeExtraLanguageJson(string excelPath)
+        {
+            var raw = ReadFirstSheet(excelPath, true);
+            var extraJson = JsonConvert.SerializeObject(raw.Values.ToDictionary(d => d.Index, d => d.Translate));
             WriteJson(extraJson, Path.Combine(Configs.OutputPath, "extra_language_" + DateTime.Now.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture) + ".json"));
+        }
+
+        public string GoogleTranslate(string text, string fromLangCode, string toLangCode)
+        {
+            //string url = $@"http://www.google.com/translate_t?hl={fromLangCode}&ie=UTF8&text={text}&langpair={fromLangCode}|{toLangCode}";
+            var url = $"https://translate.googleapis.com/translate_a/single?client=gtx&sl={fromLangCode}&tl={toLangCode}&dt=t&q={HttpUtility.UrlEncode(text)}";
+
+            //var webClient = new WebClient();
+            //webClient.Encoding = System.Text.Encoding.UTF8;
+
+            HttpClient httpClient = new HttpClient();
+            string result = httpClient.GetStringAsync(url).Result;
+
+            // Get all json data
+            var jsonData = JsonConvert.DeserializeObject<List<dynamic>>(result);
+            //var jsonData = new JavaScriptSerializer().Deserialize<List<dynamic>>(result);
+
+            // Extract just the first array element (This is the only data we are interested in)
+            var translationItems = jsonData[0];
+
+            // Translation Data
+            string translation = "";
+
+            // Loop through the collection extracting the translated objects
+            foreach (object item in translationItems)
+            {
+                // Convert the item array to IEnumerable
+                IEnumerable translationLineObject = item as IEnumerable;
+
+                // Convert the IEnumerable translationLineObject to a IEnumerator
+                IEnumerator translationLineString = translationLineObject.GetEnumerator();
+
+                // Get first object in IEnumerator
+                translationLineString.MoveNext();
+
+                // Save its value (translated text)
+                translation += string.Format(" {0}", Convert.ToString(translationLineString.Current));
+            }
+
+            // Remove first blank character
+            if (translation.Length > 1) { translation = translation.Substring(1); };
+
+            // Return translation
+            return translation;
+
         }
     }
     #endregion
