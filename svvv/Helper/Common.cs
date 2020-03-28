@@ -3788,9 +3788,9 @@ namespace TheWitcher3Thai
 
             var resultContent = result.Where(r => sheetConfig.Keys.Contains(r.SheetName)).GroupBy(r => r.SheetName).ToDictionary(g => g.Key, g => g.ToList());
 
-            //// write all text excel file for later use
-            //string tempPath = Path.Combine(outputPath, "translate.xlsx");
-            //WriteExcel(tempPath, resultContent, false);
+            // write all text excel file for later use
+            string tempPath = Path.Combine(outputPath, "translate.xlsx");
+            WriteExcel(tempPath, resultContent, false);
 
             // write result
             string legacyExcel = Path.Combine(outputPath, "result.xlsx");
