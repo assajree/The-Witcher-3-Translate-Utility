@@ -311,6 +311,13 @@ namespace TheWitcher3Thai
                 txt.Text = path;
         }
 
+        public void SelectJsonTextBox(TextBox txt, string defaultPath = null)
+        {
+            var path = SelectFile("Json", "json", txt.Text, defaultPath);
+            if (path != null)
+                txt.Text = path;
+        }
+
         public string SelectXlsx(string initialPath, string defaultPath = null)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog
@@ -323,6 +330,40 @@ namespace TheWitcher3Thai
 
                 DefaultExt = "xlsx",
                 Filter = "Exccel files (*.xlsx)|*.xlsx",
+                FilterIndex = 2,
+                RestoreDirectory = true,
+
+                ReadOnlyChecked = true,
+                ShowReadOnly = true
+            };
+
+            if (String.IsNullOrWhiteSpace(initialPath))
+                openFileDialog1.InitialDirectory = defaultPath ?? Application.StartupPath;
+            else
+                openFileDialog1.InitialDirectory = initialPath;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                return openFileDialog1.FileName;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public string SelectFile(string fileType, string fileExtension, string initialPath, string defaultPath = null)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog
+            {
+                //InitialDirectory = @"D:\",
+                Title = $@"Browse {fileType} Files",
+
+                CheckFileExists = true,
+                CheckPathExists = true,
+
+                DefaultExt = fileExtension,
+                Filter = $@"{fileType} files (*.{fileExtension})|*.{fileExtension}",
                 FilterIndex = 2,
                 RestoreDirectory = true,
 
@@ -3744,7 +3785,7 @@ namespace TheWitcher3Thai
 
             var result = GenerateModAlt(content, outputPath, doubleLanguage, originalFirst, sheetConfig, includeNotTranslateMessageId, includeTranslateMessageId, includeUiMessageId, font, translateUI, alternativeTranslate);
 
-            var resultContent = result.Where(r=> sheetConfig.Keys.Contains(r.SheetName)).GroupBy(r => r.SheetName).ToDictionary(g => g.Key, g => g.ToList());
+            var resultContent = result.Where(r => sheetConfig.Keys.Contains(r.SheetName)).GroupBy(r => r.SheetName).ToDictionary(g => g.Key, g => g.ToList());
 
             //// write all text excel file for later use
             //string tempPath = Path.Combine(outputPath, "translate.xlsx");
@@ -4724,7 +4765,7 @@ namespace TheWitcher3Thai
         public void makeExtraLanguageJson(string excelPath)
         {
             var raw = ReadFirstSheet(excelPath, true);
-            var extraJson = JsonConvert.SerializeObject(raw.Values.ToDictionary(d => d.Index, d => new { d.Text, d.Translate} ));
+            var extraJson = JsonConvert.SerializeObject(raw.Values.ToDictionary(d => d.Index, d => new { d.Text, d.Translate }));
             WriteJson(extraJson, Path.Combine(Configs.OutputPath, "extra_language_" + DateTime.Now.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture) + ".json"));
         }
 

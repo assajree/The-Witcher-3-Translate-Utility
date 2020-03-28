@@ -12,7 +12,7 @@ namespace svvv.Classes
         public string Key { get; set; }
         public string Text { get; set; }
         public string Translate { get; set; }
-        public string GoogleTranslate { get; set; }
+        //public string GoogleTranslate { get; set; }
         public int Index { get; set; }
         //public int Row { get; set; }
 
@@ -47,7 +47,7 @@ namespace svvv.Classes
             this.Key = key;
             this.Text = text;
             this.Translate = translate;
-            this.GoogleTranslate = googleTranslate;
+            //this.GoogleTranslate = googleTranslate;
             //this.Row = row;
             this.Index = index;
         }

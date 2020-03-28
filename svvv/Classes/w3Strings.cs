@@ -19,7 +19,7 @@ namespace TheWitcher3Thai
         public string Translate { get; set; }
         public int? RowNumber { get; set; }
         public string SheetName { get; set; }
-        public string GoogleTranslate { get; set; }
+        //public string GoogleTranslate { get; set; }
         public int? Index { get; set; }
         //public bool Locked { get; set; } = false;
 
@@ -37,7 +37,7 @@ namespace TheWitcher3Thai
             this.Translate = translate?.Trim();
             this.RowNumber = rowNumber;
             this.SheetName = sheetName;
-            this.GoogleTranslate = googlsTranslate;
+            //this.GoogleTranslate = googlsTranslate;
             this.Index = index;
 
         }
@@ -145,7 +145,7 @@ namespace TheWitcher3Thai
                 //SheetName = this.SheetName,
                 Text = this.Text,
                 Translate = this.Translate,
-                GoogleTranslate = this.GoogleTranslate,
+                //GoogleTranslate = this.GoogleTranslate,
                 Index = this.Index ?? 0,
             };
         }

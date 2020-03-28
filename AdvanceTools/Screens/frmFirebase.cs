@@ -54,7 +54,7 @@ namespace AdvanceTools.Screens
 
         private void btnMakeData_Click(object sender, EventArgs e)
         {
-            var path = Path.Combine(Configs.OutputPath, "data.json");
+            var path = txtJsonPath.Text;
             var data = c.ReadWebJson(path);            
             c.WriteJson(data, Path.Combine(Configs.OutputPath, $@"data_{DateTime.Now.ToString("yyyyMMdd_HHmmssfff")}.json"));
             MessageBox.Show("finish");
@@ -80,6 +80,23 @@ namespace AdvanceTools.Screens
         {
             c.makeExtraLanguageJson(txtExcelPath.Text);
             MessageBox.Show("finish");
+        }
+
+        private void btnDownloadJson_Click(object sender, EventArgs e)
+        {
+            var cfm=MessageBox.Show("Download json data from web?", "Confirm", MessageBoxButtons.YesNo);
+            if (cfm != DialogResult.Yes)
+                return;
+
+            var url = "https://w3tu-svvv.firebaseio.com/message.json";
+            var jsonPath = Path.Combine(Application.StartupPath, "download", "message.json");
+            c.DownloadFile(url, jsonPath);
+            MessageBox.Show("complete");
+        }
+
+        private void btnSelectJson_Click(object sender, EventArgs e)
+        {
+            c.SelectJsonTextBox(txtJsonPath);
         }
     }
 }
