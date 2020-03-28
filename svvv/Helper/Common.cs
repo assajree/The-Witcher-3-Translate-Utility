@@ -1654,7 +1654,7 @@ namespace TheWitcher3Thai
 
                 return lastVersion;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return null;
             }
@@ -2725,7 +2725,7 @@ namespace TheWitcher3Thai
             FinishMod(tempPath, outputPath, sheetConfig);
         }
 
-        public void GenerateModAlt(Dictionary<string, List<w3Strings>> contents, string outputPath, bool combine, bool originalFirst, Dictionary<string, string> sheetConfig, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool IncludeUiMessageId, eFontSetting font, bool translateUI, bool alternativeTranslate)
+        public List<w3Strings> GenerateModAlt(Dictionary<string, List<w3Strings>> contents, string outputPath, bool combine, bool originalFirst, Dictionary<string, string> sheetConfig, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool IncludeUiMessageId, eFontSetting font, bool translateUI, bool alternativeTranslate)
         {
             DeleteDirectory(outputPath);
 
@@ -2799,6 +2799,8 @@ namespace TheWitcher3Thai
             }
 
             WriteVersionUnofficial(outputPath, "unofficial");
+
+            return allMessage;
 
         }
 
@@ -3740,15 +3742,17 @@ namespace TheWitcher3Thai
 
             var content = MergeLegacy(template, translate);
 
-            GenerateModAlt(content, outputPath, doubleLanguage, originalFirst, sheetConfig, includeNotTranslateMessageId, includeTranslateMessageId, includeUiMessageId, font, translateUI, alternativeTranslate);
+            var result = GenerateModAlt(content, outputPath, doubleLanguage, originalFirst, sheetConfig, includeNotTranslateMessageId, includeTranslateMessageId, includeUiMessageId, font, translateUI, alternativeTranslate);
 
-            // write all text excel file for later use
-            string tempPath = Path.Combine(outputPath, "translate.xlsx");
-            WriteExcel(tempPath, content, false);
+            var resultContent = result.Where(r=> sheetConfig.Keys.Contains(r.SheetName)).GroupBy(r => r.SheetName).ToDictionary(g => g.Key, g => g.ToList());
+
+            //// write all text excel file for later use
+            //string tempPath = Path.Combine(outputPath, "translate.xlsx");
+            //WriteExcel(tempPath, resultContent, false);
 
             // write result
             string legacyExcel = Path.Combine(outputPath, "result.xlsx");
-            WriteNotTranslateExcel(legacyExcel, content, false);
+            WriteNotTranslateExcel(legacyExcel, resultContent, false);
 
         }
 
