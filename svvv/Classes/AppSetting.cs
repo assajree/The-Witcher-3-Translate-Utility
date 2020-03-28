@@ -80,9 +80,9 @@ namespace svvv.Classes
 
             
             sb.AppendLine($@"ThaiFirst={ThaiFirst}");
-            //sb.AppendLine($@"ShowNotTranslateRow={ShowNotTranslateRow}");
-            //sb.AppendLine($@"ShowTranslateRow={ShowTranslateRow}");
-            //sb.AppendLine($@"ShowUiRow={ShowUiRow}");
+            sb.AppendLine($@"ShowNotTranslateRow={ShowNotTranslateRow}");
+            sb.AppendLine($@"ShowTranslateRow={ShowTranslateRow}");
+            sb.AppendLine($@"ShowUiRow={ShowUiRow}");
             //sb.AppendLine($@"ChangeTextColor={ChangeTextColor}");
             //sb.AppendLine($@"SizeCutscene={SizeCutscene}");
             //sb.AppendLine($@"SizeDialog={SizeDialog}");

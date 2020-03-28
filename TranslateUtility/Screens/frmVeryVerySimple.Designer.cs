@@ -84,6 +84,8 @@
             this.rdoDownloadOnce = new System.Windows.Forms.RadioButton();
             this.rdoDownloadAlt = new System.Windows.Forms.RadioButton();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.btnTranslateOnGoogleSheet = new System.Windows.Forms.Button();
+            this.btnTranslateOnWeb = new System.Windows.Forms.Button();
             this.chkStorybook = new System.Windows.Forms.CheckBox();
             this.chkRandomLoading = new System.Windows.Forms.CheckBox();
             this.chkBackupSetting = new System.Windows.Forms.CheckBox();
@@ -110,8 +112,6 @@
             this.txtGamePath = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.btnTranslateOnWeb = new System.Windows.Forms.Button();
-            this.btnTranslateOnGoogleSheet = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -265,13 +265,12 @@
             this.groupBox2.Controls.Add(this.chkTranslateInfo);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.groupBox2.Location = new System.Drawing.Point(475, 29);
+            this.groupBox2.Location = new System.Drawing.Point(2, 506);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(534, 60);
             this.groupBox2.TabIndex = 46;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "แสดงเลขบรรทัด";
-            this.groupBox2.Visible = false;
+            this.groupBox2.Text = "แสดงรหัสข้อความ Ex. (#12345678)";
             // 
             // chkUiInfo
             // 
@@ -422,7 +421,7 @@
             this.groupBox3.Controls.Add(this.btnResult);
             this.groupBox3.Controls.Add(this.btnRestore);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(2, 508);
+            this.groupBox3.Location = new System.Drawing.Point(2, 572);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(534, 60);
             this.groupBox3.TabIndex = 50;
@@ -471,6 +470,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnAdvance.Controls.Add(this.groupBox9);
             this.pnAdvance.Controls.Add(this.groupBox7);
+            this.pnAdvance.Controls.Add(this.groupBox2);
             this.pnAdvance.Controls.Add(this.groupBox6);
             this.pnAdvance.Controls.Add(this.groupBox5);
             this.pnAdvance.Controls.Add(this.groupBox8);
@@ -479,7 +479,7 @@
             this.pnAdvance.Controls.Add(this.groupBox3);
             this.pnAdvance.Location = new System.Drawing.Point(12, 100);
             this.pnAdvance.Name = "pnAdvance";
-            this.pnAdvance.Size = new System.Drawing.Size(539, 572);
+            this.pnAdvance.Size = new System.Drawing.Size(539, 639);
             this.pnAdvance.TabIndex = 52;
             // 
             // groupBox9
@@ -545,7 +545,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox7.Controls.Add(this.lblCustomTranslateCount);
             this.groupBox7.Controls.Add(this.btnAltSubSetting);
-            this.groupBox7.Controls.Add(this.groupBox2);
             this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.groupBox7.Location = new System.Drawing.Point(2, 440);
@@ -955,6 +954,28 @@
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "อื่นๆ";
             // 
+            // btnTranslateOnGoogleSheet
+            // 
+            this.btnTranslateOnGoogleSheet.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTranslateOnGoogleSheet.Location = new System.Drawing.Point(427, 13);
+            this.btnTranslateOnGoogleSheet.Name = "btnTranslateOnGoogleSheet";
+            this.btnTranslateOnGoogleSheet.Size = new System.Drawing.Size(98, 33);
+            this.btnTranslateOnGoogleSheet.TabIndex = 54;
+            this.btnTranslateOnGoogleSheet.Text = "แปลบน Sheet";
+            this.btnTranslateOnGoogleSheet.UseVisualStyleBackColor = true;
+            this.btnTranslateOnGoogleSheet.Click += new System.EventHandler(this.btnTranslateOnGoogleSheet_Click);
+            // 
+            // btnTranslateOnWeb
+            // 
+            this.btnTranslateOnWeb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTranslateOnWeb.Location = new System.Drawing.Point(323, 13);
+            this.btnTranslateOnWeb.Name = "btnTranslateOnWeb";
+            this.btnTranslateOnWeb.Size = new System.Drawing.Size(98, 33);
+            this.btnTranslateOnWeb.TabIndex = 53;
+            this.btnTranslateOnWeb.Text = "แปลบนเว็บ";
+            this.btnTranslateOnWeb.UseVisualStyleBackColor = true;
+            this.btnTranslateOnWeb.Click += new System.EventHandler(this.btnTranslateOnWeb_Click);
+            // 
             // chkStorybook
             // 
             this.chkStorybook.AutoSize = true;
@@ -1232,35 +1253,13 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(537, 45);
             this.tableLayoutPanel1.TabIndex = 57;
             // 
-            // btnTranslateOnWeb
-            // 
-            this.btnTranslateOnWeb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTranslateOnWeb.Location = new System.Drawing.Point(323, 13);
-            this.btnTranslateOnWeb.Name = "btnTranslateOnWeb";
-            this.btnTranslateOnWeb.Size = new System.Drawing.Size(98, 33);
-            this.btnTranslateOnWeb.TabIndex = 53;
-            this.btnTranslateOnWeb.Text = "แปลบนเว็บ";
-            this.btnTranslateOnWeb.UseVisualStyleBackColor = true;
-            this.btnTranslateOnWeb.Click += new System.EventHandler(this.btnTranslateOnWeb_Click);
-            // 
-            // btnTranslateOnGoogleSheet
-            // 
-            this.btnTranslateOnGoogleSheet.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTranslateOnGoogleSheet.Location = new System.Drawing.Point(427, 13);
-            this.btnTranslateOnGoogleSheet.Name = "btnTranslateOnGoogleSheet";
-            this.btnTranslateOnGoogleSheet.Size = new System.Drawing.Size(98, 33);
-            this.btnTranslateOnGoogleSheet.TabIndex = 54;
-            this.btnTranslateOnGoogleSheet.Text = "แปลบน Sheet";
-            this.btnTranslateOnGoogleSheet.UseVisualStyleBackColor = true;
-            this.btnTranslateOnGoogleSheet.Click += new System.EventHandler(this.btnTranslateOnGoogleSheet_Click);
-            // 
             // frmVeryVerySimple
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(563, 680);
+            this.ClientSize = new System.Drawing.Size(563, 740);
             this.Controls.Add(this.btnGamePath);
             this.Controls.Add(this.txtGamePath);
             this.Controls.Add(this.lblAdvance);
