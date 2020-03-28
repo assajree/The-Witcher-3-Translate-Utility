@@ -558,6 +558,9 @@ namespace TranslateUtility
             var newVersion = c.GetNewVersion(GetDownloadFrequency());
             if (newVersion != null)
             {
+                if(newVersion== "UNKNOW")
+                    newVersion = c.ReadUrl(Configs.WebTranslateVersionUrl, 0)?.Trim();
+
                 c.DownloadWebTranslateFile(newVersion);
             }
         }

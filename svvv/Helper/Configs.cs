@@ -1,10 +1,5 @@
 ﻿using svvv.Classes;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace svvv
@@ -24,8 +19,14 @@ namespace svvv
 
         public static bool IsGamer { get; set; } = false;
 
-        public const string WebTranslateUrl = "https://firebasestorage.googleapis.com/v0/b/w3tu-svvv.appspot.com/o/translate.json?alt=media";
-        public const string WebTranslateVersionUrl = "https://firebasestorage.googleapis.com/v0/b/w3tu-svvv.appspot.com/o/version.ini?alt=media";
+        // firebase storange
+        //public const string WebTranslateUrl = "https://firebasestorage.googleapis.com/v0/b/w3tu-svvv.appspot.com/o/translate.json?alt=media";
+        //public const string WebTranslateVersionUrl = "https://firebasestorage.googleapis.com/v0/b/w3tu-svvv.appspot.com/o/version.ini?alt=media";
+
+        // google drive
+        public const string WebTranslateUrl = "https://drive.google.com/uc?export=download&id=18EkKYhRGfHf0ifhNn3YretyFE02jCN3U";
+        public const string WebTranslateVersionUrl = "https://drive.google.com/uc?export=download&id=1XNs-djSnR5sYrqWDVHJS-F0uA2a6vBEj";
+
         public const string WebUrl = "https://w3tu-svvv.web.app";
         public const string GoogleSheetUrl = "https://docs.google.com/spreadsheets/d/1AZLkTTaUbRUnnx6tFeTD3YBLt4AIBgeGquRZP5oJVAE";
         public const string ApiKey = "AIzaSyDg03c_bkBM2Tw3TahE3Gei-vx0m--OeWU";
@@ -43,7 +44,7 @@ namespace svvv
         public const string modDoubleSubtitle = "modDoubleSubtitle";
         public const string modThaiLanguage = "modThaiLanguage"; // translate
         public const string modKuntoonFont = "modKuntoonW3thai_mod";
-        
+
 
         public static string CUSTOM_TRANSLATE_LABEL = "การแปลภาษาแบบปรับแต่ง";
 
@@ -65,7 +66,7 @@ namespace svvv
         public static string StartupPath = Application.StartupPath;
         public static string OutputPath = Path.Combine(StartupPath, "output");
 
-        public static string ToolsPath = Path.Combine(StartupPath,"Tools");
+        public static string ToolsPath = Path.Combine(StartupPath, "Tools");
         public static string TempPath = Path.Combine(StartupPath, "temp");
         public static string DownloadPath = Path.Combine(StartupPath, "download");
         public static string BackupPath = Path.Combine(StartupPath, "backup");
@@ -92,12 +93,12 @@ namespace svvv
 
         public static string TemplatePath = Path.Combine(ToolsPath, "Template");
         public static string TemplateFilePath = Path.Combine(TemplatePath, "template.xlsx");
-        public static string TemplateVersionPath = Path.Combine(TemplatePath, "version_template.ini");       
+        public static string TemplateVersionPath = Path.Combine(TemplatePath, "version_template.ini");
 
         public static string UpdaterZipPath = Path.Combine(StartupPath, "Tools", "updater.zip");
         public static string UpdaterDir = Path.Combine(StartupPath, "temp", "updater");
         public static string UpdaterPath = Path.Combine(UpdaterDir, "Updater.exe");
-       
+
 
         //public static string CustomTranslateFileId { get; private set; }        
         //public static string CustomTranslateFileName { get; private set; }        
