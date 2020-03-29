@@ -1533,7 +1533,7 @@ namespace TheWitcher3Thai
 
         private string GetMessageId(w3Strings w3s)
         {
-            return $@"#{w3s.RowNumber}";
+            return $@"#{w3s.IdKey}";
             //return $@"{w3s.SheetName}:{w3s.RowNumber:#,0}";
         }
 
