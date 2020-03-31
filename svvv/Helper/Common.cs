@@ -2899,8 +2899,11 @@ namespace TheWitcher3Thai
             }
         }
 
-        private bool IsAprilFoolDay()
+        public bool IsAprilFoolDay()
         {
+            if (Configs.GetAppSetting().EnableAprilFools == false)
+                return false;
+
             var date = DateTime.Now;
             return date.Day == 1 && date.Month == 4;
         }

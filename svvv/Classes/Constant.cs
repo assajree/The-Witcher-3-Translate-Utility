@@ -26,7 +26,7 @@ namespace svvv.Classes
         #endregion
 
         #region crack
-        public const string CRACK_MESSAGE = "อุ กริ๊ว";
+        public const string CRACK_MESSAGE = "อุกริ๊ว";
         public const string CRACK_LOADING_MESSAGE = "ยินดีต้อนรับสู่ด้านมืด...อุกริ๊ว";
 
         public const int CRACK_SUPER_LUCKY_CHANCE = 10;

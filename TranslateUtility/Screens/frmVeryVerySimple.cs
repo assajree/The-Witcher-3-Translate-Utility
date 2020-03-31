@@ -365,7 +365,11 @@ namespace TranslateUtility
 
         private void SetButtonText()
         {
-            if (Directory.Exists(Path.Combine(txtGamePath.Text, "mods", Configs.modThaiLanguage)))
+            if(c.IsAprilFoolDay())
+            {
+                btnLegacyGenerate.Text = Constant.CRACK_MESSAGE;
+            }
+            else if (Directory.Exists(Path.Combine(txtGamePath.Text, "mods", Configs.modThaiLanguage)))
             {
                 btnLegacyGenerate.Text = "อัปเดต";
             }
@@ -985,7 +989,16 @@ namespace TranslateUtility
 
         private void Debug()
         {
-            miDebug.Text = $@"{this.Height} x {this.Width}";
+            if (this.FormBorderStyle == FormBorderStyle.Sizable)
+                miDebug.Text = $@"{this.Height} x {this.Width}";
+            else
+                miDebug.Text="ปรับขนาด";
+
+            if (mAppSetting.EnableAprilFools)
+                miToggleAprilFools.Text = "ปิด April Fools";
+            else
+                miToggleAprilFools.Text = "เปิด April Fools";
+
         }
 
         private void miDebug_Click(object sender, EventArgs e)
@@ -1101,6 +1114,11 @@ namespace TranslateUtility
         private void btnTranslateOnGoogleSheet_Click(object sender, EventArgs e)
         {
             c.Open(Configs.GoogleSheetUrl);
+        }
+
+        private void miToggleAprilFools_Click(object sender, EventArgs e)
+        {
+            mAppSetting.EnableAprilFools = !mAppSetting.EnableAprilFools;
         }
     }
 }
