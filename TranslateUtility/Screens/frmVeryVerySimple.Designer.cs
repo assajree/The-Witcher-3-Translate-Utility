@@ -1063,7 +1063,7 @@
             this.rdoFontMahaniyom.AutoSize = true;
             this.rdoFontMahaniyom.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdoFontMahaniyom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.rdoFontMahaniyom.Location = new System.Drawing.Point(150, 24);
+            this.rdoFontMahaniyom.Location = new System.Drawing.Point(25, 50);
             this.rdoFontMahaniyom.Name = "rdoFontMahaniyom";
             this.rdoFontMahaniyom.Size = new System.Drawing.Size(73, 21);
             this.rdoFontMahaniyom.TabIndex = 3;
@@ -1097,26 +1097,26 @@
             // rdoFontCsPrakas
             // 
             this.rdoFontCsPrakas.AutoSize = true;
+            this.rdoFontCsPrakas.Checked = true;
             this.rdoFontCsPrakas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdoFontCsPrakas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.rdoFontCsPrakas.Location = new System.Drawing.Point(26, 50);
+            this.rdoFontCsPrakas.Location = new System.Drawing.Point(26, 24);
             this.rdoFontCsPrakas.Name = "rdoFontCsPrakas";
             this.rdoFontCsPrakas.Size = new System.Drawing.Size(69, 21);
             this.rdoFontCsPrakas.TabIndex = 3;
+            this.rdoFontCsPrakas.TabStop = true;
             this.rdoFontCsPrakas.Text = "ประกาศ";
             this.rdoFontCsPrakas.UseVisualStyleBackColor = true;
             // 
             // rdoFontSarabun
             // 
             this.rdoFontSarabun.AutoSize = true;
-            this.rdoFontSarabun.Checked = true;
             this.rdoFontSarabun.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdoFontSarabun.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.rdoFontSarabun.Location = new System.Drawing.Point(26, 24);
+            this.rdoFontSarabun.Location = new System.Drawing.Point(150, 24);
             this.rdoFontSarabun.Name = "rdoFontSarabun";
             this.rdoFontSarabun.Size = new System.Drawing.Size(64, 21);
             this.rdoFontSarabun.TabIndex = 2;
-            this.rdoFontSarabun.TabStop = true;
             this.rdoFontSarabun.Text = "สารบัญ";
             this.rdoFontSarabun.UseVisualStyleBackColor = true;
             // 

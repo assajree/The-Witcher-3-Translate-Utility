@@ -23,7 +23,7 @@ namespace svvv.Classes
         //public bool ChangeTextColor { get; set; } = true;
         //public int SizeCutscene { get; set; } = 34;
         //public int SizeDialog { get; set; } = 34;
-        public eFontSetting FontSetting { get; set; } = eFontSetting.Sarabun;        
+        public eFontSetting FontSetting { get; set; } = eFontSetting.CSPraKas;        
         public eDownloadFrequency DownloadFrequency { get; set; } = eDownloadFrequency.Once;
         public eCompatibilityLevel CompatibilityLevel { get; set; } = eCompatibilityLevel.Normal;
         public string GamePath { get; set; } = "";
@@ -152,7 +152,7 @@ namespace svvv.Classes
                     ShowUiRow = value.ToBoolean(false);
                     break;               
                 case "FontSetting":
-                    FontSetting = value.ToFontSetting(eFontSetting.Sarabun);
+                    FontSetting = value.ToFontSetting(eFontSetting.CSPraKas);
                     break;
                 //case "ChangeTextColor":
                 //    ChangeTextColor = value.ToBoolean(true);
