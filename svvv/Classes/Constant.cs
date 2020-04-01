@@ -27,10 +27,11 @@ namespace svvv.Classes
 
         #region crack
         public const string CRACK_MESSAGE = "อุกริ๊ว";
-        public const string CRACK_LOADING_MESSAGE = "ยินดีต้อนรับสู่ด้านมืด...อุกริ๊ว";
+        public const string CRACK_LOADING_MESSAGE = "คุณช่างโชคดีอะไรอย่างนี้...";
+        public const string SUPER_CRACK_LOADING_MESSAGE = "ทำบุญบ้างก็ดีนะ...";
 
         public const int CRACK_SUPER_LUCKY_CHANCE = 10;
-        public const int CRACK_LUCKY_CHANCE = 20;
+        public const int CRACK_LUCKY_CHANCE = 50;
 
         public const string LOADING_MESSAGE = "ม็อดภาษาไทยแจกฟรีห้ามจำหน่าย...";
         #endregion

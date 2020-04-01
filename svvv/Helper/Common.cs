@@ -2880,17 +2880,20 @@ namespace TheWitcher3Thai
             //if (!Configs.IsGamer || IsAprilFoolDay())
             if (IsAprilFoolDay())
             {
-                var msg = setting.GetCrackLoadingMessage();
-                var msgIndex = GetCrackLoadingMessage(msg);
+                int luck = GetLuck();
+                //var msg = setting.GetCrackLoadingMessage();
+                //var msgIndex = GetCrackLoadingMessage(msg);
 
                 // witcher sense
                 if (dict.ContainsKey("1083252"))
                     SetMessage(dict["1083252"], Constant.CRACK_MESSAGE);
 
+                // loading
                 if (dict.ContainsKey("1066019"))
-                    SetMessage(dict["1066019"], msg[msgIndex]);
+                    //SetMessage(dict["1066019"], msg[msgIndex]);
+                    SetMessage(dict["1066019"], $@"โชคของคุณคือ {luck}/100");
 
-                int luck = GetLuck();
+                
                 if (luck < Constant.CRACK_SUPER_LUCKY_CHANCE)
                     AddSuperCrackBonus(dict);
                 else if (luck < Constant.CRACK_LUCKY_CHANCE)
@@ -2923,6 +2926,9 @@ namespace TheWitcher3Thai
                 msg.Translate += " " + Constant.CRACK_MESSAGE;
                 msg.Text += " " + Constant.CRACK_MESSAGE;
             }
+
+            if (dict.ContainsKey("1066019"))
+                SetMessage(dict["1066019"], Constant.CRACK_LOADING_MESSAGE);
         }
 
         private void AddSuperCrackBonus(Dictionary<string, w3Strings> dict)
@@ -2934,7 +2940,7 @@ namespace TheWitcher3Thai
             }
 
             if (dict.ContainsKey("1066019"))
-                SetMessage(dict["1066019"], Constant.CRACK_LOADING_MESSAGE);
+                SetMessage(dict["1066019"], Constant.SUPER_CRACK_LOADING_MESSAGE);
         }
 
         private string GetBonusMessage(w3Strings msg)
@@ -2989,8 +2995,8 @@ namespace TheWitcher3Thai
 
             list.Add(Constant.LOADING_MESSAGE);
             list.Add("แจกฟรี แจกฟรี แจกฟรี");
-            list.Add("แจกฟรี แจกฟรี แจกฟรี๊");
-            list.Add("ม็อดภาษาไทยของแท้ต้องแจกฟรีเท่านั้นๆๆ");
+            list.Add("แจกฟรี แจกฟรี๊ แจกฟรี");
+            list.Add("ม็อดภาษาไทยของแท้ต้องแจกฟรีเท่านั้น...");
             //list.Add("รักนะ ถึงทำให้เล่นฟรีๆเนี่ย");
 
             return list;
