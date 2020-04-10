@@ -108,11 +108,11 @@
             this.miChangeLog = new System.Windows.Forms.ToolStripMenuItem();
             this.miCredit = new System.Windows.Forms.ToolStripMenuItem();
             this.miDebug = new System.Windows.Forms.ToolStripMenuItem();
+            this.miToggleAprilFools = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.txtGamePath = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.miToggleAprilFools = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -1010,9 +1010,9 @@
             this.chkBackupSetting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.chkBackupSetting.Location = new System.Drawing.Point(149, 22);
             this.chkBackupSetting.Name = "chkBackupSetting";
-            this.chkBackupSetting.Size = new System.Drawing.Size(129, 21);
+            this.chkBackupSetting.Size = new System.Drawing.Size(127, 21);
             this.chkBackupSetting.TabIndex = 38;
-            this.chkBackupSetting.Text = "สำรองไฟล์ setting";
+            this.chkBackupSetting.Text = "แก้ไขไฟล์ setting";
             this.chkBackupSetting.UseVisualStyleBackColor = true;
             // 
             // groupBox4
@@ -1171,21 +1171,21 @@
             // miLog
             // 
             this.miLog.Name = "miLog";
-            this.miLog.Size = new System.Drawing.Size(152, 22);
+            this.miLog.Size = new System.Drawing.Size(147, 22);
             this.miLog.Text = "Log";
             this.miLog.Click += new System.EventHandler(this.miLog_Click);
             // 
             // miUpdate
             // 
             this.miUpdate.Name = "miUpdate";
-            this.miUpdate.Size = new System.Drawing.Size(152, 22);
+            this.miUpdate.Size = new System.Drawing.Size(147, 22);
             this.miUpdate.Text = "อัพเดทโปรแกรม";
             this.miUpdate.Click += new System.EventHandler(this.miUpdate_Click);
             // 
             // miTranslateProgress
             // 
             this.miTranslateProgress.Name = "miTranslateProgress";
-            this.miTranslateProgress.Size = new System.Drawing.Size(152, 22);
+            this.miTranslateProgress.Size = new System.Drawing.Size(147, 22);
             this.miTranslateProgress.Text = "ข้อมูลการแปล";
             this.miTranslateProgress.Visible = false;
             this.miTranslateProgress.Click += new System.EventHandler(this.miTranslateProgress_Click);
@@ -1193,7 +1193,7 @@
             // miMessageFinder
             // 
             this.miMessageFinder.Name = "miMessageFinder";
-            this.miMessageFinder.Size = new System.Drawing.Size(152, 22);
+            this.miMessageFinder.Size = new System.Drawing.Size(147, 22);
             this.miMessageFinder.Text = "ค้นหาข้อความ";
             this.miMessageFinder.Visible = false;
             this.miMessageFinder.Click += new System.EventHandler(this.miMessageFinder_Click);
@@ -1202,23 +1202,30 @@
             // 
             this.miChangeLog.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.miChangeLog.Name = "miChangeLog";
-            this.miChangeLog.Size = new System.Drawing.Size(152, 22);
+            this.miChangeLog.Size = new System.Drawing.Size(147, 22);
             this.miChangeLog.Text = "การเปลี่ยนแปลง";
             this.miChangeLog.Click += new System.EventHandler(this.miChangeLog_Click);
             // 
             // miCredit
             // 
             this.miCredit.Name = "miCredit";
-            this.miCredit.Size = new System.Drawing.Size(152, 22);
+            this.miCredit.Size = new System.Drawing.Size(147, 22);
             this.miCredit.Text = "เครดิต";
             this.miCredit.Click += new System.EventHandler(this.miCredit_Click);
             // 
             // miDebug
             // 
             this.miDebug.Name = "miDebug";
-            this.miDebug.Size = new System.Drawing.Size(152, 22);
+            this.miDebug.Size = new System.Drawing.Size(147, 22);
             this.miDebug.Text = "debug";
             this.miDebug.Click += new System.EventHandler(this.miDebug_Click);
+            // 
+            // miToggleAprilFools
+            // 
+            this.miToggleAprilFools.Name = "miToggleAprilFools";
+            this.miToggleAprilFools.Size = new System.Drawing.Size(147, 22);
+            this.miToggleAprilFools.Text = "ปิด April Fools";
+            this.miToggleAprilFools.Click += new System.EventHandler(this.miToggleAprilFools_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -1254,13 +1261,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(537, 45);
             this.tableLayoutPanel1.TabIndex = 57;
-            // 
-            // miToggleAprilFools
-            // 
-            this.miToggleAprilFools.Name = "miToggleAprilFools";
-            this.miToggleAprilFools.Size = new System.Drawing.Size(152, 22);
-            this.miToggleAprilFools.Text = "ปิด April Fools";
-            this.miToggleAprilFools.Click += new System.EventHandler(this.miToggleAprilFools_Click);
             // 
             // frmVeryVerySimple
             // 

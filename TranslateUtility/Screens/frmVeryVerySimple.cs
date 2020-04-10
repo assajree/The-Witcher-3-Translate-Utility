@@ -140,7 +140,7 @@ namespace TranslateUtility
 
             if (c.IsPirate())
             {
-                c.Processing(AttackPirate, "กำลังทำอะไรซักอย่าง", "ขออภัยอย่างสูง ลูกพี่บอกว่าคุณไม่ได้ติดตั้ง The Witcher 3 อย่างถูกต้อง หากมั่นใจว่าคุณเล่นเกมแท้อยู่กรุณาติดต่อลูกพี่เพื่อให้แก้ไขโปรแกรม");
+                c.Processing(AttackPirate, "กำลังทำอะไรซักอย่าง", "ขออภัยอย่างสูง ฉันพบว่าคุณไม่ได้ติดตั้ง The Witcher 3 อย่างถูกต้อง ซื้อเกมมาอย่างถูกต้องแล้วเห็นข้อความนี้ กรุณาแจ้งผู้พัฒนาเพื่อให้ทำการแก้ไข");
                 this.Close();
             }
 
@@ -505,6 +505,12 @@ namespace TranslateUtility
         private void StartAlt()
         {
             SaveAppSetting();
+
+            if(chkBackupSetting.Checked==false)
+            {
+                if (!c.ShowConfirm("คุณไม่ได้ตั้งค่าให้ฉันแก้ไขไฟล์ setting ให้ ดังนั้นก่อนการเล่นเกมครั้งแรก คุณต้องไปตั้งค่าภาษาในเกมให้เป็นภาษาไทยด้วยตัวเองก่อนนะจ๊ะ", "ต้องตั้งค่าก่อนภาษาเองนะ"))
+                    return;
+            }
 
             bool oldMethod = chkOldMethod.Checked;
 

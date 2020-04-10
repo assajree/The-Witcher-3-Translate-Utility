@@ -462,9 +462,7 @@ namespace TheWitcher3Thai
 
         public void ShowErrorMessage(Exception ex, string caption = "Error")
         {
-            Logger.Log(ex);
-            var dlg = new ErrorDialog(ex);
-            dlg.ShowDialog();
+
 
             //var b = ex.GetBaseException();
             //var message = b.Message;
@@ -473,6 +471,19 @@ namespace TheWitcher3Thai
             //    message += "\n\n" + b.StackTrace.Trim();
 
             //MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            if (ex is KnowException)
+            {
+                var error = ex as KnowException;
+                MessageBox.Show(error.Text, error.Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                Logger.Log(ex);
+                var dlg = new ErrorDialog(ex);
+                dlg.ShowDialog();
+            }
+            
         }
 
         public string DownloadLegacyExcel(string initialPath, bool showSaveDialog, eDownloadFrequency frequency = eDownloadFrequency.Hour)
@@ -4333,6 +4344,9 @@ namespace TheWitcher3Thai
 
         private void ChangeLanguageSetting(string fromLangCode, string toLangCode)
         {
+            if (Configs.GetAppSetting().BackupSetting == false)
+                return;
+
             Logger.Log("Start change user setting");
             var settingPath = Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
@@ -4354,21 +4368,29 @@ namespace TheWitcher3Thai
                 return;
 
             // backup old setting
-            if (Configs.GetAppSetting().BackupSetting)
-            {
+            //if (Configs.GetAppSetting().BackupSetting)
+            //{
                 Logger.Log("Backup user setting");
                 CopyFile(
                     settingPath,
                     settingPath + $@".{DateTime.Now.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture)}.bak"
                 );
-            }
+            //}
 
             Logger.Log($@"Change language setting from {fromLangCode} to {toLangCode}");
             content = content.Replace($@"RequestedTextLanguage={fromLangCode}", $@"RequestedTextLanguage={toLangCode}");
             content = content.Replace($@"TextLanguage={fromLangCode}", $@"TextLanguage={toLangCode}");
 
             Logger.Log("Write user setting");
-            File.WriteAllText(settingPath, content);
+
+            try
+            {
+                File.WriteAllText(settingPath, content);
+            }
+            catch(Exception ex)
+            {
+                throw new KnowException($@"กรุณตรวจสอบไฟล์ setting ที่ {settingPath} ว่าสามารถเขียนได้ (ไม่เป็น read only) หรือ ติิ๊กออปชั่น ""แก้ไขไฟล์ setting"" ออก แล้วลอง ติดตั้ง/อัปเดต อีกครั้ง ", "ไม่สามารถแก้ไขไฟล์ setting ได้");
+            }
 
         }
 
