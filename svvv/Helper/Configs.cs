@@ -53,15 +53,25 @@ namespace svvv
         public const string Separator = "  ";
 
         public const string W3eeFileId = "1HehSmP7ukMpBhs_V85JULB0b2GUpkOsFC8xu7VfcycQ";
-        public const string UpdateFileId = "1HOmaK3jaI2oW194CvyDXlzZBUEoWzGbU";
-        public const string VersionFileId = "1dChsKp641mD3EPREqSZTN_yxlu9KFXJP";
-        public const string StorybookFileId = "132FnSeYLJAQamrTptaEVtqfwqiOzdHRj";
-        public const string StorybookVersionFileId = "1TGw2rDafTr0ObM-7Bvzd3S6pIgLbrnjW";
-        public const string TemplateFileId = "1QPvUzSLTJ4GRy552BLH1l4hZOPcWq8wb";
-        public const string TemplateVersionFileId = "1bZwJvkY1APBNTSS5Y3kmzt8n9_2P8guj";
-        public const string DefaultCustomTranslateFileId = "1X2VOm21x5ow_duSutaXV3AsCdz2YT1RVZZQoiPZHp14";
-        public const string AltTranslateFileId = "1zSuaHmVYN0lTPhf79iBLHp1J2pLsrmrrU1qtMIgKAqY";
-        public const string AltTranslateVersionFileId = "1hkD9fyAHdmk4J43tNGxAeCfptUwEwLmy";
+        //public const string UpdateFileId = "1HOmaK3jaI2oW194CvyDXlzZBUEoWzGbU";
+        //public const string VersionFileId = "1dChsKp641mD3EPREqSZTN_yxlu9KFXJP";
+        //public const string StorybookFileId = "132FnSeYLJAQamrTptaEVtqfwqiOzdHRj";       
+        //public const string StorybookVersionFileId = "1TGw2rDafTr0ObM-7Bvzd3S6pIgLbrnjW";
+        //public const string TemplateFileId = "1QPvUzSLTJ4GRy552BLH1l4hZOPcWq8wb";
+        //public const string TemplateVersionFileId = "1bZwJvkY1APBNTSS5Y3kmzt8n9_2P8guj";
+        //public const string DefaultCustomTranslateFileId = "1X2VOm21x5ow_duSutaXV3AsCdz2YT1RVZZQoiPZHp14";
+        //public const string AltTranslateFileId = "1zSuaHmVYN0lTPhf79iBLHp1J2pLsrmrrU1qtMIgKAqY";
+        //public const string AltTranslateVersionFileId = "1hkD9fyAHdmk4J43tNGxAeCfptUwEwLmy";
+
+        public const string UpdateFileUrl = "https://firebasestorage.googleapis.com/v0/b/w3tu-svvv.appspot.com/o/w3tu.zip?alt=media";
+        public const string VersionFileUrl = "https://firebasestorage.googleapis.com/v0/b/w3tu-svvv.appspot.com/o/version.ini?alt=media";
+        public const string StorybookUrl = "https://firebasestorage.googleapis.com/v0/b/w3tu-svvv.appspot.com/o/modThaiStoryBook.zip?alt=media";
+        public const string StorybookVersionUrl = "https://firebasestorage.googleapis.com/v0/b/w3tu-svvv.appspot.com/o/version_storybook.ini?alt=media";
+        public const string TemplateUrl = "https://firebasestorage.googleapis.com/v0/b/w3tu-svvv.appspot.com/o/Template.zip?alt=media";
+        public const string TemplateVersionUrl = "https://firebasestorage.googleapis.com/v0/b/w3tu-svvv.appspot.com/o/version_template.ini?alt=media";
+
+
+
 
         public static string StartupPath = Application.StartupPath;
         public static string OutputPath = Path.Combine(StartupPath, "output");

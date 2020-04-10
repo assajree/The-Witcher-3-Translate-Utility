@@ -43,7 +43,7 @@ namespace TranslateUtility.Screens
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            txtFileId.Text = Configs.DefaultCustomTranslateFileId;
+            //txtFileId.Text = Configs.DefaultCustomTranslateFileId;
         }
 
         private void btnOpen_Click(object sender, EventArgs e)

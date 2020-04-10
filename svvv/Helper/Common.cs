@@ -423,7 +423,7 @@ namespace TheWitcher3Thai
 
             // download
             string downloadPath = Path.Combine(Configs.TempPath, "modThaiStoryBook.zip");
-            if (!DownloadGoogleFile(Configs.StorybookFileId, downloadPath))
+            if (!DownloadFileBool(Configs.StorybookUrl, downloadPath))
             {
                 //ShowErrorMessage("การอัพเดทถูกยกเลิก");
                 return false;
@@ -446,7 +446,7 @@ namespace TheWitcher3Thai
 
             // download
             string downloadPath = Path.Combine(Configs.TempPath, "Template.zip");
-            if (!DownloadGoogleFile(Configs.TemplateFileId, downloadPath))
+            if (!DownloadFileBool(Configs.TemplateUrl, downloadPath))
             {
                 //ShowErrorMessage("การอัพเดทถูกยกเลิก");
                 return false;
@@ -1690,7 +1690,8 @@ namespace TheWitcher3Thai
         {
             try
             {
-                string url = GetGoogleDownloadUrl(Configs.VersionFileId);
+                //string url = GetGoogleDownloadUrl(Configs.VersionFileId);
+                string url = Configs.VersionFileUrl;
                 var client = new WebClient();
                 var data = client.DownloadData(url);
                 var stream = new StreamReader(new MemoryStream(data));
@@ -1715,7 +1716,8 @@ namespace TheWitcher3Thai
 
         public string GetVersionStorybook()
         {
-            string url = GetGoogleDownloadUrl(Configs.StorybookVersionFileId);
+            //string url = GetGoogleDownloadUrl(Configs.StorybookVersionFileId);
+            string url = Configs.StorybookVersionUrl;
             var client = new WebClient();
             var data = client.DownloadData(url);
             var stream = new StreamReader(new MemoryStream(data));
@@ -1735,13 +1737,19 @@ namespace TheWitcher3Thai
 
         public string GetVersionTemplate()
         {
-            string version = ReadGoogleFileContent(Configs.TemplateVersionFileId);
+            string version = ReadWebFileContent(Configs.TemplateVersionUrl);
             return version;
         }
 
         public string ReadGoogleFileContent(string fileId)
         {
             string url = GetGoogleDownloadUrl(fileId);
+            var content = ReadWebFileContent(url);
+            return content;
+        }
+
+        public string ReadWebFileContent(string url)
+        {
             var client = new WebClient();
             var data = client.DownloadData(url);
             var stream = new StreamReader(new MemoryStream(data));
@@ -1835,6 +1843,24 @@ namespace TheWitcher3Thai
                 var result = dlg.ShowDialog();
                 return result;
             }
+        }
+
+        public Boolean DownloadFileBool(string url, string saveToPath)
+        {
+            var fileName = Path.GetFileName(saveToPath);
+            var tmpPath = Path.Combine(Configs.TempPath, fileName);
+            var result = DownloadFile(url, tmpPath);
+            if (result == DialogResult.OK)
+            {
+                if (!File.Exists(tmpPath))
+                    return false;
+
+                CopyFile(tmpPath, saveToPath);
+
+                return true;
+            }
+            else
+                return false;
         }
 
         public void ExtractFile(string zipPath, string outputPath)

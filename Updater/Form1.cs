@@ -67,7 +67,7 @@ namespace Updater
             //if (!NeedUpdate())
             //    return;
 
-            if (!c.DownloadGoogleFile(Configs.UpdateFileId, zipPath))
+            if (!c.DownloadFileBool(Configs.UpdateFileUrl, zipPath))
             {
                 c.ShowErrorMessage("การอัพเดทถูกยกเลิก");
                 return;

@@ -588,20 +588,20 @@ namespace TranslateUtility
 
         private void DownloadTranslateFile()
         {
-            if (rdoDownloadAlt.Checked)
-            {
-                translatePath = Path.Combine(Configs.DownloadPath, "translate_alt.xlsx");
-                if (c.CheckVersion(Configs.AltTranslateVersion, Configs.AltTranslateVersionFileId))
-                {
-                    if (c.DownloadGoogleSheetFile(Configs.AltTranslateFileId, translatePath))
-                        c.WriteVersion(Configs.AltTranslateVersion, Configs.AltTranslateVersionFileId);
-                }
-            }
-            else
-            {
+            //if (rdoDownloadAlt.Checked)
+            //{
+            //    translatePath = Path.Combine(Configs.DownloadPath, "translate_alt.xlsx");
+            //    if (c.CheckVersion(Configs.AltTranslateVersion, Configs.AltTranslateVersionFileId))
+            //    {
+            //        if (c.DownloadGoogleSheetFile(Configs.AltTranslateFileId, translatePath))
+            //            c.WriteVersion(Configs.AltTranslateVersion, Configs.AltTranslateVersionFileId);
+            //    }
+            //}
+            //else
+            //{
                 translatePath = Path.Combine(Configs.DownloadPath, "translate.xlsx");
                 translatePath = c.DownloadLegacyExcel(translatePath, false, GetDownloadFrequency());
-            }
+            //}
         }
 
         private void lblAdvance_Click(object sender, EventArgs e)
