@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.28307.489
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "svvv", "svvv\svvv.csproj", "{D9ECDEAD-56FE-476B-B7AA-6895272BA35B}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageFinder", "MessageFinder\MessageFinder.csproj", "{B428FB56-5E23-4883-B31A-79E74F24878E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StorybookTools", "StorybookTools\StorybookTools.csproj", "{9576C6FF-CDF9-46B8-92F0-895193903494}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "w3tu", "w3tu\w3tu.csproj", "{BB216111-24E5-4899-ADCE-8CF6AFEFB5F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{9576C6FF-CDF9-46B8-92F0-895193903494}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9576C6FF-CDF9-46B8-92F0-895193903494}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9576C6FF-CDF9-46B8-92F0-895193903494}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB216111-24E5-4899-ADCE-8CF6AFEFB5F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB216111-24E5-4899-ADCE-8CF6AFEFB5F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB216111-24E5-4899-ADCE-8CF6AFEFB5F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB216111-24E5-4899-ADCE-8CF6AFEFB5F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
