@@ -71,7 +71,11 @@ namespace TheWitcher3Thai
                 fi.Directory.Create();
 
             client.DownloadFileAsync(new Uri(Url), SavePath);
-        }
+
+            //client.DownloadFile(new Uri(Url), SavePath);
+            //this.DialogResult = DialogResult.OK;
+            //this.Close();
+    }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {

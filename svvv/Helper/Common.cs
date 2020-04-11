@@ -1855,7 +1855,8 @@ namespace TheWitcher3Thai
                 if (!File.Exists(tmpPath))
                     return false;
 
-                CopyFile(tmpPath, saveToPath);
+                if(tmpPath!= saveToPath)
+                    CopyFile(tmpPath, saveToPath);
 
                 return true;
             }
