@@ -18,15 +18,8 @@ namespace svvv
         }
 
         public static bool IsGamer { get; set; } = false;
-
-        // firebase storange
-        //public const string WebTranslateUrl = "https://firebasestorage.googleapis.com/v0/b/w3tu-svvv.appspot.com/o/translate.json?alt=media";
-        //public const string WebTranslateVersionUrl = "https://firebasestorage.googleapis.com/v0/b/w3tu-svvv.appspot.com/o/version.ini?alt=media";
-
-        // google drive
-        public const string WebTranslateUrl = "https://drive.google.com/uc?export=download&id=18EkKYhRGfHf0ifhNn3YretyFE02jCN3U";
-        public const string WebTranslateVersionUrl = "https://drive.google.com/uc?export=download&id=1XNs-djSnR5sYrqWDVHJS-F0uA2a6vBEj";
-
+        
+        
         public const string WebUrl = "https://w3tu-svvv.web.app";
         public const string GoogleSheetUrl = "https://docs.google.com/spreadsheets/d/1AZLkTTaUbRUnnx6tFeTD3YBLt4AIBgeGquRZP5oJVAE";
         public const string ApiKey = "AIzaSyDg03c_bkBM2Tw3TahE3Gei-vx0m--OeWU";
@@ -64,19 +57,35 @@ namespace svvv
         //public const string AltTranslateFileId = "1zSuaHmVYN0lTPhf79iBLHp1J2pLsrmrrU1qtMIgKAqY";
         //public const string AltTranslateVersionFileId = "1hkD9fyAHdmk4J43tNGxAeCfptUwEwLmy";
 
+        //// firebase
         //public const string UpdateFileUrl = "https://firebasestorage.googleapis.com/v0/b/w3tu-svvv.appspot.com/o/w3tu.zip?alt=media";
         //public const string VersionFileUrl = "https://firebasestorage.googleapis.com/v0/b/w3tu-svvv.appspot.com/o/version.ini?alt=media";
         //public const string StorybookUrl = "https://firebasestorage.googleapis.com/v0/b/w3tu-svvv.appspot.com/o/modThaiStoryBook.zip?alt=media";
         //public const string StorybookVersionUrl = "https://firebasestorage.googleapis.com/v0/b/w3tu-svvv.appspot.com/o/version_storybook.ini?alt=media";
         //public const string TemplateUrl = "https://firebasestorage.googleapis.com/v0/b/w3tu-svvv.appspot.com/o/Template.zip?alt=media";
         //public const string TemplateVersionUrl = "https://firebasestorage.googleapis.com/v0/b/w3tu-svvv.appspot.com/o/version_template.ini?alt=media";
+        //public const string WebTranslateUrl = "https://firebasestorage.googleapis.com/v0/b/w3tu-svvv.appspot.com/o/translate.json?alt=media";
+        //public const string WebTranslateVersionUrl = "https://firebasestorage.googleapis.com/v0/b/w3tu-svvv.appspot.com/o/version.ini?alt=media";
 
-        public const string UpdateFileUrl =         "https://drive.google.com/uc?export=download&id=1HOmaK3jaI2oW194CvyDXlzZBUEoWzGbU";
-        public const string VersionFileUrl =        "https://drive.google.com/uc?export=download&id=1dChsKp641mD3EPREqSZTN_yxlu9KFXJP";
-        public const string StorybookUrl =          "https://drive.google.com/uc?export=download&id=132FnSeYLJAQamrTptaEVtqfwqiOzdHRj";
-        public const string StorybookVersionUrl =   "https://drive.google.com/uc?export=download&id=1TGw2rDafTr0ObM-7Bvzd3S6pIgLbrnjW";
-        public const string TemplateUrl =           "https://drive.google.com/uc?export=download&id=1QPvUzSLTJ4GRy552BLH1l4hZOPcWq8wb";
-        public const string TemplateVersionUrl =    "https://drive.google.com/uc?export=download&id=1bZwJvkY1APBNTSS5Y3kmzt8n9_2P8guj";
+        // google drive
+        public const string UpdateFileUrl = "https://drive.google.com/uc?export=download&id=1HOmaK3jaI2oW194CvyDXlzZBUEoWzGbU";
+        public const string VersionFileUrl = "https://drive.google.com/uc?export=download&id=1dChsKp641mD3EPREqSZTN_yxlu9KFXJP";
+        public const string StorybookUrl = "https://drive.google.com/uc?export=download&id=132FnSeYLJAQamrTptaEVtqfwqiOzdHRj";
+        public const string StorybookVersionUrl = "https://drive.google.com/uc?export=download&id=1TGw2rDafTr0ObM-7Bvzd3S6pIgLbrnjW";
+        public const string TemplateUrl = "https://drive.google.com/uc?export=download&id=1QPvUzSLTJ4GRy552BLH1l4hZOPcWq8wb";
+        public const string TemplateVersionUrl = "https://drive.google.com/uc?export=download&id=1bZwJvkY1APBNTSS5Y3kmzt8n9_2P8guj";
+        public const string WebTranslateUrl = "https://drive.google.com/uc?export=download&id=18EkKYhRGfHf0ifhNn3YretyFE02jCN3U";
+        public const string WebTranslateVersionUrl = "https://drive.google.com/uc?export=download&id=1XNs-djSnR5sYrqWDVHJS-F0uA2a6vBEj";
+
+        //// kku google drive
+        //public const string UpdateFileUrl = "https://drive.google.com/uc?export=download&id=1sy5x2rpS-6CbiEeMnoeliaN7-wQCLzpf";
+        //public const string VersionFileUrl = "https://drive.google.com/uc?export=download&id=1jwJv8F1jWiARzXr7pO3gHw80L3wSAjXg";
+        //public const string StorybookUrl = "https://drive.google.com/uc?export=download&id=1bNrdEjreAX4y0ueZtIgwTBBhpV0lLGRa";
+        //public const string StorybookVersionUrl = "https://drive.google.com/uc?export=download&id=1B5pbaz5OITOwSM_1Mcne7sWa7VxEF2Yz";
+        //public const string TemplateUrl = "https://drive.google.com/uc?export=download&id=1pi233l13PRG-powIwtsb32uEERlP6_eI";
+        //public const string TemplateVersionUrl = "https://drive.google.com/uc?export=download&id=1_Zzu3ClH5khvQ22XLoa_QaSq8ay2Sq4G";
+        //public const string WebTranslateUrl = "https://drive.google.com/uc?export=download&id=1JJmp5FG8hKSR0kFnwv6Gdy7LYhKSuSrB";
+        //public const string WebTranslateVersionUrl = "https://drive.google.com/uc?export=download&id=1B5pbaz5OITOwSM_1Mcne7sWa7VxEF2Yz";
 
 
 

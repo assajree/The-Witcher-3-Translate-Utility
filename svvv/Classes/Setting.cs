@@ -1,6 +1,7 @@
 ﻿using svvv;
 using svvv.Classes;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace TheWitcher3Thai
@@ -228,7 +229,9 @@ namespace TheWitcher3Thai
             mCustomTranslate.Add(new CustomTranslateItem(false, "19uVPHxzMBwCxpnjKqakNkBqxSOm2CH173L4wpwiUjS0", null));
 
             // w3ee
-            mCustomTranslate.Add(new CustomTranslateItem(false, Configs.W3eeFileId, null));
+            var w3eePath= Path.Combine(Configs.GetAppSetting().GamePath,"mods","modW3EEMain");
+            if (Directory.Exists(w3eePath))
+                mCustomTranslate.Add(new CustomTranslateItem(false, Configs.W3eeFileId, null));
 
             return mCustomTranslate;
         }
