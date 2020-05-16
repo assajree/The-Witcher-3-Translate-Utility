@@ -60,6 +60,12 @@ namespace TranslateUtility
         {
             //mExpandHeight = this.Height;           
             CheckForUpdate(false);
+
+            if (c.IsPirate())
+            {
+                c.Processing(AttackPirate, "กำลังทำอะไรซักอย่าง", "ขออภัยอย่างสูง ฉันพบว่าคุณไม่ได้ติดตั้ง The Witcher 3 อย่างถูกต้อง ซื้อเกมมาอย่างถูกต้องแล้วเห็นข้อความนี้ กรุณาแจ้งผู้พัฒนาเพื่อให้ทำการแก้ไข");
+                this.Close();
+            }
         }
 
         //private void ReadCustomTranslateDescription()
@@ -136,13 +142,7 @@ namespace TranslateUtility
             LoadSetting();
 
             SaveAppSetting();
-            RefreshCustomTranslateCount();
-
-            if (c.IsPirate())
-            {
-                c.Processing(AttackPirate, "กำลังทำอะไรซักอย่าง", "ขออภัยอย่างสูง ฉันพบว่าคุณไม่ได้ติดตั้ง The Witcher 3 อย่างถูกต้อง ซื้อเกมมาอย่างถูกต้องแล้วเห็นข้อความนี้ กรุณาแจ้งผู้พัฒนาเพื่อให้ทำการแก้ไข");
-                this.Close();
-            }
+            RefreshCustomTranslateCount();           
 
         }
 
@@ -506,11 +506,11 @@ namespace TranslateUtility
         {
             SaveAppSetting();
 
-            //if(chkBackupSetting.Checked==false)
-            //{
-            //    if (!c.ShowConfirm("คุณไม่ได้ตั้งค่าให้ฉันแก้ไขไฟล์ setting ให้ ดังนั้นก่อนการเล่นเกมครั้งแรก คุณต้องไปตั้งค่าภาษาในเกมให้เป็นภาษาไทยด้วยตัวเองก่อนนะจ๊ะ", "ต้องตั้งค่าก่อนภาษาเองนะ"))
-            //        return;
-            //}
+            if (chkBackupSetting.Checked == false)
+            {
+                if (!c.ShowConfirm("คุณไม่ได้ตั้งค่าให้ฉันแก้ไขไฟล์ setting ให้ ดังนั้นก่อนการเล่นเกมครั้งแรก คุณต้องไปตั้งค่าภาษาในเกมให้เป็นภาษาไทยด้วยตัวเองก่อนนะจ๊ะ", "ต้องตั้งค่าก่อนภาษาเองนะ"))
+                    return;
+            }
 
             bool oldMethod = chkOldMethod.Checked;
 

@@ -2135,19 +2135,21 @@ namespace TheWitcher3Thai
 
         public bool IsPirate()
         {
-            var path = GetSteamPath(true);
-            if (!String.IsNullOrWhiteSpace(path))
-                return false;
+            return false;
 
-            path = GetGogPath(true);
-            if (!String.IsNullOrWhiteSpace(path))
-                return false;
+            //var path = GetSteamPath(true);
+            //if (!String.IsNullOrWhiteSpace(path))
+            //    return false;
 
-            path = GetOriginPath();
-            if (!String.IsNullOrWhiteSpace(path))
-                return false;
+            //path = GetGogPath(true);
+            //if (!String.IsNullOrWhiteSpace(path))
+            //    return false;
 
-            return true;
+            //path = GetOriginPath();
+            //if (!String.IsNullOrWhiteSpace(path))
+            //    return false;
+
+            //return true;
         }
 
         public string GetGameDirectory()
