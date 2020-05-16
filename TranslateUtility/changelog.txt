@@ -1,6 +1,9 @@
 Change Log
 ==========
 
+2020.05.16.XXXX
+- Temporary support solution for Epic Game
+
 2020.04.20.XXXX
 - แก้ error เมื่อแก้ไขไฟล์ setting ไม่ได้
 

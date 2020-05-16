@@ -506,11 +506,11 @@ namespace TranslateUtility
         {
             SaveAppSetting();
 
-            if(chkBackupSetting.Checked==false)
-            {
-                if (!c.ShowConfirm("คุณไม่ได้ตั้งค่าให้ฉันแก้ไขไฟล์ setting ให้ ดังนั้นก่อนการเล่นเกมครั้งแรก คุณต้องไปตั้งค่าภาษาในเกมให้เป็นภาษาไทยด้วยตัวเองก่อนนะจ๊ะ", "ต้องตั้งค่าก่อนภาษาเองนะ"))
-                    return;
-            }
+            //if(chkBackupSetting.Checked==false)
+            //{
+            //    if (!c.ShowConfirm("คุณไม่ได้ตั้งค่าให้ฉันแก้ไขไฟล์ setting ให้ ดังนั้นก่อนการเล่นเกมครั้งแรก คุณต้องไปตั้งค่าภาษาในเกมให้เป็นภาษาไทยด้วยตัวเองก่อนนะจ๊ะ", "ต้องตั้งค่าก่อนภาษาเองนะ"))
+            //        return;
+            //}
 
             bool oldMethod = chkOldMethod.Checked;
 
