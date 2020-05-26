@@ -18,7 +18,7 @@ namespace AdvanceTools
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmFirebase());
+            Application.Run(new Test());
         }
     }
 }

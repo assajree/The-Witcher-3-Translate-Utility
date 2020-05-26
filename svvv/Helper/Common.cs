@@ -2886,6 +2886,19 @@ namespace TheWitcher3Thai
 
         }
 
+        public Dictionary<string, w3Strings> DistinctMessage(Dictionary<string, List<w3Strings>> contents)
+        {
+            var allMessage = new List<w3Strings>();
+            foreach (var sheet in contents)
+            {
+                allMessage.AddRange(sheet.Value);
+            }
+
+            var allMessageDict = ConvertToDictionary(allMessage);
+
+            return allMessageDict;
+        }
+
         private List<w3Strings> MergeWebTranslate(List<w3Strings> list)
         {
             var dict = ConvertToDictionary(list);
