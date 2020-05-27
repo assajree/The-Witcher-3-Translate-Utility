@@ -9,5 +9,6 @@ DEL w3tu.zip
 DEL MessageFinder.exe.config
 DEL MessageFinder.pdb
 DEL log.log
+DEL Newtonsoft.Json.xml
 DEL release.bat
 PAUSE
