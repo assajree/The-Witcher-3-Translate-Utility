@@ -1,13 +1,11 @@
-﻿using svvv;
+﻿using Newtonsoft.Json;
+using svvv;
+using svvv.Classes;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TheWitcher3Thai;
 
@@ -44,15 +42,36 @@ namespace AdvanceTools.Screens
             var excelTemplate = c.ReadExcel(Configs.TemplateFilePath, sheetConfig, true);
             var excelData = c.MergeLegacy(excelTemplate, excelLegacy);
             var sheetData = c.DistinctMessage(excelData);
-            var jsonData = c.ReadWebJson(Configs.WebTranslatePath);          
+            var jsonData = c.ReadWebJson(Configs.WebTranslatePath);
 
-            var notTranslateKey = jsonData.Where(d => d.Value.IsTranslate == false).Select(d => d.Value.Key).ToList();
+            var notTranslateJson = jsonData.Where(d => d.Value.IsTranslate == false).ToDictionary(j => j.Value.Key, j => j.Value);
+            var notTranslateKey = notTranslateJson.Select(d => d.Key).ToList();
+
             var diff = sheetData.Where(d =>
                               notTranslateKey.Contains(d.Key) &&
                               d.Value.TranslateStatus > w3Strings.eTranslateStatus.SameWord
                         ).Select(d => d.Value).ToList();
 
+            var result = new List<W2Strings>();
+            foreach (var item in diff)
+            {
+                if (!notTranslateJson.ContainsKey(item.IdKey))
+                    continue;
+
+                var msg = notTranslateJson[item.IdKey];
+                msg.Translate = item.Translate;
+                result.Add(msg);
+
+            }
+
+            var content = result.ToDictionary(r => r.Index.ToString(), r => r);
+            var json = JsonConvert.SerializeObject(content);
+            c.WriteJson(json, Path.Combine(Configs.OutputPath, "diff.json"));
+
             c.ShowMessage($@"diff {diff.Count}");
+
+            if (diff.Count > 0)
+                c.Open(Configs.OutputPath);
         }
 
         private void DownloadWebTranslateFile()
