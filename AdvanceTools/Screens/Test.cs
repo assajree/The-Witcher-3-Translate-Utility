@@ -65,8 +65,10 @@ namespace AdvanceTools.Screens
             }
 
             var content = result.ToDictionary(r => r.Index.ToString(), r => r);
-            var json = JsonConvert.SerializeObject(content);
-            c.WriteJson(json, Path.Combine(Configs.OutputPath, "diff.json"));
+            c.WriteJson(content, Path.Combine(Configs.OutputPath, "diff.json"));
+
+            //var json = JsonConvert.SerializeObject(content);
+            //c.WriteJson(json, Path.Combine(Configs.OutputPath, "diff.json"));
 
             c.ShowMessage($@"diff {diff.Count}");
 
