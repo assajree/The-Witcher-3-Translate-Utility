@@ -1,6 +1,9 @@
 Change Log
 ==========
 
+2020.08.28.xxxx
+- fix excel translate file not download
+
 2020.08.24.xxxx
 - ข้ามการโหลดไฟล์ excel
 

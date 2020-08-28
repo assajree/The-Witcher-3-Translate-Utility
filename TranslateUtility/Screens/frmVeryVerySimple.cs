@@ -599,9 +599,12 @@ namespace TranslateUtility
             //}
             //else
             //{
-                translatePath = Path.Combine(Configs.DownloadPath, "translate.xlsx");
-                //translatePath = c.DownloadLegacyExcel(translatePath, false, GetDownloadFrequency());
+                    //translatePath = c.DownloadLegacyExcel(translatePath, false, GetDownloadFrequency());
             //}
+
+            translatePath = Path.Combine(Configs.DownloadPath, "translate.xlsx");
+            if (!File.Exists(translatePath))
+                translatePath = c.DownloadLegacyExcel(translatePath, false, Common.eDownloadFrequency.Always);
         }
 
         private void lblAdvance_Click(object sender, EventArgs e)
