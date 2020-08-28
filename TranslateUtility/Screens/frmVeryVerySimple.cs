@@ -600,7 +600,7 @@ namespace TranslateUtility
             //else
             //{
                 translatePath = Path.Combine(Configs.DownloadPath, "translate.xlsx");
-                translatePath = c.DownloadLegacyExcel(translatePath, false, GetDownloadFrequency());
+                //translatePath = c.DownloadLegacyExcel(translatePath, false, GetDownloadFrequency());
             //}
         }
 
