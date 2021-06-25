@@ -4431,7 +4431,7 @@ namespace TheWitcher3Thai
             }
             catch(Exception ex)
             {
-                throw new KnowException($@"กรุณตรวจสอบไฟล์ setting ที่ {settingPath} ว่าสามารถเขียนได้ (ไม่เป็น read only) หรือ ติิ๊กออปชั่น ""แก้ไขไฟล์ setting"" ออก แล้วลอง ติดตั้ง/อัปเดต อีกครั้ง ", "ไม่สามารถแก้ไขไฟล์ setting ได้");
+                throw new KnowException($@"ไม่พบไฟล์ setting ที่ {settingPath} หรือไม่สามารถแก้ไขไฟล์ดังกล่าวได้ แนะนำให้เอาตัวเลือก ""แก้ไขไฟล์ setting"" ออก แล้วลอง ติดตั้ง/อัปเดต อีกครั้ง ", "ไม่สามารถแก้ไขไฟล์ setting ได้");
             }
 
         }
