@@ -2,6 +2,7 @@
 RD /S /Q "Tools/Template"
 RD /S /Q "Tools/ThaiStorybook"
 RD /S /Q "temp"
+RD /S /Q "mod"
 DEL setting.ini
 DEL custom.ini
 DEL alt_version.ini
