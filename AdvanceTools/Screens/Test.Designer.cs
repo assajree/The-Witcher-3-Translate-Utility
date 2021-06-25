@@ -30,6 +30,7 @@
         {
             this.btnCompare = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnTest = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,11 +54,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Compare Web && Sheet";
             // 
+            // btnTest
+            // 
+            this.btnTest.Location = new System.Drawing.Point(248, 178);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(75, 23);
+            this.btnTest.TabIndex = 4;
+            this.btnTest.Text = "test()";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
+            // 
             // Test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 366);
+            this.Controls.Add(this.btnTest);
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Test";
@@ -71,5 +83,6 @@
 
         private System.Windows.Forms.Button btnCompare;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnTest;
     }
 }

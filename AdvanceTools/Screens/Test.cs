@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using svvv;
 using svvv.Classes;
+using svvv.Helper;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,6 +17,7 @@ namespace AdvanceTools.Screens
 
         Common c = new Common();
         Setting setting = new Setting();
+        ManualLog logger = new ManualLog();
 
         public Test()
         {
@@ -91,6 +93,15 @@ namespace AdvanceTools.Screens
         private void DownloadTranslateFile(string translatePath)
         {
             c.DownloadLegacyExcel(translatePath, false, Common.eDownloadFrequency.Day);
+        }
+
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            logger.InfoFormat("test");
+            logger.InfoFormat("test with {0}", "param");
+            logger.ErrorFormat("error with {0}", "param");
+            logger.ErrorFormat("error without param {0}");
+            logger.ErrorFormat("error without mark", "param");
         }
     }
 }
