@@ -78,6 +78,13 @@ namespace svvv.Classes
                 }
                 else
                 {
+                    if(setting.ID == Configs.W3eeFileId)
+                    {
+                        var w3eePath = Path.Combine(Configs.GetAppSetting().GamePath, "mods", "modW3EEMain");
+                        if (!Directory.Exists(w3eePath))
+                            continue;
+                    }
+
                     this.Value.Add(setting.ID, setting);
                 }
             }

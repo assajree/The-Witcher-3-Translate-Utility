@@ -1,6 +1,9 @@
 Change Log
 ==========
 
+2021.06.30.XXXX
+- hide w3ee custom translate if not install mod
+
 2020.08.28.xxxx
 - fix excel translate file not download
 
