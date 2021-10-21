@@ -601,12 +601,15 @@ namespace TranslateUtility
             //}
             //else
             //{
-                    //translatePath = c.DownloadLegacyExcel(translatePath, false, GetDownloadFrequency());
+            //translatePath = c.DownloadLegacyExcel(translatePath, false, GetDownloadFrequency());
             //}
 
             translatePath = Path.Combine(Configs.DownloadPath, "translate.xlsx");
-            if (!File.Exists(translatePath))
-                translatePath = c.DownloadLegacyExcel(translatePath, false, Common.eDownloadFrequency.Always);
+
+            //if (!File.Exists(translatePath))
+            //    translatePath = c.DownloadLegacyExcel(translatePath, false, Common.eDownloadFrequency.Always);
+
+            translatePath = c.DownloadLegacyExcel(translatePath, false, Common.eDownloadFrequency.Month);
         }
 
         private void lblAdvance_Click(object sender, EventArgs e)

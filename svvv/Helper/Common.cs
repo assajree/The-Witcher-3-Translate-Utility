@@ -31,7 +31,8 @@ namespace TheWitcher3Thai
             Hour,
             Day,
             Always,
-            Once
+            Once,
+            Month
         }
 
         public enum eCompatibilityLevel
@@ -513,6 +514,10 @@ namespace TheWitcher3Thai
                                 break;
                             case eDownloadFrequency.Hour:
                                 if (lastDownload > DateTime.Now.AddMinutes(-60)) // download less than 1 hour
+                                    return excelPath;
+                                break;
+                            case eDownloadFrequency.Month:
+                                if (lastDownload > DateTime.Now.AddDays(-30)) // download less than 1 month
                                     return excelPath;
                                 break;
                             default: // Always
