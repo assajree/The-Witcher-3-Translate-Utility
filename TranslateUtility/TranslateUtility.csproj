@@ -111,6 +111,18 @@
     <None Include="release.bat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Tools\modDoubleSubtitleNextGen\content\scripts\game\gui\hud\modules\hudModuleDialog.ws">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Tools\modDoubleSubtitleNextGen\content\scripts\game\gui\hud\modules\hudModuleOneliners.ws">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Tools\modDoubleSubtitleNextGen\content\scripts\game\gui\hud\modules\hudModuleQuests.ws">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Tools\modDoubleSubtitleNextGen\content\scripts\game\gui\hud\modules\hudModuleSubtitles.ws">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Tools\modDoubleSubtitle\content\scripts\game\gui\hud\modules\hudModuleDialog.ws">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -206,6 +218,7 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>DEL TranslateUtility.exe.config
