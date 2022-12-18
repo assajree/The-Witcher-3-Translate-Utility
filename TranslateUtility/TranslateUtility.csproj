@@ -117,9 +117,7 @@
     <None Include="Tools\modDoubleSubtitleNextGen\content\scripts\game\gui\hud\modules\hudModuleOneliners.ws">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Tools\modDoubleSubtitleNextGen\content\scripts\game\gui\hud\modules\hudModuleQuests.ws">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="Tools\modDoubleSubtitleNextGen\content\scripts\game\gui\hud\modules\hudModuleQuests.ws" />
     <None Include="Tools\modDoubleSubtitleNextGen\content\scripts\game\gui\hud\modules\hudModuleSubtitles.ws">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
