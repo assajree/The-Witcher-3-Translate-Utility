@@ -63,6 +63,7 @@ namespace TheWitcher3Thai
 
             mSheetConfig.Add("MISSING", @"content\missing");
             mSheetConfig.Add("FIX", @"content\fix");
+            mSheetConfig.Add("NextGen", @"content\nextgen");
 
             return mSheetConfig;
         }

@@ -59,14 +59,17 @@ namespace TranslateUtility
         private void frmVeryVerySimple_Shown(object sender, EventArgs e)
         {
             //mExpandHeight = this.Height;           
-            CheckForUpdate(false);
+            CheckAppUpdate(false);
+            CheckTranslateUpdate();
 
-            if (c.IsPirate())
-            {
-                c.Processing(AttackPirate, "กำลังทำอะไรซักอย่าง", "ขออภัยอย่างสูง ฉันพบว่าคุณไม่ได้ติดตั้ง The Witcher 3 อย่างถูกต้อง ซื้อเกมมาอย่างถูกต้องแล้วเห็นข้อความนี้ กรุณาแจ้งผู้พัฒนาเพื่อให้ทำการแก้ไข");
-                this.Close();
-            }
+            //if (c.IsPirate())
+            //{
+            //    c.Processing(AttackPirate, "กำลังทำอะไรซักอย่าง", "ขออภัยอย่างสูง ฉันพบว่าคุณไม่ได้ติดตั้ง The Witcher 3 อย่างถูกต้อง ซื้อเกมมาอย่างถูกต้องแล้วเห็นข้อความนี้ กรุณาแจ้งผู้พัฒนาเพื่อให้ทำการแก้ไข");
+            //    this.Close();
+            //}
         }
+
+        
 
         //private void ReadCustomTranslateDescription()
         //{
@@ -160,6 +163,7 @@ namespace TranslateUtility
             else
                 ShowAdvance();
 
+            chkNextGen.Checked = mAppSetting.IsNextGen;
             chkModDoubleLanguage.Checked = mAppSetting.DoubleLanguage;
             chkExcludeUiText.Checked = mAppSetting.EnglishUi;
             chkOldMethod.Checked = mAppSetting.OldMethod;
@@ -306,12 +310,12 @@ namespace TranslateUtility
             {
                 c.MigrateOtherModToTr(Path.Combine(txtGamePath.Text, "mods"));
                 c.MigrateOtherModToTr(Path.Combine(txtGamePath.Text, "dlc"));
-                c.ChangeLanguageSettingToTR();
+                //c.ChangeLanguageSettingToTR();
             }
-            else
-            {
-                c.ChangeLanguageSettingToEN();
-            }
+            //else
+            //{
+            //    c.ChangeLanguageSettingToEN();
+            //}
 
             c.MigrateW3ee(txtGamePath.Text);
 
@@ -371,11 +375,39 @@ namespace TranslateUtility
             }
             else if (Directory.Exists(Path.Combine(txtGamePath.Text, "mods", Configs.modThaiLanguage)))
             {
-                btnLegacyGenerate.Text = "อัปเดต";
+                btnLegacyGenerate.Text = "ติดตั้งอีกครั้ง";
             }
             else
             {
                 btnLegacyGenerate.Text = "ติดตั้ง";
+            }
+        }
+
+        private void CheckTranslateUpdate()
+        {
+            
+            if (c.IsAprilFoolDay())
+            {
+                btnLegacyGenerate.Text = Constant.CRACK_MESSAGE;
+            }
+            else if (Directory.Exists(Path.Combine(txtGamePath.Text, "mods", Configs.modThaiLanguage)))
+            {
+                btnLegacyGenerate.Text = "ติดตั้งอีกครั้ง";
+                c.Processing(GetTranslateVersion, false, "กำลังตรวจสอบเวอร์ชั่นไฟล์แปลภาษา...");                
+            }
+            else
+            {
+                btnLegacyGenerate.Text = "ติดตั้ง";
+            }
+
+        }
+
+        private void GetTranslateVersion()
+        {
+            var newVersion = c.GetNewVersion(GetDownloadFrequency());
+            if (newVersion != null)
+            {
+                btnLegacyGenerate.Text = "อัปเดต";
             }
         }
 
@@ -461,6 +493,7 @@ namespace TranslateUtility
         private void SaveAppSetting()
         {
             mAppSetting.AdvanceMode = AdvanceMode;
+            mAppSetting.IsNextGen = chkNextGen.Checked;
             mAppSetting.DoubleLanguage = chkModDoubleLanguage.Checked;
             mAppSetting.EnglishUi = chkExcludeUiText.Checked;
             mAppSetting.OldMethod = chkOldMethod.Checked;
@@ -476,7 +509,7 @@ namespace TranslateUtility
             //mAppSetting.ChangeTextColor = chkChangeTextColor.Checked;
             //mAppSetting.SizeCutscene = (int)txtFontSizeCutScene.Value;
             //mAppSetting.SizeDialog = (int)txtFontSizeSpeak.Value;
-            mAppSetting.DownloadFrequency = GetDownloadFrequency();
+            //mAppSetting.DownloadFrequency = GetDownloadFrequency();
             mAppSetting.GamePath = txtGamePath.Text;
             mAppSetting.ExpandHeight = mHeightExpand;
             mAppSetting.CollaspeHeight = mHeightCollapse;
@@ -508,11 +541,11 @@ namespace TranslateUtility
 
 
             // not alert again when update
-            if (chkBackupSetting.Checked == false && btnLegacyGenerate.Text == "ติดตั้ง")
-            {
-                if (!c.ShowConfirm("คุณไม่ได้ตั้งค่าให้ฉันแก้ไขไฟล์ setting ให้ ดังนั้นก่อนการเล่นเกมครั้งแรก คุณต้องไปตั้งค่าภาษาในเกมให้เป็นภาษาไทยด้วยตัวเองก่อนนะจ๊ะ", "ต้องตั้งค่าก่อนภาษาเองนะ"))
-                    return;
-            }
+            //if (chkBackupSetting.Checked == false && btnLegacyGenerate.Text == "ติดตั้ง")
+            //{
+            //    if (!c.ShowConfirm("คุณไม่ได้ตั้งค่าให้ฉันแก้ไขไฟล์ setting ให้ ดังนั้นก่อนการเล่นเกมครั้งแรก คุณต้องไปตั้งค่าภาษาในเกมให้เป็นภาษาไทยด้วยตัวเองก่อนนะจ๊ะ", "ต้องตั้งค่าก่อนภาษาเองนะ"))
+            //        return;
+            //}
 
             bool oldMethod = chkOldMethod.Checked;
 
@@ -687,11 +720,11 @@ namespace TranslateUtility
         private void miUpdate_Click(object sender, EventArgs e)
         {
             //CheckForUpdate(true, true, true);
-            CheckForUpdate(true);
+            CheckAppUpdate(true);
         }
 
         //private void CheckForUpdate(bool isUpdateComponent, bool isForceUpdate, bool isShowMessage)
-        private void CheckForUpdate(bool isManualCheck)
+        private void CheckAppUpdate(bool isManualCheck)
         {
             if (isManualCheck)
             {
@@ -872,7 +905,7 @@ namespace TranslateUtility
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             //CheckForUpdate(true, true, true);
-            CheckForUpdate(true);
+            CheckAppUpdate(true);
         }
 
         private void btnMessageFinder_Click(object sender, EventArgs e)

@@ -1615,9 +1615,9 @@ namespace TheWitcher3Thai
             string lastVersion;
 
             if (silenceMode)
-                lastVersion = ProcessingStringSilence(GetLastVersion, "กำลังเช็คเวอร์ชั่นโปรแกรม", false);
+                lastVersion = ProcessingStringSilence(GetLastVersion, "กำลังตรวจสอบเวอร์ชั่นโปรแกรม", false);
             else
-                lastVersion = ProcessingString(GetLastVersion, "กำลังเช็คเวอร์ชั่นโปรแกรม", false);
+                lastVersion = ProcessingString(GetLastVersion, "กำลังตรวจสอบเวอร์ชั่นโปรแกรม", false);
 
             if (lastVersion == null)
                 return false;
@@ -1632,9 +1632,9 @@ namespace TheWitcher3Thai
             string lastVersion;
 
             if (silenceMode)
-                lastVersion = ProcessingStringSilence(GetVersionStorybook, "กำลังเช็คเวอร์ชั่น Story Book", false);
+                lastVersion = ProcessingStringSilence(GetVersionStorybook, "กำลังตรวจสอบเวอร์ชั่น Story Book", false);
             else
-                lastVersion = ProcessingString(GetVersionStorybook, "กำลังเช็คเวอร์ชั่น Story Book", false);
+                lastVersion = ProcessingString(GetVersionStorybook, "กำลังตรวจสอบเวอร์ชั่น Story Book", false);
 
             if (lastVersion == null)
                 return false;
@@ -1650,9 +1650,9 @@ namespace TheWitcher3Thai
             string lastVersion;
 
             if (silenceMode)
-                lastVersion = ProcessingStringSilence(GetVersionTemplate, "กำลังเช็คเวอร์ชั่น Template", false);
+                lastVersion = ProcessingStringSilence(GetVersionTemplate, "กำลังตรวจสอบเวอร์ชั่น Template", false);
             else
-                lastVersion = ProcessingString(GetVersionTemplate, "กำลังเช็คเวอร์ชั่น Template", false);
+                lastVersion = ProcessingString(GetVersionTemplate, "กำลังตรวจสอบเวอร์ชั่น Template", false);
 
             if (lastVersion == null)
                 return false;
@@ -3711,6 +3711,9 @@ namespace TheWitcher3Thai
         public void InstallSubtitleMod(string modPath)
         {
             string sourcePath = Path.Combine(Application.StartupPath, "Tools", Configs.modDoubleSubtitle);
+            if(Configs.GetAppSetting().IsNextGen)
+                sourcePath = Path.Combine(Application.StartupPath, "Tools", Configs.modDoubleSubtitleNextGen);
+
             //var targetPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage);
             var targetPath = Path.Combine(modPath, Configs.modThaiLanguage);
             CopyDirectory(sourcePath, targetPath);
@@ -3720,15 +3723,12 @@ namespace TheWitcher3Thai
         {
             string pathScript = @"content\scripts\game\gui\hud\modules";
             string pathDialog = Path.Combine(modPath, pathScript, "hudModuleDialog.ws");
-            string pathSubtitle = Path.Combine(modPath, pathScript, "hudModuleSubtitles.ws");
             string pathOneliner = Path.Combine(modPath, pathScript, "hudModuleOneliners.ws");
+            string pathSubtitle = Path.Combine(modPath, pathScript, "hudModuleSubtitles.ws");
 
-            //ReplaceAll(pathDialog, @"<FONT SIZE='28'>", $@"<FONT SIZE='{sizeCutScene}'>");
-            //ReplaceAll(pathSubtitle, @"<FONT SIZE='28'>", $@"<FONT SIZE='{sizeSpeak}'>");
             ReplaceScript(pathDialog);
             ReplaceScript(pathSubtitle);
             ReplaceScript(pathOneliner);
-
         }
 
         private void ReplaceScript(string path)
@@ -3783,7 +3783,7 @@ namespace TheWitcher3Thai
             var w3stringPath = Path.Combine(targetPath, "content", "en.w3strings");
             var fi = new FileInfo(w3stringPath);
             if (fi.Exists)
-                fi.MoveTo(w3stringPath.Replace("en.w3strings", "tr.w3strings"));
+                fi.CopyTo(w3stringPath.Replace("en.w3strings", "tr.w3strings"));
 
         }
 
@@ -3796,6 +3796,7 @@ namespace TheWitcher3Thai
             var skips = new List<string>();
             skips.Add(Path.Combine(modPath, "version_storybook.ini"));
             skips.Add(Path.Combine(modPath, "content", "tr.w3strings"));
+            skips.Add(Path.Combine(modPath, "content", "en.w3strings"));
 
             // copy mod
             CopyDirectory(modPath, targetPath, skips);
@@ -4379,10 +4380,10 @@ namespace TheWitcher3Thai
             }
         }
 
-        public void ChangeLanguageSettingToTR()
-        {
-            ChangeLanguageSetting("EN", "TR");
-        }
+        //public void ChangeLanguageSettingToTR()
+        //{
+        //    ChangeLanguageSetting("EN", "TR");
+        //}
 
         public void ChangeLanguageSettingToEN()
         {
@@ -4756,11 +4757,13 @@ namespace TheWitcher3Thai
             }
             catch (Exception ex)
             {
-                tryCount++;
-                if (tryCount > 2)
-                    return null;
-                else
-                    return ReadUrl(url, tryCount);
+                //tryCount++;
+                //if (tryCount >= 2)
+                //    return null;
+                //else
+                //    return ReadUrl(url, tryCount);
+
+                return null;
             }
         }
 

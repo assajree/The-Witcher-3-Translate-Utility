@@ -24,7 +24,7 @@ namespace svvv.Classes
         //public int SizeCutscene { get; set; } = 34;
         //public int SizeDialog { get; set; } = 34;
         public eFontSetting FontSetting { get; set; } = eFontSetting.CSPraKas;        
-        public eDownloadFrequency DownloadFrequency { get; set; } = eDownloadFrequency.Once;
+        public eDownloadFrequency DownloadFrequency { get; private set; } = eDownloadFrequency.Once;
         public eCompatibilityLevel CompatibilityLevel { get; set; } = eCompatibilityLevel.Normal;
         public string GamePath { get; set; } = "";
         public int ExpandHeight { get; set; } = Constant.SIZE_DEFAULT_EXPAND;
@@ -38,6 +38,7 @@ namespace svvv.Classes
         public string FontColor1 { get; set; } = "#FFFFFF";
         public string FontColor2 { get; set; } = "#808080";
         public bool EnableAprilFools { get; set; } = true;
+        public bool IsNextGen { get; set; } = true;
 
 
         public AppSetting(string settingPath)
@@ -95,6 +96,7 @@ namespace svvv.Classes
             sb.AppendLine($@"FontSize2={FontSize2}");
             sb.AppendLine($@"FontColor1={FontColor1}");
             sb.AppendLine($@"FontColor2={FontColor2}");
+            sb.AppendLine($@"IsNextGen={IsNextGen}");
 
             if(ExpandHeight!= Constant.SIZE_DEFAULT_EXPAND)
                 sb.AppendLine($@"ExpandHeight={ExpandHeight}");
@@ -191,6 +193,9 @@ namespace svvv.Classes
                     break;
                 case "FontColor2":
                     FontColor2 = value.ToStringOrNull()??"#808080";
+                    break;
+                case "IsNextGen":
+                    IsNextGen = value.ToBoolean(true);
                     break;
             }
         }

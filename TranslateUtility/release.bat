@@ -1,6 +1,6 @@
 @echo off
-RD /S /Q "Tools/Template"
-RD /S /Q "Tools/ThaiStorybook"
+REM RD /S /Q "Tools/Template"
+REM RD /S /Q "Tools/ThaiStorybook"
 RD /S /Q "temp"
 RD /S /Q "mod"
 DEL setting.ini

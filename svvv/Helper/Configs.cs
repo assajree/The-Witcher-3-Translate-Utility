@@ -35,6 +35,7 @@ namespace svvv
 
         public const string modThaiFont = "modThaiFont";
         public const string modDoubleSubtitle = "modDoubleSubtitle";
+        public const string modDoubleSubtitleNextGen = "modDoubleSubtitleNextGen";
         public const string modThaiLanguage = "modThaiLanguage"; // translate
         public const string modKuntoonFont = "modKuntoonW3thai_mod";
 
