@@ -4794,7 +4794,7 @@ namespace TheWitcher3Thai
                 var sht = p.Workbook.Worksheets.First();
                 var content = ReadExcelSheet(sht, isReadTranslate);
                 content = DistinctContent(content);
-                return content.ToDictionary(c => c.IdKey, c => c);
+                return content.Where(c => c.Index != null).ToDictionary(c => c.IdKey, c => c);
             }
         }
 

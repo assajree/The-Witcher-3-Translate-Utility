@@ -200,7 +200,6 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.chkExcludeUiText);
             this.groupBox1.Controls.Add(this.chkModDoubleLanguage);
             this.groupBox1.Controls.Add(this.rdoModTranslateFirst);
             this.groupBox1.Controls.Add(this.rdoModOriginFirst);
@@ -216,12 +215,12 @@
             // chkExcludeUiText
             // 
             this.chkExcludeUiText.AutoSize = true;
-            this.chkExcludeUiText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkExcludeUiText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkExcludeUiText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.chkExcludeUiText.Location = new System.Drawing.Point(131, 0);
+            this.chkExcludeUiText.Location = new System.Drawing.Point(31, 36);
             this.chkExcludeUiText.Margin = new System.Windows.Forms.Padding(4);
             this.chkExcludeUiText.Name = "chkExcludeUiText";
-            this.chkExcludeUiText.Size = new System.Drawing.Size(153, 24);
+            this.chkExcludeUiText.Size = new System.Drawing.Size(141, 24);
             this.chkExcludeUiText.TabIndex = 37;
             this.chkExcludeUiText.Text = "เมนูภาษาอังกฤษ";
             this.chkExcludeUiText.UseVisualStyleBackColor = true;
@@ -260,7 +259,7 @@
             this.chkOldMethod.AutoSize = true;
             this.chkOldMethod.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkOldMethod.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.chkOldMethod.Location = new System.Drawing.Point(32, 28);
+            this.chkOldMethod.Location = new System.Drawing.Point(32, 57);
             this.chkOldMethod.Margin = new System.Windows.Forms.Padding(4);
             this.chkOldMethod.Name = "chkOldMethod";
             this.chkOldMethod.Size = new System.Drawing.Size(133, 24);
@@ -285,7 +284,7 @@
             this.groupBox2.Size = new System.Drawing.Size(668, 75);
             this.groupBox2.TabIndex = 46;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "แสดงรหัสข้อความ (สำหรับนักแปล #12345678)";
+            this.groupBox2.Text = "แสดงรหัสข้อความ (สำหรับแปลในเว็บ #12345678)";
             // 
             // chkUiInfo
             // 
@@ -925,9 +924,10 @@
             // 
             this.groupBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox8.Controls.Add(this.chkExcludeUiText);
             this.groupBox8.Controls.Add(this.btnTranslateOnGoogleSheet);
-            this.groupBox8.Controls.Add(this.btnTranslateOnWeb);
             this.groupBox8.Controls.Add(this.chkStorybook);
+            this.groupBox8.Controls.Add(this.btnTranslateOnWeb);
             this.groupBox8.Controls.Add(this.chkRandomLoading);
             this.groupBox8.Controls.Add(this.chkBackupSetting);
             this.groupBox8.Controls.Add(this.chkOldMethod);
@@ -945,7 +945,7 @@
             // btnTranslateOnGoogleSheet
             // 
             this.btnTranslateOnGoogleSheet.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTranslateOnGoogleSheet.Location = new System.Drawing.Point(137, 26);
+            this.btnTranslateOnGoogleSheet.Location = new System.Drawing.Point(364, 27);
             this.btnTranslateOnGoogleSheet.Margin = new System.Windows.Forms.Padding(4);
             this.btnTranslateOnGoogleSheet.Name = "btnTranslateOnGoogleSheet";
             this.btnTranslateOnGoogleSheet.Size = new System.Drawing.Size(217, 41);
@@ -957,10 +957,10 @@
             // btnTranslateOnWeb
             // 
             this.btnTranslateOnWeb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTranslateOnWeb.Location = new System.Drawing.Point(8, 26);
+            this.btnTranslateOnWeb.Location = new System.Drawing.Point(188, 27);
             this.btnTranslateOnWeb.Margin = new System.Windows.Forms.Padding(4);
             this.btnTranslateOnWeb.Name = "btnTranslateOnWeb";
-            this.btnTranslateOnWeb.Size = new System.Drawing.Size(122, 41);
+            this.btnTranslateOnWeb.Size = new System.Drawing.Size(148, 41);
             this.btnTranslateOnWeb.TabIndex = 53;
             this.btnTranslateOnWeb.Text = "ช่วยแปล (เว็บ)";
             this.btnTranslateOnWeb.UseVisualStyleBackColor = true;
@@ -971,7 +971,7 @@
             this.chkStorybook.AutoSize = true;
             this.chkStorybook.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkStorybook.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.chkStorybook.Location = new System.Drawing.Point(362, 28);
+            this.chkStorybook.Location = new System.Drawing.Point(362, 57);
             this.chkStorybook.Margin = new System.Windows.Forms.Padding(4);
             this.chkStorybook.Name = "chkStorybook";
             this.chkStorybook.Size = new System.Drawing.Size(140, 24);
@@ -985,7 +985,7 @@
             this.chkRandomLoading.AutoSize = true;
             this.chkRandomLoading.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkRandomLoading.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.chkRandomLoading.Location = new System.Drawing.Point(512, 28);
+            this.chkRandomLoading.Location = new System.Drawing.Point(512, 57);
             this.chkRandomLoading.Margin = new System.Windows.Forms.Padding(4);
             this.chkRandomLoading.Name = "chkRandomLoading";
             this.chkRandomLoading.Size = new System.Drawing.Size(199, 24);
@@ -999,7 +999,7 @@
             this.chkBackupSetting.AutoSize = true;
             this.chkBackupSetting.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkBackupSetting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.chkBackupSetting.Location = new System.Drawing.Point(186, 28);
+            this.chkBackupSetting.Location = new System.Drawing.Point(186, 57);
             this.chkBackupSetting.Margin = new System.Windows.Forms.Padding(4);
             this.chkBackupSetting.Name = "chkBackupSetting";
             this.chkBackupSetting.Size = new System.Drawing.Size(152, 24);
@@ -1225,7 +1225,6 @@
             this.menuStrip1.Location = new System.Drawing.Point(525, 5);
             this.menuStrip1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
             this.menuStrip1.Size = new System.Drawing.Size(156, 50);
             this.menuStrip1.TabIndex = 54;
             this.menuStrip1.Text = "menuStrip1";
@@ -1251,21 +1250,21 @@
             // miLog
             // 
             this.miLog.Name = "miLog";
-            this.miLog.Size = new System.Drawing.Size(224, 26);
+            this.miLog.Size = new System.Drawing.Size(185, 26);
             this.miLog.Text = "Log";
             this.miLog.Click += new System.EventHandler(this.miLog_Click);
             // 
             // miUpdate
             // 
             this.miUpdate.Name = "miUpdate";
-            this.miUpdate.Size = new System.Drawing.Size(224, 26);
+            this.miUpdate.Size = new System.Drawing.Size(185, 26);
             this.miUpdate.Text = "อัพเดทโปรแกรม";
             this.miUpdate.Click += new System.EventHandler(this.miUpdate_Click);
             // 
             // miTranslateProgress
             // 
             this.miTranslateProgress.Name = "miTranslateProgress";
-            this.miTranslateProgress.Size = new System.Drawing.Size(224, 26);
+            this.miTranslateProgress.Size = new System.Drawing.Size(185, 26);
             this.miTranslateProgress.Text = "ข้อมูลการแปล";
             this.miTranslateProgress.Visible = false;
             this.miTranslateProgress.Click += new System.EventHandler(this.miTranslateProgress_Click);
@@ -1273,7 +1272,7 @@
             // miMessageFinder
             // 
             this.miMessageFinder.Name = "miMessageFinder";
-            this.miMessageFinder.Size = new System.Drawing.Size(224, 26);
+            this.miMessageFinder.Size = new System.Drawing.Size(185, 26);
             this.miMessageFinder.Text = "ค้นหาข้อความ";
             this.miMessageFinder.Visible = false;
             this.miMessageFinder.Click += new System.EventHandler(this.miMessageFinder_Click);
@@ -1282,28 +1281,28 @@
             // 
             this.miChangeLog.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.miChangeLog.Name = "miChangeLog";
-            this.miChangeLog.Size = new System.Drawing.Size(224, 26);
+            this.miChangeLog.Size = new System.Drawing.Size(185, 26);
             this.miChangeLog.Text = "การเปลี่ยนแปลง";
             this.miChangeLog.Click += new System.EventHandler(this.miChangeLog_Click);
             // 
             // miCredit
             // 
             this.miCredit.Name = "miCredit";
-            this.miCredit.Size = new System.Drawing.Size(224, 26);
+            this.miCredit.Size = new System.Drawing.Size(185, 26);
             this.miCredit.Text = "เครดิต";
             this.miCredit.Click += new System.EventHandler(this.miCredit_Click);
             // 
             // miDebug
             // 
             this.miDebug.Name = "miDebug";
-            this.miDebug.Size = new System.Drawing.Size(224, 26);
+            this.miDebug.Size = new System.Drawing.Size(185, 26);
             this.miDebug.Text = "debug";
             this.miDebug.Click += new System.EventHandler(this.miDebug_Click);
             // 
             // miToggleAprilFools
             // 
             this.miToggleAprilFools.Name = "miToggleAprilFools";
-            this.miToggleAprilFools.Size = new System.Drawing.Size(224, 26);
+            this.miToggleAprilFools.Size = new System.Drawing.Size(185, 26);
             this.miToggleAprilFools.Text = "ปิด April Fools";
             this.miToggleAprilFools.Click += new System.EventHandler(this.miToggleAprilFools_Click);
             // 

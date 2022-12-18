@@ -9,9 +9,9 @@ namespace svvv.Classes
     public class Constant
     {
         #region size
-        public const int SIZE_DEFAULT_EXPAND = 720;
+        public const int SIZE_DEFAULT_EXPAND = 724;
         public const int SIZE_MINI_EXPAND = 433;
-        public const int SIZE_DEFAULT_COLLASPE = 150;
+        public const int SIZE_DEFAULT_COLLASPE = 154;
         #endregion
 
         #region color

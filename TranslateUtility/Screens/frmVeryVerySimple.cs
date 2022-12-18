@@ -69,7 +69,7 @@ namespace TranslateUtility
             //}
         }
 
-        
+
 
         //private void ReadCustomTranslateDescription()
         //{
@@ -145,7 +145,7 @@ namespace TranslateUtility
             LoadSetting();
 
             SaveAppSetting();
-            RefreshCustomTranslateCount();           
+            RefreshCustomTranslateCount();
 
         }
 
@@ -369,7 +369,7 @@ namespace TranslateUtility
 
         private void SetButtonText()
         {
-            if(c.IsAprilFoolDay())
+            if (c.IsAprilFoolDay())
             {
                 btnLegacyGenerate.Text = Constant.CRACK_MESSAGE;
             }
@@ -385,7 +385,6 @@ namespace TranslateUtility
 
         private void CheckTranslateUpdate()
         {
-            
             if (c.IsAprilFoolDay())
             {
                 btnLegacyGenerate.Text = Constant.CRACK_MESSAGE;
@@ -393,7 +392,11 @@ namespace TranslateUtility
             else if (Directory.Exists(Path.Combine(txtGamePath.Text, "mods", Configs.modThaiLanguage)))
             {
                 btnLegacyGenerate.Text = "ติดตั้งอีกครั้ง";
-                c.Processing(GetTranslateVersion, false, "กำลังตรวจสอบเวอร์ชั่นไฟล์แปลภาษา...");                
+                var newVersion = c.ProcessingStringSilence(GetTranslateVersion, "กำลังตรวจสอบเวอร์ชั่นไฟล์แปลภาษา...", false);
+                if (newVersion != null)
+                {
+                    btnLegacyGenerate.Text = "อัปเดต";
+                }
             }
             else
             {
@@ -402,13 +405,10 @@ namespace TranslateUtility
 
         }
 
-        private void GetTranslateVersion()
+        private string GetTranslateVersion()
         {
             var newVersion = c.GetNewVersion(GetDownloadFrequency());
-            if (newVersion != null)
-            {
-                btnLegacyGenerate.Text = "อัปเดต";
-            }
+            return newVersion;
         }
 
         private void EnableExtraOption()
@@ -561,11 +561,11 @@ namespace TranslateUtility
             //}
 
             //download web translate
-            c.Processing(DownloadWebTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษาจากเว็บ..."); 
+            c.Processing(DownloadWebTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษาจากเว็บ...");
 
             // download translate excel file
             Logger.Log("Download main translate");
-            var downloadResult = c.Processing(DownloadTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษา..."); 
+            var downloadResult = c.Processing(DownloadTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษา...");
             if (downloadResult != DialogResult.OK)
                 return;
 
@@ -603,7 +603,7 @@ namespace TranslateUtility
             var newVersion = c.GetNewVersion(GetDownloadFrequency());
             if (newVersion != null)
             {
-                if(newVersion== "UNKNOW")
+                if (newVersion == "UNKNOW")
                     newVersion = c.ReadUrl(Configs.WebTranslateVersionUrl, 0)?.Trim();
 
                 c.DownloadWebTranslateFile(newVersion);
@@ -1039,7 +1039,7 @@ namespace TranslateUtility
             if (this.FormBorderStyle == FormBorderStyle.Sizable)
                 miDebug.Text = $@"{this.Height} x {this.Width}";
             else
-                miDebug.Text="ปรับขนาด";
+                miDebug.Text = "ปรับขนาด";
 
             if (mAppSetting.EnableAprilFools)
                 miToggleAprilFools.Text = "ปิด April Fools";
