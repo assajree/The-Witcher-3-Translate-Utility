@@ -33,7 +33,7 @@ namespace svvv.Classes
             {
                 var desc = c.GetCustomTranslateDescription(item.ID);
                 if (desc == null)
-                    desc = "[กดอัพเดทเพื่อดูคำอธิบาย]";
+                    desc = item.Description??"[กดอัพเดทเพื่อดูคำอธิบาย]";
 
                 item.Description = desc;
             }

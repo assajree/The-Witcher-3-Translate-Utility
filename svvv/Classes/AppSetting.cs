@@ -14,7 +14,7 @@ namespace svvv.Classes
         public bool AdvanceMode { get; set; } = false;
         public bool DoubleLanguage { get; set; } = false;
         public bool EnglishUi { get; set; } = false;
-        public bool OldMethod { get; set; } = false;
+        public bool OldMethod { get; private set; } = false;
         public bool BackupSetting { get; set; } = true;
         public bool ThaiFirst { get; set; } = true;
         public bool ShowNotTranslateRow { get; set; } = false;
@@ -24,7 +24,7 @@ namespace svvv.Classes
         //public int SizeCutscene { get; set; } = 34;
         //public int SizeDialog { get; set; } = 34;
         public eFontSetting FontSetting { get; set; } = eFontSetting.CSPraKas;        
-        public eDownloadFrequency DownloadFrequency { get; private set; } = eDownloadFrequency.Once;
+        public eDownloadFrequency DownloadFrequency { get; private set; } = eDownloadFrequency.Month;
         public eCompatibilityLevel CompatibilityLevel { get; set; } = eCompatibilityLevel.Normal;
         public string GamePath { get; set; } = "";
         public int ExpandHeight { get; set; } = Constant.SIZE_DEFAULT_EXPAND;
@@ -74,7 +74,7 @@ namespace svvv.Classes
             sb.AppendLine($@"AdvanceMode={AdvanceMode}");
             sb.AppendLine($@"DoubleLanguage={DoubleLanguage}");
             sb.AppendLine($@"EnglishUi={EnglishUi}");
-            sb.AppendLine($@"OldMethod={OldMethod}");
+            //sb.AppendLine($@"OldMethod={OldMethod}");
             sb.AppendLine($@"BackupSetting={BackupSetting}");
             sb.AppendLine($@"RandomLoading={RandomLoading}");
             //sb.AppendLine($@"TranslateStorybook={TranslateStorybook}");
@@ -127,9 +127,9 @@ namespace svvv.Classes
                 case "EnglishUi":
                     EnglishUi = value.ToBoolean(false);
                     break;
-                case "OldMethod":
-                    OldMethod = value.ToBoolean(false);
-                    break;
+                //case "OldMethod":
+                //    OldMethod = value.ToBoolean(false);
+                //    break;
                 case "BackupSetting":
                     BackupSetting = value.ToBoolean(true);
                     break;
@@ -167,7 +167,7 @@ namespace svvv.Classes
                 //    SizeDialog = value.ToInt32(34);
                 //    break;
                 case "DownloadFrequency":
-                    DownloadFrequency = value.ToDownloadFrequency(eDownloadFrequency.Once);
+                    DownloadFrequency = value.ToDownloadFrequency(eDownloadFrequency.Month);
                     break;
                 case "CompatibilityLevel":
                     CompatibilityLevel = value.ToCompatibilityLevel(eCompatibilityLevel.Normal);

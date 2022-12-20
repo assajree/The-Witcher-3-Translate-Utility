@@ -59,8 +59,11 @@ namespace TranslateUtility
         private void frmVeryVerySimple_Shown(object sender, EventArgs e)
         {
             //mExpandHeight = this.Height;           
-            CheckAppUpdate(false);
-            CheckTranslateUpdate();
+            #if !DEBUG
+                CheckAppUpdate(false);
+                CheckTranslateUpdate();
+            #endif
+
 
             //if (c.IsPirate())
             //{
@@ -496,7 +499,7 @@ namespace TranslateUtility
             mAppSetting.IsNextGen = chkNextGen.Checked;
             mAppSetting.DoubleLanguage = chkModDoubleLanguage.Checked;
             mAppSetting.EnglishUi = chkExcludeUiText.Checked;
-            mAppSetting.OldMethod = chkOldMethod.Checked;
+            //mAppSetting.OldMethod = chkOldMethod.Checked;
             mAppSetting.BackupSetting = chkBackupSetting.Checked;
             //mAppSetting.RandomLoading = chkRandomLoading.Checked;
             mAppSetting.TranslateStorybook = chkStorybook.Checked;
@@ -783,20 +786,22 @@ namespace TranslateUtility
 
         private Common.eDownloadFrequency GetDownloadFrequency()
         {
-            if (rdoDownloadAlways.Checked)
-                return Common.eDownloadFrequency.Always;
+            //if (rdoDownloadAlways.Checked)
+            //    return Common.eDownloadFrequency.Always;
 
-            //else if (rdoDownloadAlt.Checked)
-            //    return Common.eDownloadFrequency.Hour;
+            ////else if (rdoDownloadAlt.Checked)
+            ////    return Common.eDownloadFrequency.Hour;
 
-            else if (rdoDownloadOnce.Checked)
-                return Common.eDownloadFrequency.Once;
+            //else if (rdoDownloadOnce.Checked)
+            //    return Common.eDownloadFrequency.Once;
 
-            else if (rdoDownloadDialy.Checked)
-                return Common.eDownloadFrequency.Day;
+            //else if (rdoDownloadDialy.Checked)
+            //    return Common.eDownloadFrequency.Day;
 
-            else
-                return Common.eDownloadFrequency.Day;
+            //else
+            //    return Common.eDownloadFrequency.Month;
+
+            return Common.eDownloadFrequency.Month;
         }
 
         private Common.eCompatibilityLevel GetCompatibilityLevel()
@@ -813,29 +818,25 @@ namespace TranslateUtility
 
         private void SetDownloadFrequencyRadio()
         {
-            //Common.eDownloadFrequency frequency;
-            //var setting = Properties.Settings.Default._SimpleDownloadFrequency;
-            //if (!Enum.TryParse(setting, true, out frequency))
-            //    frequency = Common.eDownloadFrequency.Hour;
-            var frequency = mAppSetting.DownloadFrequency;
-            switch (frequency)
-            {
-                case Common.eDownloadFrequency.Always:
-                    rdoDownloadAlways.Checked = true;
-                    break;
-                case Common.eDownloadFrequency.Day:
-                    rdoDownloadDialy.Checked = true;
-                    break;
-                //case Common.eDownloadFrequency.Hour:
-                //    rdoDownloadAlt.Checked = true;
-                //    break;
-                case Common.eDownloadFrequency.Once:
-                    rdoDownloadOnce.Checked = true;
-                    break;
-            }
+            //var frequency = mAppSetting.DownloadFrequency;
+            //switch (frequency)
+            //{
+            //    case Common.eDownloadFrequency.Always:
+            //        rdoDownloadAlways.Checked = true;
+            //        break;
+            //    case Common.eDownloadFrequency.Day:
+            //        rdoDownloadDialy.Checked = true;
+            //        break;
+            //    //case Common.eDownloadFrequency.Hour:
+            //    //    rdoDownloadAlt.Checked = true;
+            //    //    break;
+            //    case Common.eDownloadFrequency.Once:
+            //        rdoDownloadOnce.Checked = true;
+            //        break;
+            //}
 
-            if (mAppSetting.AlternativeDownload)
-                rdoDownloadAlt.Checked = true;
+            //if (mAppSetting.AlternativeDownload)
+            //    rdoDownloadAlt.Checked = true;
         }
 
         private void SetCompatibilityLevel()
@@ -1166,6 +1167,11 @@ namespace TranslateUtility
         private void miToggleAprilFools_Click(object sender, EventArgs e)
         {
             mAppSetting.EnableAprilFools = !mAppSetting.EnableAprilFools;
+        }
+
+        private void btnNextGen_Click(object sender, EventArgs e)
+        {
+            c.Open(Configs.GoogleSheetUrl);
         }
     }
 }

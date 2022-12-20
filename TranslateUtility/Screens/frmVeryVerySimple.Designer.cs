@@ -36,9 +36,9 @@
             this.rdoModTranslateFirst = new System.Windows.Forms.RadioButton();
             this.btnLegacyGenerate = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.chkExcludeUiText = new System.Windows.Forms.CheckBox();
             this.chkModDoubleLanguage = new System.Windows.Forms.CheckBox();
             this.rdoModOriginFirst = new System.Windows.Forms.RadioButton();
+            this.chkExcludeUiText = new System.Windows.Forms.CheckBox();
             this.chkOldMethod = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.chkUiInfo = new System.Windows.Forms.CheckBox();
@@ -56,6 +56,7 @@
             this.rdoHighCompatibility = new System.Windows.Forms.RadioButton();
             this.rdoMediumCompatibility = new System.Windows.Forms.RadioButton();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.btnNextGen = new System.Windows.Forms.Button();
             this.lblCustomTranslateCount = new System.Windows.Forms.Label();
             this.btnAltSubSetting = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -80,8 +81,8 @@
             this.btnChangeFontSize = new System.Windows.Forms.Button();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.btnTranslateOnGoogleSheet = new System.Windows.Forms.Button();
-            this.btnTranslateOnWeb = new System.Windows.Forms.Button();
             this.chkStorybook = new System.Windows.Forms.CheckBox();
+            this.btnTranslateOnWeb = new System.Windows.Forms.Button();
             this.chkRandomLoading = new System.Windows.Forms.CheckBox();
             this.chkBackupSetting = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -212,19 +213,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "สองภาษา";
             // 
-            // chkExcludeUiText
-            // 
-            this.chkExcludeUiText.AutoSize = true;
-            this.chkExcludeUiText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkExcludeUiText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.chkExcludeUiText.Location = new System.Drawing.Point(31, 36);
-            this.chkExcludeUiText.Margin = new System.Windows.Forms.Padding(4);
-            this.chkExcludeUiText.Name = "chkExcludeUiText";
-            this.chkExcludeUiText.Size = new System.Drawing.Size(141, 24);
-            this.chkExcludeUiText.TabIndex = 37;
-            this.chkExcludeUiText.Text = "เมนูภาษาอังกฤษ";
-            this.chkExcludeUiText.UseVisualStyleBackColor = true;
-            // 
             // chkModDoubleLanguage
             // 
             this.chkModDoubleLanguage.AutoSize = true;
@@ -253,6 +241,19 @@
             this.rdoModOriginFirst.TabIndex = 34;
             this.rdoModOriginFirst.Text = "ภาษาอังกฤษก่อน";
             this.rdoModOriginFirst.UseVisualStyleBackColor = true;
+            // 
+            // chkExcludeUiText
+            // 
+            this.chkExcludeUiText.AutoSize = true;
+            this.chkExcludeUiText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkExcludeUiText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.chkExcludeUiText.Location = new System.Drawing.Point(31, 36);
+            this.chkExcludeUiText.Margin = new System.Windows.Forms.Padding(4);
+            this.chkExcludeUiText.Name = "chkExcludeUiText";
+            this.chkExcludeUiText.Size = new System.Drawing.Size(141, 24);
+            this.chkExcludeUiText.TabIndex = 37;
+            this.chkExcludeUiText.Text = "เมนูภาษาอังกฤษ";
+            this.chkExcludeUiText.UseVisualStyleBackColor = true;
             // 
             // chkOldMethod
             // 
@@ -492,6 +493,7 @@
             // 
             this.pnAdvance.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnAdvance.Controls.Add(this.groupBox5);
             this.pnAdvance.Controls.Add(this.groupBox9);
             this.pnAdvance.Controls.Add(this.groupBox7);
             this.pnAdvance.Controls.Add(this.groupBox2);
@@ -500,7 +502,6 @@
             this.pnAdvance.Controls.Add(this.groupBox4);
             this.pnAdvance.Controls.Add(this.groupBox1);
             this.pnAdvance.Controls.Add(this.groupBox3);
-            this.pnAdvance.Controls.Add(this.groupBox5);
             this.pnAdvance.Location = new System.Drawing.Point(15, 132);
             this.pnAdvance.Margin = new System.Windows.Forms.Padding(4);
             this.pnAdvance.Name = "pnAdvance";
@@ -573,6 +574,7 @@
             // 
             this.groupBox7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox7.Controls.Add(this.btnNextGen);
             this.groupBox7.Controls.Add(this.lblCustomTranslateCount);
             this.groupBox7.Controls.Add(this.btnAltSubSetting);
             this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -585,6 +587,18 @@
             this.groupBox7.TabIndex = 52;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "การแปลแบบปรับแต่ง";
+            // 
+            // btnNextGen
+            // 
+            this.btnNextGen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNextGen.Location = new System.Drawing.Point(364, 26);
+            this.btnNextGen.Margin = new System.Windows.Forms.Padding(4);
+            this.btnNextGen.Name = "btnNextGen";
+            this.btnNextGen.Size = new System.Drawing.Size(217, 41);
+            this.btnNextGen.TabIndex = 55;
+            this.btnNextGen.Text = "ช่วยแปล (Next Gen)";
+            this.btnNextGen.UseVisualStyleBackColor = true;
+            this.btnNextGen.Click += new System.EventHandler(this.btnNextGen_Click);
             // 
             // lblCustomTranslateCount
             // 
@@ -954,18 +968,6 @@
             this.btnTranslateOnGoogleSheet.UseVisualStyleBackColor = true;
             this.btnTranslateOnGoogleSheet.Click += new System.EventHandler(this.btnTranslateOnGoogleSheet_Click);
             // 
-            // btnTranslateOnWeb
-            // 
-            this.btnTranslateOnWeb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTranslateOnWeb.Location = new System.Drawing.Point(188, 27);
-            this.btnTranslateOnWeb.Margin = new System.Windows.Forms.Padding(4);
-            this.btnTranslateOnWeb.Name = "btnTranslateOnWeb";
-            this.btnTranslateOnWeb.Size = new System.Drawing.Size(148, 41);
-            this.btnTranslateOnWeb.TabIndex = 53;
-            this.btnTranslateOnWeb.Text = "ช่วยแปล (เว็บ)";
-            this.btnTranslateOnWeb.UseVisualStyleBackColor = true;
-            this.btnTranslateOnWeb.Click += new System.EventHandler(this.btnTranslateOnWeb_Click);
-            // 
             // chkStorybook
             // 
             this.chkStorybook.AutoSize = true;
@@ -979,6 +981,18 @@
             this.chkStorybook.Text = "แปล Storybook";
             this.chkStorybook.UseVisualStyleBackColor = true;
             this.chkStorybook.Visible = false;
+            // 
+            // btnTranslateOnWeb
+            // 
+            this.btnTranslateOnWeb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTranslateOnWeb.Location = new System.Drawing.Point(188, 27);
+            this.btnTranslateOnWeb.Margin = new System.Windows.Forms.Padding(4);
+            this.btnTranslateOnWeb.Name = "btnTranslateOnWeb";
+            this.btnTranslateOnWeb.Size = new System.Drawing.Size(148, 41);
+            this.btnTranslateOnWeb.TabIndex = 53;
+            this.btnTranslateOnWeb.Text = "ช่วยแปล (เว็บ)";
+            this.btnTranslateOnWeb.UseVisualStyleBackColor = true;
+            this.btnTranslateOnWeb.Click += new System.EventHandler(this.btnTranslateOnWeb_Click);
             // 
             // chkRandomLoading
             // 
@@ -1503,5 +1517,6 @@
         private System.Windows.Forms.Button btnTranslateOnWeb;
         private System.Windows.Forms.ToolStripMenuItem miToggleAprilFools;
         private System.Windows.Forms.CheckBox chkNextGen;
+        private System.Windows.Forms.Button btnNextGen;
     }
 }

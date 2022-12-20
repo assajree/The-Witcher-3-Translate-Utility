@@ -18,10 +18,13 @@ namespace svvv
         }
 
         public static bool IsGamer { get; set; } = false;
-        
-        
+
+        public const string W3eeFileId = "1HehSmP7ukMpBhs_V85JULB0b2GUpkOsFC8xu7VfcycQ";
+        public const string NextGenFileId = "1YZvH6sd3XjPcLmz5nlRVkHd2Wm1psU1KthHtwSeG3t4";
+
         public const string WebUrl = "https://w3tu-svvv.web.app";
         public const string GoogleSheetUrl = "https://docs.google.com/spreadsheets/d/1AZLkTTaUbRUnnx6tFeTD3YBLt4AIBgeGquRZP5oJVAE";
+        public const string NextGenUrl = "https://docs.google.com/spreadsheets/d/" + NextGenFileId;
         public const string ApiKey = "AIzaSyDg03c_bkBM2Tw3TahE3Gei-vx0m--OeWU";
 
         public const string modThaiStoryBook = "modThaiStoryBook";
@@ -46,7 +49,7 @@ namespace svvv
         public const string MissingText = "[MISSING MESSAGE]";
         public const string Separator = "  ";
 
-        public const string W3eeFileId = "1HehSmP7ukMpBhs_V85JULB0b2GUpkOsFC8xu7VfcycQ";
+       
 
         //public const string UpdateFileId = "1HOmaK3jaI2oW194CvyDXlzZBUEoWzGbU";
         //public const string VersionFileId = "1dChsKp641mD3EPREqSZTN_yxlu9KFXJP";

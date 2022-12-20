@@ -93,6 +93,7 @@ namespace TheWitcher3Thai
             mSheetName.Add("DLCbobcontent", @"bob (Blood and Wine)");
 
             mSheetName.Add("DLCall", "DLCall (Other DLC)");
+            mSheetName.Add("NextGen", "Next Gen Update");
             //d.Add("MISSING", "MISSING");
 
             return mSheetName;
@@ -213,6 +214,9 @@ namespace TheWitcher3Thai
             //    return mCustomTranslate;
 
             mCustomTranslate = new List<CustomTranslateItem>();
+
+            // next gen
+            //mCustomTranslate.Add(new CustomTranslateItem(true, Configs.NextGenFileId, "Next Gen"));
 
             // missing message
             mCustomTranslate.Add(new CustomTranslateItem(true, "16rgIGMmFzO1GsS-JdNXbkgTRaEma6LOuR_2EF76-TuQ", null));

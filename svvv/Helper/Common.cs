@@ -2830,6 +2830,11 @@ namespace TheWitcher3Thai
                 var allMessageDict = ConvertToDictionary(allMessage);
 
                 var custom = new CustomTranslateSetting(Configs.CustomTranslateSettingPath);
+
+                // Next-Gen Translate
+                var nextgen = ReadCustomTranslate(Configs.NextGenFileId);
+                FillCustomTranslate(allMessageDict, nextgen);
+
                 foreach (var c in custom.Value.Values)
                 {
                     if (!c.Enable)
@@ -4512,10 +4517,12 @@ namespace TheWitcher3Thai
 
         public void DownloadAllCustomTranslateFile(eDownloadFrequency frequency)
         {
+            DownloadCustomTranslateFile(Configs.NextGenFileId, eDownloadFrequency.Day);
+
             var custom = new CustomTranslateSetting(Configs.CustomTranslateSettingPath);
             foreach (var item in custom.Value.Values)
-            {
-                DownloadCustomTranslateFile(item.ID, frequency);
+            {                
+                    DownloadCustomTranslateFile(item.ID, frequency);
             }
         }
 
