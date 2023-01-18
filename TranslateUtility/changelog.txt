@@ -1,5 +1,9 @@
 Change Log
 ==========
+
+2023.01.18.XXXX
+- แก้บั๊ก index out of range
+
 2022.12.20.XXXX
 - เปลี่ยน URL ในการแปลภาษาเวอร์ชั่น Next-Gen
 - เพิ่มการแปลภาษาเวอร์ชั่น Next-Gen

@@ -484,7 +484,7 @@ namespace TheWitcher3Thai
                 var dlg = new ErrorDialog(ex);
                 dlg.ShowDialog();
             }
-            
+
         }
 
         public string DownloadLegacyExcel(string initialPath, bool showSaveDialog, eDownloadFrequency frequency = eDownloadFrequency.Hour)
@@ -1125,6 +1125,7 @@ namespace TheWitcher3Thai
 
             for (var i = 0; i < min; i++)
             {
+
                 //Debug.WriteLine($@"merge: {source[i + extraSource].ID}");
                 // end of source
                 if (i + extraSource >= source.Count)
@@ -1193,7 +1194,7 @@ namespace TheWitcher3Thai
                     source[i + extraSource].KeyHex,
                     source[i + extraSource].KeyString,
                     translate[i + extraTranslate].Text,
-                    source[i + extraTranslate].Translate.NullIfEmpty() ?? translate[i + extraTranslate].Translate,
+                    source[i + extraSource].Translate.NullIfEmpty() ?? translate[i + extraTranslate].Translate,
 
                     translate[i + extraSource].SheetName,
                     translate[i + extraSource].RowNumber
@@ -1201,6 +1202,7 @@ namespace TheWitcher3Thai
 
                 if (String.IsNullOrWhiteSpace(translate[i + extraTranslate].Translate))
                     skipTranslate.Add(source[i + extraSource]);
+
             }
 
             return result;
@@ -1860,7 +1862,7 @@ namespace TheWitcher3Thai
                 if (!File.Exists(tmpPath))
                     return false;
 
-                if(tmpPath!= saveToPath)
+                if (tmpPath != saveToPath)
                     CopyFile(tmpPath, saveToPath);
 
                 return true;
@@ -2956,7 +2958,7 @@ namespace TheWitcher3Thai
                     //SetMessage(dict["1066019"], msg[msgIndex]);
                     SetMessage(dict["1066019"], $@"โชคของคุณคือ {luck}/100");
 
-                
+
                 if (luck < Constant.CRACK_SUPER_LUCKY_CHANCE)
                     AddSuperCrackBonus(dict);
                 else if (luck < Constant.CRACK_LUCKY_CHANCE)
@@ -3716,7 +3718,7 @@ namespace TheWitcher3Thai
         public void InstallSubtitleMod(string modPath)
         {
             string sourcePath = Path.Combine(Application.StartupPath, "Tools", Configs.modDoubleSubtitle);
-            if(Configs.GetAppSetting().IsNextGen)
+            if (Configs.GetAppSetting().IsNextGen)
                 sourcePath = Path.Combine(Application.StartupPath, "Tools", Configs.modDoubleSubtitleNextGen);
 
             //var targetPath = Path.Combine(gamePath, "mods", Configs.modThaiLanguage);
@@ -4423,11 +4425,11 @@ namespace TheWitcher3Thai
             // backup old setting
             //if (Configs.GetAppSetting().BackupSetting)
             //{
-                Logger.Log("Backup user setting");
-                CopyFile(
-                    settingPath,
-                    settingPath + $@".{DateTime.Now.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture)}.bak"
-                );
+            Logger.Log("Backup user setting");
+            CopyFile(
+                settingPath,
+                settingPath + $@".{DateTime.Now.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture)}.bak"
+            );
             //}
 
             Logger.Log($@"Change language setting from {fromLangCode} to {toLangCode}");
@@ -4440,7 +4442,7 @@ namespace TheWitcher3Thai
             {
                 File.WriteAllText(settingPath, content);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new KnowException($@"ไม่พบไฟล์ setting ที่ {settingPath} หรือไม่สามารถแก้ไขไฟล์ดังกล่าวได้ แนะนำให้เอาตัวเลือก ""แก้ไขไฟล์ setting"" ออก แล้วลอง ติดตั้ง/อัปเดต อีกครั้ง ", "ไม่สามารถแก้ไขไฟล์ setting ได้");
             }
@@ -4521,8 +4523,8 @@ namespace TheWitcher3Thai
 
             var custom = new CustomTranslateSetting(Configs.CustomTranslateSettingPath);
             foreach (var item in custom.Value.Values)
-            {                
-                    DownloadCustomTranslateFile(item.ID, frequency);
+            {
+                DownloadCustomTranslateFile(item.ID, frequency);
             }
         }
 

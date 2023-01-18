@@ -1171,7 +1171,7 @@ namespace TranslateUtility
 
         private void btnNextGen_Click(object sender, EventArgs e)
         {
-            c.Open(Configs.GoogleSheetUrl);
+            c.Open(Configs.NextGenUrl);
         }
     }
 }
