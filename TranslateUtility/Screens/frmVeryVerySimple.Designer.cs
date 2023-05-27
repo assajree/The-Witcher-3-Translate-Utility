@@ -51,6 +51,11 @@
             this.btnMessageFinder = new System.Windows.Forms.Button();
             this.lblAdvance = new System.Windows.Forms.LinkLabel();
             this.pnAdvance = new System.Windows.Forms.Panel();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.rdoDownloadAlways = new System.Windows.Forms.RadioButton();
+            this.rdoDownloadDialy = new System.Windows.Forms.RadioButton();
+            this.rdoDownloadOnce = new System.Windows.Forms.RadioButton();
+            this.rdoDownloadAlt = new System.Windows.Forms.RadioButton();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.rdoNormalCompatibility = new System.Windows.Forms.RadioButton();
             this.rdoHighCompatibility = new System.Windows.Forms.RadioButton();
@@ -94,11 +99,6 @@
             this.rdoFontCsPrakas = new System.Windows.Forms.RadioButton();
             this.rdoFontSarabun = new System.Windows.Forms.RadioButton();
             this.rdoFontNone = new System.Windows.Forms.RadioButton();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.rdoDownloadAlways = new System.Windows.Forms.RadioButton();
-            this.rdoDownloadDialy = new System.Windows.Forms.RadioButton();
-            this.rdoDownloadOnce = new System.Windows.Forms.RadioButton();
-            this.rdoDownloadAlt = new System.Windows.Forms.RadioButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.miVersion = new System.Windows.Forms.ToolStripMenuItem();
@@ -119,6 +119,7 @@
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.pnAdvance.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -132,7 +133,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbColor1)).BeginInit();
             this.groupBox8.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -507,6 +507,82 @@
             this.pnAdvance.Name = "pnAdvance";
             this.pnAdvance.Size = new System.Drawing.Size(695, 711);
             this.pnAdvance.TabIndex = 52;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox5.Controls.Add(this.rdoDownloadAlways);
+            this.groupBox5.Controls.Add(this.rdoDownloadDialy);
+            this.groupBox5.Controls.Add(this.rdoDownloadOnce);
+            this.groupBox5.Controls.Add(this.rdoDownloadAlt);
+            this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.groupBox5.Location = new System.Drawing.Point(67, 69);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox5.Size = new System.Drawing.Size(668, 75);
+            this.groupBox5.TabIndex = 52;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "ความถี่การดาวน์โหลดไฟล์แปลภาษา";
+            this.groupBox5.Visible = false;
+            // 
+            // rdoDownloadAlways
+            // 
+            this.rdoDownloadAlways.AutoSize = true;
+            this.rdoDownloadAlways.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdoDownloadAlways.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.rdoDownloadAlways.Location = new System.Drawing.Point(451, 31);
+            this.rdoDownloadAlways.Margin = new System.Windows.Forms.Padding(4);
+            this.rdoDownloadAlways.Name = "rdoDownloadAlways";
+            this.rdoDownloadAlways.Size = new System.Drawing.Size(77, 24);
+            this.rdoDownloadAlways.TabIndex = 0;
+            this.rdoDownloadAlways.Text = "ทุกครั้ง";
+            this.rdoDownloadAlways.UseVisualStyleBackColor = true;
+            this.rdoDownloadAlways.Visible = false;
+            // 
+            // rdoDownloadDialy
+            // 
+            this.rdoDownloadDialy.AutoSize = true;
+            this.rdoDownloadDialy.Checked = true;
+            this.rdoDownloadDialy.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdoDownloadDialy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.rdoDownloadDialy.Location = new System.Drawing.Point(30, 31);
+            this.rdoDownloadDialy.Margin = new System.Windows.Forms.Padding(4);
+            this.rdoDownloadDialy.Name = "rdoDownloadDialy";
+            this.rdoDownloadDialy.Size = new System.Drawing.Size(91, 24);
+            this.rdoDownloadDialy.TabIndex = 0;
+            this.rdoDownloadDialy.TabStop = true;
+            this.rdoDownloadDialy.Text = "วันละครั้ง";
+            this.rdoDownloadDialy.UseVisualStyleBackColor = true;
+            // 
+            // rdoDownloadOnce
+            // 
+            this.rdoDownloadOnce.AutoSize = true;
+            this.rdoDownloadOnce.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdoDownloadOnce.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.rdoDownloadOnce.Location = new System.Drawing.Point(186, 31);
+            this.rdoDownloadOnce.Margin = new System.Windows.Forms.Padding(4);
+            this.rdoDownloadOnce.Name = "rdoDownloadOnce";
+            this.rdoDownloadOnce.Size = new System.Drawing.Size(89, 24);
+            this.rdoDownloadOnce.TabIndex = 0;
+            this.rdoDownloadOnce.Text = "ครั้งเดียว";
+            this.rdoDownloadOnce.UseVisualStyleBackColor = true;
+            // 
+            // rdoDownloadAlt
+            // 
+            this.rdoDownloadAlt.AutoSize = true;
+            this.rdoDownloadAlt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdoDownloadAlt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.rdoDownloadAlt.Location = new System.Drawing.Point(354, 31);
+            this.rdoDownloadAlt.Margin = new System.Windows.Forms.Padding(4);
+            this.rdoDownloadAlt.Name = "rdoDownloadAlt";
+            this.rdoDownloadAlt.Size = new System.Drawing.Size(89, 24);
+            this.rdoDownloadAlt.TabIndex = 0;
+            this.rdoDownloadAlt.Text = "แล้วแต่ปุ๊";
+            this.rdoDownloadAlt.UseVisualStyleBackColor = true;
+            this.rdoDownloadAlt.Visible = false;
             // 
             // groupBox9
             // 
@@ -1150,82 +1226,6 @@
             this.rdoFontNone.Text = "ไม่เอาฟอนต์";
             this.rdoFontNone.UseVisualStyleBackColor = true;
             // 
-            // groupBox5
-            // 
-            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox5.Controls.Add(this.rdoDownloadAlways);
-            this.groupBox5.Controls.Add(this.rdoDownloadDialy);
-            this.groupBox5.Controls.Add(this.rdoDownloadOnce);
-            this.groupBox5.Controls.Add(this.rdoDownloadAlt);
-            this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.groupBox5.Location = new System.Drawing.Point(67, 69);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox5.Size = new System.Drawing.Size(668, 75);
-            this.groupBox5.TabIndex = 52;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "ความถี่การดาวน์โหลดไฟล์แปลภาษา";
-            this.groupBox5.Visible = false;
-            // 
-            // rdoDownloadAlways
-            // 
-            this.rdoDownloadAlways.AutoSize = true;
-            this.rdoDownloadAlways.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoDownloadAlways.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.rdoDownloadAlways.Location = new System.Drawing.Point(451, 31);
-            this.rdoDownloadAlways.Margin = new System.Windows.Forms.Padding(4);
-            this.rdoDownloadAlways.Name = "rdoDownloadAlways";
-            this.rdoDownloadAlways.Size = new System.Drawing.Size(77, 24);
-            this.rdoDownloadAlways.TabIndex = 0;
-            this.rdoDownloadAlways.Text = "ทุกครั้ง";
-            this.rdoDownloadAlways.UseVisualStyleBackColor = true;
-            this.rdoDownloadAlways.Visible = false;
-            // 
-            // rdoDownloadDialy
-            // 
-            this.rdoDownloadDialy.AutoSize = true;
-            this.rdoDownloadDialy.Checked = true;
-            this.rdoDownloadDialy.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoDownloadDialy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.rdoDownloadDialy.Location = new System.Drawing.Point(30, 31);
-            this.rdoDownloadDialy.Margin = new System.Windows.Forms.Padding(4);
-            this.rdoDownloadDialy.Name = "rdoDownloadDialy";
-            this.rdoDownloadDialy.Size = new System.Drawing.Size(91, 24);
-            this.rdoDownloadDialy.TabIndex = 0;
-            this.rdoDownloadDialy.TabStop = true;
-            this.rdoDownloadDialy.Text = "วันละครั้ง";
-            this.rdoDownloadDialy.UseVisualStyleBackColor = true;
-            // 
-            // rdoDownloadOnce
-            // 
-            this.rdoDownloadOnce.AutoSize = true;
-            this.rdoDownloadOnce.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoDownloadOnce.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.rdoDownloadOnce.Location = new System.Drawing.Point(186, 31);
-            this.rdoDownloadOnce.Margin = new System.Windows.Forms.Padding(4);
-            this.rdoDownloadOnce.Name = "rdoDownloadOnce";
-            this.rdoDownloadOnce.Size = new System.Drawing.Size(89, 24);
-            this.rdoDownloadOnce.TabIndex = 0;
-            this.rdoDownloadOnce.Text = "ครั้งเดียว";
-            this.rdoDownloadOnce.UseVisualStyleBackColor = true;
-            // 
-            // rdoDownloadAlt
-            // 
-            this.rdoDownloadAlt.AutoSize = true;
-            this.rdoDownloadAlt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoDownloadAlt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.rdoDownloadAlt.Location = new System.Drawing.Point(354, 31);
-            this.rdoDownloadAlt.Margin = new System.Windows.Forms.Padding(4);
-            this.rdoDownloadAlt.Name = "rdoDownloadAlt";
-            this.rdoDownloadAlt.Size = new System.Drawing.Size(89, 24);
-            this.rdoDownloadAlt.TabIndex = 0;
-            this.rdoDownloadAlt.Text = "แล้วแต่ปุ๊";
-            this.rdoDownloadAlt.UseVisualStyleBackColor = true;
-            this.rdoDownloadAlt.Visible = false;
-            // 
             // menuStrip1
             // 
             this.menuStrip1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -1366,9 +1366,9 @@
             this.chkNextGen.Location = new System.Drawing.Point(20, 79);
             this.chkNextGen.Margin = new System.Windows.Forms.Padding(4);
             this.chkNextGen.Name = "chkNextGen";
-            this.chkNextGen.Size = new System.Drawing.Size(134, 21);
+            this.chkNextGen.Size = new System.Drawing.Size(122, 21);
             this.chkNextGen.TabIndex = 55;
-            this.chkNextGen.Text = "Next Gen (v.4.0)";
+            this.chkNextGen.Text = "Next Gen (v.4)";
             this.chkNextGen.UseVisualStyleBackColor = true;
             // 
             // frmVeryVerySimple
@@ -1402,6 +1402,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.pnAdvance.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
             this.groupBox7.ResumeLayout(false);
@@ -1422,8 +1424,6 @@
             this.groupBox8.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
