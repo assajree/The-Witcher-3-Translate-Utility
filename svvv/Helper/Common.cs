@@ -487,7 +487,7 @@ namespace TheWitcher3Thai
 
         }
 
-        public string DownloadLegacyExcel(string initialPath, bool showSaveDialog, eDownloadFrequency frequency = eDownloadFrequency.Hour)
+        public string DownloadGoogleSheet(string initialPath, bool showSaveDialog, eDownloadFrequency frequency = eDownloadFrequency.Hour)
         {
             var excelPath = initialPath;
 
@@ -2865,6 +2865,8 @@ namespace TheWitcher3Thai
             //            .ToList();
 
             var content = Translate(allMessage, combine, originalFirst, includeNotTranslateMessageId, includeTranslateMessageId, IncludeUiMessageId, translateUI);
+
+
 
             var path = Path.Combine(tempPath, "message" + ".csv");
             WriteCsv(content, path);

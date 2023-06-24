@@ -17,7 +17,7 @@ namespace StorybookTools
 
         private void btnDownload_Click(object sender, EventArgs e)
         {
-            c.DownloadLegacyExcel(
+            c.DownloadGoogleSheet(
                 Configs.TranslatePath,
                 false,
                 Common.eDownloadFrequency.Always

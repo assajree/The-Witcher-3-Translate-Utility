@@ -92,7 +92,7 @@ namespace AdvanceTools.Screens
 
         private void DownloadTranslateFile(string translatePath)
         {
-            c.DownloadLegacyExcel(translatePath, false, Common.eDownloadFrequency.Day);
+            c.DownloadGoogleSheet(translatePath, false, Common.eDownloadFrequency.Day);
         }
 
         private void btnTest_Click(object sender, EventArgs e)

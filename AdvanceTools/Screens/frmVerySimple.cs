@@ -63,7 +63,7 @@ namespace TranslateUtility
         {
             // download translate excel file
             translatePath = Path.Combine(Configs.DownloadPath, "translate.xlsx");
-            translatePath = c.DownloadLegacyExcel(translatePath, false);
+            translatePath = c.DownloadGoogleSheet(translatePath, false);
             if (translatePath == null)
                 return;
 
@@ -217,7 +217,7 @@ namespace TranslateUtility
         {
             // download translate excel file
             translatePath = Path.Combine(Configs.DownloadPath, "translate.xlsx");
-            translatePath = c.DownloadLegacyExcel(translatePath, false);
+            translatePath = c.DownloadGoogleSheet(translatePath, false);
             if (translatePath == null)
                 return;
 

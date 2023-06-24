@@ -17,7 +17,7 @@ namespace TranslateUtility
         Setting setting = new Setting();
         string modPath = null;
         string resultPath = null;
-        string translatePath = null;
+        string translateFilePath = null;
         AppSetting mAppSetting = new AppSetting(Configs.SettingPath);
         readonly Color mDefaultButtonColor = Color.FromArgb(255, 0, 120, 215);
 
@@ -265,7 +265,7 @@ namespace TranslateUtility
         {
             Logger.Log("Generate mod");
             c.GenerateLegacyModAlt(
-                translatePath,
+                translateFilePath,
                 modPath,
                 chkModDoubleLanguage.Checked,
                 rdoModOriginFirst.Checked,
@@ -543,13 +543,6 @@ namespace TranslateUtility
             SaveAppSetting();
 
 
-            // not alert again when update
-            //if (chkBackupSetting.Checked == false && btnLegacyGenerate.Text == "ติดตั้ง")
-            //{
-            //    if (!c.ShowConfirm("คุณไม่ได้ตั้งค่าให้ฉันแก้ไขไฟล์ setting ให้ ดังนั้นก่อนการเล่นเกมครั้งแรก คุณต้องไปตั้งค่าภาษาในเกมให้เป็นภาษาไทยด้วยตัวเองก่อนนะจ๊ะ", "ต้องตั้งค่าก่อนภาษาเองนะ"))
-            //        return;
-            //}
-
             bool oldMethod = chkOldMethod.Checked;
 
             if (!oldMethod)
@@ -557,11 +550,10 @@ namespace TranslateUtility
 
             c.UpdateTemplate();
 
-            //if (chkAltSub.Checked)
-            //{
+            
             Logger.Log("Download custom translate");
             c.Processing(DownloadAllCustomTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษาแบบปรับแต่ง...");
-            //}
+            
 
             //download web translate
             c.Processing(DownloadWebTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษาจากเว็บ...");
@@ -573,7 +565,7 @@ namespace TranslateUtility
                 return;
 
             // generate mod
-            if (translatePath == null)
+            if (translateFilePath == null)
                 return;
 
             Logger.Log("Start generate mod");
@@ -626,26 +618,8 @@ namespace TranslateUtility
 
         private void DownloadTranslateFile()
         {
-            //if (rdoDownloadAlt.Checked)
-            //{
-            //    translatePath = Path.Combine(Configs.DownloadPath, "translate_alt.xlsx");
-            //    if (c.CheckVersion(Configs.AltTranslateVersion, Configs.AltTranslateVersionFileId))
-            //    {
-            //        if (c.DownloadGoogleSheetFile(Configs.AltTranslateFileId, translatePath))
-            //            c.WriteVersion(Configs.AltTranslateVersion, Configs.AltTranslateVersionFileId);
-            //    }
-            //}
-            //else
-            //{
-            //translatePath = c.DownloadLegacyExcel(translatePath, false, GetDownloadFrequency());
-            //}
-
-            translatePath = Path.Combine(Configs.DownloadPath, "translate.xlsx");
-
-            //if (!File.Exists(translatePath))
-            //    translatePath = c.DownloadLegacyExcel(translatePath, false, Common.eDownloadFrequency.Always);
-
-            translatePath = c.DownloadLegacyExcel(translatePath, false, Common.eDownloadFrequency.Month);
+            translateFilePath = Path.Combine(Configs.DownloadPath, "translate_new.xlsx");
+            translateFilePath = c.DownloadGoogleSheet(translateFilePath, false, Common.eDownloadFrequency.Month);
         }
 
         private void lblAdvance_Click(object sender, EventArgs e)

@@ -240,7 +240,7 @@ namespace TranslateUtility
         private void btnDownload_Click(object sender, EventArgs e)
         {
             var translatePath = Path.Combine(Configs.DownloadPath, "translate.xlsx");
-            c.DownloadLegacyExcel(translatePath, false, Common.eDownloadFrequency.Always);
+            c.DownloadGoogleSheet(translatePath, false, Common.eDownloadFrequency.Always);
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
