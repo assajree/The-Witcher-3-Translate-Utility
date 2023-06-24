@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using TheWitcher3Thai;
 using TheWitcher3Thai.Helper;
@@ -351,5 +353,70 @@ namespace TranslateUtility
         {
             c.GenerateMissing(txtMissingSource.Text, txtMissingOutput.Text);
         }
+
+        #region Text Diff
+        private void button6_Click(object sender, EventArgs e)
+        {
+            c.SelectXlsxTextBox(txtTextDiff1);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            c.SelectXlsxTextBox(txtTextDiff2);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            c.SaveXlsxTextBox(txtTextDiffOutput);
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            var path1 = txtTextDiff1.Text;
+            var path2 = txtTextDiff2.Text;
+            var pathOutput = txtTextDiffOutput.Text;
+
+            // read excel => convert sheet data to single list => convert list to dictionary
+            var data1 = c.ConvertToDictionary(c.ConvertToList(c.ReadExcel(path1, null, false)));
+            var data2 = c.ConvertToDictionary(c.ConvertToList(c.ReadExcel(path2, null, false)));
+
+
+            //compare
+            var result = new List<w3Strings>();
+            foreach (var k in data1.Keys)
+            {
+                var d1 = data1[k];
+                if (data2.ContainsKey(k) == false)
+                {
+                    result.Add(d1);
+                    continue;
+                }
+                
+                var d2 = data2[k];
+
+                //if(d1.Text != d2.Text)
+                if(RemoveSpecialText(d1.Text) != RemoveSpecialText(d2.Text))
+                {
+                    d1.Translate = d2.Text;
+                    result.Add(d1);
+                }
+            }
+
+            var dict = new Dictionary<string, List<w3Strings>>();
+            dict.Add("diff", result);
+
+            c.WriteExcel(pathOutput, dict, true);
+        }
+
+        private string RemoveSpecialText(string text)
+        {
+            return text
+                .Replace("\"", "")
+                .Replace("{", "")
+                .Replace("}", "");
+        }
+        #endregion
+
+
     }
 }

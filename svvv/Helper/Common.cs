@@ -24,8 +24,12 @@ using TheWitcher3Thai.Helper;
 
 namespace TheWitcher3Thai
 {
+    
     public class Common
     {
+        // check translate file up to date
+        DateTime MIN_DATE = new DateTime(2023, 06, 25);
+
         public enum eDownloadFrequency
         {
             Hour,
@@ -504,12 +508,11 @@ namespace TheWitcher3Thai
                     }
                     else
                     {
-                        // check translate file up to date
-                        var errorDate = new DateTime(2023, 06, 24);
+                       
                         var lastDownload = File.GetLastWriteTime(excelPath);
 
-                        // last download before error date = always download
-                        if (lastDownload > errorDate)
+                        // last download before MIN_DATE = always download
+                        if (lastDownload > MIN_DATE)
                         {
                             switch (frequency)
                             {
@@ -682,6 +685,16 @@ namespace TheWitcher3Thai
         public List<w3Strings> ConvertToList(Dictionary<string, w3Strings> data)
         {
             return data.Select(d => d.Value).ToList();
+        }
+
+        public List<w3Strings> ConvertToList(Dictionary<string, List<w3Strings>> data)
+        {
+            var result = new List<w3Strings>();
+            foreach(var d in data.Values)
+            {
+                result.AddRange(d);
+            }
+            return result;
         }
 
         public Dictionary<string, w3Strings> GetAllContent(Dictionary<string, List<w3Strings>> content)
@@ -2373,7 +2386,7 @@ namespace TheWitcher3Thai
             }
         }
 
-        private void WriteExcel(string excelPath, Dictionary<string, List<w3Strings>> content, bool sort)
+        public void WriteExcel(string excelPath, Dictionary<string, List<w3Strings>> content, bool sort)
         {
             var fi = new FileInfo(excelPath);
             if (fi.Exists)
@@ -2840,8 +2853,11 @@ namespace TheWitcher3Thai
                 var custom = new CustomTranslateSetting(Configs.CustomTranslateSettingPath);
 
                 // Next-Gen Translate
-                var nextgen = ReadCustomTranslate(Configs.NextGenFileId);
-                FillCustomTranslate(allMessageDict, nextgen);
+                if (Configs.GetAppSetting().IsNextGen)
+                {
+                    var nextgen = ReadCustomTranslate(Configs.NextGenFileId);
+                    FillCustomTranslate(allMessageDict, nextgen);
+                }
 
                 foreach (var c in custom.Value.Values)
                 {
@@ -3413,7 +3429,8 @@ namespace TheWitcher3Thai
             if (File.Exists(resultPath))
                 File.Delete(resultPath);
 
-            var sheetConfig = setting.GetSheetConfig();
+            //var sheetConfig = setting.GetSheetConfig();
+            Dictionary<string, string> sheetConfig = null;
             var source = ReadExcel(sourcePath, sheetConfig, true);
             var translate = ReadExcel(translatePath, sheetConfig, true);
             var newTranslate = new Dictionary<string, List<w3Strings>>();
@@ -3496,14 +3513,15 @@ namespace TheWitcher3Thai
         private Dictionary<string, List<w3Strings>> FillEmptyTranslate(Dictionary<string, List<w3Strings>> sourceContents, Dictionary<string, List<w3Strings>> translateContents, out Dictionary<string, List<w3Strings>> newTranslate)
         {
             newTranslate = new Dictionary<string, List<w3Strings>>();
+            var t = ConvertToDictionary(ConvertToList(translateContents));
 
             foreach (var s in sourceContents)
             {
-                if (!translateContents.ContainsKey(s.Key))
-                    continue;
+                //if (!translateContents.ContainsKey(s.Key))
+                //    continue;
 
                 var ntContent = new List<w3Strings>();
-                var t = ConvertToDictionary(translateContents[s.Key]);
+                //var t = ConvertToDictionary(translateContents[s.Key]);
                 var emptyList = GetEmptyTramslate(s.Value);
                 foreach (var empty in emptyList)
                 {
@@ -4482,6 +4500,13 @@ namespace TheWitcher3Thai
                 {
                     // check translate file up to date
                     var lastDownload = File.GetLastWriteTime(filePath);
+
+                    // last download before MIN_DATE = always download
+                    if (lastDownload < MIN_DATE)
+                    {
+                        return true;
+                    }
+
                     switch (frequency)
                     {
                         case eDownloadFrequency.Day:
