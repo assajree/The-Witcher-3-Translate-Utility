@@ -500,39 +500,9 @@ namespace TheWitcher3Thai
 
             if (excelPath != null)
             {
-                if (File.Exists(excelPath))
+                if(IsNeedToDownload(excelPath, frequency) == false)
                 {
-                    if (frequency == eDownloadFrequency.Once)
-                    {
-                        return excelPath;
-                    }
-                    else
-                    {
-                       
-                        var lastDownload = File.GetLastWriteTime(excelPath);
-
-                        // last download before MIN_DATE = always download
-                        if (lastDownload > MIN_DATE)
-                        {
-                            switch (frequency)
-                            {
-                                case eDownloadFrequency.Day:
-                                    if (lastDownload > DateTime.Now.AddDays(-1)) // download less than 1 day
-                                        return excelPath;
-                                    break;
-                                case eDownloadFrequency.Hour:
-                                    if (lastDownload > DateTime.Now.AddMinutes(-60)) // download less than 1 hour
-                                        return excelPath;
-                                    break;
-                                case eDownloadFrequency.Month:
-                                    if (lastDownload > DateTime.Now.AddDays(-30)) // download less than 1 month
-                                        return excelPath;
-                                    break;
-                                default: // Always
-                                    break;
-                            }
-                        }
-                    }
+                    return excelPath;
                 }
 
                 this.AddDownloadCounter();
@@ -4509,6 +4479,8 @@ namespace TheWitcher3Thai
 
                     switch (frequency)
                     {
+                        case eDownloadFrequency.Always:
+                            return true;
                         case eDownloadFrequency.Day:
                             if (lastDownload > DateTime.Now.AddDays(-1)) // download less than 1 day
                                 return false;
@@ -4517,8 +4489,12 @@ namespace TheWitcher3Thai
                             if (lastDownload > DateTime.Now.AddMinutes(-60)) // download less than 1 hour
                                 return false;
                             break;
-                        default: // Always
+                        case eDownloadFrequency.Month:
+                            if (lastDownload > DateTime.Now.AddDays(-30)) // download less than 1 month
+                                return false;
                             break;
+                        default: // Always
+                            return false;
                     }
                 }
             }
@@ -4550,7 +4526,7 @@ namespace TheWitcher3Thai
 
         public void DownloadAllCustomTranslateFile(eDownloadFrequency frequency)
         {
-            DownloadCustomTranslateFile(Configs.NextGenFileId, eDownloadFrequency.Day);
+            DownloadCustomTranslateFile(Configs.NextGenFileId, frequency);
 
             var custom = new CustomTranslateSetting(Configs.CustomTranslateSettingPath);
             foreach (var item in custom.Value.Values)
