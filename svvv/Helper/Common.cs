@@ -505,23 +505,29 @@ namespace TheWitcher3Thai
                     else
                     {
                         // check translate file up to date
+                        var errorDate = new DateTime(2023, 06, 24);
                         var lastDownload = File.GetLastWriteTime(excelPath);
-                        switch (frequency)
+
+                        // last download before error date = always download
+                        if (lastDownload > errorDate)
                         {
-                            case eDownloadFrequency.Day:
-                                if (lastDownload > DateTime.Now.AddDays(-1)) // download less than 1 day
-                                    return excelPath;
-                                break;
-                            case eDownloadFrequency.Hour:
-                                if (lastDownload > DateTime.Now.AddMinutes(-60)) // download less than 1 hour
-                                    return excelPath;
-                                break;
-                            case eDownloadFrequency.Month:
-                                if (lastDownload > DateTime.Now.AddDays(-30)) // download less than 1 month
-                                    return excelPath;
-                                break;
-                            default: // Always
-                                break;
+                            switch (frequency)
+                            {
+                                case eDownloadFrequency.Day:
+                                    if (lastDownload > DateTime.Now.AddDays(-1)) // download less than 1 day
+                                        return excelPath;
+                                    break;
+                                case eDownloadFrequency.Hour:
+                                    if (lastDownload > DateTime.Now.AddMinutes(-60)) // download less than 1 hour
+                                        return excelPath;
+                                    break;
+                                case eDownloadFrequency.Month:
+                                    if (lastDownload > DateTime.Now.AddDays(-30)) // download less than 1 month
+                                        return excelPath;
+                                    break;
+                                default: // Always
+                                    break;
+                            }
                         }
                     }
                 }
