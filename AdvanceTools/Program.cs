@@ -18,7 +18,7 @@ namespace AdvanceTools
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmExcelTools());
+            Application.Run(new frmStorybook());
         }
     }
 }

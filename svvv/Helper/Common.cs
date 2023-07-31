@@ -512,18 +512,6 @@ namespace TheWitcher3Thai
                     File.Delete(tempDownloadPath);
 
                 // start download
-
-                // original
-                //var downloadComplete = DownloadFile("https://docs.google.com/spreadsheets/d/1XLM0VzU0RFiTw8NIQSZ2NBPlL_i1yzBYarrMWGb5lDA/export?format=xlsx", tempDownloadPath);
-
-                // linked content with original
-                //var downloadComplete = DownloadFile("https://docs.google.com/spreadsheets/d/1h7S2DPtmhl0sE_fX17POhOWs6H10U0VhFRK40oYHDGg/export?format=xlsx", tempDownloadPath);
-
-                // new file
-                //var downloadComplete = DownloadFile("https://docs.google.com/spreadsheets/d/1zSuaHmVYN0lTPhf79iBLHp1J2pLsrmrrU1qtMIgKAqY/export?format=xlsx", tempDownloadPath);
-
-                //var downloadComplete = DownloadFile("https://docs.google.com/spreadsheets/d/18-dkYtaFb4CDnZrBa9kmo5xP1IO3qpTcjucFXrcTkvc/export?format=xlsx", tempDownloadPath);
-                //var downloadComplete = DownloadFile("https://docs.google.com/spreadsheets/d/19Ny3PfzWtuOsfbi6G-QoogFnGSHx1Jke9gTgac17PfI/export?format=xlsx", tempDownloadPath);
                 var downloadComplete = DownloadFile(Configs.GoogleSheetUrl + "/export?format=xlsx", tempDownloadPath);
 
                 var fi = new FileInfo(excelPath);
@@ -2787,23 +2775,23 @@ namespace TheWitcher3Thai
             return -1;
         }
 
-        public void GenerateMod(Dictionary<string, List<w3Strings>> contents, string outputPath, bool combine, bool originalFirst, Dictionary<string, string> sheetConfig, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool IncludeUiMessageId, bool translateUI)
-        {
-            var tempPath = Path.Combine(Application.StartupPath, "temp");
+        //public void GenerateMod(Dictionary<string, List<w3Strings>> contents, string outputPath, bool combine, bool originalFirst, Dictionary<string, string> sheetConfig, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool IncludeUiMessageId, bool translateUI)
+        //{
+        //    var tempPath = Path.Combine(Application.StartupPath, "temp");
 
-            foreach (var sheet in contents)
-            {
-                var content = Translate(sheet.Value, combine, originalFirst, includeNotTranslateMessageId, includeTranslateMessageId, IncludeUiMessageId, translateUI);
+        //    foreach (var sheet in contents)
+        //    {
+        //        var content = Translate(sheet.Value, combine, originalFirst, includeNotTranslateMessageId, includeTranslateMessageId, IncludeUiMessageId, translateUI);
 
-                var path = Path.Combine(tempPath, sheet.Key + ".csv");
-                WriteCsv(content, path);
-                EncodeW3String(path);
-            }
+        //        var path = Path.Combine(tempPath, sheet.Key + ".csv");
+        //        WriteCsv(content, path);
+        //        EncodeW3String(path);
+        //    }
 
-            FinishMod(tempPath, outputPath, sheetConfig);
-        }
+        //    FinishMod(tempPath, outputPath, sheetConfig);
+        //}
 
-        public List<w3Strings> GenerateModAlt(Dictionary<string, List<w3Strings>> contents, string outputPath, bool combine, bool originalFirst, Dictionary<string, string> sheetConfig, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool IncludeUiMessageId, eFontSetting font, bool translateUI, bool alternativeTranslate)
+        public List<w3Strings> GenerateModAlt(Dictionary<string, List<w3Strings>> contents, string outputPath, bool combine, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool IncludeUiMessageId, eFontSetting font, bool translateUI, bool alternativeTranslate)
         {
             DeleteDirectory(outputPath);
 
@@ -2822,12 +2810,12 @@ namespace TheWitcher3Thai
 
                 var custom = new CustomTranslateSetting(Configs.CustomTranslateSettingPath);
 
-                // Next-Gen Translate
-                if (Configs.GetAppSetting().IsNextGen)
-                {
-                    var nextgen = ReadCustomTranslate(Configs.NextGenFileId);
-                    FillCustomTranslate(allMessageDict, nextgen);
-                }
+                //// Next-Gen Translate
+                //if (Configs.GetAppSetting().IsNextGen)
+                //{
+                //    var nextgen = ReadCustomTranslate(Configs.NextGenFileId);
+                //    FillCustomTranslate(allMessageDict, nextgen);
+                //}
 
                 foreach (var c in custom.Value.Values)
                 {
@@ -3185,15 +3173,15 @@ namespace TheWitcher3Thai
             WriteExcel(duppPath, contents, true);
         }
 
-        public void GenerateModFromExcel(string excelPath, string outputPath, bool combine, bool originalFirst, bool includeMessageId = false)
-        {
-            var tempPath = Path.Combine(Application.StartupPath, "temp");
-            var sheetConfig = setting.GetSheetConfig();
+        //public void GenerateModFromExcel(string excelPath, string outputPath, bool combine, bool originalFirst, bool includeMessageId = false)
+        //{
+        //    var tempPath = Path.Combine(Application.StartupPath, "temp");
+        //    var sheetConfig = setting.GetSheetConfig();
 
-            var raw = ReadExcel(excelPath, sheetConfig, true);
+        //    var raw = ReadExcel(excelPath, sheetConfig, true);
 
-            GenerateMod(raw, outputPath, combine, originalFirst, sheetConfig, false, false, false, true);
-        }
+        //    GenerateMod(raw, outputPath, combine, originalFirst, sheetConfig, false, false, false, true);
+        //}
 
         public Dictionary<string, List<w3Strings>> ReadExcel(string excelPath, Dictionary<string, string> sheetConfig, bool isReadTranslate)
         {
@@ -3223,6 +3211,51 @@ namespace TheWitcher3Thai
                     else
                     {
                         continue;
+                    }
+                }
+
+                return result;
+
+            }
+        }
+
+        public Dictionary<string, List<w3Strings>> ReadExcel(string excelPath)
+        {
+            var result = new Dictionary<string, List<w3Strings>>();
+
+            var fi = new FileInfo(excelPath);
+            using (var p = new ExcelPackage(fi))
+            {
+                // original
+                foreach (var s in setting.SheetName)
+                {
+                    var sht = p.Workbook.Worksheets[s];
+                    if (sht != null)
+                    {
+                        var content = ReadExcelSheet(sht, true);
+                        result.Add(s, content);
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+
+                // next gen
+                if (Configs.GetAppSetting().IsNextGen)
+                {
+                    foreach (var s in setting.SheetNameNextGen)
+                    {
+                        var sht = p.Workbook.Worksheets[s];
+                        if (sht != null)
+                        {
+                            var content = ReadExcelSheet(sht, true);
+                            result.Add(s, content);
+                        }
+                        else
+                        {
+                            continue;
+                        }
                     }
                 }
 
@@ -3816,56 +3849,55 @@ namespace TheWitcher3Thai
             }
         }
 
-        public void GenerateLegacyMod(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool IncludeUiMessageId, bool translateUI)
+        //public void GenerateLegacyMod(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool IncludeUiMessageId, bool translateUI)
+        //{
+        //    string templatePath = Configs.TemplateFilePath;
+        //    if (!File.Exists(templatePath))
+        //        throw new Exception("ไม่พบ Template กรุณาต่ออินเตอร์เน็ตและเปิดโปรแกรมใหม่เพิ่อดาวน์โหลดไฟล์ Template");
+
+        //    var sheetConfig = setting.GetSheetConfig();
+        //    var template = ReadExcel(templatePath, sheetConfig, true);
+        //    var translate = ReadExcelLegacy(excelPath, sheetConfig);
+
+        //    var content = MergeLegacy(template, translate);
+
+        //    GenerateMod(content, outputPath, doubleLanguage, originalFirst, sheetConfig, includeNotTranslateMessageId, includeTranslateMessageId, IncludeUiMessageId, translateUI);
+
+        //    // write all text excel file for later use
+        //    string tempPath = Path.Combine(outputPath, "translate.xlsx");
+        //    WriteExcel(tempPath, content, false);
+
+        //    // write result
+        //    string legacyExcel = Path.Combine(outputPath, "result.xlsx");
+        //    WriteNotTranslateExcel(legacyExcel, content, false);
+
+        //}
+
+        public void GenerateMod(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool includeUiMessageId, eFontSetting font, bool translateUI, bool alternativeTranslate)
         {
-            string templatePath = Configs.TemplateFilePath;
-            if (!File.Exists(templatePath))
-                throw new Exception("ไม่พบ Template กรุณาต่ออินเตอร์เน็ตและเปิดโปรแกรมใหม่เพิ่อดาวน์โหลดไฟล์ Template");
+            //string templatePath = Configs.TemplateFilePath;
+            //if (!File.Exists(templatePath))
+            //    throw new Exception("ไม่พบ Template กรุณาต่ออินเตอร์เน็ตและเปิดโปรแกรมใหม่เพิ่อดาวน์โหลดไฟล์ Template");
 
-            var sheetConfig = setting.GetSheetConfig();
-            var template = ReadExcel(templatePath, sheetConfig, true);
-            var translate = ReadExcelLegacy(excelPath, sheetConfig);
+           
+            //var template = ReadExcel(templatePath, sheetConfig, alternativeTranslate);
+            //var translate = ReadExcelLegacy(excelPath, sheetConfig);
+            //var content = MergeLegacy(template, translate);
 
-            var content = MergeLegacy(template, translate);
+            var content = ReadExcel(excelPath);
 
-            GenerateMod(content, outputPath, doubleLanguage, originalFirst, sheetConfig, includeNotTranslateMessageId, includeTranslateMessageId, IncludeUiMessageId, translateUI);
+            var result = GenerateModAlt(content, outputPath, doubleLanguage, originalFirst, includeNotTranslateMessageId, includeTranslateMessageId, includeUiMessageId, font, translateUI, alternativeTranslate);
+
 
             // write all text excel file for later use
-            string tempPath = Path.Combine(outputPath, "translate.xlsx");
-            WriteExcel(tempPath, content, false);
-
-            // write result
-            string legacyExcel = Path.Combine(outputPath, "result.xlsx");
-            WriteNotTranslateExcel(legacyExcel, content, false);
-
-        }
-
-        public void GenerateLegacyModAlt(string excelPath, string outputPath, bool doubleLanguage, bool originalFirst, bool includeNotTranslateMessageId, bool includeTranslateMessageId, bool includeUiMessageId, eFontSetting font, bool translateUI, bool alternativeTranslate)
-        {
-            string templatePath = Configs.TemplateFilePath;
-
-
-            if (!File.Exists(templatePath))
-                throw new Exception("ไม่พบ Template กรุณาต่ออินเตอร์เน็ตและเปิดโปรแกรมใหม่เพิ่อดาวน์โหลดไฟล์ Template");
-
             var sheetConfig = setting.GetSheetConfig();
-            var template = ReadExcel(templatePath, sheetConfig, alternativeTranslate);
-            var translate = ReadExcelLegacy(excelPath, sheetConfig);
-            //var translate = ReadExcel(excelPath, sheetConfig, alternativeTranslate);
-
-            var content = MergeLegacy(template, translate);
-
-            var result = GenerateModAlt(content, outputPath, doubleLanguage, originalFirst, sheetConfig, includeNotTranslateMessageId, includeTranslateMessageId, includeUiMessageId, font, translateUI, alternativeTranslate);
-
             var resultContent = result.Where(r => sheetConfig.Keys.Contains(r.SheetName)).GroupBy(r => r.SheetName).ToDictionary(g => g.Key, g => g.ToList());
-
-            // write all text excel file for later use
             string tempPath = Path.Combine(outputPath, "translate.xlsx");
             WriteExcel(tempPath, resultContent, false);
 
             // write result
-            string legacyExcel = Path.Combine(outputPath, "result.xlsx");
-            WriteNotTranslateExcel(legacyExcel, resultContent, false);
+            string resultPath = Path.Combine(outputPath, "result.xlsx");
+            WriteNotTranslateExcel(resultPath, content, false);
 
         }
 

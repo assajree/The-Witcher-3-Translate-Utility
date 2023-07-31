@@ -23,7 +23,8 @@ namespace svvv
         public const string NextGenFileId = "1YZvH6sd3XjPcLmz5nlRVkHd2Wm1psU1KthHtwSeG3t4";
 
         public const string WebUrl = "https://w3tu-svvv.web.app";
-        public const string GoogleSheetUrl = "https://docs.google.com/spreadsheets/d/1AZLkTTaUbRUnnx6tFeTD3YBLt4AIBgeGquRZP5oJVAE";
+        //public const string GoogleSheetUrl = "https://docs.google.com/spreadsheets/d/1AZLkTTaUbRUnnx6tFeTD3YBLt4AIBgeGquRZP5oJVAE";
+        public const string GoogleSheetUrl = "https://docs.google.com/spreadsheets/d/1lwoUZkMQcFwl_nlzV7UG9qxij6CMc5YuJOSsMuK3ZH8";
         public const string NextGenUrl = "https://docs.google.com/spreadsheets/d/" + NextGenFileId;
         public const string ApiKey = "AIzaSyDg03c_bkBM2Tw3TahE3Gei-vx0m--OeWU";
 

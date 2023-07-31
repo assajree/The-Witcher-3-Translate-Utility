@@ -80,21 +80,21 @@ namespace TranslateUtility
 
         private void GenerateMod()
         {
-            c.GenerateLegacyMod(
-                translatePath,
-                modPath,
-                chkModDoubleLanguage.Checked,
-                rdoModOriginFirst.Checked,
-                chkUntranslateInfo.Checked,
-                chkUiInfo.Checked,
-                chkTranslateInfo.Checked,
-                true
-            );
+            //c.GenerateLegacyMod(
+            //    translatePath,
+            //    modPath,
+            //    chkModDoubleLanguage.Checked,
+            //    rdoModOriginFirst.Checked,
+            //    chkUntranslateInfo.Checked,
+            //    chkUiInfo.Checked,
+            //    chkTranslateInfo.Checked,
+            //    true
+            //);
         }
 
         private void GenerateModAlt()
         {
-            c.GenerateLegacyModAlt(
+            c.GenerateMod(
                 translatePath,
                 modPath,
                 chkModDoubleLanguage.Checked,

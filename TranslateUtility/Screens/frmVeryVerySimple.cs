@@ -264,7 +264,7 @@ namespace TranslateUtility
         private void GenerateModAlt()
         {
             Logger.Log("Generate mod");
-            c.GenerateLegacyModAlt(
+            c.GenerateMod(
                 translateFilePath,
                 modPath,
                 chkModDoubleLanguage.Checked,
@@ -548,7 +548,7 @@ namespace TranslateUtility
             if (!oldMethod)
                 c.UpdateStorybook();
 
-            c.UpdateTemplate();
+            //c.UpdateTemplate();
 
             
             Logger.Log("Download custom translate");
@@ -556,7 +556,7 @@ namespace TranslateUtility
             
 
             //download web translate
-            c.Processing(DownloadWebTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษาจากเว็บ...");
+            //c.Processing(DownloadWebTranslateFile, false, "กำลังดาวน์โหลดไฟล์แปลภาษาจากเว็บ...");
 
             // download translate excel file
             Logger.Log("Download main translate");
@@ -589,7 +589,7 @@ namespace TranslateUtility
             if (rdoDownloadAlways.Checked)
                 rdoDownloadDialy.Checked = true;
 
-            c.AddGenerateCounter();
+            //c.AddGenerateCounter();
             EnableButton();
         }
 

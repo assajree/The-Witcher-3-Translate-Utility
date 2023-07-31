@@ -16,6 +16,16 @@ namespace TheWitcher3Thai
         List<string> mLoadingMessage;
         List<string> mMigrateExceptions;
 
+        public List<string> SheetName = new List<string>
+        {
+            "v3"
+        };
+
+        public List<string> SheetNameNextGen = new List<string>
+        {
+            "v4"
+        };
+
         public Dictionary<string, string> GetSheetConfig()
         {
             if (mSheetConfig != null)
@@ -23,22 +33,25 @@ namespace TheWitcher3Thai
 
             mSheetConfig = new Dictionary<string, string>();
 
-            mSheetConfig.Add("content0", @"content\content0");
-            mSheetConfig.Add("content1", @"content\content1");
-            mSheetConfig.Add("content2", @"content\content2");
-            mSheetConfig.Add("content3", @"content\content3");
-            mSheetConfig.Add("content4", @"content\content4");
-            mSheetConfig.Add("content5", @"content\content5");
-            mSheetConfig.Add("content6", @"content\content6");
-            mSheetConfig.Add("content7", @"content\content7");
-            mSheetConfig.Add("content8", @"content\content8");
-            mSheetConfig.Add("content9", @"content\content9");
-            mSheetConfig.Add("content10", @"content\content10");
-            mSheetConfig.Add("content11", @"content\content11");
-            mSheetConfig.Add("content12", @"content\content12");
+            mSheetConfig.Add("v3", @"");
+            mSheetConfig.Add("v4", @"");
 
-            mSheetConfig.Add("DLCbobcontent", @"dlc\bob\content");
-            mSheetConfig.Add("DLCEP1content", @"dlc\ep1\content");
+            //mSheetConfig.Add("content0", @"content\content0");
+            //mSheetConfig.Add("content1", @"content\content1");
+            //mSheetConfig.Add("content2", @"content\content2");
+            //mSheetConfig.Add("content3", @"content\content3");
+            //mSheetConfig.Add("content4", @"content\content4");
+            //mSheetConfig.Add("content5", @"content\content5");
+            //mSheetConfig.Add("content6", @"content\content6");
+            //mSheetConfig.Add("content7", @"content\content7");
+            //mSheetConfig.Add("content8", @"content\content8");
+            //mSheetConfig.Add("content9", @"content\content9");
+            //mSheetConfig.Add("content10", @"content\content10");
+            //mSheetConfig.Add("content11", @"content\content11");
+            //mSheetConfig.Add("content12", @"content\content12");
+
+            //mSheetConfig.Add("DLCbobcontent", @"dlc\bob\content");
+            //mSheetConfig.Add("DLCEP1content", @"dlc\ep1\content");
 
             // extra
             //d.Add("DLC1", @"dlc\dlc1\content");
@@ -67,6 +80,8 @@ namespace TheWitcher3Thai
 
             return mSheetConfig;
         }
+
+        
 
         public Dictionary<string, string> GetSheetName()
         {

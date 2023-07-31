@@ -168,12 +168,12 @@ namespace TranslateUtility
 
         private void GenerateModFromExcel()
         {
-            c.GenerateModFromExcel(
-                txtExcelSource.Text,
-                txtExcelOutput.Text,
-                chkExcelDoubleLanguage.Checked,
-                rdoExcelOriginFirst.Checked
-            );
+            //c.GenerateModFromExcel(
+            //    txtExcelSource.Text,
+            //    txtExcelOutput.Text,
+            //    chkExcelDoubleLanguage.Checked,
+            //    rdoExcelOriginFirst.Checked
+            //);
         }
 
         #endregion
