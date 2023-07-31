@@ -4560,7 +4560,7 @@ namespace TheWitcher3Thai
 
         public void DownloadAllCustomTranslateFile(eDownloadFrequency frequency)
         {
-            DownloadCustomTranslateFile(Configs.NextGenFileId, frequency);
+            //DownloadCustomTranslateFile(Configs.NextGenFileId, frequency);
 
             var custom = new CustomTranslateSetting(Configs.CustomTranslateSettingPath);
             foreach (var item in custom.Value.Values)
