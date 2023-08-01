@@ -28,7 +28,7 @@ namespace TheWitcher3Thai
     public class Common
     {
         // check translate file up to date
-        DateTime MIN_DATE = new DateTime(2023, 06, 25);
+        DateTime MIN_DATE = new DateTime(2023, 8, 1, 21, 45, 0);
 
         public enum eDownloadFrequency
         {
@@ -505,7 +505,7 @@ namespace TheWitcher3Thai
                     return excelPath;
                 }
 
-                this.AddDownloadCounter();
+                //this.AddDownloadCounter();
 
                 var tempDownloadPath = Path.Combine(Configs.TempPath, "legacy.xlsx");
                 if (File.Exists(tempDownloadPath))
@@ -2845,9 +2845,6 @@ namespace TheWitcher3Thai
             //            .ToList();
 
             var content = Translate(allMessage, combine, originalFirst, includeNotTranslateMessageId, includeTranslateMessageId, IncludeUiMessageId, translateUI);
-
-
-
             var path = Path.Combine(tempPath, "message" + ".csv");
             WriteCsv(content, path);
             var w3sPath = EncodeW3String(path);
