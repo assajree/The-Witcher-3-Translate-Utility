@@ -33,7 +33,7 @@ namespace svvv.Classes
         public bool TranslateStorybook { get; set; } = true;
         public bool AlternativeDownload { get; set; } = false;
 
-        public int FontSize1 { get; set; } = 40;
+        public int FontSize1 { get; set; } = 28;
         public int FontSize2 { get; set; } = 28;
         public string FontColor1 { get; set; } = "#FFFFFF";
         public string FontColor2 { get; set; } = "#808080";
