@@ -714,6 +714,12 @@ namespace TranslateUtility
             {
                 if (isManualCheck || c.ShowConfirm("มีโปรแกรมเวอร์ชั่นใหม่ ต้องการดาวน์โหลดหรือไม่", "อัพเดท"))
                 {
+                    string zipPath = Path.Combine(Configs.TempPath, "w3tu.zip");
+                    if (!c.DownloadFileBool(Configs.UpdateFileUrl, zipPath))
+                    {
+                        c.ShowErrorMessage("การอัพเดทถูกยกเลิก");
+                        return;
+                    }
                     UpdateProgram();
                 }
             }

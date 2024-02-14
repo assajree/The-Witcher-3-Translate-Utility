@@ -16,7 +16,8 @@ namespace Updater
             InitializeComponent();
             w3tuPath = Directory.GetParent(Directory.GetParent(Application.StartupPath).FullName).FullName;
             //MessageBox.Show(w3tuPath);
-            zipPath = Path.Combine(Application.StartupPath, "w3tu.zip");
+            var parentPath = Directory.GetParent(Application.StartupPath);
+            zipPath = Path.Combine(parentPath.FullName, "w3tu.zip");
             extractPath = Path.Combine(Application.StartupPath, "w3u");
             program1Path = Path.Combine(w3tuPath, "w3tu.exe");
             program2Path = Path.Combine(w3tuPath, "TranslateUtility.exe");
@@ -67,11 +68,11 @@ namespace Updater
             //if (!NeedUpdate())
             //    return;
 
-            if (!c.DownloadFileBool(Configs.UpdateFileUrl, zipPath))
-            {
-                c.ShowErrorMessage("การอัพเดทถูกยกเลิก");
-                return;
-            }
+            //if (!c.DownloadFileBool(Configs.UpdateFileUrl, zipPath))
+            //{
+            //    c.ShowErrorMessage("การอัพเดทถูกยกเลิก");
+            //    return;
+            //}
 
             c.Processing(ExtractUpdate, false, "กำลังเตรียมไฟล์");
         }
