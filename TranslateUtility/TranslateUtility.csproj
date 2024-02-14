@@ -183,8 +183,6 @@
     <None Include="Tools\modThaiStoryBook\version_storybook.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Tools\Template\template.xlsx" />
-    <None Include="Tools\Template\version_template.ini" />
     <None Include="Tools\updater.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
