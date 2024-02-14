@@ -1690,6 +1690,9 @@ namespace TheWitcher3Thai
                 //    //lastVersion = "N/A";
                 //}
 
+                if (lastVersion.StartsWith("<!"))
+                    return null;
+
                 return lastVersion;
             }
             catch (Exception ex)
@@ -1709,6 +1712,9 @@ namespace TheWitcher3Thai
             //var request = WebRequest.Create(url);
             //var stream = new StreamReader(request.GetResponse().GetResponseStream());
             var lastVersion = stream.ReadToEnd().ToString();
+
+            if (lastVersion.StartsWith("<!"))
+                return null;
 
             //if (String.IsNullOrWhiteSpace(lastVersion))
             //{
@@ -1738,6 +1744,10 @@ namespace TheWitcher3Thai
             var data = client.DownloadData(url);
             var stream = new StreamReader(new MemoryStream(data));
             var content = stream.ReadToEnd().ToString();
+
+            // file exceed limit
+            if (content.StartsWith("<!"))
+                return null;
 
             return content;
         }

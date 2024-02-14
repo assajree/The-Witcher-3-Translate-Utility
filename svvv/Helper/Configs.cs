@@ -73,14 +73,14 @@ namespace svvv
         //public const string WebTranslateVersionUrl = "https://firebasestorage.googleapis.com/v0/b/w3tu-svvv.appspot.com/o/version.ini?alt=media";
 
         // google drive
-        public const string UpdateFileUrl = "https://drive.google.com/uc?export=download&id=1HOmaK3jaI2oW194CvyDXlzZBUEoWzGbU";
-        public const string VersionFileUrl = "https://drive.google.com/uc?export=download&id=1dChsKp641mD3EPREqSZTN_yxlu9KFXJP";
-        public const string StorybookUrl = "https://drive.google.com/uc?export=download&id=132FnSeYLJAQamrTptaEVtqfwqiOzdHRj";
-        public const string StorybookVersionUrl = "https://drive.google.com/uc?export=download&id=1TGw2rDafTr0ObM-7Bvzd3S6pIgLbrnjW";
-        public const string TemplateUrl = "https://drive.google.com/uc?export=download&id=1QPvUzSLTJ4GRy552BLH1l4hZOPcWq8wb";
-        public const string TemplateVersionUrl = "https://drive.google.com/uc?export=download&id=1bZwJvkY1APBNTSS5Y3kmzt8n9_2P8guj";
-        public const string WebTranslateUrl = "https://drive.google.com/uc?export=download&id=18EkKYhRGfHf0ifhNn3YretyFE02jCN3U";
-        public const string WebTranslateVersionUrl = "https://drive.google.com/uc?export=download&id=1XNs-djSnR5sYrqWDVHJS-F0uA2a6vBEj";
+        public const string VersionFileUrl = "https://drive.google.com/uc?export=download&id=1s-75kP4Ya5srmxnm1yByTK7GGFoy5uLK";
+        public const string UpdateFileUrl = "https://drive.google.com/uc?export=download&id=1qnCt1fkGQTO1H8nEqD87u2IxjAi2z53o";
+        public const string StorybookVersionUrl = "https://drive.google.com/uc?export=download&id=1j8l9yJ4uAM8VGenRcUbeNhqM8SECLNEJ";
+        public const string StorybookUrl = "https://drive.google.com/uc?export=download&id=1gMxeHpslqY4dnuc8ldvyuy1ESCiGEfos";
+        public const string TemplateVersionUrl = "https://drive.google.com/uc?export=download&id=1TnGJpoxwMH_xCLd7-3Ry8usWzBhz_jLf";
+        public const string TemplateUrl = "https://drive.google.com/uc?export=download&id=1T7zZkbWh6Qph4yV_4B8lfWFBMbkWtmBf";
+        public const string WebTranslateVersionUrl = "https://drive.google.com/uc?export=download&id=1GnKGFS5dI4mKLUe7BR0FdjxQ-p-J0ESh";
+        public const string WebTranslateUrl = "https://drive.google.com/uc?export=download&id=1L_y8dnh03ZcAiRJNpNQu7JoYK1vgCRL4";
 
         //// kku google drive
         //public const string UpdateFileUrl = "https://drive.google.com/uc?export=download&id=1sy5x2rpS-6CbiEeMnoeliaN7-wQCLzpf";
