@@ -77,10 +77,10 @@ namespace svvv
         public const string UpdateFileUrl = "https://drive.google.com/uc?export=download&id=1qnCt1fkGQTO1H8nEqD87u2IxjAi2z53o";
         public const string StorybookVersionUrl = "https://drive.google.com/uc?export=download&id=1j8l9yJ4uAM8VGenRcUbeNhqM8SECLNEJ";
         public const string StorybookUrl = "https://drive.google.com/uc?export=download&id=1gMxeHpslqY4dnuc8ldvyuy1ESCiGEfos";
-        public const string TemplateVersionUrl = "https://drive.google.com/uc?export=download&id=1TnGJpoxwMH_xCLd7-3Ry8usWzBhz_jLf";
-        public const string TemplateUrl = "https://drive.google.com/uc?export=download&id=1T7zZkbWh6Qph4yV_4B8lfWFBMbkWtmBf";
-        public const string WebTranslateVersionUrl = "https://drive.google.com/uc?export=download&id=1GnKGFS5dI4mKLUe7BR0FdjxQ-p-J0ESh";
-        public const string WebTranslateUrl = "https://drive.google.com/uc?export=download&id=1L_y8dnh03ZcAiRJNpNQu7JoYK1vgCRL4";
+        //public const string TemplateVersionUrl = "https://drive.google.com/uc?export=download&id=1TnGJpoxwMH_xCLd7-3Ry8usWzBhz_jLf";
+        //public const string TemplateUrl = "https://drive.google.com/uc?export=download&id=1T7zZkbWh6Qph4yV_4B8lfWFBMbkWtmBf";
+        //public const string WebTranslateVersionUrl = "https://drive.google.com/uc?export=download&id=1GnKGFS5dI4mKLUe7BR0FdjxQ-p-J0ESh";
+        //public const string WebTranslateUrl = "https://drive.google.com/uc?export=download&id=1L_y8dnh03ZcAiRJNpNQu7JoYK1vgCRL4";
 
         //// kku google drive
         //public const string UpdateFileUrl = "https://drive.google.com/uc?export=download&id=1sy5x2rpS-6CbiEeMnoeliaN7-wQCLzpf";
@@ -108,8 +108,8 @@ namespace svvv
         public static string AltTranslateVersion = Path.Combine(StartupPath, "alt_version.ini");
 
         public static string TranslatePath = Path.Combine(DownloadPath, "translate.xlsx");
-        public static string WebTranslatePath = Path.Combine(DownloadPath, "translate.json");
-        public static string WebTranslateVersionPath = Path.Combine(DownloadPath, "version_web.ini");
+        //public static string WebTranslatePath = Path.Combine(DownloadPath, "translate.json");
+        //public static string WebTranslateVersionPath = Path.Combine(DownloadPath, "version_web.ini");
 
 
         public static string StorybookPath = Path.Combine(ToolsPath, modThaiStoryBook);
@@ -123,9 +123,9 @@ namespace svvv
         public static string FontSrisakdiPath = Path.Combine(ToolsPath, modFontSrisakdi);
         public static string FontSuperMarketPath = Path.Combine(ToolsPath, modFontSuperMarket);
 
-        public static string TemplatePath = Path.Combine(ToolsPath, "Template");
-        public static string TemplateFilePath = Path.Combine(TemplatePath, "template.xlsx");
-        public static string TemplateVersionPath = Path.Combine(TemplatePath, "version_template.ini");
+        //public static string TemplatePath = Path.Combine(ToolsPath, "Template");
+        //public static string TemplateFilePath = Path.Combine(TemplatePath, "template.xlsx");
+        //public static string TemplateVersionPath = Path.Combine(TemplatePath, "version_template.ini");
 
         public static string UpdaterZipPath = Path.Combine(StartupPath, "Tools", "updater.zip");
         public static string UpdaterDir = Path.Combine(StartupPath, "temp", "updater");

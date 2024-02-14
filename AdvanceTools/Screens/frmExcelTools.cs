@@ -33,7 +33,7 @@ namespace TranslateUtility
             string gamePath = c.GetGameDirectory();
             string backupPath = Path.Combine(Application.StartupPath, "backup");
             string outputPath = Path.Combine(Application.StartupPath, "output");
-            string translatePath = c.GetTranslateFilePath();
+            //string translatePath = c.GetTranslateFilePath();
 
             // generate from mod
             txtModSource.SetDefault(gamePath);
@@ -48,7 +48,7 @@ namespace TranslateUtility
 
             // filter excel
             EnableFilterContain();
-            txtFilterSource.SetDefault(translatePath);
+            //txtFilterSource.SetDefault(translatePath);
             txtFilterOutput.SetDefault(Path.Combine(Application.StartupPath, "output", "filtered.xlsx"));
 
             // merge excel
@@ -351,7 +351,7 @@ namespace TranslateUtility
 
         private void GenerateMissing()
         {
-            c.GenerateMissing(txtMissingSource.Text, txtMissingOutput.Text);
+            //c.GenerateMissing(txtMissingSource.Text, txtMissingOutput.Text);
         }
 
         #region Text Diff

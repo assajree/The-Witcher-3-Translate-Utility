@@ -442,28 +442,28 @@ namespace TheWitcher3Thai
 
         }
 
-        public bool UpdateTemplate()
-        {
-            Logger.Log("Update template");
-            // check version
-            if (!CheckUpdateTemplate(true))
-                return false;
+        //public bool UpdateTemplate()
+        //{
+        //    Logger.Log("Update template");
+        //    // check version
+        //    if (!CheckUpdateTemplate(true))
+        //        return false;
 
-            // download
-            string downloadPath = Path.Combine(Configs.TempPath, "Template.zip");
-            if (!DownloadFileBool(Configs.TemplateUrl, downloadPath))
-            {
-                //ShowErrorMessage("การอัพเดทถูกยกเลิก");
-                return false;
-            }
+        //    // download
+        //    string downloadPath = Path.Combine(Configs.TempPath, "Template.zip");
+        //    if (!DownloadFileBool(Configs.TemplateUrl, downloadPath))
+        //    {
+        //        //ShowErrorMessage("การอัพเดทถูกยกเลิก");
+        //        return false;
+        //    }
 
-            // extract
-            string targetPath = Configs.TemplatePath;
-            ExtractFile(downloadPath, targetPath);
+        //    // extract
+        //    string targetPath = Configs.TemplatePath;
+        //    ExtractFile(downloadPath, targetPath);
 
-            return true;
+        //    return true;
 
-        }
+        //}
 
         public void ShowErrorMessage(Exception ex, string caption = "Error")
         {
@@ -547,17 +547,17 @@ namespace TheWitcher3Thai
             return excelPath;
         }
 
-        public Dictionary<string, List<w3Strings>> ReadTemplate()
-        {
-            string templatePath = Configs.TemplateFilePath;
-            if (!File.Exists(templatePath))
-                throw new Exception("ไม่พบไฟล์ template.xlsx กรุณาติดตั้งโปรแกมใหม่");
+        //public Dictionary<string, List<w3Strings>> ReadTemplate()
+        //{
+        //    string templatePath = Configs.TemplateFilePath;
+        //    if (!File.Exists(templatePath))
+        //        throw new Exception("ไม่พบไฟล์ template.xlsx กรุณาติดตั้งโปรแกมใหม่");
 
-            var sheetConfig = setting.GetSheetConfig();
-            var template = ReadExcel(templatePath, sheetConfig, true);
+        //    var sheetConfig = setting.GetSheetConfig();
+        //    var template = ReadExcel(templatePath, sheetConfig, true);
 
-            return template;
-        }
+        //    return template;
+        //}
 
         public Dictionary<string, List<w3Strings>> ReadGame(String gamePath, string langCode)
         {
@@ -669,39 +669,39 @@ namespace TheWitcher3Thai
 
         }
 
-        public void GenerateMissing(string inputPath, string outputPath)
-        {
-            //var files = setting.GetSheetConfig();
-            //var tempPath = Path.Combine(Application.StartupPath, "temp");
-            //string tempOriginalPath = Path.Combine(tempPath, "original");
+        //public void GenerateMissing(string inputPath, string outputPath)
+        //{
+        //    //var files = setting.GetSheetConfig();
+        //    //var tempPath = Path.Combine(Application.StartupPath, "temp");
+        //    //string tempOriginalPath = Path.Combine(tempPath, "original");
 
-            //if (String.IsNullOrWhiteSpace(outputPath))
-            //    outputPath = Path.Combine(Application.StartupPath, "output", "mising.xlsx");
+        //    //if (String.IsNullOrWhiteSpace(outputPath))
+        //    //    outputPath = Path.Combine(Application.StartupPath, "output", "mising.xlsx");
 
-            //read
+        //    //read
 
-            var templateContent = GetAllContent(ReadTemplate());
-            var gameContent = GetAllContent(ReadGame(inputPath, "en"));
+        //    var templateContent = GetAllContent(ReadTemplate());
+        //    var gameContent = GetAllContent(ReadGame(inputPath, "en"));
 
-            var fi = new FileInfo(outputPath);
-            if (!fi.Directory.Exists)
-                fi.Directory.Create();
+        //    var fi = new FileInfo(outputPath);
+        //    if (!fi.Directory.Exists)
+        //        fi.Directory.Create();
 
-            using (var p = new ExcelPackage(fi))
-            {
-                var wb = p.Workbook;
+        //    using (var p = new ExcelPackage(fi))
+        //    {
+        //        var wb = p.Workbook;
 
-                var content = GetMissing(gameContent, templateContent);
-                var sht = wb.Worksheets["Missing"];
-                if (sht != null)
-                    wb.Worksheets.Delete(sht);
+        //        var content = GetMissing(gameContent, templateContent);
+        //        var sht = wb.Worksheets["Missing"];
+        //        if (sht != null)
+        //            wb.Worksheets.Delete(sht);
 
-                sht = wb.Worksheets.Add("Missing");
-                WriteSheetContent(sht, content, false);
+        //        sht = wb.Worksheets.Add("Missing");
+        //        WriteSheetContent(sht, content, false);
 
-                p.Save();
-            }
-        }
+        //        p.Save();
+        //    }
+        //}
 
         private List<w3Strings> GetMissing(Dictionary<string, w3Strings> gameContent, Dictionary<string, w3Strings> templateContent)
         {
@@ -1624,22 +1624,22 @@ namespace TheWitcher3Thai
         }
 
 
-        public bool CheckUpdateTemplate(bool silenceMode = false)
-        {
-            string lastVersion;
+        //public bool CheckUpdateTemplate(bool silenceMode = false)
+        //{
+        //    string lastVersion;
 
-            if (silenceMode)
-                lastVersion = ProcessingStringSilence(GetVersionTemplate, "กำลังตรวจสอบเวอร์ชั่น Template", false);
-            else
-                lastVersion = ProcessingString(GetVersionTemplate, "กำลังตรวจสอบเวอร์ชั่น Template", false);
+        //    if (silenceMode)
+        //        lastVersion = ProcessingStringSilence(GetVersionTemplate, "กำลังตรวจสอบเวอร์ชั่น Template", false);
+        //    else
+        //        lastVersion = ProcessingString(GetVersionTemplate, "กำลังตรวจสอบเวอร์ชั่น Template", false);
 
-            if (lastVersion == null)
-                return false;
+        //    if (lastVersion == null)
+        //        return false;
 
-            var localVersion = ReadVersion(Configs.TemplateVersionPath);
+        //    var localVersion = ReadVersion(Configs.TemplateVersionPath);
 
-            return localVersion != lastVersion;
-        }
+        //    return localVersion != lastVersion;
+        //}
 
         /// <summary>
         /// return true when need update
@@ -1725,11 +1725,11 @@ namespace TheWitcher3Thai
             return lastVersion;
         }
 
-        public string GetVersionTemplate()
-        {
-            string version = ReadWebFileContent(Configs.TemplateVersionUrl);
-            return version;
-        }
+        //public string GetVersionTemplate()
+        //{
+        //    string version = ReadWebFileContent(Configs.TemplateVersionUrl);
+        //    return version;
+        //}
 
         public string ReadGoogleFileContent(string fileId)
         {
@@ -2250,19 +2250,19 @@ namespace TheWitcher3Thai
             }
         }
 
-        public string GetTranslateFilePath()
-        {
-            return Configs.TemplateFilePath;
-            //var path = Path.Combine(Application.StartupPath, "Translate");
-            //var dir = new DirectoryInfo(path);
-            //if (!dir.Exists)
-            //    return null;
+        //public string GetTranslateFilePath()
+        //{
+        //    return Configs.TemplateFilePath;
+        //    //var path = Path.Combine(Application.StartupPath, "Translate");
+        //    //var dir = new DirectoryInfo(path);
+        //    //if (!dir.Exists)
+        //    //    return null;
 
-            //var files = dir.GetFiles("*.xlsx", SearchOption.TopDirectoryOnly);
+        //    //var files = dir.GetFiles("*.xlsx", SearchOption.TopDirectoryOnly);
 
-            //var fi = files.FirstOrDefault();
-            //return fi?.FullName;
-        }
+        //    //var fi = files.FirstOrDefault();
+        //    //return fi?.FullName;
+        //}
 
         public void PrepareFile(string modPath, string tempPath, Dictionary<string, string> fileList, string langCode = "en")
         {
@@ -2842,7 +2842,7 @@ namespace TheWitcher3Thai
                 allMessage = ConvertToList(allMessageDict);
             }
 
-            allMessage = MergeWebTranslate(allMessage);
+            //allMessage = MergeWebTranslate(allMessage);
 
 
             // write duplicate sheet
@@ -2900,22 +2900,22 @@ namespace TheWitcher3Thai
             return allMessageDict;
         }
 
-        private List<w3Strings> MergeWebTranslate(List<w3Strings> list)
-        {
-            var dict = ConvertToDictionary(list);
-            var webTranslate = ReadWebJson(Configs.WebTranslatePath);
-            foreach (var item in webTranslate.Values)
-            {
-                if (item.IsTranslate && dict.ContainsKey(item.Key))
-                    dict[item.Key].Translate = item.Translate;
-            }
+        //private List<w3Strings> MergeWebTranslate(List<w3Strings> list)
+        //{
+        //    var dict = ConvertToDictionary(list);
+        //    var webTranslate = ReadWebJson(Configs.WebTranslatePath);
+        //    foreach (var item in webTranslate.Values)
+        //    {
+        //        if (item.IsTranslate && dict.ContainsKey(item.Key))
+        //            dict[item.Key].Translate = item.Translate;
+        //    }
 
-            var generateJson = false;
-            if (generateJson)
-                GenerateJsonData(dict);
+        //    var generateJson = false;
+        //    if (generateJson)
+        //        GenerateJsonData(dict);
 
-            return ConvertToList(dict);
-        }
+        //    return ConvertToList(dict);
+        //}
 
         private void SetLoadingMessage(Dictionary<string, w3Strings> dict)
         {
@@ -4765,29 +4765,29 @@ namespace TheWitcher3Thai
         #endregion
 
         #region web translate
-        public string GetNewVersion(eDownloadFrequency frequency)
-        {
-            if (!File.Exists(Configs.WebTranslateVersionPath))
-                return "UNKNOW";
+        //public string GetNewVersion(eDownloadFrequency frequency)
+        //{
+        //    if (!File.Exists(Configs.WebTranslateVersionPath))
+        //        return "UNKNOW";
 
-            //if (frequency == eDownloadFrequency.Once)
-            //    return null;
+        //    //if (frequency == eDownloadFrequency.Once)
+        //    //    return null;
 
-            var currentVersion = ReadAllText(Configs.WebTranslateVersionPath)?.Trim();
-            var lastestVersion = ReadUrl(Configs.WebTranslateVersionUrl, 0)?.Trim();
-            if (lastestVersion == null)
-            {
-                return null;
-            }
-            else
-            {
-                if (currentVersion == lastestVersion)
-                    return null;
-                else
-                    return lastestVersion;
-            }
+        //    var currentVersion = ReadAllText(Configs.WebTranslateVersionPath)?.Trim();
+        //    var lastestVersion = ReadUrl(Configs.WebTranslateVersionUrl, 0)?.Trim();
+        //    if (lastestVersion == null)
+        //    {
+        //        return null;
+        //    }
+        //    else
+        //    {
+        //        if (currentVersion == lastestVersion)
+        //            return null;
+        //        else
+        //            return lastestVersion;
+        //    }
 
-        }
+        //}
 
         public string ReadAllText(string path)
         {
@@ -4824,24 +4824,24 @@ namespace TheWitcher3Thai
             }
         }
 
-        public void DownloadWebTranslateFile(string newVersion)
-        {
-            //return Common.DownloadGoogleSheetFile(
-            //    Configs.W2TranslateFileId,
-            //    Configs.TranslatePath,
-            //    "กำลังดาวน์โหลดไฟล์แปลภาษา..."
-            //);
+        //public void DownloadWebTranslateFile(string newVersion)
+        //{
+        //    //return Common.DownloadGoogleSheetFile(
+        //    //    Configs.W2TranslateFileId,
+        //    //    Configs.TranslatePath,
+        //    //    "กำลังดาวน์โหลดไฟล์แปลภาษา..."
+        //    //);
 
-            var result = DownloadFile(
-                Configs.WebTranslateUrl,
-                Configs.WebTranslatePath
-            );
+        //    var result = DownloadFile(
+        //        Configs.WebTranslateUrl,
+        //        Configs.WebTranslatePath
+        //    );
 
-            if (result == DialogResult.OK)
-            {
-                File.WriteAllText(Configs.WebTranslateVersionPath, newVersion);
-            }
-        }
+        //    if (result == DialogResult.OK)
+        //    {
+        //        File.WriteAllText(Configs.WebTranslateVersionPath, newVersion);
+        //    }
+        //}
 
         public Dictionary<string, w3Strings> ReadFirstSheet(string excelPath, bool isReadTranslate)
         {

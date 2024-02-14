@@ -31,64 +31,64 @@ namespace AdvanceTools.Screens
 
         private void btnCompare_Click(object sender, EventArgs e)
         {
-            var excelPath = Path.Combine(Configs.DownloadPath, "translate.xlsx");
-            DownloadTranslateFile(excelPath);
-            DownloadWebTranslateFile();
-            Compare(excelPath);
+            //var excelPath = Path.Combine(Configs.DownloadPath, "translate.xlsx");
+            //DownloadTranslateFile(excelPath);
+            //DownloadWebTranslateFile();
+            //Compare(excelPath);
         }
 
-        private void Compare(string excelPath)
-        {
-            var sheetConfig = setting.GetSheetConfig();
-            var excelLegacy = c.ReadExcelLegacy(excelPath, sheetConfig);
-            var excelTemplate = c.ReadExcel(Configs.TemplateFilePath, sheetConfig, true);
-            var excelData = c.MergeLegacy(excelTemplate, excelLegacy);
-            var sheetData = c.DistinctMessage(excelData);
-            var jsonData = c.ReadWebJson(Configs.WebTranslatePath);
+        //private void Compare(string excelPath)
+        //{
+        //    var sheetConfig = setting.GetSheetConfig();
+        //    var excelLegacy = c.ReadExcelLegacy(excelPath, sheetConfig);
+        //    var excelTemplate = c.ReadExcel(Configs.TemplateFilePath, sheetConfig, true);
+        //    var excelData = c.MergeLegacy(excelTemplate, excelLegacy);
+        //    var sheetData = c.DistinctMessage(excelData);
+        //    var jsonData = c.ReadWebJson(Configs.WebTranslatePath);
 
-            var notTranslateJson = jsonData.Where(d => d.Value.IsTranslate == false).ToDictionary(j => j.Value.Key, j => j.Value);
-            var notTranslateKey = notTranslateJson.Select(d => d.Key).ToList();
+        //    var notTranslateJson = jsonData.Where(d => d.Value.IsTranslate == false).ToDictionary(j => j.Value.Key, j => j.Value);
+        //    var notTranslateKey = notTranslateJson.Select(d => d.Key).ToList();
 
-            var diff = sheetData.Where(d =>
-                              notTranslateKey.Contains(d.Key) &&
-                              d.Value.TranslateStatus > w3Strings.eTranslateStatus.SameWord
-                        ).Select(d => d.Value).ToList();
+        //    var diff = sheetData.Where(d =>
+        //                      notTranslateKey.Contains(d.Key) &&
+        //                      d.Value.TranslateStatus > w3Strings.eTranslateStatus.SameWord
+        //                ).Select(d => d.Value).ToList();
 
-            var result = new List<W2Strings>();
-            foreach (var item in diff)
-            {
-                if (!notTranslateJson.ContainsKey(item.IdKey))
-                    continue;
+        //    var result = new List<W2Strings>();
+        //    foreach (var item in diff)
+        //    {
+        //        if (!notTranslateJson.ContainsKey(item.IdKey))
+        //            continue;
 
-                var msg = notTranslateJson[item.IdKey];
-                msg.Translate = item.Translate;
-                result.Add(msg);
+        //        var msg = notTranslateJson[item.IdKey];
+        //        msg.Translate = item.Translate;
+        //        result.Add(msg);
 
-            }
+        //    }
 
-            var content = result.ToDictionary(r => r.Index.ToString(), r => r);
-            c.WriteJson(content, Path.Combine(Configs.OutputPath, "diff.json"));
+        //    var content = result.ToDictionary(r => r.Index.ToString(), r => r);
+        //    c.WriteJson(content, Path.Combine(Configs.OutputPath, "diff.json"));
 
-            //var json = JsonConvert.SerializeObject(content);
-            //c.WriteJson(json, Path.Combine(Configs.OutputPath, "diff.json"));
+        //    //var json = JsonConvert.SerializeObject(content);
+        //    //c.WriteJson(json, Path.Combine(Configs.OutputPath, "diff.json"));
 
-            c.ShowMessage($@"diff {diff.Count}");
+        //    c.ShowMessage($@"diff {diff.Count}");
 
-            if (diff.Count > 0)
-                c.Open(Configs.OutputPath);
-        }
+        //    if (diff.Count > 0)
+        //        c.Open(Configs.OutputPath);
+        //}
 
-        private void DownloadWebTranslateFile()
-        {
-            var newVersion = c.GetNewVersion(Common.eDownloadFrequency.Day);
-            if (newVersion != null)
-            {
-                if (newVersion == "UNKNOW")
-                    newVersion = c.ReadUrl(Configs.WebTranslateVersionUrl, 0)?.Trim();
+        //private void DownloadWebTranslateFile()
+        //{
+        //    var newVersion = c.GetNewVersion(Common.eDownloadFrequency.Day);
+        //    if (newVersion != null)
+        //    {
+        //        if (newVersion == "UNKNOW")
+        //            newVersion = c.ReadUrl(Configs.WebTranslateVersionUrl, 0)?.Trim();
 
-                c.DownloadWebTranslateFile(newVersion);
-            }
-        }
+        //        c.DownloadWebTranslateFile(newVersion);
+        //    }
+        //}
 
         private void DownloadTranslateFile(string translatePath)
         {

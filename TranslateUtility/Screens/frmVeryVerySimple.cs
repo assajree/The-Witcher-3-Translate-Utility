@@ -85,9 +85,9 @@ namespace TranslateUtility
             if (!File.Exists(Configs.StorybookVersionPath))
                 c.UpdateStorybook();
 
-            // update template
-            if (!File.Exists(Configs.TemplateVersionPath))
-                c.UpdateTemplate();
+            //// update template
+            //if (!File.Exists(Configs.TemplateVersionPath))
+            //    c.UpdateTemplate();
         }
 
         private void UpdateProgram()
@@ -395,11 +395,11 @@ namespace TranslateUtility
             else if (Directory.Exists(Path.Combine(txtGamePath.Text, "mods", Configs.modThaiLanguage)))
             {
                 btnLegacyGenerate.Text = "ติดตั้งอีกครั้ง";
-                var newVersion = c.ProcessingStringSilence(GetTranslateVersion, "กำลังตรวจสอบเวอร์ชั่นไฟล์แปลภาษา...", false);
-                if (newVersion != null)
-                {
-                    btnLegacyGenerate.Text = "อัปเดต";
-                }
+                //var newVersion = c.ProcessingStringSilence(GetTranslateVersion, "กำลังตรวจสอบเวอร์ชั่นไฟล์แปลภาษา...", false);
+                //if (newVersion != null)
+                //{
+                //    btnLegacyGenerate.Text = "อัปเดต";
+                //}
             }
             else
             {
@@ -408,11 +408,11 @@ namespace TranslateUtility
 
         }
 
-        private string GetTranslateVersion()
-        {
-            var newVersion = c.GetNewVersion(GetDownloadFrequency());
-            return newVersion;
-        }
+        //private string GetTranslateVersion()
+        //{
+        //    var newVersion = c.GetNewVersion(GetDownloadFrequency());
+        //    return newVersion;
+        //}
 
         private void EnableExtraOption()
         {
@@ -593,17 +593,17 @@ namespace TranslateUtility
             EnableButton();
         }
 
-        private void DownloadWebTranslateFile()
-        {
-            var newVersion = c.GetNewVersion(GetDownloadFrequency());
-            if (newVersion != null)
-            {
-                if (newVersion == "UNKNOW")
-                    newVersion = c.ReadUrl(Configs.WebTranslateVersionUrl, 0)?.Trim();
+        //private void DownloadWebTranslateFile()
+        //{
+        //    var newVersion = c.GetNewVersion(GetDownloadFrequency());
+        //    if (newVersion != null)
+        //    {
+        //        if (newVersion == "UNKNOW")
+        //            newVersion = c.ReadUrl(Configs.WebTranslateVersionUrl, 0)?.Trim();
 
-                c.DownloadWebTranslateFile(newVersion);
-            }
-        }
+        //        c.DownloadWebTranslateFile(newVersion);
+        //    }
+        //}
 
         private void DownloadAllCustomTranslateFile()
         {
@@ -705,7 +705,7 @@ namespace TranslateUtility
         {
             if (isManualCheck)
             {
-                c.UpdateTemplate();
+                //c.UpdateTemplate();
                 c.UpdateStorybook();
             }
 

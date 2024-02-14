@@ -43,17 +43,17 @@ namespace TranslateUtility
             //string backupPath = Path.Combine(Application.StartupPath, "backup");
             string outputPath = Path.Combine(Application.StartupPath, "output");
             string excelOutput = Path.Combine(Application.StartupPath, "output", "translate.xlsx");
-            string translatePath= c.GetTranslateFilePath();
+            //string translatePath= c.GetTranslateFilePath();
 
             // Mod from Mod
             //txtModSource.SetDefault(backupPath);
             txtModOutput.SetDefault(outputPath);
-            txtModExcel.SetDefault(translatePath);
+            //txtModExcel.SetDefault(translatePath);
             EnableModOption();
 
             // mod from excel
             EnableExcelOption();
-            txtExcelSource.SetDefault(translatePath);
+            //txtExcelSource.SetDefault(translatePath);
             txtExcelOutput.SetDefault(outputPath);
 
         }
