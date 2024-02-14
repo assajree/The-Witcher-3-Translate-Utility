@@ -140,7 +140,7 @@
             this.btnGamePath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGamePath.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGamePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGamePath.Location = new System.Drawing.Point(499, 29);
+            this.btnGamePath.Location = new System.Drawing.Point(492, 30);
             this.btnGamePath.Name = "btnGamePath";
             this.btnGamePath.Size = new System.Drawing.Size(34, 26);
             this.btnGamePath.TabIndex = 7;
@@ -183,7 +183,7 @@
             this.btnLegacyGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLegacyGenerate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.btnLegacyGenerate.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnLegacyGenerate.Location = new System.Drawing.Point(207, 3);
+            this.btnLegacyGenerate.Location = new System.Drawing.Point(199, 3);
             this.btnLegacyGenerate.MinimumSize = new System.Drawing.Size(114, 38);
             this.btnLegacyGenerate.Name = "btnLegacyGenerate";
             this.btnLegacyGenerate.Size = new System.Drawing.Size(114, 39);
@@ -201,7 +201,7 @@
             this.groupBox1.Controls.Add(this.rdoModOriginFirst);
             this.groupBox1.Location = new System.Drawing.Point(2, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(517, 60);
+            this.groupBox1.Size = new System.Drawing.Size(512, 60);
             this.groupBox1.TabIndex = 45;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "สองภาษา";
@@ -270,7 +270,7 @@
             this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.groupBox2.Location = new System.Drawing.Point(2, 437);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(517, 60);
+            this.groupBox2.Size = new System.Drawing.Size(512, 60);
             this.groupBox2.TabIndex = 46;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "แสดงรหัสข้อความ (สำหรับแปลในเว็บ #12345678)";
@@ -407,7 +407,7 @@
             this.btnRestore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRestore.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRestore.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnRestore.Location = new System.Drawing.Point(411, 18);
+            this.btnRestore.Location = new System.Drawing.Point(406, 18);
             this.btnRestore.Name = "btnRestore";
             this.btnRestore.Size = new System.Drawing.Size(98, 31);
             this.btnRestore.TabIndex = 49;
@@ -426,7 +426,7 @@
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(2, 503);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(517, 60);
+            this.groupBox3.Size = new System.Drawing.Size(512, 60);
             this.groupBox3.TabIndex = 50;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "เครื่องมือ";
@@ -482,7 +482,7 @@
             this.pnAdvance.Controls.Add(this.groupBox3);
             this.pnAdvance.Location = new System.Drawing.Point(12, 106);
             this.pnAdvance.Name = "pnAdvance";
-            this.pnAdvance.Size = new System.Drawing.Size(539, 569);
+            this.pnAdvance.Size = new System.Drawing.Size(517, 569);
             this.pnAdvance.TabIndex = 52;
             // 
             // groupBox5
@@ -497,7 +497,7 @@
             this.groupBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.groupBox5.Location = new System.Drawing.Point(54, 55);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(517, 60);
+            this.groupBox5.Size = new System.Drawing.Size(495, 60);
             this.groupBox5.TabIndex = 52;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "ความถี่การดาวน์โหลดไฟล์แปลภาษา";
@@ -566,7 +566,7 @@
             this.groupBox9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.groupBox9.Location = new System.Drawing.Point(2, 250);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(517, 54);
+            this.groupBox9.Size = new System.Drawing.Size(512, 54);
             this.groupBox9.TabIndex = 53;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "ความเข้ากันได้กับม็อดอื่น";
@@ -622,7 +622,7 @@
             this.groupBox7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.groupBox7.Location = new System.Drawing.Point(2, 309);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(517, 60);
+            this.groupBox7.Size = new System.Drawing.Size(512, 60);
             this.groupBox7.TabIndex = 52;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "การแปลแบบปรับแต่ง";
@@ -667,7 +667,7 @@
             this.groupBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.groupBox6.Location = new System.Drawing.Point(2, 158);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(517, 86);
+            this.groupBox6.Size = new System.Drawing.Size(512, 86);
             this.groupBox6.TabIndex = 52;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "ซับไตเติ้ล";
@@ -953,7 +953,7 @@
             this.groupBox8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.groupBox8.Location = new System.Drawing.Point(2, 370);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(517, 62);
+            this.groupBox8.Size = new System.Drawing.Size(512, 62);
             this.groupBox8.TabIndex = 46;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "อื่นๆ";
@@ -961,9 +961,9 @@
             // btnTranslateOnGoogleSheet
             // 
             this.btnTranslateOnGoogleSheet.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTranslateOnGoogleSheet.Location = new System.Drawing.Point(428, 22);
+            this.btnTranslateOnGoogleSheet.Location = new System.Drawing.Point(406, 22);
             this.btnTranslateOnGoogleSheet.Name = "btnTranslateOnGoogleSheet";
-            this.btnTranslateOnGoogleSheet.Size = new System.Drawing.Size(100, 33);
+            this.btnTranslateOnGoogleSheet.Size = new System.Drawing.Size(98, 33);
             this.btnTranslateOnGoogleSheet.TabIndex = 54;
             this.btnTranslateOnGoogleSheet.Text = "ช่วยแปล";
             this.btnTranslateOnGoogleSheet.UseVisualStyleBackColor = true;
@@ -1024,7 +1024,7 @@
             this.groupBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.groupBox4.Location = new System.Drawing.Point(2, 69);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(517, 83);
+            this.groupBox4.Size = new System.Drawing.Size(512, 83);
             this.groupBox4.TabIndex = 51;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "ฟอนต์";
@@ -1136,7 +1136,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miVersion,
             this.toolStripMenuItem1});
-            this.menuStrip1.Location = new System.Drawing.Point(403, 4);
+            this.menuStrip1.Location = new System.Drawing.Point(387, 4);
             this.menuStrip1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -1165,21 +1165,21 @@
             // miLog
             // 
             this.miLog.Name = "miLog";
-            this.miLog.Size = new System.Drawing.Size(147, 22);
+            this.miLog.Size = new System.Drawing.Size(180, 22);
             this.miLog.Text = "Log";
             this.miLog.Click += new System.EventHandler(this.miLog_Click);
             // 
             // miUpdate
             // 
             this.miUpdate.Name = "miUpdate";
-            this.miUpdate.Size = new System.Drawing.Size(147, 22);
+            this.miUpdate.Size = new System.Drawing.Size(180, 22);
             this.miUpdate.Text = "อัพเดทโปรแกรม";
             this.miUpdate.Click += new System.EventHandler(this.miUpdate_Click);
             // 
             // miTranslateProgress
             // 
             this.miTranslateProgress.Name = "miTranslateProgress";
-            this.miTranslateProgress.Size = new System.Drawing.Size(147, 22);
+            this.miTranslateProgress.Size = new System.Drawing.Size(180, 22);
             this.miTranslateProgress.Text = "ข้อมูลการแปล";
             this.miTranslateProgress.Visible = false;
             this.miTranslateProgress.Click += new System.EventHandler(this.miTranslateProgress_Click);
@@ -1187,7 +1187,7 @@
             // miMessageFinder
             // 
             this.miMessageFinder.Name = "miMessageFinder";
-            this.miMessageFinder.Size = new System.Drawing.Size(147, 22);
+            this.miMessageFinder.Size = new System.Drawing.Size(180, 22);
             this.miMessageFinder.Text = "ค้นหาข้อความ";
             this.miMessageFinder.Visible = false;
             this.miMessageFinder.Click += new System.EventHandler(this.miMessageFinder_Click);
@@ -1196,28 +1196,28 @@
             // 
             this.miChangeLog.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.miChangeLog.Name = "miChangeLog";
-            this.miChangeLog.Size = new System.Drawing.Size(147, 22);
+            this.miChangeLog.Size = new System.Drawing.Size(180, 22);
             this.miChangeLog.Text = "การเปลี่ยนแปลง";
             this.miChangeLog.Click += new System.EventHandler(this.miChangeLog_Click);
             // 
             // miCredit
             // 
             this.miCredit.Name = "miCredit";
-            this.miCredit.Size = new System.Drawing.Size(147, 22);
+            this.miCredit.Size = new System.Drawing.Size(180, 22);
             this.miCredit.Text = "เครดิต";
             this.miCredit.Click += new System.EventHandler(this.miCredit_Click);
             // 
             // miDebug
             // 
             this.miDebug.Name = "miDebug";
-            this.miDebug.Size = new System.Drawing.Size(147, 22);
+            this.miDebug.Size = new System.Drawing.Size(180, 22);
             this.miDebug.Text = "debug";
             this.miDebug.Click += new System.EventHandler(this.miDebug_Click);
             // 
             // miToggleAprilFools
             // 
             this.miToggleAprilFools.Name = "miToggleAprilFools";
-            this.miToggleAprilFools.Size = new System.Drawing.Size(147, 22);
+            this.miToggleAprilFools.Size = new System.Drawing.Size(180, 22);
             this.miToggleAprilFools.Text = "ปิด April Fools";
             this.miToggleAprilFools.Click += new System.EventHandler(this.miToggleAprilFools_Click);
             // 
@@ -1233,7 +1233,7 @@
             this.txtGamePath.Font = new System.Drawing.Font("Consolas", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGamePath.Location = new System.Drawing.Point(16, 29);
             this.txtGamePath.Name = "txtGamePath";
-            this.txtGamePath.Size = new System.Drawing.Size(480, 28);
+            this.txtGamePath.Size = new System.Drawing.Size(474, 28);
             this.txtGamePath.TabIndex = 6;
             this.txtGamePath.TextChanged += new System.EventHandler(this.txtGamePath_TextChanged);
             this.txtGamePath.DoubleClick += new System.EventHandler(this.txtGamePath_DoubleClick);
@@ -1253,7 +1253,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(528, 45);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(512, 45);
             this.tableLayoutPanel1.TabIndex = 57;
             // 
             // chkNextGen
@@ -1276,7 +1276,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(563, 599);
+            this.ClientSize = new System.Drawing.Size(543, 667);
             this.Controls.Add(this.btnGamePath);
             this.Controls.Add(this.txtGamePath);
             this.Controls.Add(this.chkNextGen);
@@ -1287,7 +1287,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(578, 45);
+            this.MinimumSize = new System.Drawing.Size(559, 45);
             this.Name = "frmVeryVerySimple";
             this.ShowIcon = false;
             this.Text = "โปรแกรมช่วยติดตั้งม็อดภาษาไทย The Witcher 3 (W3TU by svvv)";
